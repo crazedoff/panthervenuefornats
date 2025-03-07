@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GEVGG1S2P0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GEVGG1S2P0');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+    <script src="js/panolens.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .panorama-container {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panorama-container"></div>
+    <script>
+        // Initialize Panolens viewer
+        const panoramaContainer = document.querySelector('.panorama-container');
+        const panoramaImage = new PANOLENS.ImagePanorama('images/image1.jpeg'); // Update with your 360 image path
+        const viewer = new PANOLENS.Viewer({
+            container: panoramaContainer,
+            autoRotate: true,
+            autoRotateSpeed: 0.3,
+            controlBar: false,
+        });
+
+        // Add the panorama to the viewer
+        viewer.add(panoramaImage);
+    </script>
+</body>
+</html>
