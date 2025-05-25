@@ -365,10 +365,10 @@
     </div>
 
     <script>
-        // Initialize WOW.js
+        // important initialization for file
         new WOW().init();
 
-        // Default events with added 'id' and 'signedUpUsers'
+        // Default events - more can be added dynamically
         const defaultEvents = [
             { id: '1', title: "Varsity Basketball Finals", date: "2025-03-20", location: "Large Gym", price: 15.00, category: "Athletics", image: "https://images.unsplash.com/photo-1546519638-68e109498ffc", desc: "Cheer for our school teams in the championship basketball game! Don't miss this exciting finale featuring our top players.", signedUpUsers: [] },
             { id: '2', title: "Spring Dance Recital", date: "2025-04-05", location: "Small Gym", price: 10.00, category: "Performances", image: "https://images.unsplash.com/photo-1547153760-18fc86324498", desc: "Annual student choreography showcase featuring various dance styles from ballet to hip-hop.", signedUpUsers: [] },
@@ -385,6 +385,7 @@
         ];
 
 
+        // Default schedules - more can be added dynamically
         const defaultSchedules = {
             "Athletics": [
                 { event: "Doors Open", time: "6:00 PM" },

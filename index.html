@@ -2,14 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
-
-
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag - (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEVGG1S2P0"></script>
-
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -32,12 +27,10 @@
   <!-- Favicons -->
   <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
 
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
-  <!-- Bootstrap CSS File -->
+  <!-- Bootstrap 5 CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
@@ -772,27 +765,28 @@ window.onload = function() {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      const seatGroups = document.querySelectorAll('.seat-group');
-      const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']; // Add more letters if needed
-      
-      seatGroups.forEach((group, colIndex) => {
-          // Create 9 rows per column
-          for(let i = 0; i < 6; i++) {
-              const seatRow = document.createElement('div');
-              seatRow.className = 'seat-row';
-              
-              // Create 2 seats per row
-              for(let seatNum = 1; seatNum <= 2; seatNum++) {
-                  const seat = document.createElement('div');
-                  seat.className = 'seat';
-                  const rowLetter = rows[colIndex];
-                  seat.textContent = `${rowLetter}${i*2 + seatNum}`;
-                  seatRow.appendChild(seat);
-              }
-              group.appendChild(seatRow);
-          }
-      });
-  });
+    const seatGroups = document.querySelectorAll('.seat-group');
+    const rows = ['A', 'B', 'C', 'D', 'E']; // Adjust the number of rows as needed
+
+    seatGroups.forEach((group, colIndex) => {
+        if (colIndex >= rows.length) return; // Prevents undefined errors
+
+        for (let i = 0; i < 6; i++) {
+            const seatRow = document.createElement('div');
+            seatRow.className = 'seat-row';
+
+            for (let seatNum = 1; seatNum <= 2; seatNum++) {
+                const seat = document.createElement('div');
+                seat.className = 'seat';
+                const rowLetter = rows[colIndex];
+                seat.textContent = `${rowLetter}${i * 2 + seatNum}`;
+                seatRow.appendChild(seat);
+            }
+            group.appendChild(seatRow);
+        }
+    });
+});
+
   </script>
 <style>
   /* Seating Chart Section Styling */
@@ -1909,7 +1903,7 @@ window.onload = function() {
   .hotel-image-wrapper {
       overflow: hidden;
       height: 350px;
-      width: 400px;
+      width: 325px;
       position: relative;
       cursor: pointer;
       margin: 15px;
@@ -1971,7 +1965,7 @@ window.onload = function() {
       <div class="container">
           <div class="section-header">
               <h2>Hotels</h2>
-              <p>Traveling far? Find nearby accommodations</p>
+              <p>Traveling far? Find nearby accommodations.</p>
           </div>
           <div class="hotels-row">
               <!-- Hilton Garden Inn -->
@@ -2246,7 +2240,7 @@ window.onload = function() {
     <div class="container">
       <div class="section-header">
         <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know about PantherVenue</p>
+        <p>Learn everything you need to know about PantherVenue.</p>
       </div>
   
       <div class="faq-search-container">
@@ -2257,11 +2251,15 @@ window.onload = function() {
       <ul id="faq-list">
         <li>
           <a data-toggle="collapse" href="#faq1" aria-expanded="false" class="collapsed">
-            <span class="question-text">What is the purpose of this website?</span>
+            <span class="question-text">Are there any directions to the venue?</span>
             <i class="fas fa-plus"></i>
           </a>
           <div class="collapse" id="faq1" data-parent="#faq-list">
-            <p><span class="answer-text">This platform serves as the official hub for PantherVenue - our 3,500-seat multi-purpose arena. Features include event listings, ticket purchases, venue rentals, photo galleries, and secure user accounts.</span></p>
+            <p>
+              <span class="answer-text">
+                  Yes! The address of PantherVenue is 600 Garretson Road, in Bridgewater, New Jersey. Need a GPS? Just visit the integrated Google Maps location in the Contact Us page below!
+              </span>
+          </p>
           </div>
         </li>
         <li>
@@ -2304,34 +2302,8 @@ window.onload = function() {
               - Dark mode compatibility</span></p>
           </div>
         </li>
-        <li>
-          <a data-toggle="collapse" href="#faq5" aria-expanded="false" class="collapsed">
-            <span class="question-text">How can I find directions to the gymnasium?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq5" data-parent="#faq-list">
-            <p><span class="answer-text">Use our interactive map with:<br>
-              - Real-time traffic updates<br>
-              - Parking recommendations<br>
-              - Public transport routes<br>
-              - 3D building visualization<br>
-              Three main entrances are clearly marked.</span></p>
-          </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq6" aria-expanded="false" class="collapsed">
-            <span class="question-text">What are the seating options in the arena?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq6" data-parent="#faq-list">
-            <p><span class="answer-text">We offer:<br>
-              - VIP Premium Seating<br>
-              - General Admission<br>
-              - Accessible seating<br>
-              - Group seating blocks<br>
-              View detailed charts in the About section.</span></p>
-          </div>
-        </li>
+    
+    
         <li>
           <a data-toggle="collapse" href="#faq7" aria-expanded="false" class="collapsed">
             <span class="question-text">Is my data secure when purchasing tickets?</span>
@@ -2371,20 +2343,7 @@ window.onload = function() {
               Sign up for restock alerts in your account.</span></p>
           </div>
         </li>
-        <li>
-          <a data-toggle="collapse" href="#faq10" aria-expanded="false" class="collapsed">
-            <span class="question-text">What are the arena policies?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq10" data-parent="#faq-list">
-            <p><span class="answer-text">Key policies include:<br>
-              - Clear bag policy<br>
-              - Age restrictions<br>
-              - Food/beverage rules<br>
-              - Safety protocols<br>
-              Full details available in the About section.</span></p>
-          </div>
-        </li>
+       
       </ul>
     </div>
   </section>
@@ -2568,15 +2527,15 @@ window.onload = function() {
 
       <div class="col-md-6">
         <iframe
-          src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=600%20garretson%20road+(Panther%20Venue)&t=s&z=17&ie=UTF8&iwloc=B&output=embed"
-          width="100%"
-          height="400"
-          frameborder="0"
-          style="border:3px solid #ac1833; padding: 0; margin: 0;"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0">
-        </iframe>
+      src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=600%20garretson%20road+(Panther%20Venue)&t=s&z=17&ie=UTF8&iwloc=B&output=embed"
+      width="100%"
+      height="400"
+      frameborder="0"
+      style="border:3px solid #ac1833; padding: 0; margin: 0;"
+      allowfullscreen=""
+      aria-hidden="false"
+      tabindex="0">
+    </iframe>
       </div>
     </div>
   </div>

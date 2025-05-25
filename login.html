@@ -271,7 +271,7 @@
         .flatpickr-day.event:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #f80000; }
         .flatpickr-day.event:hover { background-color: #ff8787; }
 
-        /* Ticket Purchase Popup Styles (Matching event.html) */
+        /* Ticket Purchase */
         .ticket-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; display: none; opacity: 0; transition: all 0.3s ease; }
         .ticket-popup.active { display: block; opacity: 1; }
         .popup-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -292,7 +292,7 @@
         .purchase-button:hover { background: #e61e40; }
         .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
 
-        /* Seating Chart Styles */
+        /* Seating Charts!! */
         .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
         .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
         .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
@@ -345,6 +345,11 @@
         .rent-venue-box p { margin-bottom: 1rem; color: #4b5563; }
         .rent-venue-box .btn { align-self: center; }
         .rent-venue-note { font-size: 0.875rem; color: #6c757d; text-align: center; margin-top: 1rem; }
+
+        .dashboard-wrapper .content .container-fluid > .row:nth-child(3) > .col-12.col-lg-4.col-xxl-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
     </style>
 </head>
 <body>
@@ -458,7 +463,7 @@
                             </div>
                             <div class="col-xl-6 col-xxl-7">
                                 <div class="card flex-fill w-100">
-                                    <div class="card-header"><h5 class="card-title mb-0">Real-time & Projected Revenue</h5></div>
+                                    <div class="card-header"><h5 class="card-title mb-0">Desired Goals Graph</h5></div>
                                     <div class="card-body py-3">
                                         <div class="chart chart-sm"><canvas id="chartjs-dashboard-line"></canvas></div>
                                     </div>
@@ -796,10 +801,8 @@
         }
         if (!localStorage.getItem(REQUESTS_KEY)) {
             const initialRequests = [
-                { id: '1', username: 'john_doe', firstName: 'John', lastName: 'Doe', email: 'john@example.com', eventName: 'Basketball Tournament', description: 'A thrilling basketball event.', eventDate: '2025-05-01', eventPrice: 15, category: 'Athletics', venue: 'Large Gym', image: '', status: 'accepted', created: new Date().toISOString() },
-                { id: '2', username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', eventName: 'Dance Recital', description: 'An evening of dance performances.', eventDate: '2025-05-10', eventPrice: 10, category: 'Performances', venue: 'Small Gym', image: '', status: 'accepted', created: new Date().toISOString() },
-                { id: '3', username: 'bob_jones', firstName: 'Bob', lastName: 'Jones', email: 'bob@example.com', eventName: 'Science Fair', description: 'Showcasing student projects.', eventDate: '2025-05-15', eventPrice: 0, category: 'Workshops', venue: 'Large Gym', image: '', status: 'accepted', created: new Date().toISOString() },
-                { id: '4', username: 'alice_chang', firstName: 'Alice', lastName: 'Wong', email: 'alice@example.com', eventName: 'Charity Gala', description: 'Fundraising for a good cause.', eventDate: '2025-05-20', eventPrice: 25, category: 'Gatherings', venue: 'Large Gym', image: '', status: 'accepted', created: new Date().toISOString() },
+                { id: '1', username: 'john_brown', firstName: 'John', lastName: 'Brown', email: 'john@example.com', eventName: 'STEM Robotics Demo', description: 'A thrilling event.', eventDate: '2025-04-07', eventPrice: 15, category: 'Workshops', venue: 'Large Gym', image: '', status: 'accepted', created: new Date().toISOString() },
+                { id: '2', username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', eventName: 'Dance Recital', description: 'An evening of dance performances.', eventDate: '2025-05-10', eventPrice: 10, category: 'Performances', venue: 'Small Gym', image: '', status: 'declined', created: new Date().toISOString() },
                 { id: '5', username: 'mike_brown', firstName: 'Mike', lastName: 'Brown', email: 'mike@example.com', eventName: 'Soccer Match', description: 'Competitive soccer game.', eventDate: '2025-05-25', eventPrice: 10, category: 'Athletics', venue: 'Large Gym', image: '', status: 'declined', created: new Date().toISOString() },
                 { id: '6', username: 'emma_davis', firstName: 'Emma', lastName: 'Davis', email: 'emma@example.com', eventName: 'Art Exhibition', description: 'Displaying local artwork.', eventDate: '2025-05-30', eventPrice: 5, category: 'Performances', venue: 'Small Gym', image: '', status: 'declined', created: new Date().toISOString() }
             ];
@@ -1185,7 +1188,6 @@
                     });
                 }
             }
-
             let seatingText = 'None';
             if (registration.seatingInfo) {
                 if (registration.seatingInfo.type === 'stand') {
@@ -1450,11 +1452,11 @@
                     data: {
                         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                         datasets: [{
-                            label: "Sales ($)",
+                            label: "Views",
                             fill: true,
                             backgroundColor: gradient,
                             borderColor: '#f82249',
-                            data: [2115, 1562, 1584, 1892, 1587, 1923, 2566, 2448, 2805, 3438, 2917, 3327]
+                            data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327]
                         }]
                     },
                     options: {
@@ -1515,7 +1517,8 @@
             }
         });
 
-        
+     
+
     </script>
     <script src="static/js/app2.js"></script>
     <script src="lib/jquery/jquery.min.js"></script>
@@ -1523,3 +1526,5 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
