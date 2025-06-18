@@ -7,7 +7,7 @@
       }
     ]
   }
-  {
+  
   "emeraldwalk.runonsave": {
     "commands": [
       {
@@ -16,5 +16,5 @@
       }
     ]
   }
-}
+
 }
