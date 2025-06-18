@@ -3,18 +3,8 @@
     "commands": [
       {
         "match": ".*",
-        "cmd": "git add . && git commit -m \"Auto commit\" && git push"
-      }
-    ]
-  }
-  
-  "emeraldwalk.runonsave": {
-    "commands": [
-      {
-        "match": ".*",
         "cmd": "echo RunOnSave Triggered"
       }
     ]
   }
-
 }
