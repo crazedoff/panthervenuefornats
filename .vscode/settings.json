@@ -3,7 +3,7 @@
     "commands": [
       {
         "match": ".*",
-        "cmd": "echo RunOnSave Triggered"
+        "cmd": "echo === AUTO PUSH START === && git add . && git commit -m \"Auto commit\" && git push && echo === AUTO PUSH DONE ==="
       }
     ]
   }
