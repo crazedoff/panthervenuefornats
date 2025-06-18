@@ -1,4 +1,4 @@
-<!-- https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=600%20garretson%20road+(Panther%20Venue)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +18,10 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
   <meta name="description" content="PantherVenue is a state-of-the-art gymnasium offering top-tier fitness facilities, personalized training, and a community-focused atmosphere.">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -26,6 +30,9 @@
 
   <!-- Favicons -->
   <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
+
+  <!-- Icon Libraries (including Font Awesome for Decorations) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
@@ -42,9 +49,7 @@
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/favicon.png" rel="icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -57,20 +62,467 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
-  <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
-  <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
-  <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
   <link href="assets2/css/main.css" rel="stylesheet">
+
+  <!-- START: Chatbot Integration Head -->
+  <!-- Google Fonts for Chatbot Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- 
+    ========================================================
+        DECORATIVE BACKGROUND STYLES & PARALLAX
+    ========================================================
+    -->
+    <style>
+      /* --- This rule makes the FAQ section a container for its decorations --- */
+      #faq {
+        position: relative;
+        background: #f8f9fa; /* Fallback for when decorations are hidden */
+      }
+      
+      /* --- 1. HERO IMAGE PARALLAX (Desktop Only) --- */
+      #intro {
+        background-attachment: fixed; /* Creates parallax effect */
+        
+      }
+      
+      /* --- 2. DECORATIVE STYLES (Desktop Only) --- */
+      /* These effects are now scoped to screens wider than 1199px */
+      @media (min-width: 1200px) {
+        
+        /* -- NEW: Hotel Section Background Circles -- */
+        #hotels.section-with-bg {
+            position: relative; /* Container for pseudo-elements */
+            overflow: hidden; /* Clips the circles that go off-screen */
+            z-index: 1;
+        }
+
+        #hotels.section-with-bg::before,
+        #hotels.section-with-bg::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background: rgba(255, 209, 218, 0.442); /* Faint red color for circles */
+              border-radius: 50%;
+            pointer-events: none;
+        }
+
+        #hotels.section-with-bg::before {
+            width: 450px;
+            height: 450px;
+            top: 50px;
+            left: -150px;
+        }
+
+        #hotels.section-with-bg::after {
+            width: 550px;
+            height: 550px;
+            bottom: -200px;
+            right: -200px;
+        }
+
+        /* -- FAQ Section Background Icons -- */
+        
+        #faq {
+          background: transparent !important; /* Make background see-through for icons */
+        }
+        
+        :root {
+          --decor-density-multiplier: 0.9;
+          --decor-color-red: rgba(224, 7, 47, 0.08);
+          --decor-color-black: rgba(30, 30, 30, 0.07);
+        }
+
+        .background-decorations {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        .decor-icon {
+          position: absolute;
+          color: var(--decor-color-black);
+          transition: all 0.3s ease;
+        }
+      
+        
+        /* LEFT SIDE ICONS */
+        #decor1 { top: 2%; left: calc(15% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-25deg); color: var(--decor-color-red); }
+        #decor2 { top: 12%; left: calc(3% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(15deg); }
+        #decor3 { top: 25%; left: calc(12% * var(--decor-density-multiplier)); font-size: 80px; transform: rotate(10deg); color: var(--decor-color-red); }
+        #decor4 { top: 40%; left: calc(4% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-10deg); }
+        #decor5 { top: 55%; left: calc(14% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(20deg); color: var(--decor-color-red); }
+        #decor6 { top: 70%; left: calc(2% * var(--decor-density-multiplier)); font-size: 65px; transform: rotate(5deg); }
+        #decor7 { top: 85%; left: calc(18% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-15deg); color: var(--decor-color-red); }
+        #decor8 { top: 3%; left: calc(1% * var(--decor-density-multiplier)); font-size: 40px; transform: rotate(10deg); }
+        #decor9 { top: 78%; left: calc(5% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-20deg); }
+        #decor10 { top: 95%; left: calc(8% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(12deg); color: var(--decor-color-red); }
+        #decor21 { top: 58%; left: calc(10% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(30deg); }
+        #decor22 { top: 32%; left: calc(1% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-18deg); color: var(--decor-color-red); }
+        #decor25 { top: 92%; left: calc(19% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(10deg); }
+
+        /* RIGHT SIDE ICONS */
+        #decor11 { top: 5%; right: calc(12% * var(--decor-density-multiplier)); font-size: 90px; transform: rotate(15deg); color: var(--decor-color-red); }
+        #decor12 { top: 18%; right: calc(3% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-20deg); }
+        #decor13 { top: 33%; right: calc(15% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(10deg); color: var(--decor-color-red); }
+        #decor14 { top: 50%; right: calc(4% * var(--decor-density-multiplier)); font-size: 80px; transform: rotate(5deg); }
+        #decor15 { top: 65%; right: calc(1% * var(--decor-density-multiplier)); font-size: 65px; transform: rotate(-15deg); }
+        #decor16 { top: 80%; right: calc(16% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(25deg); color: var(--decor-color-red); }
+        #decor17 { top: 93%; right: calc(8% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-10deg); }
+        #decor18 { top: 1%; right: calc(1% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-5deg); }
+        #decor19 { top: 72%; right: calc(6% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(18deg); color: var(--decor-color-red); }
+        #decor20 { top: 58%; right: calc(18% * var(--decor-density-multiplier)); font-size: 40px; transform: rotate(22deg); }
+        #decor23 { top: 25%; right: calc(20% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(-25deg); }
+        #decor24 { top: 98%; right: calc(3% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(15deg); color: var(--decor-color-red); }
+        #decor26 { top: 88%; right: calc(20% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-10deg); color: var(--decor-color-red); }
+      }
+    </style>
+
+  <style>
+    /* Importing Google Fonts - Inter for Chatbot */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+    
+    /* --- Chatbot Styles --- */
+    #chatbot-toggler {
+      position: fixed;
+      bottom: 30px;
+      right: 35px;
+      border: none;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 1000; /* Ensure it's above other content */
+    }
+    body.show-chatbot #chatbot-toggler {
+      transform: rotate(90deg);
+    }
+    #chatbot-toggler span {
+      color: #fff;
+      position: absolute;
+    }
+    #chatbot-toggler span:last-child,
+    body.show-chatbot #chatbot-toggler span:first-child {
+      opacity: 0;
+    }
+    body.show-chatbot #chatbot-toggler span:last-child {
+      opacity: 1;
+    }
+    .chatbot-popup {
+      position: fixed;
+      right: 35px;
+      bottom: 90px;
+      width: 400px; 
+      overflow: hidden;
+      background: #fff;
+      border-radius: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.2);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s ease;
+      z-index: 1000;
+    }
+    body.show-chatbot .chatbot-popup {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 22px;
+      background: #dc3545; /* Red */
+      border-bottom: 1px solid #d4d4d4;
+      justify-content: space-between;
+    }
+    .chat-header .header-info {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .header-info .chatbot-logo {
+      width: 35px;
+      height: 35px;
+      padding: 2px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .header-info .logo-text {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.31rem;
+      letter-spacing: 0.02rem;
+      font-family: "Inter", sans-serif;
+    }
+    .chat-header #close-chatbot {
+      border: none;
+      color: #fff;
+      height: 40px;
+      width: 40px;
+      font-size: 1.9rem;
+      margin-right: -10px;
+      padding-top: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-header #close-chatbot:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .chat-body {
+      font-family: "Inter", sans-serif;
+      padding: 25px 22px;
+      gap: 20px;
+      display: flex;
+      height: 400px; 
+      overflow-y: auto;
+      margin-bottom: 75px;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    .chat-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .chat-body .message {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .chat-body .message .bot-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .chat-body .message .message-text {
+      font-family: "Inter", sans-serif;
+      padding: 12px 16px;
+      max-width: 75%;
+      font-size: 0.95rem;
+      word-wrap: break-word;
+    }
+    .chat-body .bot-message.thinking .message-text {
+      padding: 2px 16px;
+    }
+    .chat-body .bot-message .message-text {
+      background: #f0f0f0; /* Light Gray */
+      color: #000;
+      border-radius: 13px 13px 13px 3px;
+    }
+    .chat-body .user-message {
+      justify-content: flex-end;
+    }
+    .chat-body .user-message .message-text {
+      color: #fff;
+      background: #dc3545; /* Red */
+      border-radius: 13px 13px 3px 13px;
+    }
+    /* Markdown formatting inside bot message */
+     .bot-message .message-text p,
+     .bot-message .message-text h1,
+     .bot-message .message-text h2,
+     .bot-message .message-text h3,
+     .bot-message .message-text ul,
+     .bot-message .message-text ol,
+     .bot-message .message-text li {
+        font-family: "Inter", sans-serif;
+        margin-bottom: 0.5em;
+        font-size: 0.95rem;
+     }
+     .bot-message .message-text p:last-child {
+        margin-bottom: 0;
+     }
+     .bot-message .message-text ul, .bot-message .message-text ol {
+        padding-left: 20px;
+     }
+    .chat-body .bot-message .thinking-indicator {
+      display: flex;
+      gap: 4px;
+      padding-block: 15px;
+    }
+    .chat-body .bot-message .thinking-indicator .dot {
+      height: 7px;
+      width: 7px;
+      opacity: 0.7;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse {
+      0%, 44% { transform: translateY(0); }
+      28% { opacity: 0.4; transform: translateY(-4px); }
+      44% { opacity: 0.2; }
+    }
+    .chat-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 10px 22px 15px;
+      border-top: 1px solid #d4d4d4;
+    }
+    .chat-footer .chat-form {
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: #fff;
+      border-radius: 32px;
+      outline: 1px solid #ccc;
+      transition: 0s ease;
+    }
+    .chat-form:focus-within {
+      outline: 2px solid #dc3545; /* Red */
+    }
+    .chat-form .message-input {
+      font-family: "Inter", sans-serif;
+      width: 100%;
+      height: 47px;
+      outline: none;
+      resize: none;
+      border: none;
+      max-height: 180px;
+      scrollbar-width: none;
+      border-radius: inherit;
+      font-size: 0.95rem;
+      padding: 14px 0 12px 18px;
+    }
+    .chat-form .message-input::-webkit-scrollbar {
+        display: none;
+    }
+    .chat-form .chat-controls {
+      gap: 3px;
+      height: 47px;
+      display: flex;
+      padding-right: 6px;
+      align-items: center;
+      align-self: flex-end;
+    }
+    .chat-form .chat-controls button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      cursor: pointer;
+      color: #555; /* Dark Gray */
+      border-radius: 50%;
+      font-size: 1.15rem;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-form .chat-controls button:hover,
+    body.show-emoji-picker .chat-controls #emoji-picker {
+      color: #dc3545; /* Red */
+      background: #fdeaea; /* Light Red */
+    }
+    .chat-form .chat-controls #send-message {
+      color: #fff;
+      background: #dc3545; /* Red */
+      /* IPAD FIX: Perfect centering for the icon */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-form .chat-controls #send-message:hover {
+      background: #b02a37; /* Darker Red */
+    }
+    .chat-form .message-input:valid~.chat-controls #send-message {
+      display: flex; /* Changed from block to flex for centering fix */
+    }
+    em-emoji-picker {
+      position: absolute;
+      left: 50%;
+      bottom: 55px; /* Position above the input bar */
+      width: 100%;
+      max-width: 350px;
+      visibility: hidden;
+      max-height: 330px;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    body.show-emoji-picker em-emoji-picker {
+      visibility: visible;
+    }
+
+    /* IPAD/MOBILE FIX: Make chatbot fullscreen on tablets (portrait) and phones */
+    @media (max-width: 768px) {
+      #chatbot-toggler {
+        right: 20px;
+        bottom: 20px;
+      }
+      .chatbot-popup {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+      }
+      .chatbot-popup .chat-header {
+        padding: 12px 15px;
+      }
+      .chat-body {
+        height: calc(100% - 130px); /* Adjusted for full screen */
+        padding: 25px 15px;
+      }
+      .chat-footer {
+        padding: 10px 15px 15px;
+      }
+    }
+  </style>
+  <!-- END: Chatbot Integration Head -->
   
-
-
 </head>
 
 <body>
 
 
-  
+   <script>
+    (function() {
+      const path = window.location.pathname.toLowerCase();
+      // Add ALL your valid .html pages to this list
+      const validPages = ['/', '/index.html', '/event.html', '/rent.html', '/gallery.html', '/login.html', '/404.html']; 
+      
+      const isFile = path.endsWith('.html');
+      const isValidPage = validPages.some(page => path.endsWith(page));
+
+      // If the user is trying to access an .html file that is NOT on our valid list, redirect them.
+      if (isFile && !isValidPage) {
+        window.location.replace('/404.html');
+      }
+    }());
+  </script>
+
+
+<body>
+
 
   <!--==========================
     Header
@@ -146,9 +598,7 @@ function typeExcellence() {
 }
 
 // Start the typing effect when the page loads
-window.onload = function() {
-  type();
-};
+// Note: This is now called by the main script at the bottom of the page
 </script>
 
   <!-- Wave Animation SVG -->
@@ -381,14 +831,16 @@ window.onload = function() {
   
   <script>
   // Add intersection observer for elements
-  document.querySelectorAll('.speaker, .schedule-item, .card').forEach((el, index) => {
-      if (el.classList.contains('schedule-item')) {
-          el.style.setProperty('--index', index);
-      }
-      
-      // Add hover effect restoration
-      el.addEventListener('animationend', () => {
-          el.style.transform = 'none'; // Reset transform after animation
+  document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.speaker, .schedule-item, .card').forEach((el, index) => {
+          if (el.classList.contains('schedule-item')) {
+              el.style.setProperty('--index', index);
+          }
+          
+          // Add hover effect restoration
+          el.addEventListener('animationend', () => {
+              el.style.transform = 'none'; // Reset transform after animation
+          });
       });
   });
 
@@ -415,33 +867,29 @@ window.onload = function() {
 
       <div class="container" data-aos="fade-up">
 
-        <div class="row gy-4">
+      <div class="row justify-content-center gy-4">
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/1.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <div class="col-xl-2 col-md-3 col-6 client-logo">
+    <img src="img/sponsors/1.png" class="img-fluid" alt="">
+  </div><!-- End Client Item -->
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/2.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <div class="col-xl-2 col-md-3 col-6 client-logo">
+    <img src="img/sponsors/2.png" class="img-fluid" alt="">
+  </div><!-- End Client Item -->
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/3.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <div class="col-xl-2 col-md-3 col-6 client-logo">
+    <img src="img/sponsors/3.png" class="img-fluid" alt="">
+  </div><!-- End Client Item -->
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/4.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <!-- Removed #4 -->
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/6.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <!-- Removed #6 -->
 
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="img/sponsors/7.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+  <div class="col-xl-2 col-md-3 col-6 client-logo">
+    <img src="img/sponsors/7.png" class="img-fluid" alt="">
+  </div><!-- End Client Item -->
 
-        </div>
+</div>
 
       </div>
 
@@ -728,50 +1176,75 @@ window.onload = function() {
         </div>
       </div>
 
-      <!-- Graduation Layout Box -->
-      <div class="col-md-6">
-        <div class="seating-chart-box">
-          <div class="chart-header">
-            <h3>Seating Layout</h3>
-            <p class="chart-description">Optimized for ceremonies and presentations</p>
-          </div>
-          <div class="arena-container">
-            <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
-            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
-            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
-            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
-            <div class="stage-container">
-                <div class="stage">MAIN STAGE</div>
-            </div>
-            <div class="main-floor">
-                <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 10px;">
-                    <div class="seat-group"></div>
-                    <div class="seat-group"></div>
-                    <div class="seat-group"></div>
-                    <div class="seat-group"></div>
-                    <div class="seat-group"></div>
-                    <div class="seat-group"></div>
-                </div>
-            </div>
-        </div>
+    <!-- Graduation Layout Box -->
+<div class="col-md-6">
+  <div class="seating-chart-box">
+    <div class="chart-header">
+      <h3>Seating Layout</h3>
+      <p class="chart-description">Optimized for ceremonies and presentations</p>
+    </div>
+    <div class="arena-container">
+      <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
+      <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+      <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+      <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+      <div class="stage-container">
+        <div class="stage">MAIN STAGE</div>
+      </div>
+      <div class="main-floor">
+        <div class="seating-chart-scroll-wrapper">
+          <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 10px;">
+            <div class="seat-group"></div>
+            <div class="seat-group"></div>
+            <div class="seat-group"></div>
+            <div class="seat-group"></div>
+            <div class="seat-group"></div>
+            <div class="seat-group"></div>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- iPad replacement image -->
+    <img src="/ipadpic.png" alt="Seating Layout for iPad" class="ipad-seating-replacement">
+  </div>
+</div>
       </div>
     </div>
   </div>
 </section>
 
+<style>
 
+
+  /* Hide the iPad replacement image by default */
+.ipad-seating-replacement {
+  display: none;
+}
+
+/* Show the image and hide arena-container only on iPad-sized screens */
+@media screen and (min-width: 768px) and (max-width: 1024px) and (pointer: coarse) and (-webkit-device-pixel-ratio: 2) {  .ipad-seating-replacement {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+  .arena-container {
+    display: none !important;
+  }
+}
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const seatGroups = document.querySelectorAll('.seat-group');
-    const rows = ['A', 'B', 'C', 'D', 'E']; // Adjust the number of rows as needed
+    const rows = ['A', 'B', 'C', 'D', 'E', 'F']; // Adjust the number of rows as needed
 
     seatGroups.forEach((group, colIndex) => {
         if (colIndex >= rows.length) return; // Prevents undefined errors
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
             const seatRow = document.createElement('div');
             seatRow.className = 'seat-row';
 
@@ -863,19 +1336,6 @@ window.onload = function() {
     font-size: 7px;
   }
   
-  @media (max-width: 768px) {
-    .seating-chart-box {
-      margin-bottom: 2rem;
-    }
-    
-    .arena-container, .arena-container2 {
-      min-height: 300px;
-    }
-    
-    .capacity-section {
-      font-size: 0.7rem;
-    }
-  }
   </style>
 
 
@@ -1115,12 +1575,6 @@ window.onload = function() {
 </section><!-- /Team Section -->
 
 
-
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-        ></i></a>
-
     <!-- Preloader -->
     <div id="preloader"></div>
 
@@ -1133,9 +1587,6 @@ window.onload = function() {
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  
-
 
 <script>
 
@@ -1191,27 +1642,6 @@ window.onload = function() {
         preloader.remove();
       });
     }
-
-    /**
-     * Scroll top button
-     */
-    let scrollTop = document.querySelector('.scroll-top');
-
-    function toggleScrollTop() {
-      if (scrollTop) {
-        window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-      }
-    }
-    scrollTop.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    window.addEventListener('load', toggleScrollTop);
-    document.addEventListener('scroll', toggleScrollTop);
 
     /**
      * Animation on scroll function and init
@@ -1294,6 +1724,9 @@ window.onload = function() {
      * Correct scrolling position upon page load for URLs containing hash links.
      */
     window.addEventListener('load', function (e) {
+      // Start the typing effect for the hero section
+      type();
+
       if (window.location.hash) {
         if (document.querySelector(window.location.hash)) {
           setTimeout(() => {
@@ -1332,10 +1765,6 @@ window.onload = function() {
 
   })();
 </script>
-
-
-
-
 
 
 <style>
@@ -1980,7 +2409,7 @@ window.onload = function() {
                  
                 </div>
               </a>
-                <h3><a href="#">Hilton Garden Inn Bridgewater</a></h3>
+                <h3><a href="#">Hampton Inn Bridgewater</a></h3>
                 <div class="stars">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -2018,7 +2447,7 @@ window.onload = function() {
                       <i class="fas fa-search hotel-search-icon"></i>
                     </a>
                   </div>
-                  <h3><a href="#">TownePlace Suites Bridgewater</a></h3>
+                  <h3><a href="#">TownePlace Bridgewater</a></h3>
                   <div class="stars">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -2036,19 +2465,14 @@ window.onload = function() {
     # F.A.Q Section
     --------------------------------------------------------------*/
     
-    #faq {
-      padding: 80px 0;
-      background: #f8f9fa;
-    }
-    
-    #faq #faq-list {
+    #faq-list {
       padding: 0;
       list-style: none;
       max-width: 800px;
       margin: 0 auto;
     }
     
-    #faq #faq-list li {
+    #faq-list li {
       background: #fff;
       border-radius: 12px;
       margin-bottom: 15px;
@@ -2058,7 +2482,7 @@ window.onload = function() {
     }
     
     /* FAQ question styling */
-    #faq #faq-list a {
+    #faq-list a {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -2072,7 +2496,7 @@ window.onload = function() {
     }
     
     /* prevent the icon from shifting */
-    #faq #faq-list a i {
+    #faq-list a i {
       color: #f82249;
       font-size: 22px;
       margin-left: 20px;
@@ -2080,12 +2504,12 @@ window.onload = function() {
       flex-shrink: 0;
     }
     
-    #faq #faq-list a:hover {
+    #faq-list a:hover {
       color: #f82249;
     }
     
     /* When expanded, rotate the icon */
-    #faq #faq-list a[aria-expanded="true"] i {
+    #faq-list a[aria-expanded="true"] i {
       transform: rotate(135deg);
     }
     
@@ -2135,13 +2559,18 @@ window.onload = function() {
       max-height: 500px;
     }
     
+    /* FIX: Padding is on the static wrapper div to prevent text reflow during animation */
+    .faq-answer-content {
+        padding: 0 30px 25px;
+    }
+    
+    /* FIX: Padding and its transition removed from the p tag itself */
     .collapse p {
-      padding: 0 30px 25px;
-      color: #555;
-      line-height: 1.7;
-      font-size: 16px;
-      margin: 0;
-      transition: padding 0.35s ease;
+        padding: 0;
+        color: #555;
+        line-height: 1.7;
+        font-size: 16px;
+        margin: 0;
     }
     
     /* Highlighting */
@@ -2234,53 +2663,97 @@ window.onload = function() {
   </div>
 </section><!-- /Testimonials Section -->
 
+<!-- =================================
+     Frequently Asked Questions Section
+     ================================= -->
+<section id="faq">
 
-  
-  <section id="faq">
-    <div class="container">
-      <div class="section-header">
-        <h2>Frequently Asked Questions</h2>
-        <p>Learn everything you need to know about PantherVenue.</p>
-      </div>
-  
-      <div class="faq-search-container">
-        <input type="text" id="faq-search" placeholder="Search questions...">
-        <i class="fas fa-search search-icon"></i>
-      </div>
-  
-      <ul id="faq-list">
-        <li>
-          <a data-toggle="collapse" href="#faq1" aria-expanded="false" class="collapsed">
-            <span class="question-text">Are there any directions to the venue?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq1" data-parent="#faq-list">
+  <!-- Decorations container is now INSIDE the FAQ section -->
+  <div class="background-decorations">
+      <!-- Left Side Icons -->
+      <i class="fas fa-paw decor-icon" id="decor1"></i>
+      <i class="fas fa-star decor-icon" id="decor2"></i>
+      <i class="fas fa-basketball-ball decor-icon" id="decor3"></i>
+      <i class="fas fa-trophy decor-icon" id="decor4"></i>
+      <i class="fas fa-whistle decor-icon" id="decor5"></i>
+      <i class="fas fa-graduation-cap decor-icon" id="decor6"></i>
+      <i class="fas fa-paw decor-icon" id="decor7"></i>
+      <i class="fas fa-star decor-icon" id="decor8"></i>
+      <i class="fas fa-ticket-alt decor-icon" id="decor9"></i>
+      <i class="fas fa-microphone-alt decor-icon" id="decor10"></i>
+      <i class="fas fa-music decor-icon" id="decor21"></i>
+      <i class="fas fa-gamepad decor-icon" id="decor22"></i>
+      <i class="fas fa-medal decor-icon" id="decor25"></i>
+
+      <!-- Right Side Icons -->
+      <i class="fas fa-basketball-ball decor-icon" id="decor11"></i>
+      <i class="fas fa-paw decor-icon" id="decor12"></i>
+      <i class="fas fa-trophy decor-icon" id="decor13"></i>
+      <i class="fas fa-graduation-cap decor-icon" id="decor14"></i>
+      <i class="fas fa-ticket-alt decor-icon" id="decor15"></i>
+      <i class="fas fa-microphone-alt decor-icon" id="decor16"></i>
+      <i class="fas fa-star decor-icon" id="decor17"></i>
+      <i class="fas fa-whistle decor-icon" id="decor18"></i>
+      <i class="fas fa-paw decor-icon" id="decor19"></i>
+      <i class="fas fa-star decor-icon" id="decor20"></i>
+      <i class="fas fa-music decor-icon" id="decor23"></i>
+      <i class="fas fa-gamepad decor-icon" id="decor24"></i>
+      <i class="fas fa-flag-checkered decor-icon" id="decor26"></i>
+  </div>
+
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Learn everything you need to know about PantherVenue.</p>
+    </div>
+
+    <div class="faq-search-container">
+      <input type="text" id="faq-search" placeholder="Search questions...">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <ul id="faq-list">
+      
+      <li>
+        <a data-toggle="collapse" href="#faq1" aria-expanded="false" class="collapsed">
+          <span class="question-text">Are there any directions to the venue?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq1" data-parent="#faq-list">
+          <!-- FIX: Added wrapper div to hold padding and prevent content shift -->
+          <div class="faq-answer-content">
             <p>
               <span class="answer-text">
                   Yes! The address of PantherVenue is 600 Garretson Road, in Bridgewater, New Jersey. Need a GPS? Just visit the integrated Google Maps location in the Contact Us page below!
               </span>
-          </p>
+            </p>
           </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq2" aria-expanded="false" class="collapsed">
-            <span class="question-text">How do I purchase tickets for an event?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq2" data-parent="#faq-list">
+        </div>
+      </li>
+
+      <li>
+        <a data-toggle="collapse" href="#faq2" aria-expanded="false" class="collapsed">
+          <span class="question-text">How do I purchase tickets for an event?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq2" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">1. Navigate to the Events section<br>
               2. Select your desired event<br>
               3. Choose seats using our interactive map<br>
               4. Complete secure checkout<br>
               Confirmations are sent via email/SMS</span></p>
           </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq3" aria-expanded="false" class="collapsed">
-            <span class="question-text">Can I rent the venue for an event?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq3" data-parent="#faq-list">
+        </div>
+      </li>
+
+      <li>
+        <a data-toggle="collapse" href="#faq3" aria-expanded="false" class="collapsed">
+          <span class="question-text">Can I rent the venue for an event?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq3" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">Yes! Our Rent Venue section provides:<br>
               - Real-time availability calendar<br>
               - Pricing calculator<br>
@@ -2288,150 +2761,159 @@ window.onload = function() {
               - Instant booking requests<br>
               Contact our events team for custom arrangements.</span></p>
           </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq4" aria-expanded="false" class="collapsed">
-            <span class="question-text">Is this website mobile-friendly?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq4" data-parent="#faq-list">
+        </div>
+      </li>
+
+      <li>
+        <a data-toggle="collapse" href="#faq4" aria-expanded="false" class="collapsed">
+          <span class="question-text">Is this website mobile-friendly?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq4" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">Absolutely! Features include:<br>
               - Responsive design for all devices<br>
               - Mobile-optimized checkout<br>
               - Progressive Web App support<br>
               - Dark mode compatibility</span></p>
           </div>
-        </li>
-    
-    
-        <li>
-          <a data-toggle="collapse" href="#faq7" aria-expanded="false" class="collapsed">
-            <span class="question-text">Is my data secure when purchasing tickets?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq7" data-parent="#faq-list">
+        </div>
+      </li>
+  
+      <li>
+        <a data-toggle="collapse" href="#faq7" aria-expanded="false" class="collapsed">
+          <span class="question-text">Is my data secure when purchasing tickets?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq7" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">Your security is our priority:<br>
               - PCI-DSS compliant payments<br>
               - AES-256 encryption<br>
               - Regular security audits<br>
               - GDPR-compliant data handling</span></p>
           </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq8" aria-expanded="false" class="collapsed">
-            <span class="question-text">How do I subscribe to the newsletter?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq8" data-parent="#faq-list">
+        </div>
+      </li>
+
+      <li>
+        <a data-toggle="collapse" href="#faq8" aria-expanded="false" class="collapsed">
+          <span class="question-text">How do I subscribe to the newsletter?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq8" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">Subscribe through:<br>
               1. Homepage subscription box<br>
               2. Account dashboard<br>
               3. Event confirmation emails<br>
               Manage preferences anytime in your profile.</span></p>
           </div>
-        </li>
-        <li>
-          <a data-toggle="collapse" href="#faq9" aria-expanded="false" class="collapsed">
-            <span class="question-text">How do I know if an event is sold out?</span>
-            <i class="fas fa-plus"></i>
-          </a>
-          <div class="collapse" id="faq9" data-parent="#faq-list">
+        </div>
+      </li>
+
+      <li>
+        <a data-toggle="collapse" href="#faq9" aria-expanded="false" class="collapsed">
+          <span class="question-text">How do I know if an event is sold out?</span>
+          <i class="fas fa-plus"></i>
+        </a>
+        <div class="collapse" id="faq9" data-parent="#faq-list">
+          <div class="faq-answer-content">
             <p><span class="answer-text">Look for:<br>
               - "SOLD OUT" badge on event cards<br>
               - Grayed-out seating options<br>
               - Waitlist availability notifications<br>
               Sign up for restock alerts in your account.</span></p>
           </div>
-        </li>
-       
-      </ul>
-    </div>
-  </section>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const faqItems = document.querySelectorAll('#faq-list li');
-      const searchInput = document.getElementById('faq-search');
-  
-      // Store original text for question and answer spans
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('#faq-list li');
+    const searchInput = document.getElementById('faq-search');
+    
+    // Cache original text for search highlighting
+    faqItems.forEach(item => {
+      const questionTextElem = item.querySelector('.question-text');
+      const answerTextElem = item.querySelector('.answer-text');
+      questionTextElem.dataset.originalText = questionTextElem.innerHTML;
+      if (answerTextElem) {
+        answerTextElem.dataset.originalText = answerTextElem.innerHTML;
+      }
+    });
+
+    function highlightText(text, searchTerm) {
+      if (!searchTerm) return text;
+      const regex = new RegExp(`(${searchTerm})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    function manageSearch(searchTerm) {
       faqItems.forEach(item => {
         const questionTextElem = item.querySelector('.question-text');
         const answerTextElem = item.querySelector('.answer-text');
-        questionTextElem.dataset.originalText = questionTextElem.innerHTML;
-        answerTextElem.dataset.originalText = answerTextElem.innerHTML;
-      });
-  
-      // Highlight matching text by wrapping it in a span
-      function highlightText(text, searchTerm) {
-        if (!searchTerm) return text;
-        const regex = new RegExp(`(${searchTerm})`, 'gi');
-        return text.replace(regex, '<span class="highlight">$1</span>');
-      }
-  
-      // Filter FAQs and highlight search term matches
-      function manageSearch(searchTerm) {
-        faqItems.forEach(item => {
-          const questionTextElem = item.querySelector('.question-text');
-          const answerTextElem = item.querySelector('.answer-text');
-          const originalQuestion = questionTextElem.dataset.originalText;
-          const originalAnswer = answerTextElem.dataset.originalText;
-          
-          // Reset text
-          questionTextElem.innerHTML = originalQuestion;
-          answerTextElem.innerHTML = originalAnswer;
-          item.classList.remove('search-highlight');
-          
-          const qText = questionTextElem.textContent.toLowerCase();
-          const aText = answerTextElem.textContent.toLowerCase();
-          const searchTermLower = searchTerm.toLowerCase();
-          
-          if (searchTerm && (qText.includes(searchTermLower) || aText.includes(searchTermLower))) {
-            // Highlight search term in question and answer
-            questionTextElem.innerHTML = highlightText(originalQuestion, searchTerm);
-            answerTextElem.innerHTML = highlightText(originalAnswer, searchTerm);
-            item.classList.add('search-highlight');
-            item.style.display = 'block';
-            // Open the answer if not already shown
-            const collapseElem = item.querySelector('.collapse');
-            if (!collapseElem.classList.contains('show')) {
-              new bootstrap.Collapse(collapseElem, { toggle: true });
-            }
-          } else if (searchTerm) {
-            item.style.display = 'none';
-          } else {
-            item.style.display = 'block';
-            // Close any open answer if clearing search
-            const collapseElem = item.querySelector('.collapse');
-            if (collapseElem.classList.contains('show')) {
-              new bootstrap.Collapse(collapseElem, { toggle: true });
-            }
-          }
-        });
-      }
-  
-      searchInput.addEventListener('input', function () {
-        manageSearch(this.value.trim());
-      });
-  
-      // Use Bootstrap collapse events to toggle the icon between plus and minus
-      faqItems.forEach(item => {
-        const aElem = item.querySelector('a');
+        const originalQuestion = questionTextElem.dataset.originalText;
+        const originalAnswer = answerTextElem ? answerTextElem.dataset.originalText : '';
+
+        questionTextElem.innerHTML = originalQuestion;
+        if (answerTextElem) answerTextElem.innerHTML = originalAnswer;
+        item.classList.remove('search-highlight');
+
+        const qText = questionTextElem.textContent.toLowerCase();
+        const aText = answerTextElem ? answerTextElem.textContent.toLowerCase() : '';
+        const searchTermLower = searchTerm.toLowerCase();
         const collapseElem = item.querySelector('.collapse');
-        const icon = aElem.querySelector('i');
-        
-        collapseElem.addEventListener('shown.bs.collapse', function () {
-          icon.classList.remove('fa-plus');
-          icon.classList.add('fa-minus');
-        });
-        
-        collapseElem.addEventListener('hidden.bs.collapse', function () {
-          icon.classList.remove('fa-minus');
-          icon.classList.add('fa-plus');
-        });
+
+        if (searchTerm && (qText.includes(searchTermLower) || aText.includes(searchTermLower))) {
+          questionTextElem.innerHTML = highlightText(originalQuestion, searchTerm);
+          if (answerTextElem) answerTextElem.innerHTML = highlightText(originalAnswer, searchTerm);
+          item.classList.add('search-highlight');
+          item.style.display = 'block';
+
+          if (collapseElem) {
+            bootstrap.Collapse.getOrCreateInstance(collapseElem).show();
+          }
+        } else if (searchTerm) {
+          item.style.display = 'none';
+        } else {
+          item.style.display = 'block';
+          if (collapseElem) {
+            bootstrap.Collapse.getOrCreateInstance(collapseElem).hide();
+          }
+        }
       });
+    }
+
+    searchInput.addEventListener('input', function() {
+      manageSearch(this.value.trim());
     });
-  </script>
-  
+
+    // FIX: Changed event listeners from 'shown/hidden' to 'show/hide'.
+    // This makes the icon animation start immediately with the accordion,
+    // removing the perceived delay.
+    faqItems.forEach(item => {
+      const aElem = item.querySelector('a');
+      const collapseElem = item.querySelector('.collapse');
+
+      if (collapseElem && aElem) {
+        collapseElem.addEventListener('show.bs.collapse', function() {
+          aElem.setAttribute('aria-expanded', 'true');
+          aElem.classList.remove('collapsed');
+        });
+
+        collapseElem.addEventListener('hide.bs.collapse', function() {
+          aElem.setAttribute('aria-expanded', 'false');
+          aElem.classList.add('collapsed');
+        });
+      }
+    });
+  });
+</script>
 
 
 <section id="subscribe">
@@ -2508,7 +2990,7 @@ window.onload = function() {
                 <div class="validation"></div>
               </div>
               <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="email" class="form-control" name="email" id="email-contact" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validation"></div>
               </div>
             </div>
@@ -2547,7 +3029,66 @@ window.onload = function() {
 
 
 
+<style> 
+/* FIX: Stack contact info/form and map vertically, optimize space and center on iPad-sized touch devices */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #contact .container > .row {
+    flex-direction: column;
+    align-items: center; /* Center the columns vertically */
+  }
 
+  #contact .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 90%; /* Use more width but not full */
+    width: 100%;
+    margin-bottom: 40px; /* Space between form/info and map */
+  }
+
+  /* Make the contact info boxes display side-by-side */
+  #contact .contact-info {
+    display: flex;
+    flex-wrap: nowrap; /* Force them to stay in a single row */
+    justify-content: space-around; /* Distribute them evenly */
+    text-align: center;
+    margin-bottom: 30px; /* Space between info and form */
+  }
+
+  #contact .contact-info .col-md-4 {
+    flex: 1; /* Allow them to share space */
+    max-width: 30%; /* Control their max width */
+  }
+
+  /* Center the form and map */
+  #contact .form {
+    max-width: 80%; /* Control form width */
+    margin: 0 auto;
+  }
+  
+  #contact .col-md-6:last-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  #contact iframe {
+    width: 100%;
+    max-width: 80%; /* Match form width for alignment */
+    height: 350px;
+  }
+}
+
+/* For smaller screens (including vertical mobile) where they should stack nicely */
+@media screen and (max-width: 767px) {
+    #contact .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    #contact .contact-info .col-md-4 {
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+</style>
 
 
 
@@ -2852,8 +3393,6 @@ window.onload = function() {
 </style>
 
 
-  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -2887,10 +3426,355 @@ window.onload = function() {
       <!-- Vendor JS Files -->
   
     
+<style>
+  /*
+  =======================================================
+     *** CUSTOM RESPONSIVE FIXES FOR UNIVERSAL COMPATIBILITY ***
+     This block contains all the targeted fixes for the issues you described.
+  ========================================================
+  */
+
+  /* PARALLAX FIX: Disable fixed background on tablets/mobile to prevent zoom/performance issues */
+  @media (max-width: 1024px) {
+    #intro {
+      background-attachment: scroll !important;
+    }
+    #intro h1 {
+      font-size: 2.8rem;
+    }
+    .hero-waves {
+      height: 100px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+      #intro h1 {
+        font-size: 2.2rem;
+      }
+      .hero-waves {
+        height: 80px;
+      }
+  }
+
+  /* Hide the Stray "Hamburger" Icon */
+  .mobile-nav-toggle.d-xl-none.bi.bi-list {
+    display: none !important;
+  }
+
+  /* iPad View Hotel Fix */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .hotels-row {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    #hotels .hotel {
+      flex: 1;
+      min-width: 0;
+      padding: 0 10px;
+    }
+     #hotels .hotel-image-wrapper {
+       width: 90%;
+       height: 200px;
+     }
+  }
+  
+  /* FAQ Content Shift Fix */
+  .faq-answer-content {
+      padding: 0 30px 25px 30px;
+  }
+  #faq-list .collapse p {
+      padding: 0 !important;
+      margin: 0 !important;
+  }
+
+/* Seating Chart Responsive Fix */
+@media (max-width: 991px) {
+  #seating .row > div.col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Seating Grid Layout Fix */
+.seating-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -25px;
+}
+.seat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.seat-row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+/* iPad Seating Replacement */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .ipad-seating-replacement {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+
+  .arena-container {
+    display: none !important;
+  }
+}
+
+</style>
+
+<!-- START: Chatbot Integration Body -->
+<!-- Chatbot Toggler -->
+<button id="chatbot-toggler">
+  <span class="material-symbols-rounded">mode_comment</span>
+  <span class="material-symbols-rounded">close</span>
+</button>
+<div class="chatbot-popup">
+  <!-- Chatbot Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
+      <h2 class="logo-text">PantherBot</h2>
+    </div>
+    <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+  </div>
+  <!-- Chatbot Body -->
+  <div class="chat-body">
+    <div class="message bot-message">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+      <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
+    </div>
+  </div>
+  <!-- Chatbot Footer -->
+  <div class="chat-footer">
+    <form action="#" class="chat-form">
+      <textarea placeholder="Type a message..." class="message-input" required></textarea>
+      <div class="chat-controls">
+        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+        <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Linking Emoji Mart script for emoji picker -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+
+<!-- Main Chatbot Script -->
+<script>
+    const chatBody = document.querySelector(".chat-body");
+    const messageInput = document.querySelector(".message-input");
+    const sendMessageButton = document.querySelector("#send-message");
+    const chatForm = document.querySelector(".chat-form");
+    const chatbotToggler = document.querySelector("#chatbot-toggler");
+    const closeChatbot = document.querySelector("#close-chatbot");
+
+    // API setup for Hack Club
+    const API_URL = "https://ai.hackclub.com/chat/completions";
+
+    const chatHistory = [{
+        role: "system",
+        content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
+
+---
+### General Venue Information
+- **Name:** PantherVenue
+- **Location:** Inside Bridgewater-Raritan High School, 600 Garretson Road, Bridgewater, New Jersey.
+- **Capacity:** Seats up to 3,500 people.
+- **Features:** A premier gymnasium renovated in 2024 with a high-quality sound system, adjustable lighting, a large video screen, new bleachers, and a resurfaced floor.
+- **Primary Use:** Ideal for sports events, graduations, performances, workshops, and community gatherings.
+- **Amenities:** Comfortable bleacher seating, top-tier audio system, adjustable lighting, large video screen for presentations.
+- **Layouts:**
+    - **Standard Gym Layout:** For sports. Uses all four stands (North/South: 1000 seats each, East/West: 750 seats each).
+    - **Ceremony Layout:** For graduations/presentations. Features a main stage, with seating in the stands and potentially on the floor.
+
+---
+### How the Website Works
+- **Events Page (event.html):**
+    - Users can see a list of all upcoming events, such as "Varsity Basketball Finals," "Fall Dance Recital," and "Yoga Wellness Workshop."
+    - Users can filter events by category, price, and date.
+    - **To purchase tickets, users must log in to their account.** A popup allows them to select seats and complete the purchase.
+- **Rent Venue Page (rent.html):**
+    - Users can request to rent the venue for their own private event.
+    - **Users must be logged in to submit a request.**
+    - The process is a 6-step form: 1. Personal Details, 2. Event Details, 3. Category, 4. Venue Choice, 5. Image Upload, 6. Confirmation.
+    - After submission, the request becomes "pending" and is reviewed by an administrator.
+- **User Accounts (login.html):**
+    - Users can sign up for an account or log in.
+    - After logging in, users see a personal dashboard.
+    - **User Dashboard:** Shows their purchased tickets, total money spent, and the status (pending, accepted, declined) of their venue rental requests.
+    - **Admin Dashboard:** Staff can view site analytics and manage all venue rental requests.
+
+---
+### Important Policies & FAQs
+- **General Rules:** No outside food or drink. All bags are subject to search. The venue is strictly non-smoking (including vapes/e-cigarettes). No alcohol. No pets are allowed, except for service animals.
+- **Parking:** Available in designated lots. Fees may apply depending on the event.
+- **Ticket Policy:** Tickets are non-refundable unless the event is canceled by the venue. There is a 10-ticket limit per transaction. Tickets are transferable if the box office is notified.
+- **Team & Contact:**
+    - Key Staff: Bill Deniz (Athletic Director), Keri Fry (Logistics and Business Manager).
+    - Phone: +1 908-524-4059
+    - Email: hs@brrsd.k12.nj.us (expect a response in 2-7 business days).
+- **Nearby Hotels:** Hampton Inn, Hyatt House, and TownePlace suites are all within 1.5 miles.
+
+---
+### Your Persona & Instructions
+- Be friendly, professional, and enthusiastic.
+- Your name is PantherBot.
+- Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.
+- For your very first message in a new chat, start with: "Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?" Do not repeat this greeting in subsequent responses.`
+    }];
+
+    const initialInputHeight = messageInput.scrollHeight;
+
+    const createMessageElement = (content, className) => {
+        const div = document.createElement("div");
+        div.classList.add("message", className);
+        div.innerHTML = content;
+        return div;
+    };
+
+    const generateBotResponse = async (incomingMessageDiv) => {
+        const messageElement = incomingMessageDiv.querySelector(".message-text");
+
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages: chatHistory,
+            }),
+        };
+
+        try {
+            const response = await fetch(API_URL, requestOptions);
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("API Error Response:", errorData);
+                throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
+            }
+            
+            const data = await response.json();
+            const apiResponseText = data.choices[0].message.content.trim();
+            
+            messageElement.innerHTML = marked.parse(apiResponseText);
+
+            chatHistory.push({
+                role: "assistant",
+                content: apiResponseText,
+            });
+
+        } catch (error) {
+            console.error("API Error:", error);
+            messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
+            messageElement.style.color = "#dc3545";
+        } finally {
+            incomingMessageDiv.classList.remove("thinking");
+            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        }
+    };
+
+    const handleOutgoingMessage = (e) => {
+        e.preventDefault();
+        const userMessage = messageInput.value.trim();
+        if (!userMessage) return;
+
+        messageInput.value = "";
+        messageInput.style.height = `${initialInputHeight}px`;
+
+        chatHistory.push({ role: "user", content: userMessage });
+
+        const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+        const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+        chatBody.appendChild(outgoingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+
+        setTimeout(() => {
+            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+            <div class="message-text">
+              <div class="thinking-indicator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </div>`;
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message", "thinking");
+            chatBody.appendChild(incomingMessageDiv);
+            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+            generateBotResponse(incomingMessageDiv);
+        }, 600);
+    };
+    
+    messageInput.addEventListener("input", () => {
+        messageInput.style.height = `${initialInputHeight}px`;
+        const newHeight = messageInput.scrollHeight;
+        messageInput.style.height = `${newHeight}px`;
+    });
+
+    messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
+            handleOutgoingMessage(e);
+        }
+    });
+
+    const picker = new EmojiMart.Picker({
+        theme: "light",
+        skinTonePosition: "none",
+        previewPosition: "none",
+        onEmojiSelect: (emoji) => {
+            const { selectionStart: start, selectionEnd: end } = messageInput;
+            messageInput.setRangeText(emoji.native, start, end, "end");
+            messageInput.focus();
+        },
+        onClickOutside: (e) => {
+            if (e.target.id === "emoji-picker") {
+                document.body.classList.toggle("show-emoji-picker");
+            } else if (document.body.classList.contains("show-emoji-picker")) {
+                document.body.classList.remove("show-emoji-picker");
+            }
+        },
+    });
+    document.querySelector(".chat-footer").appendChild(picker);
+
+    chatForm.addEventListener("submit", handleOutgoingMessage);
+    document.querySelector("#emoji-picker").addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.body.classList.toggle("show-emoji-picker");
+    });
+    closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+    chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+</script>
+<!-- END: Chatbot Integration Body -->
+
+<!-- NEW SCRIPT FOR VIDEO PARALLAX EFFECT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('#subscribe video');
+    const section = document.querySelector('#subscribe');
+
+    if (video && section) {
+        window.addEventListener('scroll', () => {
+            // Get the position of the top of the section relative to the viewport
+            const rect = section.getBoundingClientRect();
+            // Calculate how much the video should move. It should move slower than the scroll.
+            const speed = 0.4;
+            let offset = rect.top * speed;
+            
+            // Apply the transform to the video
+            video.style.transform = `translateY(${offset}px)`;
+        });
+    }
+});
+</script>
+
+<style>
+
+  
+</style>
+
 </body>
 </html>
-
-
-<script>
-  
-</script>

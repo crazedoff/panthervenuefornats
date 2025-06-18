@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorated Background Example</title>
+
+    <!-- This is the crucial line that loads the icons. Without it, they won't appear. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+      /* 
+      ========================================================
+        GLOBAL VARIABLES FOR EASY CONTROL
+      ========================================================
+      */
+      :root {
+        /* --- 1. DENSITY CONTROL KNOB --- */
+        /* Adjust this single value to control how "spread out" the icons are.
+           > 1.0 = More spread out, further from the edge (sparser)
+           < 1.0 = Closer to the edge (denser) */
+        --decor-density-multiplier: 0.9;
+
+        /* --- 2. COLOR CONTROLS --- */
+        --decor-color-red: rgba(224, 7, 47, 0.08);
+        --decor-color-black: rgba(30, 30, 30, 0.07);
+      }
+
+      body {
+        background-color: #f8f9fa;
+        font-family: sans-serif;
+      }
+
+      .background-decorations {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .decor-icon {
+        position: absolute;
+        color: var(--decor-color-black); /* Black/Gray by default */
+        transition: all 0.3s ease;
+      }
+
+      /* 
+      ========================================================
+        NEW BALANCED & CONTROLLABLE LAYOUT
+      ========================================================
+      */
+
+      /* --- LEFT SIDE ICONS (12 total) --- */
+      #decor1 { top: 8%; left: calc(15% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-25deg); color: var(--decor-color-red); } /* Paw */
+      #decor2 { top: 18%; left: calc(3% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(15deg); } /* Star */
+      #decor3 { top: 33%; left: calc(12% * var(--decor-density-multiplier)); font-size: 80px; transform: rotate(10deg); color: var(--decor-color-red); } /* Basketball */
+      #decor4 { top: 50%; left: calc(4% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-10deg); } /* Trophy */
+      #decor5 { top: 68%; left: calc(14% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(20deg); color: var(--decor-color-red); } /* Whistle */
+      #decor6 { top: 82%; left: calc(2% * var(--decor-density-multiplier)); font-size: 65px; transform: rotate(5deg); } /* Graduation Cap */
+      #decor7 { bottom: 5%; left: calc(18% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-15deg); color: var(--decor-color-red); } /* Paw */
+      #decor8 { top: 2%; left: calc(1% * var(--decor-density-multiplier)); font-size: 40px; transform: rotate(10deg); } /* Star */
+      #decor9 { bottom: 28%; left: calc(5% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-20deg); } /* Ticket */
+      #decor10 { top: 92%; left: calc(8% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(12deg); color: var(--decor-color-red); } /* Microphone */
+      #decor21 { top: 60%; left: calc(20% * var(--decor-density-multiplier)); font-size: 40px; transform: rotate(30deg); } /* NEW: Music Note */
+      #decor22 { top: 40%; left: calc(1% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-18deg); color: var(--decor-color-red); } /* NEW: Gamepad */
+
+
+      /* --- RIGHT SIDE ICONS (12 total) --- */
+      #decor11 { top: 5%; right: calc(12% * var(--decor-density-multiplier)); font-size: 90px; transform: rotate(15deg); color: var(--decor-color-red); } /* Basketball */
+      #decor12 { top: 22%; right: calc(3% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-20deg); } /* Paw */
+      #decor13 { top: 38%; right: calc(15% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(10deg); color: var(--decor-color-red); } /* Trophy */
+      #decor14 { top: 55%; right: calc(4% * var(--decor-density-multiplier)); font-size: 80px; transform: rotate(5deg); } /* Graduation Cap */
+      #decor15 { top: 72%; right: calc(1% * var(--decor-density-multiplier)); font-size: 65px; transform: rotate(-15deg); } /* Ticket */
+      #decor16 { bottom: 10%; right: calc(16% * var(--decor-density-multiplier)); font-size: 55px; transform: rotate(25deg); color: var(--decor-color-red); } /* Microphone */
+      #decor17 { top: 90%; right: calc(8% * var(--decor-density-multiplier)); font-size: 70px; transform: rotate(-10deg); } /* Star */
+      #decor18 { top: 1%; right: calc(1% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-5deg); } /* Whistle */
+      #decor19 { bottom: 25%; right: calc(6% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(18deg); color: var(--decor-color-red); } /* Paw */
+      #decor20 { top: 65%; right: calc(18% * var(--decor-density-multiplier)); font-size: 40px; transform: rotate(22deg); } /* Star */
+      #decor23 { top: 30%; right: calc(20% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(-25deg); } /* NEW: Music Note */
+      #decor24 { bottom: 2%; right: calc(3% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(15deg); color: var(--decor-color-red); } /* NEW: Gamepad */
+    </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       DECORATIONS CONTAINER
+  ======================================================== -->
+  <div class="background-decorations">
+    <!-- Left Side Icons -->
+    <i class="fas fa-paw decor-icon" id="decor1"></i>
+    <i class="fas fa-star decor-icon" id="decor2"></i>
+    <i class="fas fa-basketball-ball decor-icon" id="decor3"></i>
+    <i class="fas fa-trophy decor-icon" id="decor4"></i>
+    <i class="fas fa-whistle decor-icon" id="decor5"></i>
+    <i class="fas fa-graduation-cap decor-icon" id="decor6"></i>
+    <i class="fas fa-paw decor-icon" id="decor7"></i>
+    <i class="fas fa-star decor-icon" id="decor8"></i>
+    <i class="fas fa-ticket-alt decor-icon" id="decor9"></i>
+    <i class="fas fa-microphone-alt decor-icon" id="decor10"></i>
+    <i class="fas fa-music decor-icon" id="decor21"></i>
+    <i class="fas fa-gamepad decor-icon" id="decor22"></i>
+
+    <!-- Right Side Icons -->
+    <i class="fas fa-basketball-ball decor-icon" id="decor11"></i>
+    <i class="fas fa-paw decor-icon" id="decor12"></i>
+    <i class="fas fa-trophy decor-icon" id="decor13"></i>
+    <i class="fas fa-graduation-cap decor-icon" id="decor14"></i>
+    <i class="fas fa-ticket-alt decor-icon" id="decor15"></i>
+    <i class="fas fa-microphone-alt decor-icon" id="decor16"></i>
+    <i class="fas fa-star decor-icon" id="decor17"></i>
+    <i class="fas fa-whistle decor-icon" id="decor18"></i>
+    <i class="fas fa-paw decor-icon" id="decor19"></i>
+    <i class="fas fa-star decor-icon" id="decor20"></i>
+    <i class="fas fa-music decor-icon" id="decor23"></i>
+    <i class="fas fa-gamepad decor-icon" id="decor24"></i>
+  </div>
+
+  <!-- Example content to show the effect -->
+  <div style="text-align: center; padding: 100px; max-width: 800px; margin: auto; position: relative; z-index: 1;">
+    <h1>Main Content Goes Here</h1>
+    <p>The layout is now more filled and uses both red and black accents. Most importantly, you can easily control the density by changing the `--decor-density-multiplier` variable in the CSS.</p>
+    <p style="margin-top: 100vh;">(Scroll down to see the decorations stay in place)</p>
+  </div>
+
+</body>
+</html>
