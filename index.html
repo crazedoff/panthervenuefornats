@@ -3161,10 +3161,12 @@ function typeExcellence() {
 
 <!-- START: PantherVenue Final Footer -->
 <footer id="panther-footer-final">
-  <div class="panther-footer-wave-container">
-    <svg class="panther-footer-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-      <path class="panther-footer-wave-path" d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z"></path>
-    </svg>
+  
+  <!-- This is the new, reliable wave -->
+  <div class="footer-shape-divider">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z" class="shape-fill"></path>
+      </svg>
   </div>
 
   <div class="panther-footer-content-area">
@@ -3175,7 +3177,7 @@ function typeExcellence() {
           <a href="index.html" class="panther-footer-logo d-flex align-items-center">
             <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo">
           </a>
-          <p>The premier venue at Bridgewater-Raritan High School, perfect for sports, ceremonies, and community events. <br></br>Venue Credits: BRRSD Board of Education & Athletics <br></br> PantherVenue Website Credits: Bootstrap, Tailwind, Panolens, Google Firebase, Google Fonts, jQuery</p>
+          <p>The premier venue at Bridgewater-Raritan High School, perfect for sports, ceremonies, and community events. <br><br>Venue Credits: BRRSD Board of Education & Athletics <br><br> PantherVenue Website Credits: Bootstrap, Tailwind, Panolens, Google Firebase, Google Fonts, jQuery</p>
         </div>
 
         <div class="col-lg-2 col-6 panther-footer-links">
@@ -3220,7 +3222,6 @@ function typeExcellence() {
         <div class="copyright">
           © Copyright <strong><span>PantherVenue</span></strong>. All Rights Reserved
         </div>
-  
       </div>
     </div>
     <div class="footer-social-container"> 
@@ -3228,66 +3229,70 @@ function typeExcellence() {
         <path class="footer-social-blob-path" d="M223.06,43.32c-.77-7.2,1.87-28.47-20-32.53C187.78,8,180.41,18,178.32,20.7s-5.63,10.1-4.07,16.7-.13,15.23-4.06,15.91-8.75-2.9-6.89-7S167.41,36,167.15,33a18.93,18.93,0,0,0-2.64-8.53c-3.44-5.5-8-11.19-19.12-11.19a21.64,21.64,0,0,0-18.31,9.18c-2.08,2.7-5.66,9.6-4.07,16.69s.64,14.32-6.11,13.9S108.35,46.5,112,36.54s-1.89-21.24-4-23.94S96.34,0,85.23,0,57.46,8.84,56.49,24.56s6.92,20.79,7,24.59c.07,2.75-6.43,4.16-12.92,2.38s-4-10.75-3.46-12.38c1.85-6.6-2-14-4.08-16.69a21.62,21.62,0,0,0-18.3-9.18C13.62,13.28,9.06,19,5.62,24.47A18.81,18.81,0,0,0,3,33a21.85,21.85,0,0,0,1.58,9.08,16.58,16.58,0,0,1,1.06,5A6.75,6.75,0,0,1,0,54H236C235.47,54,223.83,50.52,223.06,43.32Z"></path>
       </svg>
       <a href="https://twitter.com/brhs_panthers" target="_blank" class="social-link"><i class="bi bi-twitter"></i></a>
-  <a href="https://www.facebook.com/BRHSNJ/" target="_blank" class="social-link"><i class="bi bi-facebook"></i></a>
-  <a href="https://www.instagram.com/brpantherathletics/" target="_blank" class="social-link"><i class="bi bi-instagram"></i></a>
-  <a href="https://www.linkedin.com/school/bridgewater-raritan-high-school/" target="_blank" class="social-link"><i class="bi bi-linkedin"></i></a>
-</div>
+      <a href="https://www.facebook.com/BRHSNJ/" target="_blank" class="social-link"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/brpantherathletics/" target="_blank" class="social-link"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/school/bridgewater-raritan-high-school/" target="_blank" class="social-link"><i class="bi bi-linkedin"></i></a>
+    </div>
   </div>
 </footer>
 
-<style>/* START: CSS for PantherVenue Final Footer */
 
 
+
+
+/* START: CSS for PantherVenue Final Footer */
+
+/* This is the main footer container. It must be relative so the wave can be positioned inside it. */
 #panther-footer-final {
-  font-family: 'Raleway', sans-serif;
   background-color: #000000;
   color: rgba(255, 255, 255, 0.75);
+  font-family: 'Raleway', sans-serif;
   font-size: 14px;
   position: relative;
-  padding-top: 100px;
-
-
+  /* NO top padding here anymore. We add it to the content area instead. */
 }
 
-/* Wave Styling */
-.panther-footer-wave-container {
+/* --- THIS IS THE NEW WAVE STYLING --- */
+.footer-shape-divider {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   overflow: hidden;
   line-height: 0;
-}
-.panther-footer-wave-svg {
-  position: relative;
-  display: block;
-  width: calc(120% + 1.3px); /* Stretches wider */
-  height: 120px; /* Makes wave taller */
-  left: 50%;
-  
-}
-.panther-footer-wave-path {
-  fill: #6c0505;
-    transform: scaleY(-1);
-    z-index: 1000;
+  transform: translateY(-1px); /* A little trick to prevent pixel gaps */
 }
 
-/* Main Content Area */
-.panther-footer-content-area {
-  padding: 40px 0;
+.footer-shape-divider svg {
   position: relative;
-  z-index: 2;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 110px; /* Adjust height of the wave */
 }
+
+.footer-shape-divider .shape-fill {
+  /* This is the key: The wave's color matches the section ABOVE it to create a seamless transition. Your contact section has a light grey background (#f8f9fa) */
+  fill: #f8f9fa;
+}
+
+/* We push the content area down to make room for the wave */
+.panther-footer-content-area {
+  padding: 100px 0 40px 0; /* Increased top padding to clear the wave */
+  position: relative;
+  z-index: 2; /* Ensures content is above the footer's black background */
+}
+
 .panther-footer-content-area .container {
-  padding-left: 30px; /* Nudges content to the right */
+  padding-left: 120px; /* This is the offset you wanted */
+  padding-right: 15px; /* Standard Bootstrap padding on the right */
 }
 
 /* Info Column */
 #panther-footer-final .panther-footer-info .panther-footer-logo img {
   max-height: 40px;
   margin-bottom: 15px;
-  
 }
+
 #panther-footer-final .panther-footer-info p {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -3308,82 +3313,78 @@ function typeExcellence() {
 }
 #panther-footer-final .panther-footer-contact p { line-height: 26px; }
 
-/* Bottom Bar - This is now just the rectangle */
+/* Bottom Bar */
 .panther-footer-bottom-bar {
-  background-color: #b01a35; /* Teal bar color from screenshot */
+  background-color: #b01a35;
   padding: 15px 0;
   position: relative;
   z-index: 2;
   min-height: 54px;
 }
+
 .copyright-credits-wrapper {
   color: #fff; text-align: center; font-size: 13px; font-weight: 400;
-}
-.copyright-credits-wrapper .credits a {
-  color: #fff; font-weight: 500; transition: 0.3s;
-}
-.copyright-credits-wrapper .credits a:hover {
-  text-decoration: underline;
 }
 
 /* Social Links Blob Container */
 .footer-social-container {
-    position: absolute;
-    right: 60px; /* Moved left from the edge */
-    bottom: 0;
-    width: 236px;
-    height: 54px;
-    
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  width: 236px;
+  height: 54px;
 }
+
 .footer-social-blob-svg {
-    position: absolute;
-    /* CHANGE #1: Adjusted the blob to stick out a bit */
-    top: -50px; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
+  position: absolute;
+  top: -20px; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
 }
+
 .footer-social-blob-path {
-    fill: #b01a35; /* Match the bottom bar color */
-    
+  fill: #b01a35; /* Match the bottom bar color */
 }
+
 .footer-social-container .social-link {
-    position: absolute; display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 18px; transition: 0.3s;
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; transition: 0.3s;
 }
+
 .footer-social-container .social-link:hover {
   transform: translateY(-3px);
 }
-/* CHANGE #2: Adjusted icon positions to move them UP onto the blob */
-.footer-social-container .social-link:nth-of-type(1) { top: -30px; left: 15px; }
-.footer-social-container .social-link:nth-of-type(2) { top: -35px; left: 75px; }
-.footer-social-container .social-link:nth-of-type(3) { top: -30px; left: 135px; }
-.footer-social-container .social-link:nth-of-type(4) { top: -30px; left: 190px; }
+
+.footer-social-container .social-link:nth-of-type(1) { top: -5px; left: 24px; }
+.footer-social-container .social-link:nth-of-type(2) { top: -5px; left: 70px; }
+.footer-social-container .social-link:nth-of-type(3) { top: -5px; left: 118px; }
+.footer-social-container .social-link:nth-of-type(4) { top: -5px; left: 168px; }
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
   .panther-footer-info, .panther-footer-contact { text-align: center; }
   .panther-footer-logo { justify-content: center; }
+  .panther-footer-content-area .container {
+    padding-left: 30px; 
+    padding-right: 30px;
+  }
 }
 @media (max-width: 768px) {
   .panther-footer-bottom-bar .container {
     flex-direction: column; gap: 10px; padding-bottom: 70px;
   }
   .footer-social-container {
-    position: absolute; /* Kept absolute to sit on top of copyright text area */
+    position: absolute;
     left: 50%; transform: translateX(-50%); bottom: 15px;
+  }
+  .panther-footer-content-area .container {
+    padding-left: 15px; 
+    padding-right: 15px;
   }
 }
 
-.panther-footer-content-area .container {
-  padding-left: 150px; /* INCREASED to nudge content further right */
-}
-</style>
-<!-- END: CSS for PantherVenue Final Footer -->
-
-
-
-
+/* END: CSS for PantherVenue Final Footer */
 
 
 <style> 
