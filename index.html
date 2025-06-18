@@ -1083,89 +1083,100 @@ function typeExcellence() {
     </div>
   </div>
 </section><!-- /Services Section -->
+
 <style>
 /* --- START: STYLES FOR FINAL AMENITIES SECTION --- */
-
-/* Main Box Container */
+/* Main Box Container - The base is a white box */
 .services .service-item.amenity-box {
-    background-color: var(--surface-color); /* The white background */
+    background-color: var(--surface-color); /* White background */
     box-shadow: 0px 0 30px 0 rgba(0, 0, 0, 0.1);
     padding: 50px 30px;
     transition: all ease-in-out 0.4s;
     height: 100%;
-    overflow: hidden; /* Crucial for clipping pseudo-elements and image */
+    overflow: hidden;
     z-index: 1;
 }
 
-/* Background Image - Initially hidden and scaled up */
-.services .amenity-box .amenity-bg-img {
+/* Image & Overlay Container - Sits in the background */
+.services .amenity-box .amenity-bg-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    z-index: 2; /* Sits above the white box, below the content */
-    opacity: 0;
-    transform: scale(1.15);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    z-index: 1;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out;
+}
+.services .amenity-box:hover .amenity-bg-container {
+    opacity: 1; /* Revealed on hover */
 }
 
-/* White Content Wrapper - This holds all the text and buttons */
+/* Background Image - Inside the container, ready to animate */
+.services .amenity-box .amenity-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.15); /* Start zoomed in */
+    transition: transform 0.5s ease-in-out;
+}
+.services .amenity-box:hover .amenity-bg-img {
+    transform: scale(1); /* Zoom out on hover */
+}
+
+/* Darkening Overlay for text readability */
+.services .amenity-box .amenity-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(25, 25, 25, 0.6); /* Semi-transparent dark layer */
+}
+
+/* Content Wrapper - This holds all visible text and icons */
 .services .amenity-box .amenity-content-wrapper {
     position: relative;
-    z-index: 4; /* Sits on top of everything */
-    transition: opacity 0.4s ease-in-out;
+    z-index: 3; /* Sits on top of everything */
 }
 
-/* The Layered Corner Circles (from original design) */
-.services .service-item.amenity-box::before {
+/* Layered Corner Circles - from the original design */
+.services .service-item.amenity-box::before,
+.services .service-item.amenity-box::after {
     content: "";
     position: absolute;
     background: color-mix(in srgb, var(--accent-color), transparent 96%);
-    right: -80px;
-    top: -80px;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     transition: all 0.5s;
-    z-index: 3; /* Sits just below the main content */
+    z-index: 2; /* Sits above the white box, below the content */
 }
-
+.services .service-item.amenity-box::before {
+    right: -80px;
+    top: -80px;
+}
 .services .service-item.amenity-box::after {
-    content: "";
-    position: absolute;
     background: color-mix(in srgb, var(--accent-color), transparent 97%);
     right: -140px;
     top: -140px;
     width: 250px;
     height: 250px;
-    border-radius: 50%;
-    transition: all 0.6s;
-    z-index: 3;
 }
-
-/* HOVER STATE: This is where the magic happens */
-.services .service-item.amenity-box:hover .amenity-bg-img {
-    opacity: 1; /* Fade in the image */
-    transform: scale(1); /* Zoom the image out to normal size */
-}
-
-.services .service-item.amenity-box:hover .amenity-content-wrapper {
-    opacity: 0; /* Fade out the text and icon content */
-}
-
 .services .service-item.amenity-box:hover::before,
 .services .service-item.amenity-box:hover::after {
-    opacity: 0; /* Fade out the corner circles */
-    right: 0; /* Move them slightly to enhance the transition */
+    background: var(--accent-color); /* The circles become solid red on hover */
+    right: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    opacity: 0; /* Then fade out to reveal the image underneath */
 }
 
-/* Icon Styling */
+/* Icon & Text Styling */
 .services .amenity-box .icon-wrapper {
-    background: var(--accent-color); /* Red circle */
-    color: var(--contrast-color); /* White icon */
+    background: var(--accent-color);
+    color: var(--contrast-color);
     font-size: 24px;
     display: inline-flex;
     align-items: center;
@@ -1174,15 +1185,18 @@ function typeExcellence() {
     height: 56px;
     border-radius: 50%;
     margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.services .amenity-box h4, .services .amenity-box p,
+.services .amenity-box .icon-wrapper i {
+    transition: color 0.4s ease-in-out;
 }
 
 .services .amenity-box h4 {
     font-weight: 600;
     margin: 0 0 15px 0;
     font-size: 20px;
-}
-
-.services .amenity-box h4 a {
     color: var(--heading-color);
 }
 
@@ -1190,27 +1204,40 @@ function typeExcellence() {
     line-height: 24px;
     font-size: 14px;
     margin-bottom: 20px;
+    color: var(--default-color);
 }
 
-/* The Square-to-Rectangle Plus Button */
+/* Text color change on hover */
+.services .service-item.amenity-box:hover h4,
+.services .service-item.amenity-box:hover p,
+.services .service-item.amenity-box:hover .icon-wrapper i {
+    color: #fff;
+}
+.services .service-item.amenity-box:hover .icon-wrapper {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Square-to-Rectangle Plus Button */
 .services .amenity-box .plus-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px; /* Square shape */
+    width: 40px;
     height: 40px;
     background-color: #feebee; /* Light red background */
     overflow: hidden;
     white-space: nowrap;
     text-decoration: none;
     transition: width 0.4s ease-in-out;
-    border-radius: 4px; /* Slightly rounded square */
+    border-radius: 4px;
+    position: relative;
+    left: 3px; /* Move 3px to the right */
 }
 
 .services .amenity-box .plus-btn i {
     color: #c71c3a; /* Darker red plus sign */
     font-size: 16px;
-    transition: transform 0.4s ease; /* No rotation */
 }
 
 .services .amenity-box .plus-btn span {
@@ -1220,24 +1247,23 @@ function typeExcellence() {
     padding-left: 8px;
     font-weight: 600;
     font-size: 14px;
-    color: #c71c3a; /* Darker red text */
+    color: #c71c3a;
 }
 
 .services .service-item.amenity-box:hover .plus-btn {
-    width: 140px; /* Expand to rectangle */
+    width: 140px;
 }
 
 .services .service-item.amenity-box:hover .plus-btn span {
-    max-width: 100px; /* Allow text to appear */
+    max-width: 100px;
     opacity: 1;
 }
 
-/* Prevent link color change on the h4 tag */
-.stretched-link-replacement {
-    text-decoration: none;
-    pointer-events: none; /* Make the h4 link unclickable */
+/* Remove the old :hover h4 a rule to prevent color conflicts */
+.services .service-item:hover h4 a {
+    color: inherit;
 }
-
+/* --- END: STYLES FOR FINAL AMENITIES SECTION --- */
 </style>
 
 <!-- ==========================
