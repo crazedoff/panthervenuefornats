@@ -1204,7 +1204,255 @@ function typeExcellence() {
 /* --- END: STYLES FOR UPGRADED AMENITIES SECTION --- */
 </style>
       
+Of course. I understand exactly what you're looking for now: the original white box with the layered corner effect, which transforms into the image on hover, combined with the new square-to-rectangle plus button.
 
+I have crafted the precise HTML and CSS to achieve this.
+
+1. Replace Your Amenities Section
+
+Delete your current <section id="services" ...> and replace it with this new HTML. This structure re-introduces the necessary elements for the white background and layering effect, while also containing the background image that will be revealed on hover.
+
+Generated html
+<!-- Services Section (Amenities) -->
+<section id="services" class="services section">
+  <div class="section-header">
+    <h2>Amenities</h2>
+    <p>Explore what PantherVenue has to offer.</p>
+  </div>
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Amenity 1: Seating -->
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item amenity-box position-relative">
+          <img src="amenity1.jpg" class="amenity-bg-img" alt="Arena Seating">
+          <div class="amenity-content-wrapper">
+            <div class="icon-wrapper"><i class="bi bi-bounding-box-circles"></i></div>
+            <h4><a href="#" class="stretched-link-replacement">Seating</a></h4>
+            <p>Comfortable bleachers are present for up to 3,500 attendees.</p>
+            <a href="https://www.mainguards.com/wp-content/uploads/2023/02/BRHS-MAIN-2023-Venue-Information-Form.pdf" target="_blank" class="plus-btn">
+              <i class="fa fa-plus"></i><span>View Form</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amenity 2: Sound System -->
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-item amenity-box position-relative">
+          <img src="amenity2.jpg" class="amenity-bg-img" alt="Professional Sound System">
+          <div class="amenity-content-wrapper">
+            <div class="icon-wrapper"><i class="bi bi-activity"></i></div>
+            <h4><a href="#" class="stretched-link-replacement">Sound System</a></h4>
+            <p>High-quality audio systems are available for all types of events.</p>
+            <a href="https://www.mainguards.com/wp-content/uploads/2023/02/BRHS-MAIN-2023-Venue-Information-Form.pdf" target="_blank" class="plus-btn">
+              <i class="fa fa-plus"></i><span>View Form</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amenity 3: Lighting -->
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-item amenity-box position-relative">
+          <img src="amenity3.jpg" class="amenity-bg-img" alt="Stage Lighting">
+          <div class="amenity-content-wrapper">
+            <div class="icon-wrapper"><i class="bi bi-lightbulb"></i></div>
+            <h4><a href="#" class="stretched-link-replacement">Lighting</a></h4>
+            <p>Adjustable light systems are conveniently to suit any occasion.</p>
+            <a href="https://www.mainguards.com/wp-content/uploads/2023/02/BRHS-MAIN-2023-Venue-Information-Form.pdf" target="_blank" class="plus-btn">
+              <i class="fa fa-plus"></i><span>View Form</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amenity 4: Video Screen -->
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+        <div class="service-item amenity-box position-relative">
+          <img src="amenity4.jpg" class="amenity-bg-img" alt="Large Video Screen">
+          <div class="amenity-content-wrapper">
+            <div class="icon-wrapper"><i class="bi bi-broadcast"></i></div>
+            <h4><a href="#" class="stretched-link-replacement">Video Screen</a></h4>
+            <p>A large screen is available for presentations during events.</p>
+            <a href="https://www.mainguards.com/wp-content/uploads/2023/02/BRHS-MAIN-2023-Venue-Information-Form.pdf" target="_blank" class="plus-btn">
+              <i class="fa fa-plus"></i><span>View Form</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section><!-- /Services Section -->
+
+2. Add This CSS
+
+Now, copy this entire <style> block and add it to your index.html file. You can place it at the very bottom, right before the closing </body> tag. This CSS creates the complex layering and hover animations you described.
+
+Generated html
+<style>
+/* --- START: STYLES FOR FINAL AMENITIES SECTION --- */
+
+/* Main Box Container */
+.services .service-item.amenity-box {
+    background-color: var(--surface-color); /* The white background */
+    box-shadow: 0px 0 30px 0 rgba(0, 0, 0, 0.1);
+    padding: 50px 30px;
+    transition: all ease-in-out 0.4s;
+    height: 100%;
+    overflow: hidden; /* Crucial for clipping pseudo-elements and image */
+    z-index: 1;
+}
+
+/* Background Image - Initially hidden and scaled up */
+.services .amenity-box .amenity-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2; /* Sits above the white box, below the content */
+    opacity: 0;
+    transform: scale(1.15);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* White Content Wrapper - This holds all the text and buttons */
+.services .amenity-box .amenity-content-wrapper {
+    position: relative;
+    z-index: 4; /* Sits on top of everything */
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* The Layered Corner Circles (from original design) */
+.services .service-item.amenity-box::before {
+    content: "";
+    position: absolute;
+    background: color-mix(in srgb, var(--accent-color), transparent 96%);
+    right: -80px;
+    top: -80px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: all 0.5s;
+    z-index: 3; /* Sits just below the main content */
+}
+
+.services .service-item.amenity-box::after {
+    content: "";
+    position: absolute;
+    background: color-mix(in srgb, var(--accent-color), transparent 97%);
+    right: -140px;
+    top: -140px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    transition: all 0.6s;
+    z-index: 3;
+}
+
+/* HOVER STATE: This is where the magic happens */
+.services .service-item.amenity-box:hover .amenity-bg-img {
+    opacity: 1; /* Fade in the image */
+    transform: scale(1); /* Zoom the image out to normal size */
+}
+
+.services .service-item.amenity-box:hover .amenity-content-wrapper {
+    opacity: 0; /* Fade out the text and icon content */
+}
+
+.services .service-item.amenity-box:hover::before,
+.services .service-item.amenity-box:hover::after {
+    opacity: 0; /* Fade out the corner circles */
+    right: 0; /* Move them slightly to enhance the transition */
+    top: 0;
+}
+
+/* Icon Styling */
+.services .amenity-box .icon-wrapper {
+    background: var(--accent-color); /* Red circle */
+    color: var(--contrast-color); /* White icon */
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.services .amenity-box h4 {
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    font-size: 20px;
+}
+
+.services .amenity-box h4 a {
+    color: var(--heading-color);
+}
+
+.services .amenity-box p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* The Square-to-Rectangle Plus Button */
+.services .amenity-box .plus-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Square shape */
+    height: 40px;
+    background-color: #feebee; /* Light red background */
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: width 0.4s ease-in-out;
+    border-radius: 4px; /* Slightly rounded square */
+}
+
+.services .amenity-box .plus-btn i {
+    color: #c71c3a; /* Darker red plus sign */
+    font-size: 16px;
+    transition: transform 0.4s ease; /* No rotation */
+}
+
+.services .amenity-box .plus-btn span {
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 0.3s ease-in-out 0.1s, opacity 0.3s ease-in-out 0.1s;
+    padding-left: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #c71c3a; /* Darker red text */
+}
+
+.services .service-item.amenity-box:hover .plus-btn {
+    width: 140px; /* Expand to rectangle */
+}
+
+.services .service-item.amenity-box:hover .plus-btn span {
+    max-width: 100px; /* Allow text to appear */
+    opacity: 1;
+}
+
+/* Prevent link color change on the h4 tag */
+.stretched-link-replacement {
+    text-decoration: none;
+    pointer-events: none; /* Make the h4 link unclickable */
+}
+
+</style>
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Html
+IGNORE_WHEN_COPYING_END
 
 <!-- ==========================
   Seating Charts Section
