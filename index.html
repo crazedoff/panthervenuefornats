@@ -3237,9 +3237,7 @@ function typeExcellence() {
   </div>
 </footer>
 <!-- END: PantherVenue Final Footer -->
-
-<!-- START: CSS for PantherVenue Final Footer -->
-<style>
+/* START: CSS for PantherVenue Final Footer */
 #panther-footer-final {
   font-family: 'Raleway', sans-serif;
   background-color: #000000;
@@ -3336,7 +3334,11 @@ function typeExcellence() {
 }
 .footer-social-blob-svg {
     position: absolute;
-    top: -65px; left: 0; width: 100%; height: 100%;
+    /* CHANGE #1: Adjusted the blob to stick out a bit */
+    top: -15px; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
 }
 .footer-social-blob-path {
     fill: #b01a35; /* Match the bottom bar color */
@@ -3349,11 +3351,11 @@ function typeExcellence() {
 .footer-social-container .social-link:hover {
   transform: translateY(-3px);
 }
-/* Icon positions on the blob */
-.footer-social-container .social-link:nth-of-type(1) { top: 14px; left: 24px; }
-.footer-social-container .social-link:nth-of-type(2) { top: 14px; left: 70px; }
-.footer-social-container .social-link:nth-of-type(3) { top: 14px; left: 118px; }
-.footer-social-container .social-link:nth-of-type(4) { top: 14px; left: 168px; }
+/* CHANGE #2: Adjusted icon positions to move them UP onto the blob */
+.footer-social-container .social-link:nth-of-type(1) { top: -10px; left: 24px; }
+.footer-social-container .social-link:nth-of-type(2) { top: -10px; left: 70px; }
+.footer-social-container .social-link:nth-of-type(3) { top: -10px; left: 118px; }
+.footer-social-container .social-link:nth-of-type(4) { top: -10px; left: 168px; }
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
@@ -3371,7 +3373,6 @@ function typeExcellence() {
 }
 </style>
 <!-- END: CSS for PantherVenue Final Footer -->
-
 <style> 
 /* FIX: Stack contact info/form and map vertically, optimize space and center on iPad-sized touch devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
