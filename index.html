@@ -1152,6 +1152,10 @@ function typeExcellence() {
 </style>
 <!-- JavaScript for the Animation (REVISED FOR SCROLL DELAY) -->
 <!-- JavaScript for the Animation (REVISED FOR TAPERING EFFECT) -->
+<!-- ====================================================== -->
+<!--    FINAL JAVASCRIPT FOR STATS ANIMATION (REVISED)      -->
+<!-- (This version includes Tapering AND the Scroll Offset)  -->
+<!-- ====================================================== -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       const statsPath = document.querySelector('#stats-scroll-line');
@@ -1160,11 +1164,22 @@ function typeExcellence() {
       if (statsPath && statsSection) {
           
           //==============================================================
-          //  TWEAK THESE VALUES TO CONTROL THE TAPERING
+          //  ==> YOUR SETTINGS <==
+          //  Tweak these three values to perfect the effect.
           //==============================================================
-          const maxStrokeWidth = 40; // The thickest the line will be (at the start)
-          const minStrokeWidth = 25;  // The thinnest the line will be (at the end)
 
+          // 1. SCROLL DELAY: When the animation starts. 
+          //    (0.3 means it starts after you scroll 30% into the section)
+          const scrollStartOffset = 0.3; 
+
+          // 2. MAX THICKNESS: How thick the line is at the beginning.
+          const maxStrokeWidth = 60; 
+
+          // 3. MIN THICKNESS: How thin the line is at the end.
+          const minStrokeWidth = 10;
+          
+
+          // --- The rest of the script works automatically ---
           const pathLength = statsPath.getTotalLength();
           statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
           statsPath.style.strokeDashoffset = pathLength;
@@ -1177,17 +1192,21 @@ function typeExcellence() {
               const scrollDistance = scrollTop - sectionTop;
 
               if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
+                  // Calculate the raw progress (0 to 1)
                   const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
-                  const finalProgress = Math.max(0, Math.min(1, progress));
                   
-                  // Calculate the draw length
+                  // Adjust progress based on your scroll delay
+                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
+
+                  // Clamp the final progress between 0 and 1 to prevent errors
+                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
+                  
+                  // Calculate the draw length using the final progress
                   const drawLength = pathLength * finalProgress;
                   statsPath.style.strokeDashoffset = pathLength - drawLength;
 
-                  // --- NEW: DYNAMIC STROKE WIDTH CALCULATION ---
-                  // Calculate the new width based on scroll progress
+                  // Calculate the new stroke width using the same final progress
                   const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
-                  // Apply the new width to the line
                   statsPath.style.strokeWidth = `${currentStrokeWidth}px`;
               }
           };
