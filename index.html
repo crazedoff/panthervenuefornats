@@ -1058,6 +1058,40 @@ function typeExcellence() {
     -->
     <path id="stats-scroll-line" stroke="url(#redGradient)" d="M 350 -50 L 350 300 C 350 500, 550 450, 650 600 L 1300 750" />
 </svg>
+
+<style>
+  /* --- Styles for Animated Scroll Line in Stats Section --- */
+  #stats {
+    position: relative;
+    /* This ensures the section's background doesn't hide the line */
+    z-index: 1;
+  }
+
+  #stats .container {
+      /* Make sure the container content (image and text) sits above the SVG line */
+      position: relative;
+      z-index: 3;
+  }
+
+  #stats-line-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allows clicking through the SVG */
+      z-index: 2; /* Positioned between the section background and the content */
+  }
+
+  #stats-scroll-line {
+      stroke-width: 15; /* Thickness of the line */
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+  }
+</style>
+
+
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4 align-items-center">
           <div class="col-lg-5">
