@@ -992,94 +992,88 @@ function typeExcellence() {
 
     </section><!-- /Clients Section -->
 
-/*
-========================================================
-    CORRECTED STYLES FOR REVAMPED STATISTICS SECTION
-========================================================
-*/
-.stats-revamp-section {
-  /* This creates the red gradient background you wanted for large screens */
-  background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  padding: 120px 0px;
-}
+    </section><!-- /About Section -->
 
-.stats-revamp-section .left-image {
-  margin-right: 45px;
-}
+    <!-- ====================================================== -->
+    <!-- === REVAMPED STATISTICS SECTION (CORRECTED) === -->
+    <!-- ====================================================== -->
+    <section id="stats" class="stats-revamp-section section">
+      <div class="container">
+        <div class="row">
 
-/* Styles for each individual statistic box */
-.stats-revamp-section .services .item {
-  display: flex; /* Use flexbox for better alignment */
-  align-items: center; /* Vertically center content */
-  margin-bottom: 30px;
-}
+          <!-- Left Image Column (will be hidden on small screens) -->
+          <div class="col-lg-4">
+            <div class="left-image wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+              <img src="assets/img/stats-img.svg" alt="Venue Statistics Graphic">
+            </div>
+          </div>
 
-.stats-revamp-section .services .item .icon {
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  margin-right: 25px;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border-radius: 50%;
-}
+          <!-- Statistics Items Column -->
+          <div class="col-lg-8 align-self-center">
+            <div class="services">
+              <div class="row">
 
-.stats-revamp-section .services .item .icon i {
-  color: #e0072f; /* PantherVenue Red for the icon color */
-  font-size: 32px;
-}
+                <!-- Stat Item 1: Seating Capacity -->
+                <div class="col-lg-6">
+                  <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div class="icon">
+                      <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="right-text">
+                      <h4>Seating Capacity</h4>
+                      <p><span class="purecounter" data-purecounter-start="0" data-purecounter-end="3500" data-purecounter-duration="1">0</span>+ Seats</p>
+                    </div>
+                  </div>
+                </div>
 
-.stats-revamp-section .services .item .right-text h4 {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px; /* Adjusted spacing */
-}
+                <!-- Stat Item 2: Events Per Year -->
+                <div class="col-lg-6">
+                  <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+                    <div class="icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <div class="right-text">
+                      <h4>Events Per Year</h4>
+                      <p><span class="purecounter" data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1">0</span>+ Annually</p>
+                    </div>
+                  </div>
+                </div>
 
-.stats-revamp-section .services .item .right-text p {
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 0;
-}
+                <!-- Stat Item 3: Electrical Ports -->
+                <div class="col-lg-6">
+                  <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                    <div class="icon">
+                      <i class="bi bi-laptop"></i>
+                    </div>
+                    <div class="right-text">
+                      <h4>Electrical Ports</h4>
+                      <p><span class="purecounter" data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1">0</span>+ Available</p>
+                    </div>
+                  </div>
+                </div>
 
-/*
-========================================================
-    RESPONSIVE FIXES FOR SMALLER SCREENS (Tablets/Mobile)
-========================================================
-*/
-@media (max-width: 992px) {
-  .stats-revamp-section {
-    /* On smaller screens, remove the main background... */
-    background: none;
-    background-color: #fff; /* Use a plain white background for the section */
-    padding: 60px 0px;
-  }
-  .stats-revamp-section .left-image {
-    /* Hide the large graphic on the left to save space */
-    display: none;
-  }
-  .stats-revamp-section .services .item {
-    /* ...and apply the red gradient to EACH stat box instead!
-       This creates the "cool red background" effect you saw. */
-    background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
-    padding: 30px;
-    border-radius: 20px;
-    display: block; /* Stack icon and text vertically */
-    text-align: center; /* Center the content */
-  }
-  .stats-revamp-section .services .item .icon {
-    float: none; /* Disable float for flexbox */
-    margin: 0 auto 20px auto; /* Center the icon */
-  }
-  .stats-revamp-section .services .item .right-text {
-    text-align: center;
-  }
-}
+                <!-- Stat Item 4: Business Connections -->
+                <div class="col-lg-6">
+                  <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="1.1s">
+                    <div class="icon">
+                       <i class="bi bi-building-up"></i>
+                    </div>
+                    <div class="right-text">
+                      <h4>Business Connections</h4>
+                      <p><span class="purecounter" data-purecounter-start="0" data-purecounter-end="75" data-purecounter-duration="1">0</span>+ Partners</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section (Amenities) -->
+    <section id="services" class="services section">
 
     <style>
       #services {
