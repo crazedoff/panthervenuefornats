@@ -92,40 +92,137 @@
       /* --- 2. DECORATIVE STYLES (Desktop Only) --- */
       /* These effects are now scoped to screens wider than 1199px */
       @media (min-width: 1200px) {
-        
-        /* -- Hotel Section Background Circles (CHANGED TO GRAY) -- */
-        #hotels.section-with-bg {
-            position: relative; /* Container for pseudo-elements */
-            overflow: hidden; /* Clips the circles that go off-screen */
-            z-index: 1;
+
+        /* -- Setup for sections with decorations -- */
+        #about, #seating, #team, #contact, #hotels {
+            position: relative;
+            overflow: hidden;
+            z-index: 1; 
         }
 
-        #hotels.section-with-bg::before,
-        #hotels.section-with-bg::after {
+        /* Generic Blob Styling */
+        .decor-blob {
             content: '';
             position: absolute;
             z-index: -1;
-            background: rgba(128, 128, 128, 0.1); /* CHANGED: Faint gray color for circles */
-            border-radius: 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
             pointer-events: none;
         }
 
-        #hotels.section-with-bg::before {
-            width: 450px;
-            height: 450px;
-            top: 50px;
-            left: -150px;
+        /* -- Gray Blob for About Us -- */
+        #about::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('grayblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 700px;
+            height: 700px;
+            top: -150px;
+            left: -250px;
+            opacity: 0.35;
+            transform: rotate(-15deg);
+            pointer-events: none;
         }
 
-        #hotels.section-with-bg::after {
+        /* -- Gray Blobs for Hotel Section (REVISED) -- */
+        #hotels::before, #hotels::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('grayblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        #hotels::before { /* Top Left */
+            width: 450px;
+            height: 450px;
+            top: -100px;
+            left: -150px;
+            transform: rotate(20deg);
+        }
+        #hotels::after { /* Bottom Right */
             width: 550px;
             height: 550px;
             bottom: -200px;
             right: -200px;
+            transform: rotate(-30deg) scaleX(-1);
+        }
+
+        /* -- Red Blobs for Seating Chart Section (REVISED) -- */
+        #seating::before, #seating::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        #seating::before { /* Top Right */
+            width: 500px;
+            height: 500px;
+            top: -150px;
+            right: -180px;
+            transform: rotate(45deg);
+        }
+        #seating::after { /* Bottom Left */
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+            transform: rotate(-60deg) scaleX(-1);
+        }
+
+        /* -- Red Blobs for Team Section (REVISED) -- */
+        #team::before, #team::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        #team::before { /* Top Left */
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            left: -250px;
+            transform: rotate(15deg);
+        }
+        #team::after { /* Bottom Right */
+            width: 700px;
+            height: 700px;
+            bottom: -300px;
+            right: -300px;
+            transform: rotate(-25deg);
+        }
+        
+        /* -- Red Blob for Contact Us Section (REVISED) -- */
+        #contact::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 600px;
+            height: 600px;
+            bottom: -200px;
+            right: -200px;
+            opacity: 0.4;
+            transform: rotate(30deg);
+            pointer-events: none;
         }
 
         /* -- FAQ Section Background Icons -- */
-        
         #faq {
           background: transparent !important; /* Make background see-through for icons */
         }
@@ -152,7 +249,6 @@
           color: var(--decor-color-black);
           transition: all 0.3s ease;
         }
-      
         
         /* LEFT SIDE ICONS */
         #decor1 { top: 2%; left: calc(15% * var(--decor-density-multiplier)); font-size: 60px; transform: rotate(-25deg); color: var(--decor-color-red); }
@@ -183,78 +279,6 @@
         #decor23 { top: 25%; right: calc(20% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(-25deg); }
         #decor24 { top: 98%; right: calc(3% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(15deg); color: var(--decor-color-red); }
         #decor26 { top: 88%; right: calc(20% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-10deg); color: var(--decor-color-red); }
-      
-        /* -- NEW Section Decorations (Blobs & Circles) -- */
-        #about, #seating, #team, #contact {
-            position: relative;
-            overflow: hidden;
-            z-index: 1; /* Establishes a stacking context */
-        }
-
-        /* Gray Blob for About Us */
-        #about::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('grayblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 700px;
-            height: 700px;
-            top: -150px;
-            left: -250px;
-            opacity: 0.35;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        /* Red Circle for Seating Chart */
-        #seating::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background: rgba(224, 7, 47, 0.1); /* Faint red */
-            border-radius: 50%;
-            width: 550px;
-            height: 550px;
-            bottom: -250px;
-            right: -200px;
-            pointer-events: none;
-        }
-
-        /* Red Blob for Team */
-        #team::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('redblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 800px;
-            height: 800px;
-            bottom: -300px;
-            right: -350px;
-            opacity: 0.4;
-            transform: rotate(25deg);
-            pointer-events: none;
-        }
-
-        /* Red Blob for Contact Us */
-        #contact::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('redblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 600px;
-            height: 600px;
-            top: -100px;
-            left: -200px;
-            opacity: 0.4;
-            transform: rotate(-45deg) scaleX(-1); /* Flipped for variation */
-            pointer-events: none;
-        }
       }
     </style>
 
