@@ -1037,60 +1037,78 @@ function typeExcellence() {
         </div>
       </div>
     </section><!-- /About Section -->
+<!-- Stats Section -->
+<section id="stats" class="stats section">
 
-    <section id="stats" class="stats section">
-      
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 align-items-center">
-          <div class="col-lg-5">
-            <img src="assets/img/stats-img.svg" alt="" class="img-fluid">
+  <!-- SVG For Animated Gradient Line -->
+  <svg id="stats-line-svg">
+      <defs>
+          <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <!-- Using the red colors from your website's theme -->
+              <stop offset="0%" style="stop-color:#b01a35;" />
+              <stop offset="50%" style="stop-color:#e0072f;" />
+              <stop offset="100%" style="stop-color:#f82249;" />
+          </linearGradient>
+      </defs>
+      <!-- 
+        This custom path is designed to:
+        1. Start above the image area.
+        2. Curve down and behind the image.
+        3. Loop underneath it in a style similar to your example.
+        4. Exit towards the bottom-right.
+      -->
+      <path id="stats-scroll-line" stroke="url(#redGradient)" d="M 350 -100 C 350 350, 250 500, 600 600 C 950 700, 850 750, 1300 850" />
+  </svg>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 align-items-center">
+      <div class="col-lg-5">
+        <img src="assets/img/stats-img.svg" alt="" class="img-fluid">
+      </div>
+      <div class="col-lg-7">
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <div class="stats-item d-flex">
+              <i class="bi bi-people-fill flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="3500" data-purecounter-duration="1.2" class="purecounter"></span>
+                <p><strong>Seating Capacity:</strong> <span>Up to 3,500 comfortable seats for attendees</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="stats-item d-flex">
+              <i class="bi bi-calendar-check flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1.2" class="purecounter"></span>
+                <p><strong>Events Per Year:</strong> <span>Over 50 exciting events are hosted annually</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="stats-item d-flex">
+              <i class="bi bi-laptop flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1.2" class="purecounter"></span>
+                <p><strong>Electrical Ports:</strong> <span>More than 50 easily accessible ports are available</span></p>
+              </div>
+            </div>
           </div>
           
-          <div class="col-lg-7">
-            <div class="row gy-4">
-              <div class="col-lg-6">
-                <div class="stats-item d-flex">
-                  <i class="bi bi-people-fill flex-shrink-0"></i>
-                  <div>
-                    <span data-purecounter-start="0" data-purecounter-end="3500" data-purecounter-duration="1.2" class="purecounter"></span>
-                    <p><strong>Seating Capacity:</strong> <span>Up to 3,500 comfortable seats for attendees</span></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="stats-item d-flex">
-                  <i class="bi bi-calendar-check flex-shrink-0"></i>
-                  <div>
-                    <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1.2" class="purecounter"></span>
-                    <p><strong>Events Per Year:</strong> <span>Over 50 exciting events are hosted annually</span></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="stats-item d-flex">
-                  <i class="bi bi-laptop flex-shrink-0"></i>
-                  <div>
-                    <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1.2" class="purecounter"></span>
-                    <p><strong>Electrical Ports:</strong> <span>More than 50 easily accessible ports are available</span></p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-6">
-                <div class="stats-item d-flex">
-                  <i class="bi bi-building-up flex-shrink-0"></i>
-                  <div>
-                    <span data-purecounter-start="0" data-purecounter-end="75" data-purecounter-duration="1.2" class="purecounter"></span>
-                    <p><strong>Business Connections:</strong> <span>Approximately 75 business owners have used this venue</span></p>
-                  </div>
-                </div>
+          <div class="col-lg-6">
+            <div class="stats-item d-flex">
+              <i class="bi bi-building-up flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="75" data-purecounter-duration="1.2" class="purecounter"></span>
+                <p><strong>Business Connections:</strong> <span>Approximately 75 business owners have used this venue</span></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- /Stats Section -->
-
+    </div>
+  </div>
+</section><!-- /Stats Section -->
     <style>
       #services {
         background: rgb(246, 247, 253);
