@@ -1,18 +1,4 @@
-Of course. It can be frustrating when multiple changes get tangled. Let's reset and get everything in one place, exactly as it should be.
 
-Here is the complete, fully updated `index.html` file. I have carefully integrated all the requested changes:
-
-1.  **Team Section Line:** The animated red line that follows your drawing's path has been added. It is layered correctly *behind* the team member cards.
-2.  **Seating & FAQ Animations:** The `fade-up` scroll animation has been applied to both the Seating Charts section and the FAQ section so they animate into view just like the other sections.
-3.  **Previous Fixes:** All previous corrections (blob placements, footer layout, and the disabled contact form) have been maintained in this version.
-
-You can confidently replace your entire `index.html` file with the code below.
-
-***
-
-### Fully Updated `index.html`
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,7 +138,7 @@ You can confidently replace your entire `index.html` file with the code below.
             content: '';
             position: absolute;
             z-index: -1;
-            background-image: url('redblob.svg');
+            background-image: url('redblob.svg'); /* Changed to redblob */
             background-repeat: no-repeat;
             background-size: contain;
             opacity: 0.2;
@@ -195,7 +181,7 @@ You can confidently replace your entire `index.html` file with the code below.
             width: 550px;
             height: 550px;
             bottom: -220px;
-            right: -280px;
+            right: -280px; /* This was changed from -200px */
             transform: rotate(-30deg) scaleX(-1);
         }
 
@@ -273,7 +259,7 @@ You can confidently replace your entire `index.html` file with the code below.
             width: 500px;
             height: 500px;
             top: -180px;
-            left: -200px;
+            left: -200px; /* Changed from 'right' */
             opacity: 0.3;
             transform: rotate(-25deg) scaleX(-1);
         }
@@ -311,31 +297,6 @@ You can confidently replace your entire `index.html` file with the code below.
             transform: translateY(-50%) rotate(10deg);
             opacity: 0.2;
         }
-        
-        /* --- NEW: CSS for the Team Section Animated Line --- */
-        #team-line-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; 
-            z-index: 1; /* Sits just above the section background */
-        }
-
-        /* This is the key to putting the cards IN FRONT of the line */
-        #team .container {
-            position: relative; /* Creates a new stacking context */
-            z-index: 2; /* Lifts the container (and cards inside) above the line */
-        }
-
-        #team-scroll-line {
-            stroke-width: 5; /* Thinner line for a more subtle effect */
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        
         /* -- FAQ Section Background Icons -- */
         #faq {
           background: transparent !important; /* Make background see-through for icons */
@@ -1115,7 +1076,7 @@ function typeExcellence() {
         <p>Learn more about PantherVenue and its vision.</p>
       </div>
 
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row gy-5">
           <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
             <h3>BRHS and PantherVenue</h3>
@@ -1342,7 +1303,7 @@ function typeExcellence() {
     <h2>Amenities</h2>
     <p>Explore what PantherVenue has to offer.</p>
   </div>
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="row gy-4">
 
       <!-- Amenity 1: Seating -->
@@ -1625,7 +1586,7 @@ function typeExcellence() {
   Seating Charts Section
 =========================== -->
 <section id="seating" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-header">
       <h2>Seating Charts</h2>
       <p>Explore our venue layouts for different event types</p>
@@ -1835,7 +1796,7 @@ function typeExcellence() {
 
 <!-- Schedule Section (Policies) -->
 <section id="schedule" class="section-with-bg">
-  <div class="container" data-aos="fade-up">
+  <div class="container wow fadeInUp">
     <div class="section-header">
       <h2>Policies</h2>
       <p>Important rules and guidelines for using PantherVenue.</p>
@@ -1957,31 +1918,72 @@ function typeExcellence() {
   </div>
 </section><!-- /Schedule Section -->
 
+
 <!-- Team Section -->
 <section id="team" class="team section">
 
+
+
+
+<!-- START: Add this new script block for the TEAM section animation -->
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+      const statsPath = document.querySelector('#stats-scroll-line');
+      // ...
+      if (statsPath && statsSection) {
+          // ...
+      }
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+      // Select the NEW path and section for the team line
+      const teamPath = document.querySelector('#team-scroll-line');
+      const teamSection = document.querySelector('#team');
+
+      if (teamPath && teamSection) {
+          
+          // --- Animation Settings ---
+          const scrollStartOffset = 0.2; // Start animation a bit earlier
+          const maxStrokeWidth = 5; 
+          const minStrokeWidth = 2; // Taper to a thinner line
+          const animationSpeedFactor = 1.0; 
+
+          // --- Animation Logic ---
+          const pathLength = teamPath.getTotalLength();
+          teamPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+          teamPath.style.strokeDashoffset = pathLength;
+
+          const handleScroll = () => {
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const sectionTop = teamSection.offsetTop;
+              const sectionHeight = teamSection.offsetHeight;
+              const viewportHeight = window.innerHeight;
+              const scrollDistance = scrollTop - sectionTop;
+
+              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight * animationSpeedFactor) {
+                  const progress = (scrollDistance + viewportHeight) / ((sectionHeight + viewportHeight) * animationSpeedFactor);
+                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
+                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
+                  
+                  const drawLength = pathLength * finalProgress;
+                  teamPath.style.strokeDashoffset = pathLength - drawLength;
+
+                  const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
+                  teamPath.style.strokeWidth = `${currentStrokeWidth}px`;
+              }
+          };
+          window.addEventListener('scroll', handleScroll);
+          handleScroll(); // Run once on load
+      }
+  });
+</script>
+  <div class="container">
   <!-- Section Title -->
   <div class="section-header">
     <h2>Team</h2>
     <p>Take a quick glance at our group of hardworking individuals.</p>
   </div>
 
-  <!-- START: SVG for the Team section line -->
-  <svg id="team-line-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="teamRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style="stop-color:#b01a35;" />
-        <stop offset="50%" style="stop-color:#e0072f;" />
-        <stop offset="100%" style="stop-color:#ff0936;" />
-      </linearGradient>
-    </defs>
-    <!-- This path is hand-crafted to follow your drawing's trajectory -->
-    <path id="team-scroll-line" stroke="url(#teamRedGradient)"
-          d="M 1250 250 C 1000 200, 950 600, 750 450 S 450 150, 250 350 S -50 400, -100 200" />
-  </svg>
-  <!-- END: SVG for the Team section line -->
-
-  <div class="container" data-aos="fade-up">
+  <div class="container">
 
     <div class="row gy-4">
 
@@ -2882,7 +2884,7 @@ function typeExcellence() {
   
   <!-- Modified Hotels Section -->
   <section id="hotels" class="section-with-bg wow fadeInUp">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
           <div class="section-header">
               <h2>Hotels</h2>
               <p>Traveling far? Find nearby accommodations.</p>
@@ -3192,7 +3194,7 @@ function typeExcellence() {
       <i class="fas fa-flag-checkered decor-icon" id="decor26"></i>
   </div>
 
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-header">
       <h2>Frequently Asked Questions</h2>
       <p>Learn everything you need to know about PantherVenue.</p>
@@ -3437,7 +3439,7 @@ function typeExcellence() {
   Contact Section
 ============================-->
 <section id="contact" class="section-bg wow fadeInUp">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-header">
       <h2>Contact Us</h2>
       <p>We will get back to you in 2-7 business days.</p>
@@ -3641,7 +3643,7 @@ function typeExcellence() {
 }
 
 .panther-footer-content-area .container {
-  padding-left: 15px; /* Corrected to match the right side */
+  padding-left: 50px; /* This is the offset you wanted */
   padding-right: 15px; /* Standard Bootstrap padding on the right */
 }
 
@@ -4123,30 +4125,7 @@ d
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
-  <!-- <script src="contactform/contactform.js"></script> -->
-  <!-- START: New script to redirect the contact form -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Find the contact form on the page
-      const contactForm = document.querySelector('.contactForm');
-
-      // Check if the form actually exists on this page before proceeding
-      if (contactForm) {
-        
-        // Add an event listener that waits for the form to be submitted
-        contactForm.addEventListener('submit', function(event) {
-          
-          // 1. Prevent the form from trying to do anything else (like sending data)
-          event.preventDefault();
-          
-          // 2. Immediately redirect the user to the 404 page
-          window.location.href = '404.html';
-
-        });
-      }
-    });
-  </script>
-  <!-- END: New script to redirect the contact form -->
+  <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
@@ -4533,57 +4512,6 @@ document.addEventListener('DOMContentLoaded', () => {
 }
   
 </style>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // ... existing script for the STATS section animation ends here ...
-  });
-</script>
-
-<!-- START: Add this new script block for the TEAM section animation -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-      // Select the NEW path and section for the team line
-      const teamPath = document.querySelector('#team-scroll-line');
-      const teamSection = document.querySelector('#team');
-
-      if (teamPath && teamSection) {
-          
-          // --- Animation Settings ---
-          const scrollStartOffset = 0.2; // Start animation a bit earlier
-          const maxStrokeWidth = 5; 
-          const minStrokeWidth = 2; // Taper to a thinner line
-          const animationSpeedFactor = 1.0; 
-
-          // --- Animation Logic ---
-          const pathLength = teamPath.getTotalLength();
-          teamPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-          teamPath.style.strokeDashoffset = pathLength;
-
-          const handleScroll = () => {
-              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-              const sectionTop = teamSection.offsetTop;
-              const sectionHeight = teamSection.offsetHeight;
-              const viewportHeight = window.innerHeight;
-              const scrollDistance = scrollTop - sectionTop;
-
-              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight * animationSpeedFactor) {
-                  const progress = (scrollDistance + viewportHeight) / ((sectionHeight + viewportHeight) * animationSpeedFactor);
-                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
-                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
-                  
-                  const drawLength = pathLength * finalProgress;
-                  teamPath.style.strokeDashoffset = pathLength - drawLength;
-
-                  const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
-                  teamPath.style.strokeWidth = `${currentStrokeWidth}px`;
-              }
-          };
-          window.addEventListener('scroll', handleScroll);
-          handleScroll(); // Run once on load
-      }
-  });
-</script>
 
 </body>
 </html>
-```
