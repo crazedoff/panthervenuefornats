@@ -1037,29 +1037,30 @@ function typeExcellence() {
         </div>
       </div>
     </section><!-- /About Section -->
-<!-- Stats Section -->
+<!-- ====================================================== -->
+<!--          START: CORRECTED STATS SECTION                -->
+<!-- (Copy and paste this entire block to replace your old one) -->
+<!-- ====================================================== -->
+
 <section id="stats" class="stats section">
 
-  <!-- SVG For Animated Gradient Line (CORRECTED) -->
-  <svg id="stats-line-svg" viewBox="0 0 1200 800">
+  <!-- SVG For the Animated Gradient Line -->
+  <svg id="stats-line-svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
       <defs>
           <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <!-- Using the red colors from your website's theme -->
               <stop offset="0%" style="stop-color:#b01a35;" />
               <stop offset="50%" style="stop-color:#e0072f;" />
               <stop offset="100%" style="stop-color:#f82249;" />
           </linearGradient>
       </defs>
-      <!-- 
-        This custom path is designed to:
-        1. Start above the image area.
-        2. Curve down and behind the image.
-        3. Loop underneath it in a style similar to your example.
-        4. Exit towards the bottom-right.
-      -->
-<path id="stats-scroll-line" stroke="url(#redGradient)" 
-            d="M -40 50 C 120 250, 0 520, 280 570 S 650 450, 700 580 S 950 780, 1050 700 S 1250 650, 1300 680" />  </svg>
+      
+      <!-- THIS IS THE NEW, HAND-CRAFTED PATH BASED ON YOUR DRAWING -->
+      <path id="stats-scroll-line" stroke="url(#redGradient)" 
+            d="M -40 50 C 120 250, 0 520, 280 570 S 650 450, 700 580 S 950 780, 1050 700 S 1250 650, 1300 680" />
 
+  </svg>
+
+  <!-- This is your original content, which will now appear ON TOP of the line -->
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4 align-items-center">
       <div class="col-lg-5">
@@ -1067,7 +1068,6 @@ function typeExcellence() {
       </div>
       <div class="col-lg-7">
         <div class="row gy-4">
-          <!-- ... your stats items ... -->
           <div class="col-lg-6">
             <div class="stats-item d-flex">
               <i class="bi bi-people-fill flex-shrink-0"></i>
@@ -1108,97 +1108,74 @@ function typeExcellence() {
       </div>
     </div>
   </div>
-</section><!-- /Stats Section -->
-    <style>
-      #services {
-        background: rgb(246, 247, 253);
-      }
-    </style>
-    <style>
-  /* --- Styles for the Animated Scroll Line in the Stats Section --- */
-  
-  /* Make the stats section a positioning container */
+</section>
+
+<!-- CSS Styling for the Line Effect -->
+<style>
   #stats {
     position: relative;
-    overflow: hidden; /* Prevents line from showing outside the section */
+    overflow: hidden; 
   }
 
-  /* The container with the image and text MUST have a higher z-index to sit ON TOP of the line */
+  /* Your content container needs a higher z-index to be on top of the line */
   #stats .container {
       position: relative;
       z-index: 3;
   }
 
-  /* Position the SVG canvas absolutely to fill the entire section, but behind the content */
+  /* The SVG canvas is positioned absolutely to fill the section, but behind the content */
   #stats-line-svg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* Allows clicks to go through to content behind it */
-      z-index: 2; /* Sits behind the container (z-index: 3) but above the section background */
+      pointer-events: none; 
+      z-index: 2; /* Ensures it sits behind your text/images */
   }
 
-  /* Style the line itself to match your reference: thick, no fill, rounded ends */
+  /* Styling the line itself to be thick, smooth, and ready for animation */
   #stats-scroll-line {
-      stroke-width: 20; 
+      stroke-width: 40; /* Increased thickness to match your drawing */
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
   }
 </style>
 
+<!-- JavaScript for the Animation (Place this before your closing </body> tag if it's not already there) -->
 <script>
-  // --- JavaScript for the Stats Section Line Drawing Animation ---
   document.addEventListener('DOMContentLoaded', () => {
-      // Select the path and section elements we created
       const statsPath = document.querySelector('#stats-scroll-line');
       const statsSection = document.querySelector('#stats');
 
-      // Only run the script if both elements exist
       if (statsPath && statsSection) {
-          // Get the total length of the SVG path
           const pathLength = statsPath.getTotalLength();
-
-          // Set up the line for the drawing animation by making it a dashed line
-          // where the dash length and the gap length are both the total length of the line.
           statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-
-          // Hide the line by default by offsetting the dash
           statsPath.style.strokeDashoffset = pathLength;
 
-          // Function to run every time the user scrolls
           const handleScroll = () => {
               const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
               const sectionTop = statsSection.offsetTop;
               const sectionHeight = statsSection.offsetHeight;
               const viewportHeight = window.innerHeight;
-
-              // Calculate how far the user has scrolled into the stats section
               const scrollDistance = scrollTop - sectionTop;
 
-              // Only run the animation when the section is on screen
               if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
-                  // Calculate the scroll progress as a number from 0 to 1
                   const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
-                  
-                  // Calculate the length of the line that should be visible
                   const drawLength = pathLength * progress;
-
-                  // "Pull back" the dash offset to reveal the line
                   statsPath.style.strokeDashoffset = pathLength - drawLength;
               }
           };
-
-          // Add the scroll event listener
           window.addEventListener('scroll', handleScroll);
-          
-          // Run the function once on load to set the correct initial position
           handleScroll();
       }
   });
 </script>
+
+<!-- ====================================================== -->
+<!--           END: CORRECTED STATS SECTION                 -->
+<!-- ====================================================== -->
 
 <!-- Services Section (Amenities) -->
 <section id="services" class="services section">
