@@ -90,15 +90,20 @@
       }
       
       /* --- 2. DECORATIVE STYLES (Desktop Only) --- */
-         /* These effects are now scoped to screens wider than 1199px */
           /* These effects are now scoped to screens wider than 1199px */
       @media (min-width: 1200px) {
 
-        /* -- Setup for sections with decorations (ADDED #services and #schedule) -- */
+        /* -- Setup for sections with decorations -- */
         #about, #seating, #team, #contact, #hotels, #services, #schedule {
             position: relative;
             overflow: hidden;
             z-index: 1; 
+        }
+
+        /* -- NEW: Setup for the third blob in the Policies section -- */
+        #schedule .container {
+            position: relative;
+            z-index: 1;
         }
 
         /* Generic Blob Styling */
@@ -111,7 +116,7 @@
             pointer-events: none;
         }
 
-        /* -- Gray Blob for About Us -- */
+        /* -- Gray Blob for About Us (No Change) -- */
         #about::before {
             content: '';
             position: absolute;
@@ -127,8 +132,34 @@
             transform: rotate(-15deg);
             pointer-events: none;
         }
+        
+        /* -- Red Blobs for Amenities Section (#services) (Top-Right and Bottom-Left) -- */
+        #services::before, #services::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg'); /* Changed to redblob */
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        #services::before { /* Top Right */
+            width: 450px;
+            height: 450px;
+            top: -150px;
+            right: -150px;
+            transform: rotate(30deg);
+        }
+        #services::after { /* Bottom Left */
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -150px;
+            transform: rotate(-45deg) scaleX(-1);
+        }
 
-        /* -- Gray Blobs for Hotel Section (REVISED: Moved right blob further right) -- */
+        /* -- Gray Blobs for Hotel Section (Moved right blob further right) -- */
         #hotels::before, #hotels::after {
             content: '';
             position: absolute;
@@ -150,11 +181,11 @@
             width: 550px;
             height: 550px;
             bottom: -220px;
-            right: -280px; /* <-- This was changed from -200px */
+            right: -280px; /* This was changed from -200px */
             transform: rotate(-30deg) scaleX(-1);
         }
 
-        /* -- Red Blobs for Seating Chart Section (REVISED) -- */
+        /* -- Red Blobs for Seating Chart Section (No Change) -- */
         #seating::before, #seating::after {
             content: '';
             position: absolute;
@@ -180,8 +211,8 @@
             transform: rotate(-60deg) scaleX(-1);
         }
 
-        /* -- Red Blob for Team Section (REVISED: Removed the right-side blob) -- */
-        #team::before {
+        /* -- CORRECTED: Team Section now has Top-Left and Bottom-Right Red Blobs -- */
+        #team::before, #team::after {
             content: '';
             position: absolute;
             z-index: -1;
@@ -190,25 +221,33 @@
             background-size: contain;
             opacity: 0.4;
             pointer-events: none;
-            width: 600px; /* Top Left */
+        }
+        #team::before { /* Top Left */
+            width: 600px;
             height: 600px;
             top: -200px;
             left: -250px;
             transform: rotate(15deg);
         }
-        /* The #team::after rule was completely removed. */
+        #team::after { /* Bottom Right - ADDED BACK IN */
+            width: 700px;
+            height: 700px;
+            bottom: -300px;
+            right: -300px;
+            transform: rotate(-25deg);
+        }
         
-        /* -- Blobs for Contact Us Section (REVISED: Added top-right blob) -- */
+        /* -- CORRECTED: Contact Section now has Top-Left and Bottom-Right Red Blobs -- */
         #contact::before, #contact::after {
             content: '';
             position: absolute;
             z-index: -1;
+            background-image: url('redblob.svg');
             background-repeat: no-repeat;
             background-size: contain;
             pointer-events: none;
         }
         #contact::before { /* Bottom Right (Existing) */
-            background-image: url('redblob.svg');
             width: 600px;
             height: 600px;
             bottom: -200px;
@@ -216,46 +255,17 @@
             opacity: 0.4;
             transform: rotate(30deg);
         }
-        #contact::after { /* Top Right (NEW) */
-            background-image: url('grayblob.svg');
+        #contact::after { /* Top Left (CORRECTED) */
             width: 500px;
             height: 500px;
             top: -180px;
-            right: -180px;
-            opacity: 0.25;
-            transform: rotate(20deg);
+            left: -200px; /* Changed from 'right' */
+            opacity: 0.3;
+            transform: rotate(-25deg) scaleX(-1);
         }
         
-        /* --- NEW RULES ADDED BELOW --- */
-        
-        /* -- NEW: Red Blobs for Amenities Section (#services) -- */
-        #services::before, #services::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('redblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.2;
-            pointer-events: none;
-        }
-        #services::before { /* Top Right */
-            width: 450px;
-            height: 450px;
-            top: -150px;
-            right: -150px;
-            transform: rotate(30deg);
-        }
-        #services::after { /* Bottom Left */
-            width: 400px;
-            height: 400px;
-            bottom: -150px;
-            left: -150px;
-            transform: rotate(-45deg) scaleX(-1);
-        }
-        
-        /* -- NEW: Gray Blobs for Policies Section (#schedule) -- */
-        #schedule::before, #schedule::after {
+        /* -- CORRECTED: Three Gray Blobs for Policies Section (#schedule) -- */
+        #schedule::before, #schedule::after, #schedule .container::before {
             content: '';
             position: absolute;
             z-index: -1;
@@ -272,84 +282,21 @@
             right: -120px;
             transform: rotate(50deg);
         }
-        #schedule::after { /* Bottom Left */
+        #schedule::after { /* Bottom Right */
             width: 500px;
             height: 500px;
-            bottom: -120px;
-            left: -180px;
-            transform: rotate(-30deg);
-        }
-        #contact::after { /* Top Right (NEW) */
-            background-image: url('grayblob.svg');
-            width: 500px;
-            height: 500px;
-            top: -180px;
-            right: -180px;
-            opacity: 0.25;
-            transform: rotate(20deg);
-        }
-        
-        /* --- NEW RULES ADDED BELOW --- */
-        
-        /* -- NEW: Red Blobs for Amenities Section (#services) -- */
-        #services::before, #services::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('grayblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.2;
-            pointer-events: none;
-        }
-        #services::before { /* Top Right */
-            width: 450px;
-            height: 450px;
-            top: -150px;
-            right: -150px;
-            transform: rotate(30deg);
-        }
-        #services::after { /* Bottom Left */
-            width: 400px;
-            height: 400px;
             bottom: -200px;
-            left: -150px;
-            transform: rotate(-45deg) scaleX(-1);
-        }
-        
-        /* -- NEW: Gray Blobs for Policies Section (#schedule) -- */
-        #schedule::before, #schedule::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('grayblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.25;
-            pointer-events: none;
-        }
-        #schedule::before { /* Top Right */
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            right: -120px;
-            transform: rotate(50deg);
-        }
-        #schedule::after { /* Bottom Left */
-            width: 500px;
-            height: 800px;
-            bottom: -500px;
-            left: -180px;
+            right: -180px;
             transform: rotate(-30deg);
         }
-      #schedule::before { /* Top Right */
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            right: -200px;
-            transform: rotate(50deg);
+        #schedule .container::before { /* Middle Left (NEW) */
+            width: 450px;
+            height: 450px;
+            top: 50%;
+            left: -250px;
+            transform: translateY(-50%) rotate(10deg);
+            opacity: 0.2;
         }
-
         /* -- FAQ Section Background Icons -- */
         #faq {
           background: transparent !important; /* Make background see-through for icons */
