@@ -1104,20 +1104,17 @@ function typeExcellence() {
     </div>
   </div>
 </section>
-   <!-- CSS Styling for the Line Effect (REVISED) -->
+ <!-- ====================================================== -->
+<!--      FINAL CSS FOR THE STATS ANIMATION (REVISED)       -->
+<!-- ====================================================== -->
 <style>
+  /* Make the stats section a positioning container */
   #stats {
-    position: relative; 
+    position: relative;
     overflow: hidden; 
   }
 
-  /* Your content container needs to be lifted up */
-  #stats .container {
-      position: relative;
-      z-index: 3;
-  }
-
-  /* The SVG canvas holding the line is positioned behind everything */
+  /* The SVG canvas for the line must be at the very bottom layer */
   #stats-line-svg {
       position: absolute;
       top: 0;
@@ -1125,35 +1122,27 @@ function typeExcellence() {
       width: 100%;
       height: 100%;
       pointer-events: none; 
-      z-index: 1; /* Lowest z-index */
+      z-index: 1; /* BOTTOM LAYER */
   }
 
-  /* --- NEW: THE TRANSPARENCY FIX --- */
-  /* Target the column containing the image */
-  #stats .col-lg-5 {
-      position: relative; /* Required for the pseudo-element */
+  /* Ensure both columns of your content are lifted above the line */
+  #stats .col-lg-5,
+  #stats .col-lg-7 {
+      position: relative;
+      z-index: 2; /* TOP LAYER */
+  }
+
+  /* --- THIS IS THE MAGIC --- */
+  /* Apply a filter to the image itself to create an opaque background */
+  #stats .col-lg-5 img {
+      /* This filter creates a solid white shape directly behind the image's content.
+         We stack multiple shadows to make it fully opaque. */
+      filter: drop-shadow(0px 0px 15px #ffffff) 
+              drop-shadow(0px 0px 15px #ffffff) 
+              drop-shadow(0px 0px 15px #ffffff);
   }
   
-  /* Create a pseudo-element that acts as a solid white background */
-  #stats .col-lg-5::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #ffffff; /* This is the solid background */
-      z-index: 2; /* Sits ON TOP of the line (z-index 1) */
-  }
-
-  /* Ensure the actual image sits on top of its new white background */
-  #stats .col-lg-5 img {
-      position: relative;
-      z-index: 3; /* Sits ON TOP of the ::before element (z-index 2) */
-  }
-  /* --- END: THE TRANSPARENCY FIX --- */
-
-  /* The line itself */
+  /* The animated line itself */
   #stats-scroll-line {
       stroke-width: 40; 
       fill: none;
