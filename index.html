@@ -995,8 +995,82 @@ function typeExcellence() {
     </section><!-- /About Section -->
 
     <!-- ====================================================== -->
-    <!-- === REVAMPED STATISTICS SECTION (CORRECTED) === -->
+    <!-- === STATISTICS SECTION (CORRECTED WITH STYLES) === -->
     <!-- ====================================================== -->
+    <style>
+      /*
+        STYLES FOR THE STATISTICS SECTION
+        This block contains all the necessary styles for this specific section.
+      */
+
+      /* --- Desktop View (Large Screens) --- */
+      .stats-revamp-section {
+        /* This creates the red gradient background for the whole section */
+        background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
+        padding: 120px 0;
+        position: relative;
+      }
+      .stats-revamp-section .left-image {
+        margin-right: 45px;
+      }
+      .stats-revamp-section .services .item {
+        display: flex;         /* Aligns icon and text side-by-side */
+        align-items: center;   /* Vertically centers them */
+        margin-bottom: 30px;
+        background: transparent; /* No background per-item on desktop */
+      }
+      .stats-revamp-section .services .item .icon {
+        flex-shrink: 0;
+        margin-right: 25px;
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .stats-revamp-section .services .item .icon i {
+        color: #e0072f; /* PantherVenue Red */
+        font-size: 32px;
+      }
+      .stats-revamp-section .services .item .right-text h4 {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .stats-revamp-section .services .item .right-text p {
+        color: #fff;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      /* --- Tablet & Mobile View (Screens smaller than 992px) --- */
+      @media (max-width: 991.98px) {
+        .stats-revamp-section {
+          /* On smaller screens, the section itself becomes white... */
+          background: #fff;
+          padding: 60px 0;
+        }
+        .stats-revamp-section .left-image {
+          /* ...the large SVG graphic is hidden to save space... */
+          display: none;
+        }
+        .stats-revamp-section .services .item {
+          /* ...and EACH stat box gets the "cool red background"! */
+          background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
+          padding: 30px;
+          border-radius: 20px;
+          display: block;      /* Stack icon on top of text */
+          text-align: center;
+        }
+        .stats-revamp-section .services .item .icon {
+          margin: 0 auto 20px auto; /* Center the icon above the text */
+        }
+      }
+    </style>
+
     <section id="stats" class="stats-revamp-section section">
       <div class="container">
         <div class="row">
@@ -1071,6 +1145,12 @@ function typeExcellence() {
         </div>
       </div>
     </section>
+    <!-- === END OF STATISTICS SECTION === -->
+    <!-- ====================================================== -->
+
+
+    <!-- Services Section (Amenities) -->
+    <section id="services" class="services section">
     <style>
       #services {
         background: rgb(246, 247, 253);
