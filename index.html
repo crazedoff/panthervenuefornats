@@ -1145,52 +1145,49 @@ function typeExcellence() {
   }
 </style>
 
+<!-- JavaScript for the Animation (REVISED FOR SCROLL DELAY) -->
 <script>
-  // --- JavaScript for the Stats Section Line Drawing Animation ---
   document.addEventListener('DOMContentLoaded', () => {
-      // Select the path and section elements we created
       const statsPath = document.querySelector('#stats-scroll-line');
       const statsSection = document.querySelector('#stats');
 
-      // Only run the script if both elements exist
       if (statsPath && statsSection) {
-          // Get the total length of the SVG path
+          
+          //==============================================================
+          //  TWEAK THIS VALUE TO CHANGE THE SCROLL START
+          //  0.0 = Starts as soon as the section appears
+          //  0.3 = Starts after you scroll 30% into the section (A good starting point)
+          //  0.5 = Starts when you are halfway through the section
+          //==============================================================
+          const scrollStartOffset = 0.3; 
+          
           const pathLength = statsPath.getTotalLength();
-
-          // Set up the line for the drawing animation by making it a dashed line
-          // where the dash length and the gap length are both the total length of the line.
           statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-
-          // Hide the line by default by offsetting the dash
           statsPath.style.strokeDashoffset = pathLength;
 
-          // Function to run every time the user scrolls
           const handleScroll = () => {
               const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
               const sectionTop = statsSection.offsetTop;
               const sectionHeight = statsSection.offsetHeight;
               const viewportHeight = window.innerHeight;
-
-              // Calculate how far the user has scrolled into the stats section
               const scrollDistance = scrollTop - sectionTop;
 
-              // Only run the animation when the section is on screen
               if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
-                  // Calculate the scroll progress as a number from 0 to 1
+                  // Original progress from 0 to 1 over the whole section
                   const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
                   
-                  // Calculate the length of the line that should be visible
-                  const drawLength = pathLength * progress;
+                  // New progress that is adjusted by the offset
+                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
 
-                  // "Pull back" the dash offset to reveal the line
+                  // Ensure the progress is clamped between 0 and 1 (it doesn't go negative or over 100%)
+                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
+                  
+                  // Calculate the draw length based on the final, adjusted progress
+                  const drawLength = pathLength * finalProgress;
                   statsPath.style.strokeDashoffset = pathLength - drawLength;
               }
           };
-
-          // Add the scroll event listener
           window.addEventListener('scroll', handleScroll);
-          
-          // Run the function once on load to set the correct initial position
           handleScroll();
       }
   });
