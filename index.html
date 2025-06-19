@@ -1919,58 +1919,7 @@ function typeExcellence() {
 </section><!-- /Schedule Section -->
 
 
-<!-- Team Section -->
-<section id="team" class="team section">
 
-  <!-- Section Title -->
-  <div class="section-header">
-    <h2>Team</h2>
-    <p>Take a quick glance at our group of hardworking individuals.</p>
-  </div>
-
-  <!-- START: Add this new SVG for the Team section line -->
-  <svg id="team-line-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="teamRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style="stop-color:#b01a35;" />
-        <stop offset="50%" style="stop-color:#e0072f;" />
-        <stop offset="100%" style="stop-color:#ff0936;" />
-      </linearGradient>
-    </defs>
-    <!-- This path is hand-crafted to follow your drawing's trajectory -->
-    <path id="team-scroll-line" stroke="url(#teamRedGradient)"
-          d="M 1250 250 C 1000 200, 950 600, 750 450 S 450 150, 250 350 S -50 400, -100 200" />
-  </svg>
-  <!-- END: New SVG for the Team section line -->
-   <style>
-            /* --- NEW: CSS for the Team Section Animated Line --- */
-        #team-line-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; 
-            z-index: 1; /* Sits just above the section background */
-        }
-
-        /* This is the key to putting the cards IN FRONT of the line */
-        #team .container {
-            position: relative; /* Creates a new stacking context */
-            z-index: 2; /* Lifts the container (and cards inside) above the line */
-        }
-
-        #team-scroll-line {
-            stroke-width: 5; /* Thinner line for a more subtle effect */
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-       
-
-   </style>
-   
 
   <div class="container">
   <!-- Section Title -->
