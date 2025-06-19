@@ -985,6 +985,40 @@
             document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
             document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
 
+                     // --- FIX: Corrected functions to show event details, matching the old file's structure ---
+            const defaultSchedules = {"Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],"Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],"Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],"Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],"Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]};
+            
+            function generateSeats(seatingChartDiv) {
+                const seatGroups = seatingChartDiv.querySelectorAll('.seat-group');
+                const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+                seatGroups.forEach((group, colIndex) => {
+                    for (let i = 0; i < 8; i++) {
+                        const seatRow = document.createElement('div');
+                        seatRow.className = 'seat-row';
+                        for (let seatNum = 1; seatNum <= 2; seatNum++) {
+                            const seat = document.createElement('div');
+                            seat.className = 'seat'; // Base class, selection will be added later
+                            const rowLetter = rows[colIndex];
+                            const seatLabel = `${rowLetter}${i * 2 + seatNum}`;
+                            seat.textContent = seatLabel;
+                            seat.title = seatLabel;
+                            seatRow.appendChild(seat);
+                        }
+                        group.appendChild(seatRow);
+                    }
+                });
+            }
+
+            function closeTicketPopup() {
+                const ticketPopup = document.getElementById('ticketPopup');
+                const ticketOverlay = document.getElementById('ticketOverlay');
+                if (ticketPopup) ticketPopup.classList.remove('active');
+                if (ticketOverlay) ticketOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
+            document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
+
             window.showEventDetails = async function(registrationId) {
                 const ticketPopup = document.getElementById('ticketPopup');
                 const ticketOverlay = document.getElementById('ticketOverlay');
@@ -997,13 +1031,14 @@
                 const eventDoc = await db.collection('events').doc(registration.eventId).get();
                 if (!eventDoc.exists) { showPopup('Error', 'Associated event not found'); return; }
                 const event = eventDoc.data();
-
+                
                 ticketPopup.classList.add('active', 'view-mode');
                 ticketOverlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+
                 document.getElementById('popupEventTitle').textContent = event.title;
-                
                 const seatingChartDiv = document.getElementById('popupSeatingChart');
-                seatingChartDiv.innerHTML = ''; // Clear previous content
+                seatingChartDiv.innerHTML = '';
 
                 if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
                     seatingChartDiv.innerHTML = `<div class="arena-container2"><div class="capacity-section north">NORTH STAND • 1000 SEATS</div><div class="capacity-section south">SOUTH STAND • 1000 SEATS</div><div class="capacity-section east">EAST STAND • 750 SEATS</div><div class="capacity-section west">WEST STAND • 750 SEATS</div><div class="main-floor2"><div class="court-display"><div class="court-text">MAIN COURT</div><div class="court-subtext">Performance-ready Surface</div></div></div></div>`;
@@ -1025,7 +1060,7 @@
                     } else if (registration.seatingInfo.type === 'seats') { 
                         seatingText = registration.seatingInfo.seats.join(', '); 
                         registration.seatingInfo.seats.forEach(seatLabel => {
-                            const seat = seatingChartDiv.querySelector(`.seat[title="${seatLabel}"]`);
+                            const seat = seatingChartDiv.querySelector(`[title="${seatLabel}"]`);
                             if (seat) seat.classList.add('selected');
                         });
                     }
@@ -1041,14 +1076,13 @@
 
                 document.querySelectorAll('.payment-group').forEach(group => group.style.display = registration.totalCost > 0 ? 'grid' : 'none');
                 document.getElementById('cardPaymentNumber').value = registration.cardPaymentNumber || 'N/A';
-                document.getElementById('expiry').value = registration.expiry || 'N/A';
+                document.getElementById('expiry').value = registration.expiry ? registration.expiry.substring(0, 7) : 'N/A'; // Format to yyyy-mm
                 
                 const scheduleTable = document.getElementById('popupScheduleTable');
                 scheduleTable.innerHTML = '';
                 const schedule = defaultSchedules[event.category] || [];
                 schedule.forEach(item => { scheduleTable.innerHTML += `<tr><td>${item.event}</td><td>${item.time}</td></tr>`; });
             };
-            
             // --- Chart and Calendar Initialization ---
             try { var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d"); var gradient = ctx.createLinearGradient(0, 0, 0, 225); gradient.addColorStop(0, "rgba(215, 227, 244, 1)"); gradient.addColorStop(1, "rgba(215, 227, 244, 0)"); new Chart(ctx, { type: "line", data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], datasets: [{ label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249', data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327] }] }, options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } } });
                 pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), { type: "doughnut", data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] }, options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 } });
