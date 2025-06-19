@@ -618,6 +618,7 @@
             <div class="signin-signup">
                 <form action="#" class="sign-in-form">
                     <h2 class="title">Log in</h2>
+                    <!-- MODIFIED: Changed from username to email for Firebase Auth -->
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="email" placeholder="Email" id="loginEmail" required>
@@ -709,6 +710,10 @@
     <!-- Main Application Logic (Firebase Integrated) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Firebase Integration: ---
+            // The following script replaces the original localStorage logic with
+            // Google Firebase/Firestore for a persistent, cloud-based backend.
+            
             // --- GLOBAL STATE ---
             let currentUser = null;
             let pieChart;
@@ -721,7 +726,7 @@
             const loginLink = document.getElementById('loginLink');
             const mobileLoginLink = document.getElementById('mobileLoginLink');
 
-            // --- AUTHENTICATION STATE OBSERVER ---
+            // --- AUTHENTICATION STATE OBSERVER (The Core of the App) ---
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
                     try {
@@ -730,6 +735,7 @@
                         
                         currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
                         
+                        // Transition UI from login to dashboard
                         loginContainer.classList.add('fade-out');
                         setTimeout(() => {
                             loginContainer.style.display = 'none';
@@ -758,6 +764,7 @@
                     }
                 } else {
                     currentUser = null;
+                    // Transition UI to show login screen
                     if (adminDashboard.style.display === 'block' || userDashboard.style.display === 'block') {
                         adminDashboard.classList.add('fade-out');
                         userDashboard.classList.add('fade-out');
@@ -780,56 +787,22 @@
 
             // --- FIREBASE AUTH FUNCTIONS ---
             async function handleSignUp(email, password, username) {
-                if (password.length < 8) {
-                    showPopup('Error', 'Password must be at least 8 characters. Yours is ' + password.length);
+                if (password.length < 6) {
+                    showPopup('Error', 'Password must be at least 6 characters.');
                     return;
                 }
                 try {
-                    // --- MODIFICATION: Determine if the new user is the special admin ---
-                    const isAdmin = (email === 'anvay@panthervenue.com' && username === 'anvay_admin');
-
                     const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                     await db.collection("users").doc(userCredential.user.uid).set({
                         username: username,
                         email: email,
-                        isAdmin: isAdmin, // Use the determined admin status
+                        isAdmin: false, // Default new users to not be admin
                         created: firebase.firestore.FieldValue.serverTimestamp()
                     });
-
-                    // --- MODIFICATION: New sign-up flow with countdown and redirect ---
-                    await auth.signOut(); // Sign out immediately to prevent auto-login
-
                     const successEl = document.getElementById('signupSuccess');
-                    const loginContainerEl = document.querySelector(".login-container");
-                    const loginEmailInput = document.getElementById('loginEmail');
-                    const loginPasswordInput = document.getElementById('loginPassword');
-                    
-                    document.getElementById('signupUsername').value = '';
-                    document.getElementById('signupEmail').value = '';
-                    document.getElementById('signupPassword').value = '';
-                    document.getElementById('signupConfirm').value = '';
-
-                    let countdown = 3;
                     successEl.style.display = 'block';
-                    successEl.textContent = `Account created! Redirecting in ${countdown}...`;
-
-                    const countdownInterval = setInterval(() => {
-                        countdown--;
-                        successEl.textContent = `Account created! Redirecting in ${countdown}...`;
-
-                        if (countdown <= 0) {
-                            clearInterval(countdownInterval);
-                            successEl.style.display = 'none';
-
-                            // Pre-fill the login form with the credentials just used
-                            loginEmailInput.value = email;
-                            loginPasswordInput.value = password;
-
-                            // Switch to the sign-in panel
-                            loginContainerEl.classList.remove("sign-up-mode");
-                        }
-                    }, 1000);
-
+                    successEl.textContent = 'Account created! Logging you in...';
+                    // The onAuthStateChanged listener will handle the UI update automatically
                 } catch (error) {
                     showPopup('Error', error.message);
                 }
@@ -838,6 +811,7 @@
             async function handleLogin(email, password) {
                 try {
                     await auth.signInWithEmailAndPassword(email, password);
+                    // The onAuthStateChanged listener will handle the UI update automatically
                 } catch (error) {
                     showPopup('Error', "Invalid credentials. Please check your email and password.");
                 }
@@ -845,12 +819,14 @@
 
             window.handleLogout = function() {
                 auth.signOut().catch(error => showPopup('Error', error.message));
+                // The onAuthStateChanged listener will handle the UI update automatically
             }
 
             // --- DASHBOARD FUNCTIONS (using Firestore) ---
             async function updateAdminDashboard() {
                 if (!currentUser || !currentUser.isAdmin) return;
                 
+                // Fetch all necessary data in parallel for efficiency
                 const [registrationsSnapshot, eventsSnapshot, requestsSnapshot] = await Promise.all([
                     db.collection('registrations').get(),
                     db.collection('events').get(),
@@ -861,6 +837,7 @@
                 const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 
+                // --- Update Stat Cards ---
                 const totalSales = registrations.reduce((sum, reg) => sum + (reg.totalCost || 0), 0);
                 const ticketsSold = registrations.reduce((sum, reg) => sum + (reg.quantity || 0), 0);
                 const uniqueVisitors = new Set(registrations.map(reg => reg.userId)).size;
@@ -870,7 +847,9 @@
                 document.getElementById('ticketsSold').textContent = ticketsSold;
                 document.getElementById('uniqueVisitors').textContent = uniqueVisitors;
                 document.getElementById('activeEvents').textContent = activeEvents;
+                // You can add back the percentage logic here if you have baseline values
 
+                // --- Update Pending Requests Table ---
                 const requestsTableBody = document.getElementById('requestsTableBody');
                 requestsTableBody.innerHTML = '';
                 if (requests.length === 0) {
@@ -888,6 +867,7 @@
                     });
                 }
                 
+                // --- Update Charts and Calendar ---
                 updateEventTypes(events);
                 updateCalendar(events);
             }
@@ -905,11 +885,13 @@
                 const userRegistrations = registrationsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
                 const userRequests = requestsSnapshot.docs.map(doc => doc.data());
                 
+                // --- Update Stat Cards ---
                 const totalTickets = userRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
                 const totalSpent = userRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
                 document.getElementById('totalTickets').textContent = totalTickets;
                 document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
 
+                // --- Update User's Registered Events List ---
                 const eventsContainer = document.getElementById('user-list-view');
                 eventsContainer.innerHTML = '';
                 if(userRegistrations.length === 0) {
@@ -940,6 +922,7 @@
                     }
                 }
 
+                // --- Update User's Rental Requests List ---
                 const requestsList = document.getElementById('userRequestsList');
                 requestsList.innerHTML = '';
                 if (userRequests.length > 0) {
@@ -1010,6 +993,7 @@
             document.getElementById('popupClose')?.addEventListener('click', hidePopup);
             document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
 
+            // --- Mobile Nav Logic (from original file) ---
             document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) {
                 document.body.classList.toggle('mobile-nav-active');
                 this.querySelector('i').classList.toggle('fa-bars');
@@ -1026,7 +1010,7 @@
             });
 
 
-            // --- Chart and Calendar Initialization ---
+            // --- Chart and Calendar Initialization (from original file) ---
             try {
                 var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
                 var gradient = ctx.createLinearGradient(0, 0, 0, 225);
@@ -1095,6 +1079,95 @@
                 flatpickrInstance.redraw();
             }
         });
+
+        // --- OLD localStorage LOGIC (COMMENTED OUT FOR REFERENCE) ---
+        /*
+        const USERS_KEY = 'panther_venue_users_v3';
+        const EVENTS_KEY = 'panther_venue_events';
+        const REQUESTS_KEY = 'panther_venue_requests';
+        const REGISTRATIONS_KEY = 'panther_venue_registrations';
+        const ADMIN_SECRET = "#ADMIN2023!";
+
+        function registerUser(userData) {
+            const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+            const isAdmin = userData.username.includes(ADMIN_SECRET);
+            const cleanUsername = userData.username.replace(ADMIN_SECRET, "");
+            if (users.find(u => u.username === cleanUsername)) {
+                showPopup('Error', 'Username already exists');
+                return false;
+            }
+            const newUser = {
+                username: cleanUsername,
+                email: userData.email,
+                password: btoa(userData.password),
+                isAdmin: isAdmin,
+                created: new Date().toISOString()
+            };
+            users.push(newUser);
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+            return true;
+        }
+
+        function handleLogin(credentialsOrUser) {
+            let user;
+            if (typeof credentialsOrUser === 'object' && credentialsOrUser.isAdmin !== undefined) {
+                user = credentialsOrUser;
+            } else {
+                const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+                user = users.find(u => u.username === credentialsOrUser.username && atob(u.password) === credentialsOrUser.password);
+                if (!user) {
+                    showPopup('Error', 'Invalid credentials');
+                    return;
+                }
+            }
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            const loginContainer = document.querySelector('.login-container');
+            loginContainer.classList.add('fade-out');
+            setTimeout(() => {
+                loginContainer.style.display = 'none';
+                loginContainer.classList.remove('fade-out');
+                if (user.isAdmin) {
+                    const dashboard = document.querySelector('.dashboard-wrapper');
+                    dashboard.style.display = 'block';
+                    dashboard.classList.add('fade-in');
+                    setTimeout(() => dashboard.classList.remove('fade-in'), 500);
+                    updateAdminDashboard();
+                    updateEventTypes();
+                } else {
+                    const userDashboard = document.querySelector('.user-dashboard-wrapper');
+                    userDashboard.style.display = 'block';
+                    userDashboard.classList.add('fade-in');
+                    setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
+                    loadUserDashboard(user);
+                }
+            }, 500);
+        }
+
+        function handleLogout() {
+            const adminDashboard = document.querySelector('.dashboard-wrapper');
+            const userDashboard = document.querySelector('.user-dashboard-wrapper');
+            if (adminDashboard.style.display === 'block') {
+                adminDashboard.classList.add('fade-out');
+                setTimeout(() => {
+                    adminDashboard.style.display = 'none';
+                    adminDashboard.classList.remove('fade-out');
+                    showLoginContainer();
+                }, 500);
+            } else if (userDashboard.style.display === 'block') {
+                userDashboard.classList.add('fade-out');
+                setTimeout(() => {
+                    userDashboard.style.display = 'none';
+                    userDashboard.classList.remove('fade-out');
+                    showLoginContainer();
+                }, 500);
+            }
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            document.getElementById('loginLink').textContent = 'Log In';
+            document.getElementById('loginLink').removeEventListener('click', handleLogout);
+        }
+        */
     </script>
     <script src="static/js/app2.js"></script>
     <script src="lib/jquery/jquery.min.js"></script>
