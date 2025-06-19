@@ -1104,47 +1104,63 @@ function typeExcellence() {
     </div>
   </div>
 </section>
-    <style>
-      #services {
-        background: rgb(246, 247, 253);
-      }
-    </style>
-    <style>
-  /* --- Styles for the Animated Scroll Line in the Stats Section --- */
-  
-  /* Make the stats section a positioning container */
+   <!-- CSS Styling for the Line Effect (REVISED) -->
+<style>
   #stats {
-    position: relative;
-    overflow: hidden; /* Prevents line from showing outside the section */
+    position: relative; 
+    overflow: hidden; 
   }
 
-  /* The container with the image and text MUST have a higher z-index to sit ON TOP of the line */
+  /* Your content container needs to be lifted up */
   #stats .container {
       position: relative;
       z-index: 3;
   }
 
-  /* Position the SVG canvas absolutely to fill the entire section, but behind the content */
- #stats-line-svg {
+  /* The SVG canvas holding the line is positioned behind everything */
+  #stats-line-svg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none; 
-      z-index: 2; /* Sits UNDER the container (z-index: 3) */
+      z-index: 1; /* Lowest z-index */
   }
 
+  /* --- NEW: THE TRANSPARENCY FIX --- */
+  /* Target the column containing the image */
+  #stats .col-lg-5 {
+      position: relative; /* Required for the pseudo-element */
+  }
+  
+  /* Create a pseudo-element that acts as a solid white background */
+  #stats .col-lg-5::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff; /* This is the solid background */
+      z-index: 2; /* Sits ON TOP of the line (z-index 1) */
+  }
 
-  /* Style the line itself to match your reference: thick, no fill, rounded ends */
+  /* Ensure the actual image sits on top of its new white background */
+  #stats .col-lg-5 img {
+      position: relative;
+      z-index: 3; /* Sits ON TOP of the ::before element (z-index 2) */
+  }
+  /* --- END: THE TRANSPARENCY FIX --- */
+
+  /* The line itself */
   #stats-scroll-line {
-      stroke-width: 25; 
+      stroke-width: 40; 
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
   }
 </style>
-
 <!-- JavaScript for the Animation (REVISED FOR SCROLL DELAY) -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
