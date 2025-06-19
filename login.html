@@ -556,28 +556,51 @@
     </div>
     
     <!-- FIX 2: Added the ticket-popup from events.html to login.html -->
+       <!-- FIX: Corrected Ticket Details Popup -->
     <div class="popup-overlay" id="ticketOverlay"></div>
     <div class="ticket-popup" id="ticketPopup">
         <span class="popup-close" id="ticketPopupClose">×</span>
         <div class="popup-grid">
             <div class="event-details">
                 <h2 class="text-2xl font-bold mb-4" id="popupEventTitle">Event Title</h2>
-                <div class="seating-chart" id="popupSeatingChart"></div>
+                <div class="seating-chart" id="popupSeatingChart">
+                    <!-- Seating chart will be generated here by JS -->
+                </div>
                 <table class="schedule-table" id="popupScheduleTable"></table>
-                <div class="availability"><span>Selected Seats:</span><span class="font-bold text-red-600" id="selectedSeatsText">None</span></div>
+                <div class="availability">
+                    <span>Selected Seats:</span>
+                    <span class="font-bold text-red-600" id="selectedSeatsText">None</span>
+                </div>
             </div>
             <div class="registration-form">
-                <h3 class="text-xl font-bold mb-4">Registration Details</h3>
+                <h3 class="text-xl font-bold mb-4">Your Registration Details</h3>
                 <div id="totalCost" class="text-red-600 text-4xl font-bold mb-4 text-center"></div>
-                <!-- This form is now for display only -->
                 <form id="ticketForm">
-                    <div class="form-group"><label>Name</label><input type="text" id="fullName" readonly></div>
-                    <div class="form-group"><label>Email</label><input type="email" id="email" readonly></div>
-                    <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" readonly></div>
-                    <div class="form-group"><label>Tickets Quantity</label><input type="number" id="quantity" readonly></div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="fullName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="phone" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Tickets Quantity</label>
+                        <input type="number" id="quantity" readonly>
+                    </div>
                     <div class="cc-group payment-group">
-                        <div class="form-group"><label>Card Number</label><input type="text" id="cardPaymentNumber" class="payment-field" readonly></div>
-                        <div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field" readonly></div>
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" id="cardPaymentNumber" class="payment-field" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" id="expiry" class="payment-field" readonly>
+                        </div>
                     </div>
                 </form>
             </div>
