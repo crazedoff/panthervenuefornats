@@ -1049,9 +1049,13 @@ function typeExcellence() {
         /* This uses the background image from the original template. 
            IMPORTANT: Ensure you have this image at this path! */
         background-image: url('assets/img/about-bg.png'); 
- 
-     
-     
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        padding: 80px 0; /* Reduced vertical padding */
+        position: relative;
+        overflow: hidden; /* Prevents image overflow on small screens */
+        z-index: 1000000;
       }
     
       /* The main row containing the image and stats */
