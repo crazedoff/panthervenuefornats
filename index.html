@@ -1163,94 +1163,199 @@ function typeExcellence() {
 </section><!-- /Services Section -->
 
 <style>
-/*
-========================================================
-    CORRECTED STYLES FOR REVAMPED STATISTICS SECTION
-========================================================
-*/
-.stats-revamp-section {
-  /* This creates the red gradient background you wanted for large screens */
-  background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  padding: 120px 0px;
+/* --- START: STYLES FOR FINAL AMENITIES SECTION --- */
+/* Main Box Container - The base is a white box */
+.services .service-item.amenity-box {
+    background-color: var(--surface-color); /* White background */
+    box-shadow: 0px 0 30px 0 rgba(0, 0, 0, 0.1);
+    padding: 50px 30px;
+    transition: all ease-in-out 0.4s;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
 }
 
-.stats-revamp-section .left-image {
-  margin-right: 45px;
+/* Image & Overlay Container - Sits in the background */
+.services .amenity-box .amenity-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out;
+}
+.services .amenity-box:hover .amenity-bg-container {
+    opacity: 1; /* Revealed on hover */
 }
 
-/* Styles for each individual statistic box */
-.stats-revamp-section .services .item {
-  display: flex; /* Use flexbox for better alignment */
-  align-items: center; /* Vertically center content */
-  margin-bottom: 30px;
+/* Background Image - Inside the container, ready to animate */
+.services .amenity-box .amenity-bg-img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.15); /* Start zoomed in */
+    transition: transform 0.5s ease-in-out;
+
+}
+.services .amenity-box:hover .amenity-bg-img {
+    transform: scale(1); /* Zoom out on hover */
 }
 
-.stats-revamp-section .services .item .icon {
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  margin-right: 25px;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border-radius: 50%;
+/* Darkening Overlay for text readability */
+.services .amenity-box .amenity-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(25, 25, 25, 0.6); /* Semi-transparent dark layer */
 }
 
-.stats-revamp-section .services .item .icon i {
-  color: #e0072f; /* PantherVenue Red for the icon color */
-  font-size: 32px;
+/* Content Wrapper - This holds all visible text and icons */
+.services .amenity-box .amenity-content-wrapper {
+    position: relative;
+    z-index: 3; /* Sits on top of everything */
 }
 
-.stats-revamp-section .services .item .right-text h4 {
+/* Layered Corner Circles - from the original design */
+.services .service-item.amenity-box::before,
+.services .service-item.amenity-box::after {
+    content: "";
+    position: absolute;
+    background: color-mix(in srgb, var(--accent-color), transparent 96%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: all 0.5s;
+    z-index: 2; /* Sits above the white box, below the content */
+}
+.services .service-item.amenity-box::before {
+    right: -80px;
+    top: -80px;
+}
+.services .service-item.amenity-box::after {
+    background: color-mix(in srgb, var(--accent-color), transparent 97%);
+    right: -140px;
+    top: -140px;
+    width: 250px;
+    height: 250px;
+}
+.services .service-item.amenity-box:hover::before,
+.services .service-item.amenity-box:hover::after {
+    background: var(--accent-color); /* The circles become solid red on hover */
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    opacity: 0; /* Then fade out to reveal the image underneath */
+}
+
+/* Icon & Text Styling */
+.services .amenity-box .icon-wrapper {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.services .amenity-box h4, .services .amenity-box p,
+.services .amenity-box .icon-wrapper i {
+    transition: color 0.4s ease-in-out;
+}
+
+.services .amenity-box h4 {
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    color: var(--heading-color);
+}
+
+.services .amenity-box p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: var(--default-color);
+}
+
+/* Text color change on hover */
+
+.services .service-item.amenity-box:hover .icon-wrapper i {
+    color: #c71c3a;
+    
+}
+
+.services .service-item.amenity-box:hover h4 {
+
+    color: #fff;
+}
+
+
+.services .service-item.amenity-box:hover p {
   color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px; /* Adjusted spacing */
 }
 
-.stats-revamp-section .services .item .right-text p {
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 0;
+.services .service-item.amenity-box:hover .icon-wrapper {
+    background-color: #feebee; /* Light red background */
+    border: 4px solid #c71c3a; /* Darker red border */
 }
 
-/*
-========================================================
-    RESPONSIVE FIXES FOR SMALLER SCREENS (Tablets/Mobile)
-========================================================
-*/
-@media (max-width: 992px) {
-  .stats-revamp-section {
-    /* On smaller screens, remove the main background... */
-    background: none;
-    background-color: #fff; /* Use a plain white background for the section */
-    padding: 60px 0px;
-  }
-  .stats-revamp-section .left-image {
-    /* Hide the large graphic on the left to save space */
-    display: none;
-  }
-  .stats-revamp-section .services .item {
-    /* ...and apply the red gradient to EACH stat box instead!
-       This creates the "cool red background" effect you saw. */
-    background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
-    padding: 30px;
-    border-radius: 20px;
-    display: block; /* Stack icon and text vertically */
-    text-align: center; /* Center the content */
-  }
-  .stats-revamp-section .services .item .icon {
-    float: none; /* Disable float for flexbox */
-    margin: 0 auto 20px auto; /* Center the icon */
-  }
-  .stats-revamp-section .services .item .right-text {
-    text-align: center;
-  }
+/* Square-to-Rectangle Plus Button */
+.services .amenity-box .plus-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #feebee; /* Light red background */
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: width 0.4s ease-in-out;
+    border-radius: 4px;
+    position: relative;
 }
+
+.services .amenity-box .plus-btn i {
+    color: #c71c3a; /* Darker red plus sign */
+    font-size: 16px;
+    margin-left: 6px;
+}
+
+.services .amenity-box .plus-btn span {
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 0.3s ease-in-out 0.1s, opacity 0.3s ease-in-out 0.1s;
+    padding-left: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #c71c3a;
+}
+
+.services .service-item.amenity-box:hover .plus-btn {
+    width: 140px;
+}
+
+.services .service-item.amenity-box:hover .plus-btn span {
+    max-width: 100px;
+    opacity: 1;
+}
+
+/* Remove the old :hover h4 a rule to prevent color conflicts */
+.services .service-item:hover h4 a {
+    color: inherit;
+}
+/* --- END: STYLES FOR FINAL AMENITIES SECTION --- */
+
+
 </style>
 
 <!-- ==========================
