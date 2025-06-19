@@ -476,7 +476,6 @@
                 } else {
                     events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 }
-
                 filteredEvents = [...events];
                 populateCategories();
                 renderEvents();
