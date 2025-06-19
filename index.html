@@ -1923,6 +1923,59 @@ function typeExcellence() {
 <section id="team" class="team section">
 
 
+
+
+<!-- START: Add this new script block for the TEAM section animation -->
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+      const statsPath = document.querySelector('#stats-scroll-line');
+      // ...
+      if (statsPath && statsSection) {
+          // ...
+      }
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+      // Select the NEW path and section for the team line
+      const teamPath = document.querySelector('#team-scroll-line');
+      const teamSection = document.querySelector('#team');
+
+      if (teamPath && teamSection) {
+          
+          // --- Animation Settings ---
+          const scrollStartOffset = 0.2; // Start animation a bit earlier
+          const maxStrokeWidth = 5; 
+          const minStrokeWidth = 2; // Taper to a thinner line
+          const animationSpeedFactor = 1.0; 
+
+          // --- Animation Logic ---
+          const pathLength = teamPath.getTotalLength();
+          teamPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+          teamPath.style.strokeDashoffset = pathLength;
+
+          const handleScroll = () => {
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const sectionTop = teamSection.offsetTop;
+              const sectionHeight = teamSection.offsetHeight;
+              const viewportHeight = window.innerHeight;
+              const scrollDistance = scrollTop - sectionTop;
+
+              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight * animationSpeedFactor) {
+                  const progress = (scrollDistance + viewportHeight) / ((sectionHeight + viewportHeight) * animationSpeedFactor);
+                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
+                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
+                  
+                  const drawLength = pathLength * finalProgress;
+                  teamPath.style.strokeDashoffset = pathLength - drawLength;
+
+                  const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
+                  teamPath.style.strokeWidth = `${currentStrokeWidth}px`;
+              }
+          };
+          window.addEventListener('scroll', handleScroll);
+          handleScroll(); // Run once on load
+      }
+  });
+</script>
   <div class="container">
   <!-- Section Title -->
   <div class="section-header">
