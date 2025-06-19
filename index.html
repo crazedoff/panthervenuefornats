@@ -1046,7 +1046,8 @@ function typeExcellence() {
     <style>
       /* Main section styling */
       .stats-section-final {
-        /* This uses the background image from the original template */
+        /* This uses the background image from the original template. 
+           IMPORTANT: Ensure you have this image at this path! */
         background-image: url('assets/img/about-bg.png'); 
         background-repeat: no-repeat;
         background-position: center center;
@@ -1149,12 +1150,11 @@ function typeExcellence() {
         }
     
         .stats-section-final .stat-item .icon {
-          margin-right: 0;
-          margin-bottom: 15px; /* Space between icon and text */
+          margin: 0 auto 15px auto; /* Center icon and add space below */
         }
     
         .stats-section-final .stat-column-left {
-          padding-left: 12px; /* Reset padding for mobile */
+          padding-left: 12px; /* Reset padding for mobile to Bootstrap default */
         }
       }
     </style>
@@ -4315,7 +4315,7 @@ d
                 <div class="dot"></div>
               </div>
             </div>`;
-            const incomingMessageDiv = createMessageElement(bot-message", "thinking");
+            const incomingMessageDiv = createMessageElement("bot-message", "thinking");
             chatBody.appendChild(incomingMessageDiv);
             chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
             generateBotResponse(incomingMessageDiv);
