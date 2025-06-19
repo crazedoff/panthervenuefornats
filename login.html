@@ -734,6 +734,8 @@
                         // --- FIX 1: Always show "Dashboard" when logged in ---
                         loginLink.textContent = 'Dashboard';
                         mobileLoginLink.textContent = 'Dashboard';
+                        loginLink.onclick = (e) => { e.preventDefault(); if (currentUser.isAdmin) { adminDashboard.style.display = 'block'; userDashboard.style.display = 'none'; } else { userDashboard.style.display = 'block'; adminDashboard.style.display = 'none'; } };
+                        mobileLoginLink.onclick = (e) => { e.preventDefault(); if (currentUser.isAdmin) { adminDashboard.style.display = 'block'; userDashboard.style.display = 'none'; } else { userDashboard.style.display = 'block'; adminDashboard.style.display = 'none'; } };
 
                     } catch (error) {
                         console.error("Error fetching user profile:", error);
@@ -758,6 +760,8 @@
                     }
                     loginLink.textContent = 'Log In';
                     mobileLoginLink.textContent = 'Log In';
+                    loginLink.onclick = null;
+                    mobileLoginLink.onclick = null;
                 }
             });
 
@@ -916,7 +920,10 @@
             
             document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => { e.preventDefault(); const username = e.target.querySelector('#signupUsername').value.trim(); const email = e.target.querySelector('#signupEmail').value.trim(); const password = e.target.querySelector('#signupPassword').value; const confirmPassword = e.target.querySelector('#signupConfirm').value; if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.'); if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.'); handleSignUp(email, password, username); });
             document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => { e.preventDefault(); const email = e.target.querySelector('#loginEmail').value.trim(); const password = e.target.querySelector('#loginPassword').value; if (!email || !password) return showPopup('Error', 'Please enter email and password.'); handleLogin(email, password); });
-            [loginLink, mobileLoginLink].forEach(link => { if(link) link.addEventListener('click', (e) => { if (auth.currentUser) { e.preventDefault(); handleLogout(); } }); });
+            
+            // This is handled by the onAuthStateChanged listener now
+            // [loginLink, mobileLoginLink].forEach(link => { if(link) link.addEventListener('click', (e) => { if (auth.currentUser) { e.preventDefault(); handleLogout(); } }); });
+            
             const sign_in_btn = document.querySelector("#sign-in-btn"); const sign_up_btn = document.querySelector("#sign-up-btn"); const login_container_el = document.querySelector(".login-container"); if(sign_in_btn && sign_up_btn && login_container_el) { sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode")); sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode")); }
             
             const showPopup = (title, message, isSuccess = false) => { const popup = document.getElementById('errorPopup'); const overlay = document.getElementById('popupOverlay'); if(!popup || !overlay) return; const icon = popup.querySelector('.error-icon'); popup.querySelector('#popupTitle').textContent = title; popup.querySelector('#popupMessage').textContent = message; icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon'; icon.style.color = isSuccess ? '#4CAF50' : '#f82249'; popup.classList.add('active'); overlay.style.display = 'block'; };
@@ -928,11 +935,32 @@
             
             // --- FIX 2: Added functions to handle the event details popup ---
             const defaultSchedules = {"Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],"Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],"Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],"Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],"Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]};
+            
+            function generateSeats(seatingChartDiv) {
+                const seatGroups = seatingChartDiv.querySelectorAll('.seat-group');
+                const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+                seatGroups.forEach((group, colIndex) => {
+                    for (let i = 0; i < 8; i++) {
+                        const seatRow = document.createElement('div');
+                        seatRow.className = 'seat-row';
+                        for (let seatNum = 1; seatNum <= 2; seatNum++) {
+                            const seat = document.createElement('div');
+                            seat.className = 'seat available';
+                            const rowLetter = rows[colIndex];
+                            const seatLabel = `${rowLetter}${i * 2 + seatNum}`;
+                            seat.textContent = seatLabel;
+                            seat.title = seatLabel;
+                            seatRow.appendChild(seat);
+                        }
+                        group.appendChild(seatRow);
+                    }
+                });
+            }
 
             function closeTicketPopup() {
                 const ticketPopup = document.getElementById('ticketPopup');
                 const ticketOverlay = document.getElementById('ticketOverlay');
-                if (ticketPopup) ticketPopup.classList.remove('active');
+                if (ticketPopup) ticketPopup.classList.remove('active', 'view-mode');
                 if (ticketOverlay) ticketOverlay.style.display = 'none';
             }
             document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
@@ -953,14 +981,62 @@
 
                 ticketPopup.classList.add('active', 'view-mode');
                 ticketOverlay.style.display = 'block';
-
                 document.getElementById('popupEventTitle').textContent = event.title;
-                document.getElementById('popupSeatingChart').innerHTML = `<p class="p-4 text-center">Seating details below</p>`;
+                
+                const seatingChartDiv = document.getElementById('popupSeatingChart');
+                seatingChartDiv.innerHTML = ''; // Clear previous content
+
+                if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
+                    seatingChartDiv.innerHTML = `
+                        <div class="arena-container2">
+                            <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                            <div class="main-floor2">
+                                <div class="court-display">
+                                    <div class="court-text">MAIN COURT</div>
+                                    <div class="court-subtext">Performance-ready Surface</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (['Performances', 'Competitions'].includes(event.category)) {
+                    seatingChartDiv.innerHTML = `
+                        <div class="arena-container">
+                            <div class="capacity-section north closed">NORTH STAND (CLOSED)</div>
+                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                            <div class="stage-container"><div class="stage">MAIN STAGE</div></div>
+                            <div class="main-floor">
+                                <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 50px;">
+                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
+                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    generateSeats(seatingChartDiv);
+                }
                 
                 let seatingText = 'None';
                 if (registration.seatingInfo) {
-                    if (registration.seatingInfo.type === 'stand') { seatingText = `Stand: ${registration.seatingInfo.stand} (${registration.seatingInfo.quantity})`; }
-                    else if (registration.seatingInfo.type === 'seats') { seatingText = registration.seatingInfo.seats.join(', '); }
+                    if (registration.seatingInfo.type === 'stand') { 
+                        seatingText = `Stand: ${registration.seatingInfo.stand} (${registration.seatingInfo.quantity})`; 
+                        const standMapping = { 'NORTH STAND': 'north', 'SOUTH STAND': 'south', 'EAST STAND': 'east', 'WEST STAND': 'west' };
+                        const standClass = standMapping[registration.seatingInfo.stand];
+                        if (standClass) {
+                            const standElement = seatingChartDiv.querySelector(`.capacity-section.${standClass}`);
+                            if (standElement) standElement.classList.add('selected');
+                        }
+                    } else if (registration.seatingInfo.type === 'seats') { 
+                        seatingText = registration.seatingInfo.seats.join(', '); 
+                        registration.seatingInfo.seats.forEach(seatLabel => {
+                            const seat = seatingChartDiv.querySelector(`.seat[title="${seatLabel}"]`);
+                            if (seat) seat.classList.add('selected');
+                        });
+                    }
                 }
                 document.getElementById('selectedSeatsText').textContent = seatingText;
                 
