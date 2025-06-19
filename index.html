@@ -1354,6 +1354,95 @@ function typeExcellence() {
     color: inherit;
 }
 /* --- END: STYLES FOR FINAL AMENITIES SECTION --- */
+
+/*
+========================================================
+    CORRECTED STYLES FOR REVAMPED STATISTICS SECTION
+========================================================
+*/
+.stats-revamp-section {
+  /* This creates the red gradient background you wanted for large screens */
+  background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 120px 0px;
+}
+
+.stats-revamp-section .left-image {
+  margin-right: 45px;
+}
+
+/* Styles for each individual statistic box */
+.stats-revamp-section .services .item {
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center; /* Vertically center content */
+  margin-bottom: 30px;
+}
+
+.stats-revamp-section .services .item .icon {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  margin-right: 25px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.stats-revamp-section .services .item .icon i {
+  color: #e0072f; /* PantherVenue Red for the icon color */
+  font-size: 32px;
+}
+
+.stats-revamp-section .services .item .right-text h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px; /* Adjusted spacing */
+}
+
+.stats-revamp-section .services .item .right-text p {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+/*
+========================================================
+    RESPONSIVE FIXES FOR SMALLER SCREENS (Tablets/Mobile)
+========================================================
+*/
+@media (max-width: 992px) {
+  .stats-revamp-section {
+    /* On smaller screens, remove the main background... */
+    background: none;
+    background-color: #fff; /* Use a plain white background for the section */
+    padding: 60px 0px;
+  }
+  .stats-revamp-section .left-image {
+    /* Hide the large graphic on the left to save space */
+    display: none;
+  }
+  .stats-revamp-section .services .item {
+    /* ...and apply the red gradient to EACH stat box instead!
+       This creates the "cool red background" effect you saw. */
+    background: linear-gradient(105deg, #ac1833 0%, #e0072f 100%);
+    padding: 30px;
+    border-radius: 20px;
+    display: block; /* Stack icon and text vertically */
+    text-align: center; /* Center the content */
+  }
+  .stats-revamp-section .services .item .icon {
+    float: none; /* Disable float for flexbox */
+    margin: 0 auto 20px auto; /* Center the icon */
+  }
+  .stats-revamp-section .services .item .right-text {
+    text-align: center;
+  }
+}
 </style>
 
 <!-- ==========================
