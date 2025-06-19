@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVG Line Drawing on Scroll Test</title>
+    <title>SVG Gradient Line Drawing Test</title>
     <style>
         /* --- Basic Page Setup --- */
         body {
@@ -42,7 +42,6 @@
         #drawing-section {
             position: relative; /* This is crucial for positioning the SVG inside */
             background-color: #111;
-            /* Give it enough height for the scroll effect to be noticeable */
             min-height: 150vh; 
         }
 
@@ -53,17 +52,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Make sure the SVG doesn't block interaction with content behind it */
             pointer-events: none; 
             z-index: 10;
         }
 
         #scroll-line {
-            stroke: #e0072f; /* PantherVenue Red! */
-            stroke-width: 5;
+            /* NEW: Increased thickness for a bolder look */
+            stroke-width: 20; 
             fill: none;
-            stroke-linecap: round; /* Makes the line ends rounded */
+            stroke-linecap: round;
             stroke-linejoin: round;
+            /* 
+               REMOVED: The stroke color is no longer set here.
+               Instead, we apply the gradient directly in the SVG <path> element.
+            */
         }
     </style>
 </head>
@@ -72,84 +74,81 @@
     <div class="section" id="intro-section">
         <div>
             <h1>Scroll Down</h1>
-            <p>The line in the next section will draw itself as you scroll through it, and erase itself as you scroll back up.</p>
+            <p>The line is now much thicker and features a gradient that transitions between different reds from your website's theme.</p>
         </div>
     </div>
 
     <div id="drawing-section">
         <!-- The SVG container for our line -->
         <svg id="line-svg" width="100%" height="100%" viewBox="0 0 800 1200" preserveAspectRatio="none">
+            
             <!-- 
-                This path is just an example. You can create any path you want!
-                M = Move To (starts a new line)
-                C = Cubic Bezier Curve (start control point, end control point, end point)
+                NEW: SVG Definitions (<defs>) for the Gradient.
+                We define our gradient here and give it a unique ID.
+                This gradient can then be applied to any SVG element by referencing its ID.
             -->
-            <path id="scroll-line" d="M 100 0 C 400 300, 200 600, 700 750 C 1200 900, 500 1000, 200 1200" />
+            <defs>
+                <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <!-- Color Stop 1: Starts with the darker footer red -->
+                    <stop offset="0%" style="stop-color:#b01a35;" />
+                    <!-- Color Stop 2: Transitions to the main accent red in the middle -->
+                    <stop offset="50%" style="stop-color:#e0072f;" />
+                    <!-- Color Stop 3: Ends with the lighter accent red -->
+                    <stop offset="100%" style="stop-color:#f82249;" />
+                </linearGradient>
+            </defs>
+
+            <!-- 
+                The path is the same, but we've now applied our gradient to the stroke.
+                The `stroke` attribute is set to `url(#redGradient)`, which points to the
+                <linearGradient> we defined above.
+            -->
+            <path id="scroll-line" stroke="url(#redGradient)" d="M 100 0 C 400 300, 200 600, 700 750 C 1200 900, 500 1000, 200 1200" />
         </svg>
 
-        <!-- You can place content inside this section too! The line will draw over/around it. -->
+        <!-- You can still place content inside this section. -->
         <div class="section">
-            <h1>This is the Drawing Area</h1>
+            <h1>The Gradient Drawing Area</h1>
         </div>
     </div>
 
     <div class="section" id="end-section">
         <div>
             <h1>End of Page</h1>
-            <p>Scroll back up to see the line erase itself.</p>
+            <p>Scroll back up to see the gradient line erase itself.</p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Select the SVG path and the container section
+            // The JavaScript logic remains exactly the same!
+            // It only cares about the path's length, not its appearance (color, thickness, etc.).
+            // This is the power of separating structure, presentation, and behavior.
+
             const path = document.querySelector('#scroll-line');
             const drawingSection = document.querySelector('#drawing-section');
 
-            // 2. Get the total length of the SVG path. This is a key step.
             const pathLength = path.getTotalLength();
 
-            // 3. Set up the initial state of the path for the animation.
-            //    - stroke-dasharray: Creates dashes. We make one long dash equal to the path's length.
-            //    - stroke-dashoffset: Pushes the dash pattern. We push it by the full length, making it invisible.
             path.style.strokeDasharray = pathLength + ' ' + pathLength;
             path.style.strokeDashoffset = pathLength;
 
-            // 4. Create a function to handle the drawing on scroll
             const handleScroll = () => {
-                // Get the distance from the top of the viewport to the top of the document
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-                // Get the starting position of our drawing section
                 const sectionTop = drawingSection.offsetTop;
-                
-                // Get the height of the drawing section and the viewport
                 const sectionHeight = drawingSection.offsetHeight;
                 const viewportHeight = window.innerHeight;
 
-                // Calculate the scroll progress WITHIN the section.
-                // It starts at 0 when the top of the section enters the viewport
-                // and ends at 1 when the bottom of the section leaves the viewport.
                 const scrollDistance = scrollTop - sectionTop;
                 
-                // We only want to draw when the section is in view.
                 if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
-                    // Calculate the progress percentage (0 to 1)
                     const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
-                    
-                    // Calculate how much of the line should be drawn
                     const drawLength = pathLength * progress;
-
-                    // Update the stroke-dashoffset to reveal the line.
-                    // As `drawLength` increases, the offset decreases, drawing the line.
                     path.style.strokeDashoffset = pathLength - drawLength;
                 }
             };
 
-            // 5. Add an event listener to call the function every time the user scrolls
             window.addEventListener('scroll', handleScroll);
-
-            // Call it once on load to set the initial state correctly
             handleScroll();
         });
     </script>
