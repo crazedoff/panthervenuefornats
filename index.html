@@ -1091,7 +1091,48 @@ function typeExcellence() {
   }
 </style>
 
+<script>
+  // --- JavaScript for Stats Section Line Drawing ---
+  document.addEventListener('DOMContentLoaded', () => {
+      const statsPath = document.querySelector('#stats-scroll-line');
+      const statsSection = document.querySelector('#stats');
 
+      // Check if the line and section exist on the page to prevent errors
+      if (statsPath && statsSection) {
+          const pathLength = statsPath.getTotalLength();
+
+          // Prepare the line for animation by creating a "dash" the length of the line itself
+          statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+          statsPath.style.strokeDashoffset = pathLength;
+
+          const handleScroll = () => {
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const sectionTop = statsSection.offsetTop;
+              const sectionHeight = statsSection.offsetHeight;
+              const viewportHeight = window.innerHeight;
+
+              // Calculate how far the user has scrolled into the stats section
+              const scrollDistance = scrollTop - sectionTop;
+
+              // Only run the animation when the section is visible
+              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
+                  // Calculate progress (from 0 to 1)
+                  const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
+                  const drawLength = pathLength * progress;
+
+                  // Update the line's offset to reveal it
+                  statsPath.style.strokeDashoffset = pathLength - drawLength;
+              }
+          };
+
+          // Listen for scroll events
+          window.addEventListener('scroll', handleScroll);
+          
+          // Run once on page load to set the initial state
+          handleScroll();
+      }
+  });
+</script>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4 align-items-center">
           <div class="col-lg-5">
