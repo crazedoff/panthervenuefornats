@@ -718,94 +718,188 @@
     </script>
     
     <!-- Main Application Logic -->
+    <!-- ========================= SCRIPT SECTION ========================= -->
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/100%; transition: transform 1.1s ease-in-out; transition-delay: 0.4s; }
+        .panel { display: flex; flex-direction: column; align-items: flex-endfirebasejs/8.10.1/firebase-app.js"></script>
+    <script src="; justify-content: space-around; text-align: center; z-index: 6; }
+        .left-panel { pointer-events: all; padding: 3rem 17% 2rem 12%; }
+        .right-panel { pointer-events: none; padding: 3rem 12% 2rem 17%; }
+        .panel .content { color: #fff; transition: transform 0.9https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Firebase Configuration -->
     <script>
-        let currentUser = null;
-        let pieChart;
-        let flatpickrInstance;
-        
-        // --- AUTHENTICATION LOGIC ---
-        auth.onAuthStateChanged(async (user) => {
-            const loginContainer = document.querySelector('.login-container');
-            const adminDashboard = document.querySelector('.dashboard-wrapper');
-            const userDashboard = document.querySelector('.user-dashboard-wrapper');
-            const loginLink = document.getElementById('loginLink');
-            const mobileLoginLink = document.getElementById('mobileLoginLink');
-
-            if (user) {
-                try {
-                    const userDoc = await db.collection("users").doc(user.uid).get();
-                    if (!userDoc.exists) throw new Error("User data not found in database.");
-                    
-                    currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
-                    loginContainer.style.display = 'none';
-                    
-                    if (currentUser.isAdmin) {
-                        adminDashboard.style.display = 'block';
-                        userDashboard.style.display = 'none';
-                        updateAdminDashboard();
-                    } else {
-                        adminDashboard.style.display = 'none';
-                        userDashboard.style.display = 'block';
-                        loadUserDashboard();
-                    }
-                    
-                    loginLink.textContent = 'Log Out';
-                    loginLink.href = "#";
-                    mobileLoginLink.textContent = 'Log Out';
-                    mobileLoginLink.href = "#";
-                } catch (error) {
-                    console.error("Error fetching user profile:", error);
-                    showPopup('Error', 'Could not load your profile. Please log out and try again.');
-                    handleLogout();
-                }
-            } else {
-                currentUser = null;
-                adminDashboard.style.display = 'none';
-                userDashboard.style.display = 'none';
-                loginContainer.style.display = 'block';
-                loginLink.textContent = 'Log In';
-                loginLink.href = "login.html";
-                mobileLoginLink.textContent = 'Log In';
-                mobileLoginLink.href = "login.html";
-            }
-        });
-
-        async function handleSignUp(email, password, username) {
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                await db.collection("users").doc(user.uid).set({
-                    username: username,
-                    email: email,
-                    isAdmin: false,
-                    created: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                showPopup('Success', 'Account created successfully!', true);
-                setTimeout(() => {
-                    hidePopup();
-                    document.querySelector(".login-container").classList.remove("sign-up-mode");
-                }, 2000);
-            } catch (error) {
-                showPopup('Error', error.message);
-            }
-        }
-
-        async function handleLogin(email, password) {
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (error) {
-                showPopup('Error', "Invalid credentials. Please check your email and password.");
-            }
-        }
-
-        function handleLogout() {
-            auth.signOut().catch(error => showPopup('Error', error.message));
-        }
-
-        // --- UI & EVENT LISTENERS ---
+      const firebaseConfig = {
+        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oes ease-in-out; transition-delay: 0.6s; }
+        .panel h3 { font-weight: 600; line-height: 1; font-size: 1.5rem; font-family: 'Raleway', sans-serif; }
+        .panel p { font-size: 0.95rem; padding: 0.7rem 0; font-family: 'Open Sans', sans-serif; }
+        .right-panel .image, .right-panel .content { transform: translateX(800px); }
+        .login-container.sign-up-mode:before { transform: translate(100%, -50%); right: 52%; }
+        .login-container.sign-up-mode .left-panel .image, .login-container.sign-up-mode .left-panel .content { transform: translateX(-800px); }
+        .login-container.sign-up-mode .signin-signup { leftLsxoMBpyDRnj8IA",
+        authDomain: "panthervenue.firebaseapp.com",
+        projectId: "panthervenue",
+        storageBucket: "panthervenue.appspot.com",
+        messagingSenderId: "15387964560",
+        appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+    
+    <!-- Main Application Logic -->
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const signUpForm = document.querySelector('.sign-up-form');
-            if(signUpForm) signUpForm.addEventListener('submit', (e) => {
+            let currentUser = null;
+
+            // --- AUTHENTICATION ---
+            auth.onAuthStateChanged(async (user) => {
+                const loginContainer = document.querySelector('.login-container');
+                const adminDashboard = document.querySelector('.dashboard-wrapper');
+                const userDashboard = document.querySelector('.user-dashboard-wrapper');
+                const loginLink = document.getElementById('loginLink');
+                const mobileLoginLink = document.getElementById('mobileLoginLink');
+
+                if (user) {
+                    try {
+                        const userDoc = await db.collection("users").doc(user.uid).get();
+                        if (!userDoc.exists) throw new Error("User data not found.");
+                        
+                        currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
+                        loginContainer.style.display = 'none';
+                        
+                        if (currentUser.isAdmin) {
+                            admin: 25%; }
+        .login-container.sign-up-mode form.sign-up-form { opacity: 1; z-index: 2; }
+        .login-container.sign-up-mode form.sign-in-form { opacity: 0; z-index: 1; }
+        .login-container.sign-up-mode .right-panel .image, .login-container.sign-up-mode .right-panel .content { transform: translateX(0%); }
+        .login-container.sign-up-mode .left-panel { pointer-events: none; }
+        .login-container.sign-up-modeDashboard.style.display = 'block';
+                            userDashboard.style.display = 'none';
+                            updateAdminDashboard();
+                        } else {
+                            adminDashboard.style.display = 'none';
+                            userDashboard.style.display = 'block';
+                            loadUserDashboard();
+                        }
+                        
+                        loginLink.textContent = 'Log Out';
+                        mobileLoginLink.textContent = 'Log Out';
+                    } catch (error) {
+                        console.error("Error fetching user profile:", error);
+                        showPopup('Error', 'Could not load your profile. Please log out and try again.');
+                        handleLogout();
+                    }
+                } else {
+                    currentUser = null;
+                    adminDashboard.style.display = 'none';
+                    userDashboard.style.display = 'none';
+                    loginContainer.style.display = 'block';
+                    loginLink.textContent = 'Log In';
+                    mobileLoginLink.textContent = 'Log In';
+                }
+            });
+
+            async function handleSignUp(email, password, username) {
+                try {
+                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                    await db.collection("users").doc(userCredential.user.uid).set({
+                        username: username,
+                        email: email,
+                        isAdmin: false,
+                        created: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showPopup('Success', 'Account created! You are now .right-panel { pointer-events: all; }
+        @media (max-width: 870px) {
+            .login-container { min-height: 800px; height: 100vh; }
+            .signin-signup { width: 100%; top: 95%; transform: translate(-50%, -100%); transition: 1s 0.8s ease-in-out; }
+            .signin-signup, .login-container.sign-up-mode .signin-signup { left: 50%; }
+            .panels-container { grid-template-columns: 1fr; grid-template-rows: 1fr 2fr 1fr; }
+            .panel { flex-direction: row; justify-content: space-around; align-items: center; padding: 2.5rem 8%; grid-column: 1 / 2; }
+            .right-panel { grid-row: 3 / 4; }
+            .left-panel { grid-row: 1 / 2; }
+            .image { width: 200px; transition: transform 0.9s ease-in-out; transition-delay: 0.6s; }
+            .panel .content { padding-right: 15%; transition: transform 0.9s ease-in-out; transition-delay: 0.8s; }
+            .panel h3 { font-size: 1.2rem; }
+            .panel p { font-size: 0.7rem; padding: 0.5rem 0; }
+            .btn.transparent { width: 110px; height: 35px; font-size: 0.7rem; }
+            .login-container:before { width: 1500px; height: 1500px; transform: translateX(-50%); left: 30%; bottom: 68%; right: initial; top: initial; transition: 2s ease-in-out; }
+            .login-container.sign-up-mode:before { transform: translate(-50%, 100 logged in.', true);
+                    setTimeout(hidePopup, 3000);
+                } catch (error) {
+                    showPopup('Error', error.message);
+                }
+            }
+
+            async function handleLogin(email, password) {
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                } catch (error) {
+                    showPopup('Error', "Invalid credentials. Please check your email and password.");
+                }
+            }
+
+            window.handleLogout = function() { // Make it globally accessible
+                auth.signOut().catch(error => showPopup('Error', error.message));
+            }
+
+            // --- DASHBOARD DATA FUNCTIONS ---
+            async function updateAdminDashboard() {
+                try {
+                    const requestsSnapshot = await db.collection('requests').orderBy('created', 'desc').get();
+                    const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    
+                    const tableBody = document.getElementById('requestsTableBody');
+                    if(!tableBody) return;
+                    tableBody.innerHTML = '';
+                    if (requests.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4">No rental requests found.</td></tr>';
+                    } else {
+                        requests.forEach(req => {
+                            const row = tableBody.insertRow();
+                            row.style.cursor%); bottom: 32%; right: initial; }
+            .login-container.sign-up-mode .left-panel .image, .login-container.sign-up-mode .left-panel .content { transform: translateY(-300px); }
+            .login-container.sign-up-mode .right-panel .image, .login-container.sign-up-mode .right-panel .content { transform: translateY(0px); }
+            .right-panel .image, .right-panel .content { transform: translateY(300px); }
+            .login-container.sign-up-mode .signin-signup { top: 5%; transform: translate(-50%, 0); }
+        }
+        @media (max-width: 570px) {
+            form { padding: 0 1.5rem; }
+            .image { display: none; }
+            .panel .content { padding: 0.5rem 1rem; }
+            .login-container { padding: 1.5rem; }
+            .login-container:before { bottom: 72%; left: 50%; }
+            .login-container.sign-up- = 'pointer';
+                            row.innerHTML = `
+                                <td>${req.eventName || 'N/A'}</td>
+                                <td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td>
+                                <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
+                                <td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>`;
+                            // row.onclick = () => showRequestPopup(req.id); // You will need to implement showRequestPopup
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error loading admin requests:", error);
+                    showPopup('Error', 'Failed to load rental requests.');
+                }
+            }
+
+            async function loadUserDashboard() {
+                if (!currentUser) return;
+                document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Dashboard`;
+                // Add logic to fetch and display user data here.
+            mode:before { bottom: 28%; left: 50%; }
+        }
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .error-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 0 30px rgba(248,34,73,0.2); text-align: center; min-width: 300px; max-width: 400px; z-index: 1000; display: none; font-family: 'Raleway', sans-serif; }
+        .error-popup.active { display: block; }
+        .popup-close { position: absolute; top: 15px; right}
+            
+            // --- UI & EVENT LISTENERS ---
+            document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const username = e.target.querySelector('#signupUsername').value.trim();
                 const email = e.target.querySelector('#signupEmail').value.trim();
@@ -813,108 +907,73 @@
                 const confirmPassword = e.target.querySelector('#signupConfirm').value;
                 if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.');
                 if (password.length < 6) return showPopup('Error', 'Password must be at least 6 characters.');
-                if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.');
+                if (password !== confirmPassword: 15px; cursor: pointer; font-size: 1.5rem; color: #2f3138; transition: all 0.3s; }
+        .popup-close:hover { color: #f82249; }
+        .error-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+        .success-message { color: #4CAF50; font-weight) return showPopup('Error', 'Passwords do not match.');
                 handleSignUp(email, password, username);
             });
 
-            const signInForm = document.querySelector('.sign-in-form');
-            if(signInForm) signInForm.addEventListener('submit', (e) => {
+            document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = e.target.querySelector('#loginEmail').value.trim();
                 const password = e.target.querySelector('#loginPassword').value;
-                if (!email || !password) return showPopup('Error', 'Please enter email and password.');
+                if (!email || !password: bold; font-size: 0.9rem; margin-top: 10px; display: none; text-align: center; }
+        .countdown { font-size: 1.1rem; font-weight: 600; }
+        :root { --grey: #F1F0F6; --dark-grey: #8D8D8D; --light: #fff; --dark: #000; --) return showPopup('Error', 'Please enter email and password.');
                 handleLogin(email, password);
             });
-
-            document.getElementById('loginLink')?.addEventListener('click', (e) => {
-                if (auth.currentUser) { e.preventDefault(); handleLogout(); }
+            
+            [loginLink, mobileLoginLink].forEach(link => {
+                if (link) link.addEventListener('click', (e) => {
+                    if (auth.currentUser) { e.preventDefault(); handleLogout(); }
+                });
             });
 
-            document.getElementById('mobileLoginLink')?.addEventListener('click', (e) => {
-                if (auth.currentUser) { e.preventDefault(); handleLogout(); }
-            });
-
-            const sign_in_btn = document.querySelector("#sign-in-btn");
+            const sign_in_btn = document.querySelector("#sign-green: #81D43A; --light-green: #E3FFCB; --blue: #1775F1; --light-blue: #D0E4FF; --dark-blue: #0C5FCD; --red: #FC3B56; }
+        html, bodyin-btn");
             const sign_up_btn = document.querySelector("#sign-up-btn");
             const login_container_el = document.querySelector(".login-container");
             if(sign_in_btn && sign_up_btn && login_container_el) {
-                sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode"));
-                sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode"));
+                sign_up_btn.addEventListener { overflow-x: hidden; }
+        body { background: var(--grey); overflow-x: hidden; font-family: 'Open Sans', sans-serif; }
+        a { text-decoration: none; }
+        li { list-style: none; }
+        main { width: 100%; padding: 2("click", () => login_container_el.classList.add("sign-up-mode"));
+                sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up4px 20px 20px 20px; }
+        main .title { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+-mode"));
             }
 
+            // --- POPUP UTILITY ---
+            const showPopup = (title, message, isSuccess = false) => {
+                const popup = document.getElementById('errorPopup');
+                const overlay = document        main .breadcrumbs { display: flex; grid-gap: 6px; }
+        main .breadcrumbs li, main .breadcrumbs li a { font-size: 14px; }
+        main .breadcrumbs li a {.getElementById('popupOverlay');
+                if(!popup || !overlay) return;
+                const icon = popup.querySelector('.error-icon');
+                popup.querySelector('#popupTitle').textContent = title;
+                popup.querySelector color: var(--blue); }
+        main .breadcrumbs li a.active, main .breadcrumbs li.divider { color: var(--dark-grey); pointer-events: none; }
+        main .info-data { margin('#popupMessage').textContent = message;
+                icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon';
+                icon.style.color = isSuccess ? '#4CAF50' : '#f82249';
+                popup.classList-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); grid-gap: 20px; }
+        main .info-data .card { padding: 20px; border-radius: 10px; background: var(--light); box-shadow: 4px 4px 16px rgba(0, 0,.add('active');
+                overlay.style.display = 'block';
+            };
+
+            function hidePopup() {
+                const popup = document.getElementById('errorPopup');
+                const overlay = document.getElementById('popupOverlay');
+                if(popup) popup.classList.remove('active');
+                if(overlay) overlay.style.display = 'none';
+            }
+            
             document.getElementById('popupClose')?.addEventListener('click', hidePopup);
             document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
         });
-
-        // --- POPUP & UTILITY FUNCTIONS ---
-        const showPopup = (title, message, isSuccess = false) => {
-            const popup = document.getElementById('errorPopup');
-            const overlay = document.getElementById('popupOverlay');
-            if(!popup || !overlay) return;
-            const icon = popup.querySelector('.error-icon');
-            popup.querySelector('#popupTitle').textContent = title;
-            popup.querySelector('#popupMessage').textContent = message;
-            icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon';
-            icon.style.color = isSuccess ? '#4CAF50' : '#f82249';
-            popup.classList.add('active');
-            overlay.style.display = 'block';
-        };
-
-        function hidePopup() {
-            const popup = document.getElementById('errorPopup');
-            const overlay = document.getElementById('popupOverlay');
-            if(popup) popup.classList.remove('active');
-            if(overlay) overlay.style.display = 'none';
-        }
-
-        // --- DASHBOARD DATA FUNCTIONS (TO BE BUILT OUT) ---
-        async function updateAdminDashboard() {
-            console.log("Fetching admin data from Firestore...");
-            try {
-                const requestsSnapshot = await db.collection('requests').orderBy('created', 'desc').get();
-                const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-                const tableBody = document.getElementById('requestsTableBody');
-                if(!tableBody) return;
-                tableBody.innerHTML = ''; // Clear previous entries
-                if (requests.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4">No rental requests found.</td></tr>';
-                } else {
-                    requests.forEach(req => {
-                        const row = tableBody.insertRow();
-                        row.style.cursor = 'pointer';
-                        row.innerHTML = `
-                            <td>${req.eventName || 'N/A'}</td>
-                            <td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td>
-                            <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
-                            <td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>
-                        `;
-                        row.onclick = () => showRequestPopup(req.id);
-                    });
-                }
-            } catch (error) {
-                console.error("Error loading admin requests:", error);
-                showPopup('Error', 'Failed to load rental requests.');
-            }
-        }
-
-        async function loadUserDashboard() {
-            if (!currentUser) return;
-            console.log("Fetching data for user:", currentUser.username);
-            document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Personalized Dashboard`;
-            
-            // This is where you'd fetch user-specific data, e.g., their registrations
-            // Example:
-            // const registrationsSnapshot = await db.collection('registrations').where('userId', '==', currentUser.uid).get();
-            // const userRegistrations = registrationsSnapshot.docs.map(doc => doc.data());
-            // Then update the UI with this data
-        }
-
-        function showRequestPopup(requestId) {
-            console.log("Showing popup for request ID:", requestId);
-            // You will need to implement this function to fetch the specific request
-            // from Firestore and display its details in the `request-popup`.
-        }
     </script>
     
     <!-- Other JS Libraries -->
@@ -922,3 +981,4 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
