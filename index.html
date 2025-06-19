@@ -1152,7 +1152,56 @@ function typeExcellence() {
   }
 </style>
 
+<script>
+  // --- JavaScript for the Stats Section Line Drawing Animation ---
+  document.addEventListener('DOMContentLoaded', () => {
+      // Select the path and section elements we created
+      const statsPath = document.querySelector('#stats-scroll-line');
+      const statsSection = document.querySelector('#stats');
 
+      // Only run the script if both elements exist
+      if (statsPath && statsSection) {
+          // Get the total length of the SVG path
+          const pathLength = statsPath.getTotalLength();
+
+          // Set up the line for the drawing animation by making it a dashed line
+          // where the dash length and the gap length are both the total length of the line.
+          statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+
+          // Hide the line by default by offsetting the dash
+          statsPath.style.strokeDashoffset = pathLength;
+
+          // Function to run every time the user scrolls
+          const handleScroll = () => {
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+              const sectionTop = statsSection.offsetTop;
+              const sectionHeight = statsSection.offsetHeight;
+              const viewportHeight = window.innerHeight;
+
+              // Calculate how far the user has scrolled into the stats section
+              const scrollDistance = scrollTop - sectionTop;
+
+              // Only run the animation when the section is on screen
+              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
+                  // Calculate the scroll progress as a number from 0 to 1
+                  const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
+                  
+                  // Calculate the length of the line that should be visible
+                  const drawLength = pathLength * progress;
+
+                  // "Pull back" the dash offset to reveal the line
+                  statsPath.style.strokeDashoffset = pathLength - drawLength;
+              }
+          };
+
+          // Add the scroll event listener
+          window.addEventListener('scroll', handleScroll);
+          
+          // Run the function once on load to set the correct initial position
+          handleScroll();
+      }
+  });
+</script>
 
 <!-- Services Section (Amenities) -->
 <section id="services" class="services section">
