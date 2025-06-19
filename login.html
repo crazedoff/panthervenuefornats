@@ -306,314 +306,406 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#intro">Home</a></li>
                     <li><a href="index.html#about">About</a></li>
                     <li><a href="event.html">Events</a></li>
-                    <li class="menu-active"><a href="rent.html">Rent Venue</a></li>
+                    <li><a href="rent.html">Rent Venue</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li class="buy-tickets"><a href="login.html">Log In</a></li>
+                    <li class="buy-tickets"><a href="login.html" id="loginLink">Log In</a></li>
                 </ul>
             </nav>
+            <div id="mobile-nav-toggle"><i class="fa fa-bars"></i></div>
         </div>
     </header>
-
-    <main class="main">
-        <section id="hero" class="hero section">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h1 data-aos="fade-up">Rent Our Gymnasium <br> for Your Next Event</h1>
-                        <p data-aos="fade-up" data-aos-delay="100">From sporting events to trade shows, the PantherVenue <br> facility has everything you need to host a successful event.</p>
-                        <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-                            <a href="rent.html#alt-features" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"></a>
+    <nav id="mobile-nav">
+        <ul>
+            <li><a href="index.html#intro">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="event.html">Events</a></li>
+            <li><a href="rent.html">Rent Venue</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="login.html" id="mobileLoginLink">Log In</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-body-overly"></div>
+    <div class="dashboard-wrapper">
+        <div class="wrapper">
+            <div class="main">
+                <main class="content p-4">
+                    <div class="container-fluid p-0">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="h3 admin-dashboard-title"><strong>PantherVenue Analytics</strong> Dashboard</h1>
+                            <button onclick="handleLogout()" class="btn btn-danger">Log Out</button>
                         </div>
-                    </div>
-                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                        <img src="assets2/img/hero-img.png" class="img-fluid animated" alt="Gymnasium">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="alt-features" class="alt-features section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>From Papers to Autonomy</h2>
-                    <p>Find everything you need to book and plan your event with ease.</p>
-                </div>
-                <div class="row gy-5">
-                    <div class="col-xl-7 d-flex order-2 order-xl-1" data-aos="fade-up" data-aos-delay="200">
-                        <div class="row align-self-center gy-5">
-                            <div class="col-md-6 icon-box"><i class="bi bi-calendar-event"></i><div><h4>Check Availability</h4><p>View our calendar to secure your preferred event date.</p></div></div>
-                            <div class="col-md-6 icon-box"><i class="bi bi-cash-coin"></i><div><h4>Rental Pricing</h4><p>Explore our rental rates, packages, and additional fees.</p></div></div>
-                            <div class="col-md-6 icon-box"><i class="bi bi-tools"></i><div><h4>Setup & Equipment</h4><p>Learn about available seating arrangements, A/V setups, and more.</p></div></div>
-                            <div class="col-md-6 icon-box"><i class="bi bi-file-earmark-text"></i><div><h4>Rental Policies</h4><p>Review our rental terms, cancellation policies, and security rules.</p></div></div>
-                            <div class="col-md-6 icon-box"><i class="bi bi-envelope"></i><div><h4>Rental Contacts</h4><p>If you have questions, visit the <span style="text-decoration: underline; color: red;"><a href="index.html#faq">F.A.Q.</a></span> or <span style="text-decoration: underline; color: red;"><a href="index.html#contactus">Contact Us</a></span>.</p></div></div>
-                            <div class="col-md-6 icon-box"><i class="bi bi-map"></i><div><h4>Venue Directions</h4><p>Get directions and venue details on the <span style="text-decoration: underline; color: red;"><a href="index.html">Home Page</a></span>.</p></div></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 d-flex align-items-center justify-content-center order-1 order-xl-2" data-aos="fade-up" data-aos-delay="100">
-                        <div class="d-none d-lg-block">
-                            <div id="app">
-                                <div class="papers" style="--total: 5">
-                                    <div class="paper" style="--i: 0"><div class="content"></div><div class="segment"><div class="segment"><div class="segment"><div class="segment"><div class="segment"></div></div></div></div></div></div>
-                                    <div class="paper" style="--i: 1"><div class="content"></div><div class="segment"><div class="segment"><div class="segment"><div class="segment"><div class="segment"></div></div></div></div></div></div>
-                                    <div class="paper" style="--i: 2"><div class="content"></div><div class="segment"><div class="segment"><div class="segment"><div class="segment"><div class="segment"></div></div></div></div></div></div>
-                                    <div class="paper" style="--i: 3"><div class="content"></div><div class="segment"><div class="segment"><div class="segment"><div class="segment"><div class="segment"></div></div></div></div></div></div>
-                                    <div class="paper" style="--i: 4"><div class="content"></div><div class="segment"><div class="segment"><div class="segment"><div class="segment"><div class="segment"></div></div></div></div></div></div>
-                                </div>
-                                <div class="shadow">
-                                    <div class="paper-shadow" style="--i: 0"></div>
-                                    <div class="paper-shadow" style="--i: 1"></div>
-                                    <div class="paper-shadow" style="--i: 2"></div>
-                                    <div class="paper-shadow" style="--i: 3"></div>
-                                    <div class="paper-shadow" style="--i: 4"></div>
+                        <div class="row">
+                            <div class="col-xl-6 col-xxl-5 d-flex">
+                                <div class="w-100">
+                                    <div class="row">
+                                        <div class="col-sm-6"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Sales</h5></div><div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div></div><h1 id="totalSales" class="mt-1 mb-3">$0.00</h1></div></div></div>
+                                        <div class="col-sm-6"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Unique Visitors</h5></div><div class="col-auto"><i class="align-middle fas fa-users"></i></div></div><h1 id="uniqueVisitors" class="mt-1 mb-3">0</h1></div></div></div>
+                                        <div class="col-sm-6"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Tickets Sold</h5></div><div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div></div><h1 id="ticketsSold" class="mt-1 mb-3">0</h1></div></div></div>
+                                        <div class="col-sm-6"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Active Events</h5></div><div class="col-auto"><i class="align-middle fas fa-calendar-alt"></i></div></div><h1 id="activeEvents" class="mt-1 mb-3">0</h1></div></div></div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-xl-6 col-xxl-7"><div class="card flex-fill w-100"><div class="card-header"><h5 class="card-title mb-0">Recent Activity</h5></div><div class="card-body py-3"><div class="chart chart-sm"><canvas id="chartjs-dashboard-line"></canvas></div></div></div></div>
                         </div>
-                        <img src="assets2/img/alt-features.png" class="img-fluid d-lg-none" alt="" style="max-width: 250px; margin-bottom: 2rem;">
+                        <div class="row mt-4">
+                            <div class="col-12"><div class="card"><div class="card-header"><h5 class="card-title">Pending Rental Requests</h5></div><table class="table table-hover my-0"><thead><tr><th>Event Name</th><th class="d-none d-xl-table-cell">Date</th><th>Status</th><th class="d-none d-md-table-cell">Requester</th></tr></thead><tbody id="requestsTableBody"></tbody></table></div></div>
+                        </div>
                     </div>
-                </div>
+                </main>
             </div>
-        </section>
-
-        <section id="rental-form" class="section bg-light py-12">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Rent Our Venue</h2>
-                    <p>Fill out this form to request an event at PantherVenue.</p>
-                </div>
-                <div class="w-full max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg" id="form-container">
-                    <div id="progress-bar" class="flex items-center justify-between mb-8">
-                        <div id="step-indicators" class="flex items-center w-full relative">
-                            <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
-                            <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center">1</div>
-                            <div class="flex-1 h-1 bg-gray-300"></div>
-                            <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">2</div>
-                            <div class="flex-1 h-1 bg-gray-300"></div>
-                            <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">3</div>
-                            <div class="flex-1 h-1 bg-gray-300"></div>
-                            <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">4</div>
-                            <div class="flex-1 h-1 bg-gray-300"></div>
-                            <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">5</div>
-                            <div class="flex-1 h-1 bg-gray-300"></div>
-                            <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">6</div>
+        </div>
+    </div>
+    <div class="user-dashboard-wrapper">
+        <div class="wrapper">
+            <div class="main">
+                <main class="content p-4">
+                    <div class="container-fluid p-0">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="h3 dashboard-title" id="dashboard-title">User Dashboard</h1>
+                            <button onclick="handleLogout()" class="btn btn-danger">Log Out</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-xxl-3 d-flex">
+                                <div class="w-100">
+                                    <div class="row">
+                                        <div class="col-sm-12"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Tickets Bought</h5></div><div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div></div><h1 id="totalTickets" class="mt-1 mb-3">0</h1></div></div></div>
+                                        <div class="col-sm-12"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Money Spent</h5></div><div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div></div><h1 id="totalSpent" class="mt-1 mb-3">$0.00</h1></div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8 col-xxl-9">
+                                <div class="card flex-fill w-100"><h5 class="card-title mb-0 p-3">Your Event Registrations</h5><div id="userEvents" class="p-3"></div></div>
+                                <div class="card flex-fill w-100 mt-4"><h5 class="card-title mb-0 p-3">Your Rental Requests</h5><div id="userRequestsList" class="p-3"></div></div>
+                            </div>
                         </div>
                     </div>
-
-                    <div id="step1" class="step active">
-                        <h2 class="text-2xl font-semibold mb-6">Step 1: Personal Details</h2>
-                        <p class="text-gray-600 mb-4">Log in to pre-fill your details.</p>
-                        <form>
-                            <div class="mb-4"><label for="first-name" class="block text-sm font-medium mb-1">First Name <span class="text-red-500">*</span></label><input type="text" id="first-name" class="form-control rounded-full" required></div>
-                            <div class="mb-4"><label for="last-name" class="block text-sm font-medium mb-1">Last Name <span class="text-red-500">*</span></label><input type="text" id="last-name" class="form-control rounded-full" required></div>
-                            <div class="mb-6"><label for="email" class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label><input type="email" id="email" class="form-control rounded-full" required></div>
-                            <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-                        </form>
-                    </div>
-
-                    <div id="step2" class="step">
-                        <h2 class="text-2xl font-semibold mb-6">Step 2: Event Details</h2>
-                        <form>
-                            <div class="mb-4"><label for="event-name" class="block text-sm font-medium mb-1">Event Name <span class="text-red-500">*</span></label><input type="text" id="event-name" class="form-control rounded-full" required></div>
-                            <div class="mb-4"><label for="event-date" class="block text-sm font-medium mb-1">Event Date <span class="text-red-500">*</span></label><input type="date" id="event-date" class="form-control rounded-full" required></div>
-                            <div class="mb-4 position-relative"><label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label><span class="position-absolute top-10 start-0 translate-middle-y ms-3 text-gray-500">$</span><input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required></div>
-                            <div class="mb-6"><label for="event-description" class="block text-sm font-medium mb-1">Event Description <span class="text-red-500">*</span></label><textarea id="event-description" class="form-control rounded-lg" rows="3" placeholder="Describe your event (recommended: 3 sentences)" required></textarea></div>
-                            <div class="d-flex justify-content-between"><button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button><button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button></div>
-                        </form>
-                    </div>
-
-                    <div id="step3" class="step">
-                        <h2 class="text-2xl font-semibold mb-6">Step 3: Event Category</h2>
-                        <p class="text-gray-600 mb-4">Select one category for your event.</p>
-                        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="category" value="Athletics" required> Athletics</label>
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="category" value="Performances"> Performances</label>
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="category" value="Workshops"> Workshops</label>
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="category" value="Gatherings"> Gatherings</label>
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="category" value="Competitions"> Competitions</label>
-                        </div>
-                        <div class="d-flex justify-content-between"><button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button><button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button></div>
-                    </div>
-
-                    <div id="step4" class="step">
-                        <h2 class="text-2xl font-semibold mb-6">Step 4: Venue Selection</h2>
-                        <p class="text-gray-600 mb-4">Choose the venue for your event.</p>
-                        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="venue" value="Large Gym" required> Large Gym</label>
-                            <label class="btn btn-outline-danger rounded-full custom-radio"><input type="radio" name="venue" value="Small Gym"> Small Gym</label>
-                        </div>
-                        <div class="d-flex justify-content-between"><button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button><button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button></div>
-                    </div>
-
-                    <div id="step5" class="step">
-                        <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
-                        <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
-                        <div class="custom-file mb-6"><input type="file" class="custom-file-input" id="event-image" accept="image/*"><label class="custom-file-label rounded-full" for="event-image">Choose file</label></div>
-                        <div class="d-flex justify-content-between"><button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button><button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button></div>
-                    </div>
-
-                    <div id="step6" class="step">
-                        <h2 class="text-2xl font-semibold mb-6">Step 6: Confirmation</h2>
-                        <div id="confirmation-details" class="mb-6 p-4 bg-light rounded"></div>
-                        <div class="d-flex justify-content-between"><button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button><button type="button" class="btn btn-success rounded-full px-8 py-2" id="confetti-button" onclick="submitForm()">Submit</button></div>
-                    </div>
-                </div>
+                </main>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="error-popup" id="errorPopup">
+        <span class="popup-close" id="popupClose">×</span>
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <h3 class="text-xl font-bold mb-2" id="popupTitle">Error</h3>
+        <p id="popupMessage"></p>
+    </div>
+    <div class="venue-popup" id="venuePopup">
+        <span class="popup-close" id="venuePopupClose">×</span>
+        <h3 class="text-xl font-bold mb-4">Request a Venue</h3>
+        <form id="venueRequestForm">
+            <div class="input-field"><i class="fas fa-pen"></i><input type="text" placeholder="Description" id="venueDescription" required></div>
+            <div class="input-field"><i class="fas fa-clock"></i><input type="time" placeholder="Time" id="venueTime" required></div>
+            <div class="input-field"><i class="fas fa-calendar"></i><input type="date" placeholder="Day" id="venueDay" required></div>
+            <div class="input-field"><i class="fas fa-dollar-sign"></i><input type="number" placeholder="Cost of Tickets" id="venueCost" required></div>
+            <input type="submit" value="Submit Request" class="btn" />
+        </form>
+    </div>
+    <div class="popup-overlay" id="eventDetailsOverlay"></div>
+    <div class="event-details-popup" id="eventDetailsPopup">
+        <span class="popup-close" id="eventDetailsClose">×</span>
+        <h3 class="text-xl font-bold mb-4">Event Registration Details</h3>
+        <div id="eventDetailsContent"></div>
+    </div>
+    <div class="popup-overlay" id="ticketOverlay"></div>
+    <div class="ticket-popup" id="ticketPopup">
+        <span class="popup-close" id="ticketPopupClose">×</span>
+        <div class="popup-grid">
+            <div class="event-details">
+                <h2 class="text-2xl font-bold mb-4" id="popupEventTitle">Event Title</h2>
+                <div class="seating-chart" id="popupSeatingChart"></div>
+                <table class="schedule-table" id="popupScheduleTable"></table>
+                <div class="availability"><span>Selected Seats:</span><span class="font-bold text-red-600" id="selectedSeatsText">None</span></div>
+            </div>
+            <div class="registration-form">
+                <h3 class="text-xl font-bold mb-4">Registration Details</h3>
+                <div id="totalCost" class="text-red-600 text-4xl font-bold mb-4 text-center"></div>
+                <form id="ticketForm">
+                    <div class="form-group"><label>Name</label><input type="text" id="fullName" readonly></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="email" readonly></div>
+                    <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" readonly></div>
+                    <div class="form-group"><label>Tickets Quantity</label><input type="number" id="quantity" readonly></div>
+                    <div class="cc-group payment-group">
+                        <div class="form-group"><label>Card Number</label><input type="text" id="cardPaymentNumber" class="payment-field" readonly></div>
+                        <div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field" readonly></div>
+                    </div>
+                    <div class="form-group payment-group"><label>CVV</label><input type="text" id="cvv" class="payment-field" readonly></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay" id="requestOverlay"></div>
+    <div class="request-popup" id="requestPopup">
+        <span class="popup-close" id="requestClose">×</span>
+        <h3 class="text-xl font-bold mb-4">Rental Request Details</h3>
+        <div id="requestDetails" class="text-left mb-4"></div>
+        <div id="mockEventTile" class="mock-event-tile p-4 mb-4"></div>
+        <div class="flex justify-center gap-2">
+            <button class="btn btn-decline" onclick="updateRequestStatus('declined')">Decline</button>
+            <button class="btn btn-pending" onclick="updateRequestStatus('pending')">Pending</button>
+            <button class="btn btn-accept" onclick="updateRequestStatus('accepted')">Accept</button>
+            <button class="btn btn-trash" onclick="deleteRequest()"><i class="fas fa-trash"></i></button>
+        </div>
+    </div>
 
-    <!-- Scroll Top -->
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="login-container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="#" class="sign-in-form">
+                    <h2 class="title">Log in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="loginEmail" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="loginPassword" required>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
+                </form>
+                <form action="#" class="sign-up-form">
+                    <h2 class="title">Sign up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="signupUsername" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="signupEmail" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="signupPassword" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirm Password" id="signupConfirm" required>
+                    </div>
+                    <div class="success-message" id="signupSuccess"></div>
+                    <input type="submit" class="btn" value="Sign up" />
+                </form>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here?</h3>
+                    <p>Create an account to access exclusive features and manage your events!</p>
+                    <button class="btn transparent" id="sign-up-btn">Sign up</button>
+                </div>
+                <img src="img/log.svg" class="image" alt="" />
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Have an account?</h3>
+                    <p>Welcome back! Log in to continue your experience with PantherVenue.</p>
+                    <button class="btn transparent" id="sign-in-btn">Log in</button>
+                </div>
+                <img src="img/register.svg" class="image" alt="" />
+            </div>
+        </div>
+    </div>
 
-    <!-- Vendor JS Files -->
-    <script src="assets2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets2/vendor/php-email-form/validate.js"></script>
-    <script src="assets2/vendor/aos/aos.js"></script>
-    <script src="assets2/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets2/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets2/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets2/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets2/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <!-- Main JS File -->
-    <script src="assets2/js/main.js"></script>
-
-    <!-- LocalStorage Script -->
+    <!-- Firebase Configuration -->
     <script>
-        let currentStep = 1;
-        const totalSteps = 6;
-        let eventImageData = '';
-
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({ once: true, duration: 1000 });
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser) {
-                document.getElementById('first-name').value = currentUser.firstName || '';
-                document.getElementById('last-name').value = currentUser.lastName || '';
-                document.getElementById('email').value = currentUser.email || '';
-            }
-            document.getElementById('event-image').addEventListener('change', function() {
-                const file = this.files[0];
-                const fileName = file ? file.name : 'No file chosen';
-                this.nextElementSibling.textContent = fileName;
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) { eventImageData = e.target.result; };
-                    reader.readAsDataURL(file);
-                } else {
-                    eventImageData = '';
-                }
-            });
-            document.querySelectorAll('.custom-radio input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    document.querySelectorAll('.custom-radio').forEach(label => label.classList.remove('selected'));
-                    if (this.checked) { this.parentElement.classList.add('selected'); }
-                });
-            });
-        });
-
-        function updateProgressBar() {
-            const indicators = document.querySelectorAll('#step-indicators > div:not(.progress-fill)');
-            indicators.forEach((indicator, index) => {
-                const isStepIndicator = index % 2 === 0;
-                const stepIndex = Math.floor(index / 2) + 1;
-                if (stepIndex < currentStep) {
-                    indicator.className = isStepIndicator ? "w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center transition-all duration-500" : "flex-1 h-1 bg-red-600 transition-all duration-500";
-                } else if (stepIndex === currentStep) {
-                    indicator.className = "w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center transition-all duration-500";
-                } else {
-                    indicator.className = isStepIndicator ? "w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center" : "flex-1 h-1 bg-gray-300";
-                }
-            });
-        }
-
-        function showStep() {
-            const steps = document.querySelectorAll('.step');
-            steps.forEach((step, index) => {
-                step.style.display = (index === currentStep - 1) ? 'block' : 'none';
-                if (index === currentStep - 1) {
-                    step.classList.add('active');
-                    if (currentStep === 6) {
-                        const confirmationDetails = document.getElementById('confirmation-details');
-                        confirmationDetails.innerHTML = `
-                            <h3 class="text-xl font-semibold mb-4 text-red-700">Review Your Rental Request</h3>
-                            <p class="mb-2"><span class="font-bold text-red-600">Name:</span> <span class="text-gray-800">${document.getElementById('first-name').value} ${document.getElementById('last-name').value}</span></p>
-                            <p class="mb-4"><span class="font-bold text-red-600">Email:</span> <span class="text-gray-800">${document.getElementById('email').value}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Event:</span> <span class="text-gray-800">${document.getElementById('event-name').value}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Date:</span> <span class="text-gray-800">${document.getElementById('event-date').value}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Price:</span> <span class="text-gray-800">$${document.getElementById('event-price').value}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Category:</span> <span class="text-gray-800">${document.querySelector('input[name="category"]:checked')?.value || 'N/A'}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Venue:</span> <span class="text-gray-800">${document.querySelector('input[name="venue"]:checked')?.value || 'N/A'}</span></p>
-                            <p class="mb-2"><span class="font-bold text-red-500">Image:</span> ${eventImageData ? `<img src="${eventImageData}" alt="Preview" style="max-width:100px; border-radius:8px;">` : 'No image'}</span></p>
-                        `;
-                    }
-                }
-            });
-        }
-        
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                const currentInputs = document.querySelectorAll(`#step${currentStep} [required]`);
-                let allValid = true;
-                currentInputs.forEach(input => {
-                    if (!input.value) {
-                        allValid = false;
-                        input.classList.add('is-invalid');
-                    } else {
-                        input.classList.remove('is-invalid');
-                    }
-                });
-                if (!allValid) {
-                    alert('Please fill out all required fields.');
-                    return;
-                }
-                currentStep++;
-                updateProgressBar();
-                showStep();
-            }
-        }
-        
-        function prevStep() {
-            if (currentStep > 1) {
-                currentStep--;
-                updateProgressBar();
-                showStep();
-            }
-        }
-        
-        function submitForm() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                alert('You must be logged in to submit a request.');
-                window.location.href = 'login.html';
-                return;
-            }
-            const newRequest = {
-                id: Date.now().toString(),
-                username: currentUser.username,
-                firstName: document.getElementById('first-name').value,
-                lastName: document.getElementById('last-name').value,
-                email: document.getElementById('email').value,
-                eventName: document.getElementById('event-name').value,
-                eventDate: document.getElementById('event-date').value,
-                eventPrice: parseFloat(document.getElementById('event-price').value) || 0,
-                description: document.getElementById('event-description').value,
-                category: document.querySelector('input[name="category"]:checked')?.value || '',
-                venue: document.querySelector('input[name="venue"]:checked')?.value || '',
-                image: eventImageData,
-                status: 'pending',
-                created: new Date().toISOString()
-            };
-            let requests = JSON.parse(localStorage.getItem('panther_venue_requests')) || [];
-            requests.push(newRequest);
-            localStorage.setItem('panther_venue_requests', JSON.stringify(requests));
-            confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
-            alert('Your request has been submitted successfully! Check your dashboard for status updates.');
-            window.location.href = 'index.html';
-        }
+      const firebaseConfig = {
+        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
+        authDomain: "panthervenue.firebaseapp.com",
+        projectId: "panthervenue",
+        storageBucket: "panthervenue.appspot.com",
+        messagingSenderId: "15387964560",
+        appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
+      };
+      
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
     </script>
+    
+    <!-- Main Application Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentUser = null;
+            
+            // --- UI ELEMENT SELECTORS ---
+            const loginContainer = document.querySelector('.login-container');
+            const adminDashboard = document.querySelector('.dashboard-wrapper');
+            const userDashboard = document.querySelector('.user-dashboard-wrapper');
+            const loginLink = document.getElementById('loginLink');
+            const mobileLoginLink = document.getElementById('mobileLoginLink');
+            
+            // --- AUTHENTICATION ---
+            auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    try {
+                        const userDoc = await db.collection("users").doc(user.uid).get();
+                        if (!userDoc.exists) throw new Error("User data not found in database.");
+                        
+                        currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
+                        loginContainer.style.display = 'none';
+                        
+                        if (currentUser.isAdmin) {
+                            adminDashboard.style.display = 'block';
+                            userDashboard.style.display = 'none';
+                            updateAdminDashboard();
+                        } else {
+                            adminDashboard.style.display = 'none';
+                            userDashboard.style.display = 'block';
+                            loadUserDashboard();
+                        }
+                        
+                        loginLink.textContent = 'Log Out';
+                        mobileLoginLink.textContent = 'Log Out';
+                    } catch (error) {
+                        console.error("Error fetching user profile:", error);
+                        showPopup('Error', 'Could not load your profile. Please log out and try again.');
+                        handleLogout();
+                    }
+                } else {
+                    currentUser = null;
+                    adminDashboard.style.display = 'none';
+                    userDashboard.style.display = 'none';
+                    loginContainer.style.display = 'block';
+                    loginLink.textContent = 'Log In';
+                    mobileLoginLink.textContent = 'Log In';
+                }
+            });
+
+            async function handleSignUp(email, password, username) {
+                try {
+                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                    await db.collection("users").doc(userCredential.user.uid).set({
+                        username: username,
+                        email: email,
+                        isAdmin: false,
+                        created: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showPopup('Success', 'Account created! You are now logged in.', true);
+                    setTimeout(hidePopup, 3000);
+                } catch (error) {
+                    showPopup('Error', error.message);
+                }
+            }
+
+            async function handleLogin(email, password) {
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                } catch (error) {
+                    showPopup('Error', "Invalid credentials. Please check your email and password.");
+                }
+            }
+
+            window.handleLogout = function() {
+                auth.signOut().catch(error => showPopup('Error', error.message));
+            }
+
+            // --- DASHBOARD FUNCTIONS ---
+            async function updateAdminDashboard() {
+                console.log("Fetching admin data from Firestore...");
+                try {
+                    const requestsSnapshot = await db.collection('requests').orderBy('created', 'desc').get();
+                    const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    
+                    const tableBody = document.getElementById('requestsTableBody');
+                    if(!tableBody) return;
+                    tableBody.innerHTML = '';
+                    if (requests.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4">No rental requests found.</td></tr>';
+                    } else {
+                        requests.forEach(req => {
+                            const row = tableBody.insertRow();
+                            row.style.cursor = 'pointer';
+                            row.innerHTML = `
+                                <td>${req.eventName || 'N/A'}</td>
+                                <td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td>
+                                <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
+                                <td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>`;
+                            // row.onclick = () => showRequestPopup(req.id);
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error loading admin requests:", error);
+                    showPopup('Error', 'Failed to load rental requests.');
+                }
+            }
+
+            async function loadUserDashboard() {
+                if (!currentUser) return;
+                console.log("Fetching data for user:", currentUser.username);
+                document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Dashboard`;
+            }
+            
+            // --- UI EVENT LISTENERS ---
+            document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = e.target.querySelector('#signupUsername').value.trim();
+                const email = e.target.querySelector('#signupEmail').value.trim();
+                const password = e.target.querySelector('#signupPassword').value;
+                const confirmPassword = e.target.querySelector('#signupConfirm').value;
+                if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.');
+                if (password.length < 6) return showPopup('Error', 'Password must be at least 6 characters.');
+                if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.');
+                handleSignUp(email, password, username);
+            });
+
+            document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('#loginEmail').value.trim();
+                const password = e.target.querySelector('#loginPassword').value;
+                if (!email || !password) return showPopup('Error', 'Please enter email and password.');
+                handleLogin(email, password);
+            });
+            
+            [loginLink, mobileLoginLink].forEach(link => {
+                if (link) link.addEventListener('click', (e) => {
+                    if (auth.currentUser) { e.preventDefault(); handleLogout(); }
+                });
+            });
+
+            const sign_in_btn = document.querySelector("#sign-in-btn");
+            const sign_up_btn = document.querySelector("#sign-up-btn");
+            const login_container_el = document.querySelector(".login-container");
+            if(sign_in_btn && sign_up_btn && login_container_el) {
+                sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode"));
+                sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode"));
+            }
+
+            // --- POPUP UTILITY ---
+            const showPopup = (title, message, isSuccess = false) => {
+                const popup = document.getElementById('errorPopup');
+                const overlay = document.getElementById('popupOverlay');
+                if(!popup || !overlay) return;
+                const icon = popup.querySelector('.error-icon');
+                popup.querySelector('#popupTitle').textContent = title;
+                popup.querySelector('#popupMessage').textContent = message;
+                icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon';
+                icon.style.color = isSuccess ? '#4CAF50' : '#f82249';
+                popup.classList.add('active');
+                overlay.style.display = 'block';
+            };
+
+            function hidePopup() {
+                const popup = document.getElementById('errorPopup');
+                const overlay = document.getElementById('popupOverlay');
+                if(popup) popup.classList.remove('active');
+                if(overlay) overlay.style.display = 'none';
+            }
+            
+            document.getElementById('popupClose')?.addEventListener('click', hidePopup);
+            document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
+        });
+    </script>
+    
+    <!-- Other JS Libraries -->
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
