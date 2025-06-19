@@ -1162,6 +1162,7 @@ function typeExcellence() {
   }
 </style>
 <!-- JavaScript for the Animation (REVISED FOR SCROLL DELAY) -->
+<!-- JavaScript for the Animation (REVISED FOR TAPERING EFFECT) -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       const statsPath = document.querySelector('#stats-scroll-line');
@@ -1170,13 +1171,11 @@ function typeExcellence() {
       if (statsPath && statsSection) {
           
           //==============================================================
-          //  TWEAK THIS VALUE TO CHANGE THE SCROLL START
-          //  0.0 = Starts as soon as the section appears
-          //  0.3 = Starts after you scroll 30% into the section (A good starting point)
-          //  0.5 = Starts when you are halfway through the section
+          //  TWEAK THESE VALUES TO CONTROL THE TAPERING
           //==============================================================
-          const scrollStartOffset = 0.15; 
-          
+          const maxStrokeWidth = 60; // The thickest the line will be (at the start)
+          const minStrokeWidth = 5;  // The thinnest the line will be (at the end)
+
           const pathLength = statsPath.getTotalLength();
           statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
           statsPath.style.strokeDashoffset = pathLength;
@@ -1189,18 +1188,18 @@ function typeExcellence() {
               const scrollDistance = scrollTop - sectionTop;
 
               if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight) {
-                  // Original progress from 0 to 1 over the whole section
                   const progress = (scrollDistance + viewportHeight) / (sectionHeight + viewportHeight);
+                  const finalProgress = Math.max(0, Math.min(1, progress));
                   
-                  // New progress that is adjusted by the offset
-                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
-
-                  // Ensure the progress is clamped between 0 and 1 (it doesn't go negative or over 100%)
-                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
-                  
-                  // Calculate the draw length based on the final, adjusted progress
+                  // Calculate the draw length
                   const drawLength = pathLength * finalProgress;
                   statsPath.style.strokeDashoffset = pathLength - drawLength;
+
+                  // --- NEW: DYNAMIC STROKE WIDTH CALCULATION ---
+                  // Calculate the new width based on scroll progress
+                  const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
+                  // Apply the new width to the line
+                  statsPath.style.strokeWidth = `${currentStrokeWidth}px`;
               }
           };
           window.addEventListener('scroll', handleScroll);
@@ -1208,7 +1207,6 @@ function typeExcellence() {
       }
   });
 </script>
-
 <!-- Services Section (Amenities) -->
 <section id="services" class="services section">
   <div class="section-header">
