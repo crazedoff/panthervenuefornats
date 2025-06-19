@@ -94,7 +94,7 @@
       @media (min-width: 1200px) {
 
         /* -- Setup for sections with decorations -- */
-        #about, #seating, #team, #contact, #hotels, #schedule {
+        #about, #seating, #team, #contact, #hotels {
             position: relative;
             overflow: hidden;
             z-index: 1; 
@@ -145,39 +145,12 @@
             left: -150px;
             transform: rotate(20deg);
         }
-        /* FIX: Moved hotel blob more to the right */
         #hotels::after { /* Bottom Right */
             width: 550px;
             height: 550px;
             bottom: -200px;
-            right: -350px; /* <-- MOVED RIGHT */
+            right: -200px;
             transform: rotate(-30deg) scaleX(-1);
-        }
-
-        /* -- FIX: Gray Blobs for Policies Section -- */
-        #schedule::before, #schedule::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-image: url('grayblob.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-        #schedule::before { /* Top Right */
-            width: 600px;
-            height: 600px;
-            top: -150px;
-            right: -250px;
-            transform: rotate(30deg);
-        }
-        #schedule::after { /* Bottom Left */
-            width: 500px;
-            height: 500px;
-            bottom: -200px;
-            left: -200px;
-            transform: rotate(-45deg) scaleX(-1);
         }
 
         /* -- Red Blobs for Seating Chart Section (REVISED) -- */
@@ -205,8 +178,34 @@
             left: -150px;
             transform: rotate(-60deg) scaleX(-1);
         }
+
+        /* -- Red Blobs for Team Section (REVISED) -- */
+        #team::before, #team::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        #team::before { /* Top Left */
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            left: -250px;
+            transform: rotate(15deg);
+        }
+        #team::after { /* Bottom Right */
+            width: 700px;
+            height: 700px;
+            bottom: -300px;
+            right: -300px;
+            transform: rotate(-25deg);
+        }
         
-        /* -- FIX: Red Blob for Contact Us Section -- */
+        /* -- Red Blob for Contact Us Section (REVISED) -- */
         #contact::before {
             content: '';
             position: absolute;
@@ -216,10 +215,10 @@
             background-size: contain;
             width: 600px;
             height: 600px;
-            top: -250px; /* <-- MOVED TO TOP */
-            left: -250px; /* <-- MOVED TO LEFT */
-            opacity: 0.3;
-            transform: rotate(45deg);
+            bottom: -200px;
+            right: -200px;
+            opacity: 0.4;
+            transform: rotate(30deg);
             pointer-events: none;
         }
 
@@ -1038,7 +1037,6 @@ function typeExcellence() {
         </div>
       </div>
     </section><!-- /About Section -->
-
 <section id="stats" class="stats section">
 
   <!-- SVG For the Animated Gradient Line -->
@@ -1058,7 +1056,7 @@ function typeExcellence() {
   </svg>
 
   <!-- This is your original content, which will now appear ON TOP of the line -->
-  <div class="container" >
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4 align-items-center">
       <div class="col-lg-5">
         <img src="assets/img/stats-img.svg" alt="" class="img-fluid">
@@ -1124,7 +1122,7 @@ function typeExcellence() {
       width: 100%;
       height: 100%;
       pointer-events: none; 
-      z-index: 1; /* BOTTOM LAYER */
+      z-index: 0; /* BOTTOM LAYER */
   }
 
   /* Ensure both columns of your content are lifted above the line */
@@ -1134,6 +1132,15 @@ function typeExcellence() {
       z-index: 2; /* TOP LAYER */
   }
 
+  /* --- THIS IS THE MAGIC --- */
+  /* Apply a filter to the image itself to create an opaque background */
+  #stats .col-lg-5 img {
+      /* This filter creates a solid white shape directly behind the image's content.
+         We stack multiple shadows to make it fully opaque. */
+      filter: drop-shadow(0px 0px 15px #ffffff) 
+              drop-shadow(0px 0px 15px #ffffff) 
+              drop-shadow(0px 0px 15px #ffffff);
+  }
   
   /* The animated line itself */
   #stats-scroll-line {
@@ -1141,8 +1148,6 @@ function typeExcellence() {
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0; /* Start completely invisible */
-      transition: opacity 0.3s ease-in-out; /* Fade in smoothly */
   }
 </style>
 
@@ -1175,7 +1180,7 @@ function typeExcellence() {
           
           // 4. SPEED FACTOR: How long the animation takes.
           //    1.0 = normal speed. > 1.0 = slower. < 1.0 = faster.
-          const animationSpeedFactor = 1.2; // <-- TAD BIT SLOWER
+          const animationSpeedFactor = 0.8; // <-- TAD BIT SLOWER
 
           // --- The rest of the script works automatically ---
           const pathLength = statsPath.getTotalLength();
@@ -1206,14 +1211,6 @@ function typeExcellence() {
                   // Calculate the new stroke width using the same final progress
                   const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
                   statsPath.style.strokeWidth = `${currentStrokeWidth}px`;
-                   if (finalProgress > 0) {
-                    statsPath.style.opacity = 1;
-                  } else {
-                    statsPath.style.opacity = 0;
-                  }
-              } else {
-                  // If we are outside the scroll area, ensure the line is hidden.
-                  statsPath.style.opacity = 0;
               }
           };
           window.addEventListener('scroll', handleScroll);
