@@ -475,13 +475,22 @@
                     events = newSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 } else {
                     events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                }
+                 }
+
+                // --- FIX: Sort events by date, closest to furthest ---
+                const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+                events.sort((a, b) => {
+                    // Filter out past events to the bottom if you want, or just sort all
+                    const aIsPast = a.date < today;
+                    const bIsPast = b.date < today;
+                    if (aIsPast && !bIsPast) return 1;  // a is past, b is future, so b comes first
+                    if (!aIsPast && bIsPast) return -1; // b is past, a is future, so a comes first
+                    // If both are past or both are future, sort by date
+                    return new Date(a.date) - new Date(b.date);
+                });
+
+
                 filteredEvents = [...events];
-                populateCategories();
-                renderEvents();
-                updateEventCount();
-                setupEventListeners();
-                initPriceSlider();
             }
             
             // --- FIX: Restored original `generateSeats` function ---
