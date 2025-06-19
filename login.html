@@ -554,23 +554,8 @@
         <h3 class="text-xl font-bold mb-2" id="popupTitle">Error</h3>
         <p id="popupMessage"></p>
     </div>
-    <div class="venue-popup" id="venuePopup">
-        <span class="popup-close" id="venuePopupClose">×</span>
-        <h3 class="text-xl font-bold mb-4">Request a Venue</h3>
-        <form id="venueRequestForm">
-            <div class="input-field"><i class="fas fa-pen"></i><input type="text" placeholder="Description" id="venueDescription" required></div>
-            <div class="input-field"><i class="fas fa-clock"></i><input type="time" placeholder="Time" id="venueTime" required></div>
-            <div class="input-field"><i class="fas fa-calendar"></i><input type="date" placeholder="Day" id="venueDay" required></div>
-            <div class="input-field"><i class="fas fa-dollar-sign"></i><input type="number" placeholder="Cost of Tickets" id="venueCost" required></div>
-            <input type="submit" value="Submit Request" class="btn" />
-        </form>
-    </div>
-    <div class="popup-overlay" id="eventDetailsOverlay"></div>
-    <div class="event-details-popup" id="eventDetailsPopup">
-        <span class="popup-close" id="eventDetailsClose">×</span>
-        <h3 class="text-xl font-bold mb-4">Event Registration Details</h3>
-        <div id="eventDetailsContent"></div>
-    </div>
+    
+    <!-- FIX 2: Added the ticket-popup from events.html to login.html -->
     <div class="popup-overlay" id="ticketOverlay"></div>
     <div class="ticket-popup" id="ticketPopup">
         <span class="popup-close" id="ticketPopupClose">×</span>
@@ -584,6 +569,7 @@
             <div class="registration-form">
                 <h3 class="text-xl font-bold mb-4">Registration Details</h3>
                 <div id="totalCost" class="text-red-600 text-4xl font-bold mb-4 text-center"></div>
+                <!-- This form is now for display only -->
                 <form id="ticketForm">
                     <div class="form-group"><label>Name</label><input type="text" id="fullName" readonly></div>
                     <div class="form-group"><label>Email</label><input type="email" id="email" readonly></div>
@@ -593,11 +579,11 @@
                         <div class="form-group"><label>Card Number</label><input type="text" id="cardPaymentNumber" class="payment-field" readonly></div>
                         <div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field" readonly></div>
                     </div>
-                    <div class="form-group payment-group"><label>CVV</label><input type="text" id="cvv" class="payment-field" readonly></div>
                 </form>
             </div>
         </div>
     </div>
+
     <div class="popup-overlay" id="requestOverlay"></div>
     <div class="request-popup" id="requestPopup">
         <span class="popup-close" id="requestClose">×</span>
@@ -618,7 +604,6 @@
             <div class="signin-signup">
                 <form action="#" class="sign-in-form">
                     <h2 class="title">Log in</h2>
-                    <!-- MODIFIED: Changed from username to email for Firebase Auth -->
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="email" placeholder="Email" id="loginEmail" required>
@@ -710,23 +695,16 @@
     <!-- Main Application Logic (Firebase Integrated) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Firebase Integration: ---
-            // The following script replaces the original localStorage logic with
-            // Google Firebase/Firestore for a persistent, cloud-based backend.
-            
-            // --- GLOBAL STATE ---
             let currentUser = null;
             let pieChart;
             let flatpickrInstance;
 
-            // --- UI ELEMENT SELECTORS ---
             const loginContainer = document.querySelector('.login-container');
             const adminDashboard = document.querySelector('.dashboard-wrapper');
             const userDashboard = document.querySelector('.user-dashboard-wrapper');
             const loginLink = document.getElementById('loginLink');
             const mobileLoginLink = document.getElementById('mobileLoginLink');
 
-            // --- AUTHENTICATION STATE OBSERVER (The Core of the App) ---
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
                     try {
@@ -735,7 +713,6 @@
                         
                         currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
                         
-                        // Transition UI from login to dashboard
                         loginContainer.classList.add('fade-out');
                         setTimeout(() => {
                             loginContainer.style.display = 'none';
@@ -754,8 +731,9 @@
                             }
                         }, 500);
                         
-                        loginLink.textContent = 'Log Out';
-                        mobileLoginLink.textContent = 'Log Out';
+                        // --- FIX 1: Always show "Dashboard" when logged in ---
+                        loginLink.textContent = 'Dashboard';
+                        mobileLoginLink.textContent = 'Dashboard';
 
                     } catch (error) {
                         console.error("Error fetching user profile:", error);
@@ -764,7 +742,6 @@
                     }
                 } else {
                     currentUser = null;
-                    // Transition UI to show login screen
                     if (adminDashboard.style.display === 'block' || userDashboard.style.display === 'block') {
                         adminDashboard.classList.add('fade-out');
                         userDashboard.classList.add('fade-out');
@@ -779,30 +756,49 @@
                     } else {
                         loginContainer.style.display = 'block';
                     }
-
                     loginLink.textContent = 'Log In';
                     mobileLoginLink.textContent = 'Log In';
                 }
             });
 
-            // --- FIREBASE AUTH FUNCTIONS ---
             async function handleSignUp(email, password, username) {
-                if (password.length < 6) {
-                    showPopup('Error', 'Password must be at least 6 characters.');
+                if (password.length < 8) {
+                    showPopup('Error', 'Password must be at least 8 characters. Yours is ' + password.length);
                     return;
                 }
                 try {
+                    const isAdmin = (email === 'anvay@panthervenue.com' && username === 'anvay_admin');
                     const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                     await db.collection("users").doc(userCredential.user.uid).set({
                         username: username,
                         email: email,
-                        isAdmin: false, // Default new users to not be admin
+                        isAdmin: isAdmin,
                         created: firebase.firestore.FieldValue.serverTimestamp()
                     });
+                    await auth.signOut();
                     const successEl = document.getElementById('signupSuccess');
+                    const loginContainerEl = document.querySelector(".login-container");
+                    const loginEmailInput = document.getElementById('loginEmail');
+                    const loginPasswordInput = document.getElementById('loginPassword');
+                    
+                    document.getElementById('signupUsername').value = '';
+                    document.getElementById('signupEmail').value = '';
+                    document.getElementById('signupPassword').value = '';
+                    document.getElementById('signupConfirm').value = '';
+                    let countdown = 3;
                     successEl.style.display = 'block';
-                    successEl.textContent = 'Account created! Logging you in...';
-                    // The onAuthStateChanged listener will handle the UI update automatically
+                    successEl.textContent = `Account created! Redirecting in ${countdown}...`;
+                    const countdownInterval = setInterval(() => {
+                        countdown--;
+                        successEl.textContent = `Account created! Redirecting in ${countdown}...`;
+                        if (countdown <= 0) {
+                            clearInterval(countdownInterval);
+                            successEl.style.display = 'none';
+                            loginEmailInput.value = email;
+                            loginPasswordInput.value = password;
+                            loginContainerEl.classList.remove("sign-up-mode");
+                        }
+                    }, 1000);
                 } catch (error) {
                     showPopup('Error', error.message);
                 }
@@ -811,7 +807,6 @@
             async function handleLogin(email, password) {
                 try {
                     await auth.signInWithEmailAndPassword(email, password);
-                    // The onAuthStateChanged listener will handle the UI update automatically
                 } catch (error) {
                     showPopup('Error', "Invalid credentials. Please check your email and password.");
                 }
@@ -819,14 +814,10 @@
 
             window.handleLogout = function() {
                 auth.signOut().catch(error => showPopup('Error', error.message));
-                // The onAuthStateChanged listener will handle the UI update automatically
             }
 
-            // --- DASHBOARD FUNCTIONS (using Firestore) ---
             async function updateAdminDashboard() {
                 if (!currentUser || !currentUser.isAdmin) return;
-                
-                // Fetch all necessary data in parallel for efficiency
                 const [registrationsSnapshot, eventsSnapshot, requestsSnapshot] = await Promise.all([
                     db.collection('registrations').get(),
                     db.collection('events').get(),
@@ -837,7 +828,6 @@
                 const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 
-                // --- Update Stat Cards ---
                 const totalSales = registrations.reduce((sum, reg) => sum + (reg.totalCost || 0), 0);
                 const ticketsSold = registrations.reduce((sum, reg) => sum + (reg.quantity || 0), 0);
                 const uniqueVisitors = new Set(registrations.map(reg => reg.userId)).size;
@@ -847,9 +837,6 @@
                 document.getElementById('ticketsSold').textContent = ticketsSold;
                 document.getElementById('uniqueVisitors').textContent = uniqueVisitors;
                 document.getElementById('activeEvents').textContent = activeEvents;
-                // You can add back the percentage logic here if you have baseline values
-
-                // --- Update Pending Requests Table ---
                 const requestsTableBody = document.getElementById('requestsTableBody');
                 requestsTableBody.innerHTML = '';
                 if (requests.length === 0) {
@@ -858,40 +845,31 @@
                     requests.forEach(req => {
                         const row = requestsTableBody.insertRow();
                         row.style.cursor = 'pointer';
-                        row.innerHTML = `
-                            <td>${req.eventName || 'N/A'}</td>
-                            <td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td>
-                            <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
-                            <td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>`;
+                        row.innerHTML = `<td>${req.eventName || 'N/A'}</td><td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td><td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td><td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>`;
                         row.onclick = () => showRequestPopup(req.id, req);
                     });
                 }
-                
-                // --- Update Charts and Calendar ---
                 updateEventTypes(events);
                 updateCalendar(events);
             }
 
             async function loadUserDashboard() {
                 if (!currentUser) return;
-                
                 document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Personalized Dashboard`;
 
                 const [registrationsSnapshot, requestsSnapshot] = await Promise.all([
-                    db.collection('registrations').where('userId', '==', currentUser.uid).get(),
+                    db.collection('registrations').where('userId', '==', currentUser.uid).orderBy('created', 'desc').get(),
                     db.collection('requests').where('userId', '==', currentUser.uid).orderBy('created', 'desc').get()
                 ]);
                 
                 const userRegistrations = registrationsSnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
                 const userRequests = requestsSnapshot.docs.map(doc => doc.data());
                 
-                // --- Update Stat Cards ---
                 const totalTickets = userRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
                 const totalSpent = userRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
                 document.getElementById('totalTickets').textContent = totalTickets;
                 document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
 
-                // --- Update User's Registered Events List ---
                 const eventsContainer = document.getElementById('user-list-view');
                 eventsContainer.innerHTML = '';
                 if(userRegistrations.length === 0) {
@@ -922,7 +900,6 @@
                     }
                 }
 
-                // --- Update User's Rental Requests List ---
                 const requestsList = document.getElementById('userRequestsList');
                 requestsList.innerHTML = '';
                 if (userRequests.length > 0) {
@@ -937,237 +914,82 @@
                 }
             }
             
-            // --- UI EVENT LISTENERS ---
-            document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const username = e.target.querySelector('#signupUsername').value.trim();
-                const email = e.target.querySelector('#signupEmail').value.trim();
-                const password = e.target.querySelector('#signupPassword').value;
-                const confirmPassword = e.target.querySelector('#signupConfirm').value;
-                if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.');
-                if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.');
-                handleSignUp(email, password, username);
-            });
-
-            document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = e.target.querySelector('#loginEmail').value.trim();
-                const password = e.target.querySelector('#loginPassword').value;
-                if (!email || !password) return showPopup('Error', 'Please enter email and password.');
-                handleLogin(email, password);
-            });
+            document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => { e.preventDefault(); const username = e.target.querySelector('#signupUsername').value.trim(); const email = e.target.querySelector('#signupEmail').value.trim(); const password = e.target.querySelector('#signupPassword').value; const confirmPassword = e.target.querySelector('#signupConfirm').value; if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.'); if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.'); handleSignUp(email, password, username); });
+            document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => { e.preventDefault(); const email = e.target.querySelector('#loginEmail').value.trim(); const password = e.target.querySelector('#loginPassword').value; if (!email || !password) return showPopup('Error', 'Please enter email and password.'); handleLogin(email, password); });
+            [loginLink, mobileLoginLink].forEach(link => { if(link) link.addEventListener('click', (e) => { if (auth.currentUser) { e.preventDefault(); handleLogout(); } }); });
+            const sign_in_btn = document.querySelector("#sign-in-btn"); const sign_up_btn = document.querySelector("#sign-up-btn"); const login_container_el = document.querySelector(".login-container"); if(sign_in_btn && sign_up_btn && login_container_el) { sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode")); sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode")); }
             
-            [loginLink, mobileLoginLink].forEach(link => {
-                if(link) link.addEventListener('click', (e) => {
-                    if (auth.currentUser) { e.preventDefault(); handleLogout(); }
-                });
-            });
-
-            const sign_in_btn = document.querySelector("#sign-in-btn");
-            const sign_up_btn = document.querySelector("#sign-up-btn");
-            const login_container_el = document.querySelector(".login-container");
-            if(sign_in_btn && sign_up_btn && login_container_el) {
-                sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode"));
-                sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode"));
-            }
-
-            // --- POPUP AND UTILITY FUNCTIONS ---
-            const showPopup = (title, message, isSuccess = false) => {
-                const popup = document.getElementById('errorPopup');
-                const overlay = document.getElementById('popupOverlay');
-                if(!popup || !overlay) return;
-                const icon = popup.querySelector('.error-icon');
-                popup.querySelector('#popupTitle').textContent = title;
-                popup.querySelector('#popupMessage').textContent = message;
-                icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon';
-                icon.style.color = isSuccess ? '#4CAF50' : '#f82249';
-                popup.classList.add('active');
-                overlay.style.display = 'block';
-            };
-
-            function hidePopup() {
-                document.getElementById('errorPopup').classList.remove('active');
-                document.getElementById('popupOverlay').style.display = 'none';
-            }
-            
+            const showPopup = (title, message, isSuccess = false) => { const popup = document.getElementById('errorPopup'); const overlay = document.getElementById('popupOverlay'); if(!popup || !overlay) return; const icon = popup.querySelector('.error-icon'); popup.querySelector('#popupTitle').textContent = title; popup.querySelector('#popupMessage').textContent = message; icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon'; icon.style.color = isSuccess ? '#4CAF50' : '#f82249'; popup.classList.add('active'); overlay.style.display = 'block'; };
+            function hidePopup() { document.getElementById('errorPopup').classList.remove('active'); document.getElementById('popupOverlay').style.display = 'none'; }
             document.getElementById('popupClose')?.addEventListener('click', hidePopup);
             document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
+            document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) { document.body.classList.toggle('mobile-nav-active'); this.querySelector('i').classList.toggle('fa-bars'); this.querySelector('i').classList.toggle('fa-times'); let overly = document.getElementById('mobile-body-overly'); overly.style.display = document.body.classList.contains('mobile-nav-active') ? 'block' : 'none'; });
+            document.getElementById('mobile-body-overly').addEventListener('click', function() { document.body.classList.remove('mobile-nav-active'); let toggle = document.getElementById('mobile-nav-toggle').querySelector('i'); toggle.classList.remove('fa-times'); toggle.classList.add('fa-bars'); this.style.display = 'none'; });
+            
+            // --- FIX 2: Added functions to handle the event details popup ---
+            const defaultSchedules = {"Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],"Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],"Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],"Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],"Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]};
 
-            // --- Mobile Nav Logic (from original file) ---
-            document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) {
-                document.body.classList.toggle('mobile-nav-active');
-                this.querySelector('i').classList.toggle('fa-bars');
-                this.querySelector('i').classList.toggle('fa-times');
-                let overly = document.getElementById('mobile-body-overly');
-                overly.style.display = document.body.classList.contains('mobile-nav-active') ? 'block' : 'none';
-            });
-            document.getElementById('mobile-body-overly').addEventListener('click', function() {
-                document.body.classList.remove('mobile-nav-active');
-                let toggle = document.getElementById('mobile-nav-toggle').querySelector('i');
-                toggle.classList.remove('fa-times');
-                toggle.classList.add('fa-bars');
-                this.style.display = 'none';
-            });
-
-
-            // --- Chart and Calendar Initialization (from original file) ---
-            try {
-                var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-                var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-                gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-                gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-                new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                        datasets: [{
-                            label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249',
-                            data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327]
-                        }]
-                    },
-                    options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } }
-                });
-
-                pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), {
-                    type: "doughnut",
-                    data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] },
-                    options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 }
-                });
-
-                flatpickrInstance = flatpickr(document.getElementById("datetimepicker-dashboard"), {
-                    inline: true,
-                    prevArrow: "<span title=\"Previous month\">«</span>",
-                    nextArrow: "<span title=\"Next month\">»</span>",
-                    defaultDate: "today"
-                });
-            } catch (error) {
-                console.error("Error initializing charts or calendar:", error);
+            function closeTicketPopup() {
+                const ticketPopup = document.getElementById('ticketPopup');
+                const ticketOverlay = document.getElementById('ticketOverlay');
+                if (ticketPopup) ticketPopup.classList.remove('active');
+                if (ticketOverlay) ticketOverlay.style.display = 'none';
             }
+            document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
+            document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
 
-            function updateEventTypes(events) {
-                if (!pieChart || !events || events.length === 0) return;
+            window.showEventDetails = async function(registrationId) {
+                const ticketPopup = document.getElementById('ticketPopup');
+                const ticketOverlay = document.getElementById('ticketOverlay');
+                if (!ticketPopup || !ticketOverlay) return;
+
+                const regDoc = await db.collection('registrations').doc(registrationId).get();
+                if (!regDoc.exists) { showPopup('Error', 'Registration not found'); return; }
+                const registration = regDoc.data();
+
+                const eventDoc = await db.collection('events').doc(registration.eventId).get();
+                if (!eventDoc.exists) { showPopup('Error', 'Associated event not found'); return; }
+                const event = eventDoc.data();
+
+                ticketPopup.classList.add('active', 'view-mode');
+                ticketOverlay.style.display = 'block';
+
+                document.getElementById('popupEventTitle').textContent = event.title;
+                document.getElementById('popupSeatingChart').innerHTML = `<p class="p-4 text-center">Seating details below</p>`;
                 
-                const categoryCount = events.reduce((acc, event) => {
-                    const category = event.category || 'Uncategorized';
-                    acc[category] = (acc[category] || 0) + 1;
-                    return acc;
-                }, {});
-
-                const totalEvents = events.length;
-                const sortedCategories = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]);
+                let seatingText = 'None';
+                if (registration.seatingInfo) {
+                    if (registration.seatingInfo.type === 'stand') { seatingText = `Stand: ${registration.seatingInfo.stand} (${registration.seatingInfo.quantity})`; }
+                    else if (registration.seatingInfo.type === 'seats') { seatingText = registration.seatingInfo.seats.join(', '); }
+                }
+                document.getElementById('selectedSeatsText').textContent = seatingText;
                 
-                pieChart.data.labels = sortedCategories.map(([category]) => category);
-                pieChart.data.datasets[0].data = sortedCategories.map(([, count]) => count);
-                pieChart.update();
+                document.getElementById('fullName').value = registration.name;
+                document.getElementById('email').value = registration.email;
+                document.getElementById('phone').value = registration.phone;
+                document.getElementById('quantity').value = registration.quantity;
+                
+                const totalCostElement = document.getElementById('totalCost');
+                totalCostElement.textContent = registration.totalCost > 0 ? `$${registration.totalCost.toFixed(2)}` : 'FREE';
 
-                const tableBody = document.getElementById('eventTypesTableBody');
-                tableBody.innerHTML = '';
-                sortedCategories.forEach(([category, count]) => {
-                    const percentage = ((count / totalEvents) * 100).toFixed(1);
-                    tableBody.innerHTML += `<tr><td>${category}</td><td class="text-end">${percentage}%</td></tr>`;
-                });
-            }
-
-            function updateCalendar(events) {
-                if (!flatpickrInstance || !events) return;
-                const eventDates = events.map(event => event.date);
-                flatpickrInstance.set('onDayCreate', function(dObj, dStr, fp, dayElem){
-                    if(eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])){
-                        dayElem.classList.add('event');
-                    }
-                });
-                flatpickrInstance.redraw();
-            }
-        });
-
-        // --- OLD localStorage LOGIC (COMMENTED OUT FOR REFERENCE) ---
-        /*
-        const USERS_KEY = 'panther_venue_users_v3';
-        const EVENTS_KEY = 'panther_venue_events';
-        const REQUESTS_KEY = 'panther_venue_requests';
-        const REGISTRATIONS_KEY = 'panther_venue_registrations';
-        const ADMIN_SECRET = "#ADMIN2023!";
-
-        function registerUser(userData) {
-            const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-            const isAdmin = userData.username.includes(ADMIN_SECRET);
-            const cleanUsername = userData.username.replace(ADMIN_SECRET, "");
-            if (users.find(u => u.username === cleanUsername)) {
-                showPopup('Error', 'Username already exists');
-                return false;
-            }
-            const newUser = {
-                username: cleanUsername,
-                email: userData.email,
-                password: btoa(userData.password),
-                isAdmin: isAdmin,
-                created: new Date().toISOString()
+                document.querySelectorAll('.payment-group').forEach(group => group.style.display = registration.totalCost > 0 ? 'grid' : 'none');
+                document.getElementById('cardPaymentNumber').value = registration.cardPaymentNumber || 'N/A';
+                document.getElementById('expiry').value = registration.expiry || 'N/A';
+                
+                const scheduleTable = document.getElementById('popupScheduleTable');
+                scheduleTable.innerHTML = '';
+                const schedule = defaultSchedules[event.category] || [];
+                schedule.forEach(item => { scheduleTable.innerHTML += `<tr><td>${item.event}</td><td>${item.time}</td></tr>`; });
             };
-            users.push(newUser);
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
-            return true;
-        }
-
-        function handleLogin(credentialsOrUser) {
-            let user;
-            if (typeof credentialsOrUser === 'object' && credentialsOrUser.isAdmin !== undefined) {
-                user = credentialsOrUser;
-            } else {
-                const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-                user = users.find(u => u.username === credentialsOrUser.username && atob(u.password) === credentialsOrUser.password);
-                if (!user) {
-                    showPopup('Error', 'Invalid credentials');
-                    return;
-                }
-            }
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            const loginContainer = document.querySelector('.login-container');
-            loginContainer.classList.add('fade-out');
-            setTimeout(() => {
-                loginContainer.style.display = 'none';
-                loginContainer.classList.remove('fade-out');
-                if (user.isAdmin) {
-                    const dashboard = document.querySelector('.dashboard-wrapper');
-                    dashboard.style.display = 'block';
-                    dashboard.classList.add('fade-in');
-                    setTimeout(() => dashboard.classList.remove('fade-in'), 500);
-                    updateAdminDashboard();
-                    updateEventTypes();
-                } else {
-                    const userDashboard = document.querySelector('.user-dashboard-wrapper');
-                    userDashboard.style.display = 'block';
-                    userDashboard.classList.add('fade-in');
-                    setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
-                    loadUserDashboard(user);
-                }
-            }, 500);
-        }
-
-        function handleLogout() {
-            const adminDashboard = document.querySelector('.dashboard-wrapper');
-            const userDashboard = document.querySelector('.user-dashboard-wrapper');
-            if (adminDashboard.style.display === 'block') {
-                adminDashboard.classList.add('fade-out');
-                setTimeout(() => {
-                    adminDashboard.style.display = 'none';
-                    adminDashboard.classList.remove('fade-out');
-                    showLoginContainer();
-                }, 500);
-            } else if (userDashboard.style.display === 'block') {
-                userDashboard.classList.add('fade-out');
-                setTimeout(() => {
-                    userDashboard.style.display = 'none';
-                    userDashboard.classList.remove('fade-out');
-                    showLoginContainer();
-                }, 500);
-            }
-            localStorage.removeItem('currentUser');
-            currentUser = null;
-            document.getElementById('loginLink').textContent = 'Log In';
-            document.getElementById('loginLink').removeEventListener('click', handleLogout);
-        }
-        */
+            
+            // --- Chart and Calendar Initialization ---
+            try { var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d"); var gradient = ctx.createLinearGradient(0, 0, 0, 225); gradient.addColorStop(0, "rgba(215, 227, 244, 1)"); gradient.addColorStop(1, "rgba(215, 227, 244, 0)"); new Chart(ctx, { type: "line", data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], datasets: [{ label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249', data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327] }] }, options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } } });
+                pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), { type: "doughnut", data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] }, options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 } });
+                flatpickrInstance = flatpickr(document.getElementById("datetimepicker-dashboard"), { inline: true, prevArrow: "<span title=\"Previous month\">«</span>", nextArrow: "<span title=\"Next month\">»</span>", defaultDate: "today" });
+            } catch (error) { console.error("Error initializing charts or calendar:", error); }
+            function updateEventTypes(events) { if (!pieChart || !events || events.length === 0) return; const categoryCount = events.reduce((acc, event) => { const category = event.category || 'Uncategorized'; acc[category] = (acc[category] || 0) + 1; return acc; }, {}); const totalEvents = events.length; const sortedCategories = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]); pieChart.data.labels = sortedCategories.map(([category]) => category); pieChart.data.datasets[0].data = sortedCategories.map(([, count]) => count); pieChart.update(); const tableBody = document.getElementById('eventTypesTableBody'); tableBody.innerHTML = ''; sortedCategories.forEach(([category, count]) => { const percentage = ((count / totalEvents) * 100).toFixed(1); tableBody.innerHTML += `<tr><td>${category}</td><td class="text-end">${percentage}%</td></tr>`; }); }
+            function updateCalendar(events) { if (!flatpickrInstance || !events) return; const eventDates = events.map(event => event.date); flatpickrInstance.set('onDayCreate', function(dObj, dStr, fp, dayElem){ if(eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])){ dayElem.classList.add('event'); } }); flatpickrInstance.redraw(); }
+        });
     </script>
     <script src="static/js/app2.js"></script>
     <script src="lib/jquery/jquery.min.js"></script>
