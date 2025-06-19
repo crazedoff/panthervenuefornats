@@ -4110,6 +4110,30 @@ d
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
+   <!-- START: New script to redirect the contact form -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Find the contact form on the page
+      const contactForm = document.querySelector('.contactForm');
+
+      // Check if the form actually exists on this page before proceeding
+      if (contactForm) {
+        
+        // Add an event listener that waits for the form to be submitted
+        contactForm.addEventListener('submit', function(event) {
+          
+          // 1. Prevent the form from trying to do anything else (like sending data)
+          event.preventDefault();
+          
+          // 2. Immediately redirect the user to the 404 page
+          window.location.href = '404.html';
+
+        });
+      }
+    });
+  </script>
+  <!-- END: New script to redirect the contact form -->
+
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
