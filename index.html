@@ -3458,7 +3458,13 @@ function typeExcellence() {
               <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
               <div class="validation"></div>
             </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+ <!-- The form's "action" attribute is where the user will be sent -->
+<form action="404.html">
+    <div class="text-center">
+        <!-- The type="submit" button will trigger the form's action -->
+        <button type="submit">Send Message</button>
+    </div>
+</form>
           </form>
         </div>
       </div>
