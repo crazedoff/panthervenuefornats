@@ -1,5 +1,15 @@
+Of course! Here is the complete `index.html` file with the requested decorative blobs and circles implemented for the specified sections, following the same patterns as the existing decorations.
 
+### Summary of Changes:
+1.  **Hotel Section:** The decorative circles have been changed from faint red to a neutral gray.
+2.  **About Us Section:** A large, subtle gray blob has been added to the background.
+3.  **Seating Chart Section:** A large, faint red circle has been added to the background.
+4.  **Team Section:** A large, subtle red blob has been added to the background.
+5.  **Contact Us Section:** A large, subtle red blob has been added to the background.
 
+All new decorations are added within the existing desktop-only media query (`@media (min-width: 1200px)`) to maintain consistency with the site's design.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +104,7 @@
       /* These effects are now scoped to screens wider than 1199px */
       @media (min-width: 1200px) {
         
-        /* -- NEW: Hotel Section Background Circles -- */
+        /* -- Hotel Section Background Circles (CHANGED TO GRAY) -- */
         #hotels.section-with-bg {
             position: relative; /* Container for pseudo-elements */
             overflow: hidden; /* Clips the circles that go off-screen */
@@ -106,8 +116,8 @@
             content: '';
             position: absolute;
             z-index: -1;
-            background: rgba(255, 209, 218, 0.442); /* Faint red color for circles */
-              border-radius: 50%;
+            background: rgba(128, 128, 128, 0.1); /* CHANGED: Faint gray color for circles */
+            border-radius: 50%;
             pointer-events: none;
         }
 
@@ -184,6 +194,78 @@
         #decor23 { top: 25%; right: calc(20% * var(--decor-density-multiplier)); font-size: 50px; transform: rotate(-25deg); }
         #decor24 { top: 98%; right: calc(3% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(15deg); color: var(--decor-color-red); }
         #decor26 { top: 88%; right: calc(20% * var(--decor-density-multiplier)); font-size: 45px; transform: rotate(-10deg); color: var(--decor-color-red); }
+      
+        /* -- NEW Section Decorations (Blobs & Circles) -- */
+        #about, #seating, #team, #contact {
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Establishes a stacking context */
+        }
+
+        /* Gray Blob for About Us */
+        #about::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('grayblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 700px;
+            height: 700px;
+            top: -150px;
+            left: -250px;
+            opacity: 0.35;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        /* Red Circle for Seating Chart */
+        #seating::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background: rgba(224, 7, 47, 0.1); /* Faint red */
+            border-radius: 50%;
+            width: 550px;
+            height: 550px;
+            bottom: -250px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        /* Red Blob for Team */
+        #team::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 800px;
+            height: 800px;
+            bottom: -300px;
+            right: -350px;
+            opacity: 0.4;
+            transform: rotate(25deg);
+            pointer-events: none;
+        }
+
+        /* Red Blob for Contact Us */
+        #contact::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background-image: url('redblob.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            left: -200px;
+            opacity: 0.4;
+            transform: rotate(-45deg) scaleX(-1); /* Flipped for variation */
+            pointer-events: none;
+        }
       }
     </style>
 
@@ -4157,4 +4239,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
+```
