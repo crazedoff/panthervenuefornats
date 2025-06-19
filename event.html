@@ -262,7 +262,7 @@
     <header id="header">
         <div class="container">
             <div id="logo" class="pull-left">
-                <a href="index.html" class="scrollto"><img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo"></a>
+                <a href="navImage.png" class="scrollto"><img src="navImage.png" alt="" title=""></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
@@ -284,7 +284,8 @@
             <div class="event-details">
                 <h2 class="text-2xl font-bold mb-4">Event Title</h2>
                 <div class="seating-chart">
-                    <!-- Seating chart content will be dynamically inserted here -->
+                    <i class="fas fa-chair text-3xl text-gray-300"></i>
+                    <span class="ml-2 text-gray-500">Seating Chart Preview</span>
                 </div>
                 <table class="schedule-table"></table>
                 <div class="availability">
@@ -378,462 +379,693 @@
             </div>
         </div>
     </div>
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <!-- Firebase Configuration -->
     <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA", // Replace with your actual config
-        authDomain: "panthervenue.firebaseapp.com",
-        projectId: "panthervenue",
-        storageBucket: "panthervenue.appspot.com",
-        messagingSenderId: "15387964560",
-        appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
-      };
-      
-      firebase.initializeApp(firebaseConfig);
-      const auth = firebase.auth();
-      const db = firebase.firestore();
-    </script>
-    
-    <!-- Main Application Logic (Firebase Integrated) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            new WOW().init();
+        // important initialization for file
+        new WOW().init();
 
-            let currentUser = null;
-            let events = [];
-            let filteredEvents = [];
-            let currentView = 'box';
-            let currentEvent = null;
+        // Updated default events with new dates and renamed "Spring College Fair" to "Fall College Fair"
+        const defaultEvents = [
+  {
+    id: '1',
+    title: "Varsity Basketball Finals",
+    date: "2025-06-30",
+    location: "Large Gym",
+    price: 15.00,
+    category: "Athletics",
+    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+    desc: "Cheer for our school teams in the championship basketball game! Don't miss this exciting finale featuring our top players.",
+    signedUpUsers: []
+  },
+  {
+    id: '2',
+    title: "Fall Dance Recital",
+    date: "2025-07-05",
+    location: "Small Gym",
+    price: 10.00,
+    category: "Performances",
+    image: "https://images.unsplash.com/photo-1547153760-18fc86324498",
+    desc: "Annual student choreography showcase featuring various dance styles from ballet to hip-hop.",
+    signedUpUsers: []
+  },
+  {
+    id: '3',
+    title: "Yoga Wellness Workshop",
+    date: "2025-07-10",
+    location: "Small Gym",
+    price: 15.00,
+    category: "Workshops",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b",
+    desc: "Beginner-friendly yoga session with certified instructors focusing on stress relief and flexibility.",
+    signedUpUsers: []
+  },
+  {
+    id: '4',
+    title: "Cheerleading Tryouts",
+    date: "2025-07-15",
+    location: "Small Gym",
+    price: 0.00,
+    category: "Athletics",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/e8e136f55b71c6c75dad99176556c1f6f5276204_cheerleading.png",
+    desc: "Open tryouts for next year's varsity cheer squad. No experience required - come show your spirit!",
+    signedUpUsers: []
+  },
+  {
+    id: '5',
+    title: "Alumni Basketball Game",
+    date: "2025-07-20",
+    location: "Large Gym",
+    price: 10.00,
+    category: "Athletics",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1dc5b460c2f9e13e41325726cd27c93902aceec8_basquetbol.png",
+    desc: "Former students vs current varsity team exhibition match with halftime performances.",
+    signedUpUsers: []
+  },
+  {
+    id: '6',
+    title: "Fall College Fair",
+    date: "2025-07-25",
+    location: "Large Gym",
+    price: 0.00,
+    category: "Gatherings",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/806bd9981d667ec81d0c8bad0fb1c6090ff49f43_collegefair.png",
+    desc: "Meet representatives from top universities nationwide and explore academic opportunities.",
+    signedUpUsers: []
+  },
+  {
+    id: '7',
+    title: "Math Olympiad Tournament",
+    date: "2025-07-30",
+    location: "Large Gym",
+    price: 10.00,
+    category: "Competitions",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/6e80c1203fd79f9ebfb1b806293a67fef4b29372_screenshot_2025-03-04_at_6.12.56___pm.png",
+    desc: "District-wide mathematics competition for grades 9-12 with exciting prizes and recognition.",
+    signedUpUsers: []
+  },
+  {
+    id: '8',
+    title: "STEM Robotics Demo",
+    date: "2025-08-04",
+    location: "Large Gym",
+    price: 10.00,
+    category: "Workshops",
+    image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9",
+    desc: "Interactive robotics demonstration and workshop for students interested in engineering.",
+    signedUpUsers: []
+  },
+  {
+    id: '9',
+    title: "Spring Musical Auditions",
+    date: "2025-08-09",
+    location: "Small Gym",
+    price: 0.00,
+    category: "Performances",
+    image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d",
+    desc: "Open auditions for the annual school musical production. All grade levels welcome to try out.",
+    signedUpUsers: []
+  },
+  {
+    id: '10',
+    title: "Debate Tournament Finals",
+    date: "2025-08-14",
+    location: "Large Gym",
+    price: 0.00,
+    category: "Competitions",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/d3640f70237238ffd63f60fa5f6ca010504a5090_debate.png",
+    desc: "Championship round of the regional debate competition featuring top student orators.",
+    signedUpUsers: []
+  },
+  {
+    id: '11',
+    title: "Parent-Teacher Mixer",
+    date: "2025-08-19",
+    location: "Small Gym",
+    price: 0.00,
+    category: "Gatherings",
+    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad",
+    desc: "Social event for parents and faculty to connect and discuss school initiatives.",
+    signedUpUsers: []
+  },
+  {
+    id: '12',
+    title: "Self-Defense Workshop",
+    date: "2025-08-24",
+    location: "Large Gym",
+    price: 20.00,
+    category: "Workshops",
+    image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db2768abd24d61b834f35da103db2f138dcf4101_selfsafety.png",
+    desc: "Basic self-defense techniques taught by certified martial arts instructors.",
+    signedUpUsers: []
+  }
+]
+;
 
-            const loginButton = document.getElementById('loginButton');
-            const ticketPopup = document.getElementById('ticketPopup');
-            const ticketOverlay = document.getElementById('ticketOverlay');
+        // Default schedules - more can be added dynamically
+        const defaultSchedules = {
+            "Athletics": [
+                { event: "Doors Open", time: "6:00 PM" },
+                { event: "Game Start", time: "7:00 PM" },
+                { event: "Game End", time: "8:00 PM" }
+            ],
+            "Performances": [
+                { event: "Doors Open", time: "7:00 PM" },
+                { event: "Show Start", time: "7:30 PM" },
+                { event: "Show End", time: "9:30 PM" }
+            ],
+            "Competitions": [
+                { event: "Registration", time: "8:00 AM" },
+                { event: "Round 1", time: "9:00 AM" },
+                { event: "Round 2", time: "11:00 AM" },
+                { event: "Finals", time: "2:00 PM" }
+            ],
+            "Workshops": [
+                { event: "Session 1", time: "9:30 AM" },
+                { event: "Break", time: "11:00 AM" },
+                { event: "Session 2", time: "11:30 AM" }
+            ],
+            "Gatherings": [
+                { event: "Welcome", time: "10:00 AM" },
+                { event: "Networking", time: "12:00 PM" },
+                { event: "Closing", time: "1:00 PM" }
+            ]
+        };
 
-            const defaultEvents = [
-              { id: '1', title: "Varsity Basketball Finals", date: "2025-06-30", location: "Large Gym", price: 15.00, category: "Athletics", image: "https://images.unsplash.com/photo-1546519638-68e109498ffc", desc: "Cheer for our school teams in the championship basketball game! Don't miss this exciting finale featuring our top players." },
-              { id: '2', title: "Fall Dance Recital", date: "2025-07-05", location: "Small Gym", price: 10.00, category: "Performances", image: "https://images.unsplash.com/photo-1547153760-18fc86324498", desc: "Annual student choreography showcase featuring various dance styles from ballet to hip-hop." },
-              { id: '3', title: "Yoga Wellness Workshop", date: "2025-07-10", location: "Small Gym", price: 15.00, category: "Workshops", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b", desc: "Beginner-friendly yoga session with certified instructors focusing on stress relief and flexibility." },
-              { id: '4', title: "Cheerleading Tryouts", date: "2025-07-15", location: "Small Gym", price: 0.00, category: "Athletics", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/e8e136f55b71c6c75dad99176556c1f6f5276204_cheerleading.png", desc: "Open tryouts for next year's varsity cheer squad. No experience required - come show your spirit!" },
-              { id: '5', title: "Alumni Basketball Game", date: "2025-07-20", location: "Large Gym", price: 10.00, category: "Athletics", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1dc5b460c2f9e13e41325726cd27c93902aceec8_basquetbol.png", desc: "Former students vs current varsity team exhibition match with halftime performances." },
-              { id: '6', title: "Fall College Fair", date: "2025-07-25", location: "Large Gym", price: 0.00, category: "Gatherings", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/806bd9981d667ec81d0c8bad0fb1c6090ff49f43_collegefair.png", desc: "Meet representatives from top universities nationwide and explore academic opportunities." },
-              { id: '7', title: "Math Olympiad Tournament", date: "2025-07-30", location: "Large Gym", price: 10.00, category: "Competitions", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/6e80c1203fd79f9ebfb1b806293a67fef4b29372_screenshot_2025-03-04_at_6.12.56___pm.png", desc: "District-wide mathematics competition for grades 9-12 with exciting prizes and recognition." },
-              { id: '8', title: "STEM Robotics Demo", date: "2025-08-04", location: "Large Gym", price: 10.00, category: "Workshops", image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9", desc: "Interactive robotics demonstration and workshop for students interested in engineering." },
-              { id: '9', title: "Spring Musical Auditions", date: "2025-08-09", location: "Small Gym", price: 0.00, category: "Performances", image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d", desc: "Open auditions for the annual school musical production. All grade levels welcome to try out." },
-              { id: '10', title: "Debate Tournament Finals", date: "2025-08-14", location: "Large Gym", price: 0.00, category: "Competitions", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/d3640f70237238ffd63f60fa5f6ca010504a5090_debate.png", desc: "Championship round of the regional debate competition featuring top student orators." },
-              { id: '11', title: "Parent-Teacher Mixer", date: "2025-08-19", location: "Small Gym", price: 0.00, category: "Gatherings", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad", desc: "Social event for parents and faculty to connect and discuss school initiatives." },
-              { id: '12', title: "Self-Defense Workshop", date: "2025-08-24", location: "Large Gym", price: 20.00, category: "Workshops", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db2768abd24d61b834f35da103db2f138dcf4101_selfsafety.png", desc: "Basic self-defense techniques taught by certified martial arts instructors." }
-            ];
-            
-            const defaultSchedules = {
-                "Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],
-                "Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],
-                "Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],
-                "Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],
-                "Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]
-            };
+        // Load events from local storage, default to the 12 events if none exist
+        let events = JSON.parse(localStorage.getItem('panther_venue_events'));
+        if (!events || !Array.isArray(events)) {
+            events = defaultEvents;
+            localStorage.setItem('panther_venue_events', JSON.stringify(events));
+        } else {
+            const validEvents = events.filter(e => 
+                'id' in e && 'title' in e && 'date' in e && 'location' in e && 
+                'price' in e && 'category' in e && 'image' in e && 'desc' in e && 
+                'signedUpUsers' in e
+            );
+            if (validEvents.length < defaultEvents.length) {
+                const existingIds = new Set(validEvents.map(e => e.id));
+                const missingDefaults = defaultEvents.filter(de => !existingIds.has(de.id));
+                events = [...missingDefaults, ...validEvents];
+                localStorage.setItem('panther_venue_events', JSON.stringify(events));
+            } else {
+                events = validEvents;
+            }
+        }
 
-            auth.onAuthStateChanged(async (user) => {
-                if (user) {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    if(userDoc.exists) {
-                        currentUser = { uid: user.uid, ...userDoc.data() };
-                        loginButton.textContent = 'Dashboard';
-                        loginButton.href = 'login.html';
-                    } else {
-                        currentUser = null;
-                        auth.signOut();
+        let filteredEvents = [...events];
+        let currentView = 'box';
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        const username = currentUser ? currentUser.username : localStorage.getItem('username') || 'Guest';
+        const ticketPopup = document.getElementById('ticketPopup');
+        const ticketOverlay = document.getElementById('ticketOverlay');
+        let currentEvent = null;
+
+        function generateSeats() {
+            const seatGroups = document.querySelectorAll('.seat-group');
+            const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+            seatGroups.forEach((group, colIndex) => {
+                for (let i = 0; i < 8; i++) {
+                    const seatRow = document.createElement('div');
+                    seatRow.className = 'seat-row';
+                    for (let seatNum = 1; seatNum <= 2; seatNum++) {
+                        const seat = document.createElement('div');
+                        seat.className = 'seat ' + (Math.random() < 0.7 ? 'available' : 'sold-out');
+                        const rowLetter = rows[colIndex];
+                        seat.textContent = `${rowLetter}${i * 2 + seatNum}`;
+                        seatRow.appendChild(seat);
                     }
-                } else {
-                    currentUser = null;
-                    loginButton.textContent = 'Log In';
-                    loginButton.href = 'login.html';
+                    group.appendChild(seatRow);
                 }
-                await initPage();
             });
-            
-            async function initPage() {
-                document.getElementById('eventCount').innerHTML = '<h2>Loading Events...</h2>';
-                const eventsSnapshot = await db.collection('events').get();
-                if (eventsSnapshot.empty) {
-                    console.log("Events collection is empty. Seeding with default events...");
-                    const batch = db.batch();
-                    defaultEvents.forEach(event => {
-                        const docRef = db.collection('events').doc(event.id);
-                        batch.set(docRef, event);
-                    });
-                    await batch.commit();
-                    const newSnapshot = await db.collection('events').get();
-                    events = newSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                } else {
-                    events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                }
+        }
 
-                filteredEvents = [...events];
-                populateCategories();
-                renderEvents();
-                updateEventCount();
-                setupEventListeners();
-                initPriceSlider();
+        function initPage() {
+            populateCategories();
+            renderEvents();
+            updateEventCount();
+            setupEventListeners();
+            initPriceSlider();
+        }
+
+        function initPriceSlider() {
+            const minPrice = Math.min(...events.map(e => e.price));
+            const maxPrice = Math.max(...events.map(e => e.price));
+            $("#price-slider").slider({
+                range: true,
+                min: minPrice,
+                max: maxPrice,
+                values: [minPrice, maxPrice],
+                slide: function(event, ui) {
+                    $("#min-price").text(`$${ui.values[0].toFixed(2)}`);
+                    $("#max-price").text(`$${ui.values[1].toFixed(2)}`);
+                },
+                stop: function(event, ui) {
+                    filterEvents();
+                }
+            });
+            $("#min-price").text(`$${minPrice.toFixed(2)}`);
+            $("#max-price").text(`$${maxPrice.toFixed(2)}`);
+        }
+
+        function updateTotalCost(price, quantity) {
+            const totalCostElement = document.getElementById('totalCost');
+            if (price === 0) {
+                totalCostElement.textContent = 'FREE';
+            } else {
+                const total = price * quantity;
+                totalCostElement.textContent = `$${total.toFixed(2)}`;
             }
-            
-            // --- FIX: Restored original `generateSeats` function ---
-            function generateSeats() {
-                const seatGroups = document.querySelectorAll('.seat-group');
-                const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-                seatGroups.forEach((group, colIndex) => {
-                    for (let i = 0; i < 8; i++) {
-                        const seatRow = document.createElement('div');
-                        seatRow.className = 'seat-row';
-                        for (let seatNum = 1; seatNum <= 2; seatNum++) {
-                            const seat = document.createElement('div');
-                            seat.className = 'seat ' + (Math.random() < 0.7 ? 'available' : 'sold-out');
-                            const rowLetter = rows[colIndex];
-                            seat.textContent = `${rowLetter}${i * 2 + seatNum}`;
-                            seatRow.appendChild(seat);
+        }
+
+        function showTicketPopup(eventId) {
+            if (!currentUser) {
+                alert('Please log in to purchase tickets.');
+                window.location.href = 'login.html';
+                return;
+            }
+            const event = events.find(e => e.id === eventId);
+            if (!event) return;
+            currentEvent = event;
+
+            ticketPopup.querySelector('h2').textContent = event.title;
+            const seatingChartDiv = ticketPopup.querySelector('.seating-chart');
+            seatingChartDiv.innerHTML = '';
+            document.getElementById('selectedSeatsText').textContent = 'None';
+
+            if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
+                seatingChartDiv.innerHTML = `
+                    <div class="arena-container2">
+                        <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
+                        <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                        <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                        <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                        <div class="main-floor2">
+                            <div class="court-display">
+                                <div class="court-text">MAIN COURT</div>
+                                <div class="court-subtext">Performance-ready Surface</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                const stands = seatingChartDiv.querySelectorAll('.capacity-section');
+                stands.forEach(stand => {
+                    stand.addEventListener('click', () => {
+                        const quantity = parseInt(document.getElementById('quantity').value);
+                        stands.forEach(s => s.classList.remove('selected'));
+                        stand.classList.add('selected');
+                        const selectedStand = stand.textContent.split(' • ')[0];
+                        document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
+                    });
+                });
+            } else if (['Performances', 'Competitions'].includes(event.category)) {
+                seatingChartDiv.innerHTML = `
+                    <div class="arena-container">
+                        <div class="capacity-section north closed">NORTH STAND (CLOSED)</div>
+                        <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                        <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                        <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                        <div class="stage-container">
+                            <div class="stage">MAIN STAGE</div>
+                        </div>
+                        <div class="main-floor">
+                            <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 50px;">
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                                <div class="seat-group"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                generateSeats();
+                const quantityInput = document.getElementById('quantity');
+                const seats = seatingChartDiv.querySelectorAll('.seat.available');
+                const selectedSeats = new Set();
+                seats.forEach(seat => {
+                    seat.addEventListener('click', () => {
+                        const quantity = parseInt(quantityInput.value);
+                        if (selectedSeats.has(seat)) {
+                            selectedSeats.delete(seat);
+                            seat.classList.remove('selected');
+                        } else if (selectedSeats.size < quantity) {
+                            selectedSeats.add(seat);
+                            seat.classList.add('selected');
+                        } else {
+                            alert('You have reached the maximum number of tickets.');
                         }
-                        group.appendChild(seatRow);
-                    }
+                        const selectedSeatLabels = Array.from(selectedSeats).map(s => s.textContent).join(', ');
+                        document.getElementById('selectedSeatsText').textContent = selectedSeatLabels || 'None';
+                    });
+                });
+                quantityInput.addEventListener('change', () => {
+                    selectedSeats.clear();
+                    seats.forEach(seat => seat.classList.remove('selected'));
+                    document.getElementById('selectedSeatsText').textContent = 'None';
+                });
+                const stands = seatingChartDiv.querySelectorAll('.capacity-section:not(.closed)');
+                stands.forEach(stand => {
+                    stand.addEventListener('click', () => {
+                        const quantity = parseInt(document.getElementById('quantity').value);
+                        stands.forEach(s => s.classList.remove('selected'));
+                        stand.classList.add('selected');
+                        const selectedStand = stand.textContent.split(' • ')[0];
+                        document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
+                    });
                 });
             }
 
-            // --- FIX: Restored original `showTicketPopup` with full seating chart logic ---
-            window.showTicketPopup = function(eventId) {
-                if (!currentUser) {
-                    alert('Please log in to purchase tickets.');
-                    window.location.href = 'login.html';
+            const scheduleTable = ticketPopup.querySelector('.schedule-table');
+            scheduleTable.innerHTML = '';
+            const schedule = defaultSchedules[event.category] || [];
+            schedule.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.event}</td><td>${item.time}</td>`;
+                scheduleTable.appendChild(row);
+            });
+
+            const price = event.price;
+            const totalCostElement = document.getElementById('totalCost');
+            totalCostElement.dataset.price = price;
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.value = 1;
+            updateTotalCost(price, 1);
+
+            const paymentGroups = document.querySelectorAll('.payment-group');
+            paymentGroups.forEach(group => {
+                group.style.display = price > 0 ? 'block' : 'none';
+            });
+            const paymentInputs = document.querySelectorAll('.payment-field');
+            paymentInputs.forEach(input => {
+                input.required = price > 0;
+            });
+
+            document.getElementById('fullName').value = currentUser ? currentUser.username : '';
+            document.getElementById('email').value = currentUser ? currentUser.email : '';
+            ticketPopup.classList.add('active');
+            ticketOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTicketPopup() {
+            ticketPopup.classList.remove('active');
+            ticketOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function filterEvents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+            const minPrice = $("#price-slider").slider("values", 0);
+            const maxPrice = $("#price-slider").slider("values", 1);
+
+            filteredEvents = events.filter(event => {
+                const matchesSearch = event.title.toLowerCase().includes(searchTerm) || event.desc.toLowerCase().includes(searchTerm);
+                const matchesDate = (!startDate || event.date >= startDate) && (!endDate || event.date <= endDate);
+                const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(event.category);
+                const matchesPrice = event.price >= minPrice && event.price <= maxPrice;
+                return matchesSearch && matchesDate && matchesCategory && matchesPrice;
+            });
+
+            renderEvents();
+            updateEventCount();
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            document.querySelectorAll('.category-checkbox').forEach(cb => cb.checked = false);
+            const minPrice = Math.min(...events.map(e => e.price));
+            const maxPrice = Math.max(...events.map(e => e.price));
+            $("#price-slider").slider("values", [minPrice, maxPrice]);
+            $("#min-price").text(`$${minPrice.toFixed(2)}`);
+            $("#max-price").text(`$${maxPrice.toFixed(2)}`);
+            filteredEvents = [...events];
+            renderEvents();
+            updateEventCount();
+        }
+
+        function renderEvents() {
+            const boxView = document.getElementById('box-view');
+            const listView = document.getElementById('list-view');
+            boxView.innerHTML = '';
+            listView.innerHTML = '';
+            filteredEvents.forEach(event => {
+                boxView.innerHTML += createEventCard(event, 'box');
+                listView.innerHTML += createEventCard(event, 'list');
+            });
+            addFadeIn(currentView);
+        }
+
+        function createEventCard(event, viewType) {
+            const priceDisplay = event.price > 0 ? `$${event.price.toFixed(2)}` : 'FREE';
+            const formattedDate = new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            if (viewType === 'box') {
+                return `
+                    <div class="event-card p-4 fade-in">
+                        <div class="relative mb-4">
+                            <img src="${event.image}" class="w-full h-40 object-cover rounded-lg" alt="${event.title}">
+                            <span class="date-tag absolute top-2 right-2">${formattedDate}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">${event.title}</h3>
+                        <div class="event-meta text-sm mb-2">
+                            <span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span>
+                            <span class="flex items-center"><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span>
+                        </div>
+                        <div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${event.category}</span></div>
+                        <p class="text-gray-600 event-description">${event.desc}</p>
+                        <button onclick="showTicketPopup('${event.id}')" class="register-button bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700">Register Now</button>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="event-row fade-in">
+                        <div class="event-image">
+                            <img src="${event.image}" alt="${event.title}">
+                        </div>
+                        <div class="event-info">
+                            <h3>${event.title}</h3>
+                            <div class="meta">
+                                <span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span>
+                                <span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span>
+                                <span><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span>
+                                <span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category}</span>
+                            </div>
+                        </div>
+                        <div class="event-action">
+                            <button onclick="showTicketPopup('${event.id}')">Register Now</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function updateEventCount() {
+            document.getElementById('eventCount').innerHTML = `
+                Welcome, <span class="text-red-600">${username}</span>! Showing 
+                <span class="text-red-600">${filteredEvents.length}</span> events:
+            `;
+        }
+
+        function addFadeIn(viewType) {
+            const selector = viewType === 'box' ? '#box-view .event-card' : '#list-view .event-row';
+            const eventCards = document.querySelectorAll(selector);
+            eventCards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = "translateY(20px)";
+                setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = "translateY(0)";
+                    card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                }, index * 50);
+            });
+        }
+
+        function toggleFilter(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+            const icon = header.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        function populateCategories() {
+            const container = document.getElementById('categoryFilters');
+            const categories = [...new Set(events.map(event => event.category))];
+            container.innerHTML = '';
+            categories.forEach(category => {
+                const count = events.filter(e => e.category === category).length;
+                container.innerHTML += `
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="category-checkbox" value="${category}">
+                        <span>${category}</span>
+                                                <span>(${count})</span>
+
+           
+                    </label>
+                `;
+            });
+        }
+
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterEvents);
+            document.getElementById('startDate').addEventListener('change', filterEvents);
+            document.getElementById('endDate').addEventListener('change', filterEvents);
+            document.getElementById('categoryFilters').addEventListener('change', filterEvents);
+            document.getElementById('box-btn').addEventListener('click', () => {
+                document.querySelectorAll('.view-toggle').forEach(btn => btn.classList.remove('active'));
+                document.getElementById('box-btn').classList.add('active');
+                currentView = 'box';
+                document.getElementById('box-view').classList.remove('hidden');
+                document.getElementById('list-view').classList.add('hidden');
+                addFadeIn('box');
+            });
+            document.getElementById('list-btn').addEventListener('click', () => {
+                document.querySelectorAll('.view-toggle').forEach(btn => btn.classList.remove('active'));
+                document.getElementById('list-btn').classList.add('active');
+                currentView = 'list';
+                document.getElementById('list-view').classList.remove('hidden');
+                document.getElementById('box-view').classList.add('hidden');
+                addFadeIn('list');
+            });
+            document.getElementById('ticketForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const seatingText = document.getElementById('selectedSeatsText').textContent;
+                const seatingInfo = parseSeatingInfo(seatingText);
+                if (!seatingInfo) {
+                    alert('Please select seating.');
                     return;
                 }
-                const event = events.find(e => e.id === eventId);
-                if (!event) return;
-                currentEvent = event;
-
-                ticketPopup.querySelector('h2').textContent = event.title;
-                const seatingChartDiv = ticketPopup.querySelector('.seating-chart');
-                seatingChartDiv.innerHTML = ''; // Clear previous content
-                document.getElementById('selectedSeatsText').textContent = 'None';
-
-                if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
-                    seatingChartDiv.innerHTML = `
-                        <div class="arena-container2">
-                            <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
-                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
-                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
-                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
-                            <div class="main-floor2">
-                                <div class="court-display">
-                                    <div class="court-text">MAIN COURT</div>
-                                    <div class="court-subtext">Performance-ready Surface</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    const stands = seatingChartDiv.querySelectorAll('.capacity-section');
-                    stands.forEach(stand => {
-                        stand.addEventListener('click', () => {
-                            const quantity = parseInt(document.getElementById('quantity').value);
-                            stands.forEach(s => s.classList.remove('selected'));
-                            stand.classList.add('selected');
-                            const selectedStand = stand.textContent.split(' • ')[0];
-                            document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
-                        });
-                    });
-                } else if (['Performances', 'Competitions'].includes(event.category)) {
-                    seatingChartDiv.innerHTML = `
-                        <div class="arena-container">
-                            <div class="capacity-section north closed">NORTH STAND (CLOSED)</div>
-                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
-                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
-                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
-                            <div class="stage-container"><div class="stage">MAIN STAGE</div></div>
-                            <div class="main-floor">
-                                <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 50px;">
-                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
-                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    generateSeats(); // Call the restored helper function
-                    const quantityInput = document.getElementById('quantity');
-                    const seats = seatingChartDiv.querySelectorAll('.seat.available');
-                    const selectedSeats = new Set();
-                    seats.forEach(seat => {
-                        seat.addEventListener('click', () => {
-                            const quantity = parseInt(quantityInput.value);
-                            if (selectedSeats.has(seat)) {
-                                selectedSeats.delete(seat);
-                                seat.classList.remove('selected');
-                            } else if (selectedSeats.size < quantity) {
-                                selectedSeats.add(seat);
-                                seat.classList.add('selected');
-                            } else {
-                                alert('You have reached the maximum number of tickets.');
-                            }
-                            const selectedSeatLabels = Array.from(selectedSeats).map(s => s.textContent).join(', ');
-                            document.getElementById('selectedSeatsText').textContent = selectedSeatLabels || 'None';
-                        });
-                    });
-                    quantityInput.addEventListener('change', () => {
-                        selectedSeats.clear();
-                        seats.forEach(seat => seat.classList.remove('selected'));
-                        document.getElementById('selectedSeatsText').textContent = 'None';
-                    });
-                    const stands = seatingChartDiv.querySelectorAll('.capacity-section:not(.closed)');
-                    stands.forEach(stand => {
-                        stand.addEventListener('click', () => {
-                            const quantity = parseInt(document.getElementById('quantity').value);
-                            stands.forEach(s => s.classList.remove('selected'));
-                            stand.classList.add('selected');
-                            const selectedStand = stand.textContent.split(' • ')[0];
-                            document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
-                        });
-                    });
+                const formData = {
+                    name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    cardPaymentNumber: document.getElementById('cardPaymentNumber').value,
+                    expiry: document.getElementById('expiry').value,
+                    cvv: document.getElementById('cvv').value,
+                    quantity: parseInt(document.getElementById('quantity').value)
+                };
+                const price = parseFloat(document.getElementById('totalCost').dataset.price);
+                if (price > 0) {
+                    if (!validateForm(formData, true)) return;
+                } else {
+                    formData.cardPaymentNumber = '';
+                    formData.expiry = '';
+                    formData.cvv = '';
                 }
-
-                const scheduleTable = ticketPopup.querySelector('.schedule-table');
-                scheduleTable.innerHTML = '';
-                const schedule = defaultSchedules[event.category] || [];
-                schedule.forEach(item => {
-                    scheduleTable.appendChild(document.createElement('tr')).innerHTML = `<td>${item.event}</td><td>${item.time}</td>`;
-                });
-
-                const price = event.price;
-                document.getElementById('totalCost').dataset.price = price;
-                document.getElementById('quantity').value = 1;
-                updateTotalCost(price, 1);
-
-                document.querySelectorAll('.payment-group').forEach(group => group.style.display = price > 0 ? 'block' : 'none');
-                document.querySelectorAll('.payment-field').forEach(input => input.required = price > 0);
-
-                document.getElementById('fullName').value = currentUser.username || '';
-                document.getElementById('email').value = currentUser.email || '';
-                
-                ticketPopup.classList.add('active');
-                ticketOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function initPriceSlider() {
-                if (events.length === 0) return;
-                const prices = events.map(e => e.price);
-                const minPrice = Math.min(...prices);
-                const maxPrice = Math.max(...prices);
-                $("#price-slider").slider({
-                    range: true, min: minPrice, max: maxPrice, values: [minPrice, maxPrice],
-                    slide: (event, ui) => {
-                        $("#min-price").text(`$${ui.values[0].toFixed(2)}`);
-                        $("#max-price").text(`$${ui.values[1].toFixed(2)}`);
-                    },
-                    stop: () => filterEvents()
-                });
-                $("#min-price").text(`$${minPrice.toFixed(2)}`);
-                $("#max-price").text(`$${maxPrice.toFixed(2)}`);
-            }
-
-            function updateTotalCost(price, quantity) {
+                const registration = {
+                    id: Date.now().toString(),
+                    username: currentUser.username,
+                    eventId: currentEvent.id,
+                    eventName: currentEvent.title,
+                    eventDate: currentEvent.date,
+                    quantity: formData.quantity,
+                    seatingInfo: seatingInfo,
+                    totalCost: price * formData.quantity,
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    cardPaymentNumber: formData.cardPaymentNumber,
+                    expiry: formData.expiry,
+                    cvv: formData.cvv,
+                    created: new Date().toISOString()
+                };
+                let registrations = JSON.parse(localStorage.getItem('panther_venue_registrations')) || [];
+                registrations.push(registration);
+                localStorage.setItem('panther_venue_registrations', JSON.stringify(registrations));
+                const eventIndex = events.findIndex(e => e.id === currentEvent.id);
+                if (eventIndex !== -1 && !events[eventIndex].signedUpUsers.includes(currentUser.username)) {
+                    events[eventIndex].signedUpUsers.push(currentUser.username);
+                    localStorage.setItem('panther_venue_events', JSON.stringify(events));
+                }
+                alert('Purchase successful! Check your account dashboard for tickets.');
+                closeTicketPopup();
+            });
+            document.getElementById('popupClose').addEventListener('click', closeTicketPopup);
+            ticketOverlay.addEventListener('click', closeTicketPopup);
+            document.getElementById('quantity').addEventListener('change', () => {
                 const totalCostElement = document.getElementById('totalCost');
-                if (price === 0) {
-                    totalCostElement.textContent = 'FREE';
-                } else {
-                    totalCostElement.textContent = `$${(price * quantity).toFixed(2)}`;
-                }
-            }
-            
-            function closeTicketPopup() {
-                ticketPopup.classList.remove('active');
-                ticketOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            function filterEvents() {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-                const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
-                const [minPrice, maxPrice] = $("#price-slider").slider("values");
-
-                filteredEvents = events.filter(event => 
-                    (event.title.toLowerCase().includes(searchTerm) || event.desc.toLowerCase().includes(searchTerm)) &&
-                    (!startDate || event.date >= startDate) &&
-                    (!endDate || event.date <= endDate) &&
-                    (selectedCategories.length === 0 || selectedCategories.includes(event.category)) &&
-                    (event.price >= minPrice && event.price <= maxPrice)
-                );
-                renderEvents();
-                updateEventCount();
-            }
-
-            window.clearFilters = function() {
-                document.getElementById('searchInput').value = '';
-                document.getElementById('startDate').value = '';
-                document.getElementById('endDate').value = '';
-                document.querySelectorAll('.category-checkbox').forEach(cb => cb.checked = false);
-                initPriceSlider(); // Reset slider to full range
-                filteredEvents = [...events];
-                renderEvents();
-                updateEventCount();
-            }
-
-            function renderEvents() {
-                const boxView = document.getElementById('box-view');
-                const listView = document.getElementById('list-view');
-                boxView.innerHTML = '';
-                listView.innerHTML = '';
-                if(filteredEvents.length === 0) {
-                    boxView.innerHTML = `<p class="col-span-3 text-center text-gray-500">No events match your criteria.</p>`;
-                    return;
-                }
-                filteredEvents.forEach(event => {
-                    boxView.innerHTML += createEventCard(event, 'box');
-                    listView.innerHTML += createEventCard(event, 'list');
-                });
-                addFadeIn(currentView);
-            }
-
-            function createEventCard(event, viewType) {
-                const priceDisplay = event.price > 0 ? `$${event.price.toFixed(2)}` : 'FREE';
-                const formattedDate = new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                if (viewType === 'box') {
-                    return `<div class="event-card p-4"><div class="relative mb-4"><img src="${event.image}" class="w-full h-40 object-cover rounded-lg" alt="${event.title}"><span class="date-tag absolute top-2 right-2">${formattedDate}</span></div><h3 class="text-lg font-bold text-gray-800 mb-2">${event.title}</h3><div class="event-meta text-sm mb-2"><span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span class="flex items-center"><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span></div><div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${event.category}</span></div><p class="text-gray-600 event-description">${event.desc}</p><button onclick="showTicketPopup('${event.id}')" class="register-button bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700">Register Now</button></div>`;
-                }
-                return `<div class="event-row"><div class="event-image"><img src="${event.image}" alt="${event.title}"></div><div class="event-info"><h3>${event.title}</h3><div class="meta"><span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span><span><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span><span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category}</span></div></div><div class="event-action"><button onclick="showTicketPopup('${event.id}')">Register Now</button></div></div>`;
-            }
-
-            function updateEventCount() {
-                const welcomeName = currentUser ? currentUser.username : 'Guest';
-                document.getElementById('eventCount').innerHTML = `Welcome, <span class="text-red-600">${welcomeName}</span>! Showing <span class="text-red-600">${filteredEvents.length}</span> events:`;
-            }
-
-            // --- FIX: Restored original `addFadeIn` for staggered animation ---
-            function addFadeIn(viewType) {
-                const selector = viewType === 'box' ? '#box-view .event-card' : '#list-view .event-row';
-                const eventCards = document.querySelectorAll(selector);
-                eventCards.forEach((card, index) => {
-                    card.style.opacity = 0;
-                    card.style.transform = "translateY(20px)";
-                    setTimeout(() => {
-                        card.style.opacity = 1;
-                        card.style.transform = "translateY(0)";
-                        card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-                    }, index * 50); // The key is this staggered delay
-                });
-            }
-
-            window.toggleFilter = function(header) {
-                const section = header.parentElement;
-                section.classList.toggle('active');
-                const icon = header.querySelector('i');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            }
-
-            function populateCategories() {
-                const container = document.getElementById('categoryFilters');
-                const categories = [...new Set(events.map(event => event.category))];
-                container.innerHTML = '';
-                categories.forEach(category => {
-                    const count = events.filter(e => e.category === category).length;
-                    container.innerHTML += `<label class="checkbox-item"><input type="checkbox" class="category-checkbox" value="${category}"><span>${category}</span><span>(${count})</span></label>`;
-                });
-            }
-
-            function setupEventListeners() {
-                document.getElementById('searchInput').addEventListener('input', filterEvents);
-                document.getElementById('startDate').addEventListener('change', filterEvents);
-                document.getElementById('endDate').addEventListener('change', filterEvents);
-                document.getElementById('categoryFilters').addEventListener('change', filterEvents);
-                
-                document.getElementById('box-btn').addEventListener('click', () => { currentView = 'box'; document.getElementById('box-view').classList.remove('hidden'); document.getElementById('list-view').classList.add('hidden'); document.getElementById('box-btn').classList.add('active'); document.getElementById('list-btn').classList.remove('active'); addFadeIn('box'); });
-                document.getElementById('list-btn').addEventListener('click', () => { currentView = 'list'; document.getElementById('list-view').classList.remove('hidden'); document.getElementById('box-view').classList.add('hidden'); document.getElementById('list-btn').classList.add('active'); document.getElementById('box-btn').classList.remove('active'); addFadeIn('list'); });
-                
-                document.getElementById('ticketForm').addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    if(!currentUser || !currentEvent) return;
-
-                    const seatingText = document.getElementById('selectedSeatsText').textContent;
-                    const seatingInfo = parseSeatingInfo(seatingText);
-                    if (!seatingInfo) { alert('Please select seating.'); return; }
-
-                    const formData = {
-                        name: document.getElementById('fullName').value,
-                        email: document.getElementById('email').value,
-                        phone: document.getElementById('phone').value,
-                        cardPaymentNumber: document.getElementById('cardPaymentNumber').value,
-                        expiry: document.getElementById('expiry').value,
-                        cvv: document.getElementById('cvv').value,
-                        quantity: parseInt(document.getElementById('quantity').value)
-                    };
-                    const price = parseFloat(document.getElementById('totalCost').dataset.price);
-                    if (!validateForm(formData, price > 0)) return;
-                    
-                    const registration = {
-                        userId: currentUser.uid, username: currentUser.username, eventId: currentEvent.id, eventName: currentEvent.title, eventDate: currentEvent.date,
-                        quantity: formData.quantity, seatingInfo: seatingInfo, totalCost: price * formData.quantity, name: formData.name, email: formData.email, phone: formData.phone,
-                        cardPaymentNumber: (price > 0) ? `**** **** **** ${formData.cardPaymentNumber.slice(-4)}` : '', expiry: (price > 0) ? formData.expiry : '', cvv: '',
-                        created: firebase.firestore.FieldValue.serverTimestamp()
-                    };
-                    
-                    try {
-                        await db.collection('registrations').add(registration);
-                        alert('Purchase successful! Check your account dashboard for tickets.');
-                        closeTicketPopup();
-                    } catch (error) {
-                        console.error("Error completing purchase:", error);
-                        alert("There was an error processing your purchase. Please try again.");
+                const price = parseFloat(totalCostElement.dataset.price);
+                const quantity = parseInt(document.getElementById('quantity').value);
+                updateTotalCost(price, quantity);
+            });
+            document.getElementById('subscribeBtn').addEventListener('click', function() {
+                const email = document.getElementById('subscribeEmail').value;
+                if (email) {
+                    let subscribers = JSON.parse(localStorage.getItem('panther_venue_subscribers')) || [];
+                    if (!subscribers.includes(email)) {
+                        subscribers.push(email);
+                        localStorage.setItem('panther_venue_subscribers', JSON.stringify(subscribers));
+                        alert('Subscribed successfully!');
+                    } else {
+                        alert('You are already subscribed.');
                     }
-                });
-
-                document.getElementById('popupClose').addEventListener('click', closeTicketPopup);
-                ticketOverlay.addEventListener('click', closeTicketPopup);
-                document.getElementById('quantity').addEventListener('change', () => {
-                    const price = parseFloat(document.getElementById('totalCost').dataset.price);
-                    const quantity = parseInt(document.getElementById('quantity').value);
-                    updateTotalCost(price, quantity);
-                });
-
-                document.getElementById('subscribeBtn').addEventListener('click', async function() {
-                    const email = document.getElementById('subscribeEmail').value.trim();
-                    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                        try {
-                            await db.collection('subscribers').doc(email).set({ subscribedAt: firebase.firestore.FieldValue.serverTimestamp() });
-                            alert('Subscribed successfully!');
-                            document.getElementById('subscribeEmail').value = '';
-                        } catch (error) { alert("Could not subscribe. Please try again."); }
-                    } else { alert('Please enter a valid email address.'); }
-                });
-            }
-
-            function parseSeatingInfo(seatingText) {
-                if (seatingText === 'None' || !seatingText) return null;
-                if (seatingText.includes('Stand:')) {
-                    const [standPart, quantityPart] = seatingText.split('(');
-                    const stand = standPart.replace('Stand: ', '').trim();
-                    const quantity = parseInt(quantityPart.replace(')', '').trim());
-                    return { type: 'stand', stand, quantity };
+                    document.getElementById('subscribeEmail').value = '';
                 } else {
-                    const seats = seatingText.split(', ').map(seat => seat.trim());
-                    return { type: 'seats', seats };
+                    alert('Please enter an email address.');
+                }
+            });
+        }
+
+        function parseSeatingInfo(seatingText) {
+            if (seatingText === 'None') return null;
+            if (seatingText.includes('Stand:')) {
+                const [standPart, quantityPart] = seatingText.split('(');
+                const stand = standPart.replace('Stand: ', '').trim();
+                const quantity = parseInt(quantityPart.replace(')', '').trim());
+                return { type: 'stand', stand, quantity };
+            } else {
+                const seats = seatingText.split(', ').map(seat => seat.trim());
+                return { type: 'seats', seats };
+            }
+        }
+
+        function validateForm(formData, requirePayment) {
+            if (!formData.name || !formData.email || !formData.phone) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+            if (requirePayment) {
+                if (!formData.cardPaymentNumber || formData.cardPaymentNumber.length < 16) {
+                    alert('Please enter a valid card number.');
+                    return false;
+                }
+                if (!formData.expiry || !formData.cvv || formData.cvv.length < 3) {
+                    alert('Please enter valid payment details.');
+                    return false;
                 }
             }
+            return true;
+        }
 
-            function validateForm(formData, requirePayment) {
-                if (!formData.name || !formData.email || !formData.phone) { alert('Please fill in all required fields.'); return false; }
-                if (requirePayment) {
-                    if (!formData.cardPaymentNumber || formData.cardPaymentNumber.length < 16) { alert('Please enter a valid card number.'); return false; }
-                    if (!formData.expiry || !formData.cvv || formData.cvv.length < 3) { alert('Please enter valid payment details.'); return false; }
-                }
-                return true;
+        document.addEventListener('DOMContentLoaded', initPage);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const loginButton = document.getElementById('loginButton');
+            if (currentUser) {
+                loginButton.textContent = 'Log In';
+                loginButton.href = 'login.html';
+                loginButton.onclick = null;
             }
         });
     </script>
-    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        } 
+    </style>
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
+
