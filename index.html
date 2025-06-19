@@ -1044,6 +1044,25 @@ function typeExcellence() {
           <div class="col-lg-5">
             <img src="assets/img/stats-img.svg" alt="" class="img-fluid">
           </div>
+          <!-- SVG For Animated Gradient Line -->
+<svg id="stats-line-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <!-- This uses the red colors from your website's theme -->
+            <stop offset="0%" style="stop-color:#b01a35;" />
+            <stop offset="50%" style="stop-color:#e0072f;" />
+            <stop offset="100%" style="stop-color:#f82249;" />
+        </linearGradient>
+    </defs>
+    <!-- 
+      This is the custom path for the line's animation:
+      - It starts from the top-middle of the image area (off-screen).
+      - Draws a line straight down through the image.
+      - Creates a stylish loop underneath, moving towards the southeast.
+      - Continues off the bottom-right corner of the screen.
+    -->
+    <path id="stats-scroll-line" stroke="url(#redGradient)" d="M 350 -50 L 350 300 C 350 500, 550 450, 650 600 L 1300 750" />
+</svg>
           <div class="col-lg-7">
             <div class="row gy-4">
               <div class="col-lg-6">
