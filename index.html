@@ -1150,33 +1150,13 @@ function typeExcellence() {
       stroke-linejoin: round;
   }
 </style>
-<!-- JavaScript for the Animation (REVISED FOR SCROLL DELAY) -->
-<!-- JavaScript for the Animation (REVISED FOR TAPERING EFFECT) -->
+
 <!-- ====================================================== -->
 <!--    FINAL JAVASCRIPT FOR STATS ANIMATION (REVISED)      -->
 <!-- (This version includes Tapering AND the Scroll Offset)  -->
 <!-- ====================================================== -->
-Of course. Getting the timing and "feel" of an animation just right is what makes it special. To make the line draw a "TAD TAD VERY SLIGHTLY TAD BIT SLOWER," we need to make the animation play out over a slightly longer scroll distance.
 
-We can do this easily by adding one new variable to your settings: animationSpeedFactor.
-
-A value of 1.0 is the normal speed.
-
-A value greater than 1.0 makes the animation slower (e.g., 1.2 means it takes 20% more scrolling to finish).
-
-A value less than 1.0 would make it faster.
-
-I've modified your exact script to include this new setting. I've set it to 1.2 for you, which should give you that "tad bit slower" feel.
-
-Your Final, Upgraded JavaScript
-
-Simply replace your current script block with this new one. Everything else (your HTML and CSS) is perfect and does not need to be changed.
-
-Generated javascript
-<!-- ====================================================== -->
-<!--    FINAL JAVASCRIPT FOR STATS ANIMATION (REVISED)      -->
-<!-- (This version includes Speed, Tapering, and Offset)    -->
-<!-- ====================================================== -->
+<
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       const statsPath = document.querySelector('#stats-scroll-line');
@@ -1240,7 +1220,6 @@ Generated javascript
 </script>
 
 
-Now you have a single, easy-to-use control panel at the top of your script to fine-tune every aspect of the animation until it's perfect.
 
 
 <!-- Services Section (Amenities) -->
