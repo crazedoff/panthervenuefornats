@@ -976,9 +976,6 @@
                 });
             }
 
-            document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
-            document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
-
          
             // --- Chart and Calendar Initialization ---
             try { var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d"); var gradient = ctx.createLinearGradient(0, 0, 0, 225); gradient.addColorStop(0, "rgba(215, 227, 244, 1)"); gradient.addColorStop(1, "rgba(215, 227, 244, 0)"); new Chart(ctx, { type: "line", data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], datasets: [{ label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249', data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327] }] }, options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } } });
