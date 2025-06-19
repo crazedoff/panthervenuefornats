@@ -88,33 +88,10 @@
         background-attachment: fixed; /* Creates parallax effect */
         
       }
-
-      /* --- 2. SVG LINE DRAWING EFFECT (Desktop Only) --- */
-      #page-line-svg {
-          position: fixed; /* Stays in the viewport */
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none; /* Allows clicking through the SVG */
-          z-index: 99; /* Position it above blobs but below content/header */
-          display: none; /* Hidden by default, shown on desktop */
-      }
-
-      #scroll-line {
-          stroke-width: 12;
-          fill: none;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-      }
-
-      /* --- 3. DECORATIVE STYLES (Desktop Only) --- */
+      
+      /* --- 2. DECORATIVE STYLES (Desktop Only) --- */
+      /* These effects are now scoped to screens wider than 1199px */
       @media (min-width: 1200px) {
-
-        /* Show the SVG line on desktop */
-        #page-line-svg {
-            display: block;
-        }
 
         /* -- Setup for sections with decorations -- */
         #about, #seating, #team, #contact, #hotels {
@@ -980,21 +957,6 @@ function typeExcellence() {
 
   <main class="main">
 
-    <!-- ====================================================== -->
-    <!-- === SVG LINE DRAWING EFFECT CONTAINER (Desktop Only) === -->
-    <!-- ====================================================== -->
-    <svg id="page-line-svg" viewBox="0 0 1440 7000" preserveAspectRatio="none">
-        <!-- Define the Gradient for the Line -->
-        <defs>
-            <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#b01a35;" />
-                <stop offset="50%" style="stop-color:#e0072f;" />
-                <stop offset="100%" style="stop-color:#f82249;" />
-            </linearGradient>
-        </defs>
-        <!-- The Winding Path that Draws Down the Page -->
-        <path id="scroll-line" stroke="url(#redGradient)" d="M 150 200 C 150 800, 300 1200, 720 1600 L 1000 1900 C 1400 2500, 1300 3500, 1250 4500 C 1000 5500, 400 6000, 200 6800 L 200 7500" />
-    </svg>
 
 
     <!-- Clients Section -->
@@ -4245,38 +4207,25 @@ d
 </script>
 <!-- END: Chatbot Integration Body -->
 
-<!-- ====================================================== -->
-<!-- === SCRIPT FOR SVG LINE DRAWING EFFECT === -->
-<!-- ====================================================== -->
+<!-- NEW SCRIPT FOR VIDEO PARALLAX EFFECT -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const path = document.querySelector('#scroll-line');
-        if (path) {
-            const pathLength = path.getTotalLength();
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('#subscribe video');
+    const section = document.querySelector('#subscribe');
 
-            path.style.strokeDasharray = pathLength;
-            path.style.strokeDashoffset = pathLength;
-
-            const handleScroll = () => {
-                // Calculate scroll progress for the whole page
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight;
-                const winHeight = window.innerHeight;
-                const scrollPercent = scrollTop / (docHeight - winHeight);
-                
-                // Ensure scrollPercent is between 0 and 1
-                const progress = Math.max(0, Math.min(1, scrollPercent));
-
-                const drawLength = progress * pathLength;
-                
-                // Update the offset to draw the line
-                path.style.strokeDashoffset = pathLength - drawLength;
-            };
-
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Initial call
-        }
-    });
+    if (video && section) {
+        window.addEventListener('scroll', () => {
+            // Get the position of the top of the section relative to the viewport
+            const rect = section.getBoundingClientRect();
+            // Calculate how much the video should move. It should move slower than the scroll.
+            const speed = 0.4;
+            let offset = rect.top * speed;
+            
+            // Apply the transform to the video
+            video.style.transform = `translateY(${offset}px)`;
+        });
+    }
+});
 </script>
 
 <style>
@@ -4294,8 +4243,11 @@ d
   width: 100%;
   height: 250%; /* Oversized for parallax, adjust as needed */
   object-fit: cover;
+
   z-index: 0;
+
 }
+  
 </style>
 
 </body>
