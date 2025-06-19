@@ -297,6 +297,29 @@
             transform: translateY(-50%) rotate(10deg);
             opacity: 0.2;
         }
+            /* --- NEW: CSS for the Team Section Animated Line --- */
+        #team-line-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 1; /* Sits just above the section background */
+        }
+
+        /* This is the key to putting the cards IN FRONT of the line */
+        #team .container {
+            position: relative; /* Creates a new stacking context */
+            z-index: 2; /* Lifts the container (and cards inside) above the line */
+        }
+
+        #team-scroll-line {
+            stroke-width: 5; /* Thinner line for a more subtle effect */
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
         /* -- FAQ Section Background Icons -- */
         #faq {
           background: transparent !important; /* Make background see-through for icons */
