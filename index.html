@@ -1920,7 +1920,32 @@ function typeExcellence() {
 
 <!-- Team Section -->
 <section id="team" class="team section">
+<!-- Team Section -->
+<section id="team" class="team section">
 
+  <!-- Section Title -->
+  <div class="section-header">
+    <h2>Team</h2>
+    <p>Take a quick glance at our group of hardworking individuals.</p>
+  </div>
+
+  <!-- START: Add this new SVG for the Team section line -->
+  <svg id="team-line-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="teamRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#b01a35;" />
+        <stop offset="50%" style="stop-color:#e0072f;" />
+        <stop offset="100%" style="stop-color:#ff0936;" />
+      </linearGradient>
+    </defs>
+    <!-- This path is hand-crafted to follow your drawing's trajectory -->
+    <path id="team-scroll-line" stroke="url(#teamRedGradient)"
+          d="M 1250 250 C 1000 200, 950 600, 750 450 S 450 150, 250 350 S -50 400, -100 200" />
+  </svg>
+  <!-- END: New SVG for the Team section line -->
+
+  <div class="container">
+...
   <!-- Section Title -->
   <div class="section-header">
     <h2>Team</h2>
