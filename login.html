@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GEVGG1S2P0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GEVGG1S2P0');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEVGG1S2P0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GEVGG1S2P0');
+    </script>
     <meta charset="utf-8">
     <title>PantherVenue - Log In</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -35,7 +34,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Existing Styles (Unchanged) */
+        /* Your Existing Styles Are Preserved Here */
         .nav-menu, .nav-menu * { margin: 0; padding: 0; list-style: none; }
         .nav-menu ul { position: absolute; display: none; top: 100%; left: 0; z-index: 99; }
         .nav-menu li { position: relative; white-space: nowrap; }
@@ -59,7 +58,7 @@
         .nav-menu ul li:hover > a { background: #f82249; color: #fff; }
         #header { height: 70px; padding: 15px 0; position: fixed; left: 0; top: 0; right: 0; background: rgba(6, 12, 34, 0.98); transition: all 0.5s; z-index: 997; }
         #header #logo img { padding: 0; margin: 0; max-height: 40px; padding-left: 80px; }
-        .login-container { position: relative; width: 100%; background-color: #fff; min-height: 100vh; overflow: hidden; margin-top: 70px; font-family: 'Open Sans', sans-serif; }
+        .login-container { display: none; position: relative; width: 100%; background-color: #fff; min-height: 100vh; overflow: hidden; margin-top: 70px; font-family: 'Open Sans', sans-serif; }
         .forms-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
         .signin-signup { position: absolute; top: 50%; transform: translate(-50%, -50%); left: 75%; width: 50%; transition: 1s 0.7s ease-in-out; display: grid; grid-template-columns: 1fr; z-index: 5; }
         form { display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 0rem 5rem; transition: all 0.2s 0.7s; overflow: hidden; grid-column: 1 / 2; grid-row: 1 / 2; }
@@ -128,15 +127,9 @@
         .popup-close { position: absolute; top: 15px; right: 15px; cursor: pointer; font-size: 1.5rem; color: #2f3138; transition: all 0.3s; }
         .popup-close:hover { color: #f82249; }
         .error-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-        .success-message { color: #f82249; font-weight: bold; font-size: 0.9rem; margin-top: -5px; margin-bottom: 10px; display: none; text-align: center; }
+        .success-message { color: #4CAF50; font-weight: bold; font-size: 0.9rem; margin-top: -5px; margin-bottom: 10px; display: none; text-align: center; }
         .countdown { font-size: 1.1rem; font-weight: 600; }
-
-        /* Dashboard Styles */
-        :root {
-            --grey: #F1F0F6; --dark-grey: #8D8D8D; --light: #fff; --dark: #000;
-            --green: #81D43A; --light-green: #E3FFCB; --blue: #1775F1;
-            --light-blue: #D0E4FF; --dark-blue: #0C5FCD; --red: #FC3B56;
-        }
+        :root { --grey: #F1F0F6; --dark-grey: #8D8D8D; --light: #fff; --dark: #000; --green: #81D43A; --light-green: #E3FFCB; --blue: #1775F1; --light-blue: #D0E4FF; --dark-blue: #0C5FCD; --red: #FC3B56; }
         html, body { overflow-x: hidden; }
         body { background: var(--grey); overflow-x: hidden; font-family: 'Open Sans', sans-serif; }
         a { text-decoration: none; }
@@ -161,51 +154,30 @@
         main .data .content-data { flex-grow: 1; flex-basis: 400px; padding: 20px; background: var(--light); border-radius: 10px; box-shadow: 4px 4px 16px rgba(0, 0, 0, .1); }
         main .content-data .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
         main .content-data .head h3 { font-size: 20px; font-weight: 600; }
-        .dashboard-wrapper, .user-dashboard-wrapper {
-            display: none; position: fixed; top: 70px; left: 0; width: 100%; height: calc(100% - 70px);
-            background: linear-gradient(-45deg, #f82249 0%, #f82249 100%); z-index: 999; overflow-y: auto;
-            font-family: 'Open Sans', sans-serif;
-        }
-        .dashboard-wrapper main.content, .user-dashboard-wrapper main.content {
-            background: white; border-radius: 20px; padding: 40px; margin: 40px; box-shadow: 0 0 30px rgba(0,0,0,0.1);
-        }
+        .dashboard-wrapper, .user-dashboard-wrapper { display: none; position: fixed; top: 70px; left: 0; width: 100%; height: calc(100% - 70px); background: linear-gradient(-45deg, #f82249 0%, #f82249 100%); z-index: 999; overflow-y: auto; font-family: 'Open Sans', sans-serif; }
+        .dashboard-wrapper main.content, .user-dashboard-wrapper main.content { background: white; border-radius: 20px; padding: 40px; margin: 40px; box-shadow: 0 0 30px rgba(0,0,0,0.1); }
         .wrapper { display: flex; flex-direction: column; min-height: calc(100vh - 70px); }
         .main { flex: 1; padding: 1.5rem; }
         .card { border: none; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); border-radius: 0.375rem; }
         .table { background: white; border-radius: 0.375rem; overflow: hidden; }
         .badge { font-weight: 500; }
         .fa-chart-line, .fa-users, .fa-ticket-alt, .fa-calendar-alt, .fa-dollar-sign { font-size: 1.5rem; color: #f82249; }
-
-        /* Venue and Event Details Popup Styles */
-        .venue-popup, .event-details-popup, .request-popup {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white;
-            padding: 2rem; border-radius: 20px; box-shadow: 0 0 30px rgba(248,34,73,0.2); text-align: center;
-            min-width: 300px; max-width: 600px; z-index: 1000; display: none; font-family: 'Raleway', sans-serif;
-            max-height: 80vh; overflow-y: auto;
-        }
+        .venue-popup, .event-details-popup, .request-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 0 30px rgba(248,34,73,0.2); text-align: center; min-width: 300px; max-width: 600px; z-index: 1000; display: none; font-family: 'Raleway', sans-serif; max-height: 80vh; overflow-y: auto; }
         .venue-popup.active, .event-details-popup.active, .request-popup.active { display: block; }
         .nav-menu li.buy-tickets a:before { content: none; }
-
-        /* Event Card Styles */
         .event-card { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease; }
         .event-card:hover { transform: translateY(-5px); }
-
-        /* Animations */
         @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         .fade-out { animation: fadeOut 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(20px); } }
-        
-        /* Dashboard Card Styles */
         .dashboard-card { animation: slideIn 0.6s ease-out; transition: transform 0.3s ease; }
         .dashboard-card:hover { transform: translateY(-5px); }
         .stat-percent { font-size: 1.2rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
         .stat-percent.positive { background: #dcfce7; color: #16a34a; }
         .stat-percent.negative { background: #fee2e2; color: #dc2626; }
         .stat-percent.neutral { background: #fef9c3; color: #ca8a04; }
-
-        /* Updated Event Cards */
         .user-event-card { background: #fff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; }
         .user-event-card:hover { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .venue-info-box { background: linear-gradient(135deg, #fef2f2 0%, #fff 100%); border-radius: 1rem; border: 2px solid #fee2e2; padding: 2rem; }
@@ -217,16 +189,12 @@
         .status-badge.pending { background: #fef3c7; color: #d97706; }
         .status-badge.accepted { background: #dcfce7; color: #16a34a; }
         .status-badge.declined { background: #fee2e2; color: #dc2626; }
-
-        /* Request Form Popup */
         .form-step { display: none; }
         .form-step.active { display: block; animation: slideIn 0.3s ease-out; }
         .form-progress { height: 4px; background: #fee2e2; border-radius: 2px; overflow: hidden; }
         .form-progress-bar { height: 100%; background: #ef4444; transition: width 0.3s ease; }
         .form-step-indicator { width: 2.5rem; height: 2.5rem; border: 2px solid #fca5a5; color: #ef4444; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 600; }
         .form-step-indicator.active { background: #ef4444; color: white; border-color: #ef4444; }
-
-        /* User Dashboard List View Styles (Matching event.html) */
         #user-list-view { width: 100%; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         #user-list-view .event-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border-bottom: 1px solid #eee; transition: background 0.3s ease; }
         #user-list-view .event-row:hover { background: #f8f9fa; }
@@ -240,16 +208,12 @@
         #user-list-view .event-action .price { font-size: 1rem; font-weight: 600; color: #f82249; }
         #user-list-view .event-action button { background: #f82249; color: white; padding: 0.5rem 1.5rem; border-radius: 20px; border: none; font-size: 0.9rem; cursor: pointer; transition: background 0.3s ease; }
         #user-list-view .event-action button:hover { background: #e61e40; }
-
-        /* Override Styles for Login Container */
         .login-container .panel .content h3 { font-size: 2.5rem !important; color: #fff !important; margin-bottom: 0rem !important; font-weight: 700 !important; }
         .login-container .panel .content p { font-family: 'Open Sans', sans-serif !important; font-size: 1.1rem !important; color: rgba(255,255,255,0.9) !important; line-height: 1.6 !important; margin-bottom: 1rem !important; }
         .login-container .btn.transparent { background: transparent !important; border: 2px solid #fff !important; color: #fff !important; transition: all 0.3s ease !important; }
         .login-container .btn.transparent:hover { background: #fff !important; color: #f82249 !important; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .login-container .input-field:focus-within { box-shadow: 0 0 0 2px #f82249 !important; background: #fff !important; }
         .login-container .input-field:focus-within i { color: #f82249 !important; }
-
-        /* Mobile Navigation Styles */
         #mobile-nav-toggle { position: fixed; right: 0; top: 0; z-index: 999; margin: 15px 15px 0 0; border: 0; background: none; font-size: 24px; display: none; transition: all 0.4s; outline: none; cursor: pointer; }
         #mobile-nav-toggle i { color: #fff; }
         #mobile-nav { position: fixed; top: 0; padding-top: 18px; bottom: 0; z-index: 998; background: rgba(6, 12, 34, 0.9); left: -260px; width: 260px; overflow-y: auto; transition: 0.4s; }
@@ -262,16 +226,12 @@
         body.mobile-nav-active #mobile-nav { left: 0 !important; }
         #mobile-nav { transition: all 0.3s ease-in-out !important; }
         #header { z-index: 1001 !important; }
-
-        /* Calendar Highlighting */
         .flatpickr-calendar { font-family: 'Open Sans', sans-serif; }
         .flatpickr-day.today { background-color: #f82249; color: #fff; font-weight: bold; position: relative; }
         .flatpickr-day.today:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #fff; }
         .flatpickr-day.event { background-color: #ff6b6b00; color: #000000; position: relative; }
         .flatpickr-day.event:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #f80000; }
         .flatpickr-day.event:hover { background-color: #ff8787; }
-
-        /* Ticket Purchase */
         .ticket-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; display: none; opacity: 0; transition: all 0.3s ease; }
         .ticket-popup.active { display: block; opacity: 1; }
         .popup-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -291,8 +251,6 @@
         .purchase-button { background: #f82249; color: white; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
         .purchase-button:hover { background: #e61e40; }
         .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
-
-        /* Seating Charts!! */
         .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
         .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
         .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
@@ -318,38 +276,24 @@
         .seat.available { background: #a83232; }
         .seat.sold-out { background: #ccc; pointer-events: none; }
         .seat.selected { background: #ff0000; box-shadow: 0 0 5px #ff0000; color: white !important; }
-
-        /* View Mode Styles for Read-Only Popup */
         .ticket-popup.view-mode .form-group input, .ticket-popup.view-mode .payment-field { background: #f8f9fa; border-color: #e9ecef; cursor: not-allowed; pointer-events: none; }
         .ticket-popup.view-mode .purchase-button { display: none; }
         .ticket-popup.view-mode .seat, .ticket-popup.view-mode .capacity-section { pointer-events: none; }
-
-        /* Mock Event Tile Styles (Matching event.html) */
         .mock-event-tile { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
         .price-tag { background: #f82249; color: white; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; min-width: 70px; text-align: center; }
         .event-meta { display: flex; gap: 1rem; align-items: center; color: #6c757d; font-size: 0.875rem; }
         .event-description { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 72px; margin-bottom: 1rem; }
-
-        /* Dashboard Title Styling */
         .dashboard-title, .admin-dashboard-title { font-size: 1.6875rem; font-weight: 700; color: #2d3748; font-family: 'Open Sans', sans-serif; }
         .dashboard-title span, .admin-dashboard-title strong { color: #f82249; }
-
-        /* Rental Request Buttons */
         .btn-decline { background-color: #dc3545; color: white; }
         .btn-pending { background-color: #ffc107; color: white; }
         .btn-accept { background-color: #28a745; color: white; }
         .btn-trash { background-color: #6c757d; color: white; }
-
-        /* Rent Venue Box */
         .rent-venue-box { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
         .rent-venue-box p { margin-bottom: 1rem; color: #4b5563; }
         .rent-venue-box .btn { align-self: center; }
         .rent-venue-note { font-size: 0.875rem; color: #6c757d; text-align: center; margin-top: 1rem; }
-
-        .dashboard-wrapper .content .container-fluid > .row:nth-child(3) > .col-12.col-lg-4.col-xxl-3 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
+        .dashboard-wrapper .content .container-fluid > .row:nth-child(3) > .col-12.col-lg-4.col-xxl-3 { flex: 0 0 50%; max-width: 50%; }
     </style>
 </head>
 <body>
@@ -685,14 +629,13 @@
                 <form action="#" class="sign-in-form">
                     <h2 class="title">Log in</h2>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="loginUsername" required>
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="loginEmail" required>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Password" id="loginPassword" required>
                     </div>
-                    <div class="success-message" id="loginSuccess"></div>
                     <input type="submit" value="Login" class="btn solid" />
                     <p class="social-text">Log in with social platforms:</p>
                     <div class="social-media">
@@ -753,96 +696,161 @@
     </div>
 
     <!-- Scripts -->
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Firebase Configuration -->
     <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
+        authDomain: "panthervenue.firebaseapp.com",
+        projectId: "panthervenue",
+        storageBucket: "panthervenue.appspot.com",
+        messagingSenderId: "15387964560",
+        appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
+      };
+      
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+    
+    <!-- Main Application Logic -->
+    <script>
+        let currentUser = null;
         let pieChart;
         let flatpickrInstance;
+        
+        // --- AUTHENTICATION LOGIC ---
+        auth.onAuthStateChanged(async (user) => {
+            const loginContainer = document.querySelector('.login-container');
+            const adminDashboard = document.querySelector('.dashboard-wrapper');
+            const userDashboard = document.querySelector('.user-dashboard-wrapper');
+            const loginLink = document.getElementById('loginLink');
+            const mobileLoginLink = document.getElementById('mobileLoginLink');
 
-        // Mobile Navigation
-        document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) {
-            document.body.classList.toggle('mobile-nav-active');
-            this.classList.toggle('fa-bars');
-            this.classList.toggle('fa-times');
-            document.getElementById('mobile-body-overly').style.display = document.body.classList.contains('mobile-nav-active') ? 'block' : 'none';
-            document.getElementById('mobile-nav').style.transition = 'all 0.3s ease-in-out';
+            if (user) {
+                try {
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (!userDoc.exists) throw new Error("User data not found in database.");
+                    
+                    currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
+                    loginContainer.style.display = 'none';
+                    
+                    if (currentUser.isAdmin) {
+                        adminDashboard.style.display = 'block';
+                        userDashboard.style.display = 'none';
+                        updateAdminDashboard();
+                    } else {
+                        adminDashboard.style.display = 'none';
+                        userDashboard.style.display = 'block';
+                        loadUserDashboard();
+                    }
+                    
+                    loginLink.textContent = 'Log Out';
+                    loginLink.href = "#";
+                    mobileLoginLink.textContent = 'Log Out';
+                    mobileLoginLink.href = "#";
+                } catch (error) {
+                    console.error("Error fetching user profile:", error);
+                    showPopup('Error', 'Could not load your profile. Please log out and try again.');
+                    handleLogout();
+                }
+            } else {
+                currentUser = null;
+                adminDashboard.style.display = 'none';
+                userDashboard.style.display = 'none';
+                loginContainer.style.display = 'block';
+                loginLink.textContent = 'Log In';
+                loginLink.href = "login.html";
+                mobileLoginLink.textContent = 'Log In';
+                mobileLoginLink.href = "login.html";
+            }
         });
-        document.getElementById('mobile-body-overly').addEventListener('click', function() {
-            document.body.classList.remove('mobile-nav-active');
-            document.getElementById('mobile-nav-toggle').classList.remove('fa-times');
-            document.getElementById('mobile-nav-toggle').classList.add('fa-bars');
-            this.style.display = 'none';
+
+        async function handleSignUp(email, password, username) {
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                await db.collection("users").doc(user.uid).set({
+                    username: username,
+                    email: email,
+                    isAdmin: false,
+                    created: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showPopup('Success', 'Account created successfully!', true);
+                setTimeout(() => {
+                    hidePopup();
+                    document.querySelector(".login-container").classList.remove("sign-up-mode");
+                }, 2000);
+            } catch (error) {
+                showPopup('Error', error.message);
+            }
+        }
+
+        async function handleLogin(email, password) {
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                showPopup('Error', "Invalid credentials. Please check your email and password.");
+            }
+        }
+
+        function handleLogout() {
+            auth.signOut().catch(error => showPopup('Error', error.message));
+        }
+
+        // --- UI & EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const signUpForm = document.querySelector('.sign-up-form');
+            if(signUpForm) signUpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = e.target.querySelector('#signupUsername').value.trim();
+                const email = e.target.querySelector('#signupEmail').value.trim();
+                const password = e.target.querySelector('#signupPassword').value;
+                const confirmPassword = e.target.querySelector('#signupConfirm').value;
+                if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.');
+                if (password.length < 6) return showPopup('Error', 'Password must be at least 6 characters.');
+                if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.');
+                handleSignUp(email, password, username);
+            });
+
+            const signInForm = document.querySelector('.sign-in-form');
+            if(signInForm) signInForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('#loginEmail').value.trim();
+                const password = e.target.querySelector('#loginPassword').value;
+                if (!email || !password) return showPopup('Error', 'Please enter email and password.');
+                handleLogin(email, password);
+            });
+
+            document.getElementById('loginLink')?.addEventListener('click', (e) => {
+                if (auth.currentUser) { e.preventDefault(); handleLogout(); }
+            });
+
+            document.getElementById('mobileLoginLink')?.addEventListener('click', (e) => {
+                if (auth.currentUser) { e.preventDefault(); handleLogout(); }
+            });
+
+            const sign_in_btn = document.querySelector("#sign-in-btn");
+            const sign_up_btn = document.querySelector("#sign-up-btn");
+            const login_container_el = document.querySelector(".login-container");
+            if(sign_in_btn && sign_up_btn && login_container_el) {
+                sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode"));
+                sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode"));
+            }
+
+            document.getElementById('popupClose')?.addEventListener('click', hidePopup);
+            document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
         });
 
-        // Constants
-        const USERS_KEY = 'panther_venue_users_v3';
-        const EVENTS_KEY = 'panther_venue_events';
-        const REQUESTS_KEY = 'panther_venue_requests';
-        const REGISTRATIONS_KEY = 'panther_venue_registrations';
-        const ADMIN_SECRET = "#ADMIN2023!";
-        let currentUser = null;
-
-        // Initialize Local Storage
-        if (!localStorage.getItem(USERS_KEY)) {
-            const initialUsers = [{
-                username: "admin",
-                email: "admin@panthervenue.com",
-                password: btoa("admin123"),
-                isAdmin: true,
-                created: new Date().toISOString()
-            }];
-            localStorage.setItem(USERS_KEY, JSON.stringify(initialUsers));
-        }
-        if (!localStorage.getItem(EVENTS_KEY)) {
-            const initialEvents = [
-                { id: '1', title: 'Football Match', date: '2023-06-01', category: 'Sports', signedUpUsers: [] },
-                { id: '2', title: 'Community Meeting', date: '2023-06-15', category: 'Community', signedUpUsers: [] },
-                { id: '3', title: 'Yoga Class', date: '2023-06-20', category: 'Classes', signedUpUsers: [] }
-            ];
-            localStorage.setItem(EVENTS_KEY, JSON.stringify(initialEvents));
-        }
-        if (!localStorage.getItem(REQUESTS_KEY)) {
-            const initialRequests = [
-                { id: '1', username: 'john_brown', firstName: 'John', lastName: 'Brown', email: 'john@example.com', eventName: 'STEM Robotics Demo', description: 'A thrilling event.', eventDate: '2025-04-07', eventPrice: 15, category: 'Workshops', venue: 'Large Gym', image: '', status: 'accepted', created: new Date().toISOString() },
-                { id: '2', username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', eventName: 'Fall Dance Recital', description: 'An evening of dance performances.', eventDate: '2025-05-10', eventPrice: 10, category: 'Performances', venue: 'Small Gym', image: '', status: 'declined', created: new Date().toISOString() },
-                { id: '5', username: 'mike_brown', firstName: 'Mike', lastName: 'Brown', email: 'mike@example.com', eventName: 'Soccer Match', description: 'Competitive soccer game.', eventDate: '2025-05-25', eventPrice: 10, category: 'Athletics', venue: 'Large Gym', image: '', status: 'declined', created: new Date().toISOString() },
-                { id: '6', username: 'emma_davis', firstName: 'Emma', lastName: 'Davis', email: 'emma@example.com', eventName: 'Art Exhibition', description: 'Displaying local artwork.', eventDate: '2025-05-30', eventPrice: 5, category: 'Performances', venue: 'Small Gym', image: '', status: 'declined', created: new Date().toISOString() }
-            ];
-            localStorage.setItem(REQUESTS_KEY, JSON.stringify(initialRequests));
-        }
-
-        // Default Schedules
-        const defaultSchedules = {
-            "Athletics": [
-                { event: "Doors Open", time: "6:00 PM" },
-                { event: "Game Start", time: "7:00 PM" },
-                { event: "Game End", time: "8:00 PM" }
-            ],
-            "Performances": [
-                { event: "Doors Open", time: "7:00 PM" },
-                { event: "Show Start", time: "7:30 PM" },
-                { event: "Show End", time: "9:30 PM" }
-            ],
-            "Competitions": [
-                { event: "Registration", time: "8:00 AM" },
-                { event: "Round 1", time: "9:00 AM" },
-                { event: "Round 2", time: "11:00 AM" },
-                { event: "Finals", time: "2:00 PM" }
-            ],
-            "Workshops": [
-                { event: "Session 1", time: "9:30 AM" },
-                { event: "Break", time: "11:00 AM" },
-                { event: "Session 2", time: "11:30 AM" }
-            ],
-            "Gatherings": [
-                { event: "Welcome", time: "10:00 AM" },
-                { event: "Networking", time: "12:00 PM" },
-                { event: "Closing", time: "1:00 PM" }
-            ]
-        };
-
-        // Popup System
+        // --- POPUP & UTILITY FUNCTIONS ---
         const showPopup = (title, message, isSuccess = false) => {
             const popup = document.getElementById('errorPopup');
             const overlay = document.getElementById('popupOverlay');
+            if(!popup || !overlay) return;
             const icon = popup.querySelector('.error-icon');
             popup.querySelector('#popupTitle').textContent = title;
             popup.querySelector('#popupMessage').textContent = message;
@@ -851,683 +859,66 @@
             popup.classList.add('active');
             overlay.style.display = 'block';
         };
+
         function hidePopup() {
-            document.getElementById('errorPopup').classList.remove('active');
-            document.getElementById('popupOverlay').style.display = 'none';
+            const popup = document.getElementById('errorPopup');
+            const overlay = document.getElementById('popupOverlay');
+            if(popup) popup.classList.remove('active');
+            if(overlay) overlay.style.display = 'none';
         }
 
-        // Form Validation
-        function validateSignUp(formData) {
-            if (formData.password.length < 8) {
-                showPopup('Error', 'Password must be at least 8 characters');
-                return false;
-            }
-            if (formData.password !== formData.confirmPassword) {
-                showPopup('Error', 'Passwords do not match');
-                return false;
-            }
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formData.email)) {
-                showPopup('Error', 'Invalid email format');
-                return false;
-            }
-            return true;
-        }
+        // --- DASHBOARD DATA FUNCTIONS (TO BE BUILT OUT) ---
+        async function updateAdminDashboard() {
+            console.log("Fetching admin data from Firestore...");
+            try {
+                const requestsSnapshot = await db.collection('requests').orderBy('created', 'desc').get();
+                const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        // User Registration
-        function registerUser(userData) {
-            const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-            const isAdmin = userData.username.includes(ADMIN_SECRET);
-            const cleanUsername = userData.username.replace(ADMIN_SECRET, "");
-            if (users.find(u => u.username === cleanUsername)) {
-                showPopup('Error', 'Username already exists');
-                return false;
-            }
-            const newUser = {
-                username: cleanUsername,
-                email: userData.email,
-                password: btoa(userData.password),
-                isAdmin: isAdmin,
-                created: new Date().toISOString()
-            };
-            users.push(newUser);
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
-            return true;
-        }
-
-        // Login Handler
-        function handleLogin(credentialsOrUser) {
-            let user;
-            if (typeof credentialsOrUser === 'object' && credentialsOrUser.isAdmin !== undefined) {
-                user = credentialsOrUser;
-            } else {
-                const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-                user = users.find(u => u.username === credentialsOrUser.username && atob(u.password) === credentialsOrUser.password);
-                if (!user) {
-                    showPopup('Error', 'Invalid credentials');
-                    return;
-                }
-            }
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            const loginContainer = document.querySelector('.login-container');
-            loginContainer.classList.add('fade-out');
-            setTimeout(() => {
-                loginContainer.style.display = 'none';
-                loginContainer.classList.remove('fade-out');
-                if (user.isAdmin) {
-                    const dashboard = document.querySelector('.dashboard-wrapper');
-                    dashboard.style.display = 'block';
-                    dashboard.classList.add('fade-in');
-                    setTimeout(() => dashboard.classList.remove('fade-in'), 500);
-                    updateAdminDashboard();
-                    updateEventTypes();
+                const tableBody = document.getElementById('requestsTableBody');
+                if(!tableBody) return;
+                tableBody.innerHTML = ''; // Clear previous entries
+                if (requests.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4">No rental requests found.</td></tr>';
                 } else {
-                    const userDashboard = document.querySelector('.user-dashboard-wrapper');
-                    userDashboard.style.display = 'block';
-                    userDashboard.classList.add('fade-in');
-                    setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
-                    loadUserDashboard(user);
-                }
-            }, 500);
-        }
-
-        // Admin Dashboard Update
-        function updateAdminDashboard() {
-            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
-            const totalSales = registrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-            const ticketsSold = registrations.reduce((sum, reg) => sum + reg.quantity, 0);
-            const uniqueVisitors = new Set(registrations.map(reg => reg.username)).size;
-            const activeEvents = JSON.parse(localStorage.getItem(EVENTS_KEY)).length;
-
-            const baseSales = 8;
-            const baseTickets = 4;
-            const baseVisitors = 10;
-            const baseEvents = 12;
-
-            document.getElementById('totalSales').textContent = `$${totalSales.toFixed(2)}`;
-            const totalSalesPercentage = ((totalSales - baseSales) / baseSales) * 100;
-            document.getElementById('totalSalesChange').textContent = `${totalSalesPercentage.toFixed(2)}%`;
-            document.getElementById('totalSalesChange').className = `font-bold ${totalSalesPercentage > 0 ? 'text-success' : totalSalesPercentage < 0 ? 'text-danger' : 'text-warning'}`;
-
-            document.getElementById('ticketsSold').textContent = ticketsSold;
-            const ticketsSoldPercentage = ((ticketsSold - baseTickets) / baseTickets) * 100;
-            document.getElementById('ticketsSoldChange').textContent = `${ticketsSoldPercentage.toFixed(2)}%`;
-            document.getElementById('ticketsSoldChange').className = `font-bold ${ticketsSoldPercentage > 0 ? 'text-success' : ticketsSoldPercentage < 0 ? 'text-danger' : 'text-warning'}`;
-
-            document.getElementById('uniqueVisitors').textContent = uniqueVisitors;
-            const uniqueVisitorsPercentage = ((uniqueVisitors - baseVisitors) / baseVisitors) * 100;
-            document.getElementById('uniqueVisitorsChange').textContent = `${uniqueVisitorsPercentage.toFixed(2)}%`;
-            document.getElementById('uniqueVisitorsChange').className = `font-bold ${uniqueVisitorsPercentage > 0 ? 'text-success' : uniqueVisitorsPercentage < 0 ? 'text-danger' : 'text-warning'}`;
-
-            document.getElementById('activeEvents').textContent = activeEvents;
-            const activeEventsPercentage = ((activeEvents - baseEvents) / baseEvents) * 100;
-            document.getElementById('activeEventsChange').textContent = `${activeEventsPercentage.toFixed(2)}%`;
-            document.getElementById('activeEventsChange').className = `font-bold ${activeEventsPercentage > 0 ? 'text-success' : activeEventsPercentage < 0 ? 'text-danger' : 'text-warning'}`;
-
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const tableBody = document.getElementById('requestsTableBody');
-            tableBody.innerHTML = requests.length === 0 ? '<tr><td colspan="4" class="text-center">No rental requests found.</td></tr>' : '';
-            requests.slice().reverse().forEach(req => {
-                const row = document.createElement('tr');
-                row.style.cursor = 'pointer';
-                row.innerHTML = `
-                    <td>${req.eventName}</td>
-                    <td class="d-none d-xl-table-cell">${req.eventDate}</td>
-                    <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
-                    <td class="d-none d-md-table-cell">${req.username}</td>
-                `;
-                row.addEventListener('click', () => showRequestPopup(req.id));
-                tableBody.insertBefore(row, tableBody.firstChild);
-            });
-
-            // Update calendar with event dates
-            const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-            const eventDates = events.map(event => event.date);
-            if (flatpickrInstance) {
-                flatpickrInstance.set('onDayCreate', function(dObj, dStr, fp, dayElem) {
-                    if (eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])) {
-                        dayElem.classList.add('event');
-                    }
-                });
-            }
-        }
-
-        // Update Event Types
-        function updateEventTypes() {
-            const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-            if (events.length === 0) {
-                pieChart.data.labels = ['No Data'];
-                pieChart.data.datasets[0].data = [100];
-                pieChart.update();
-                document.getElementById('eventTypesTableBody').innerHTML = '<tr><td>No Data</td><td class="text-end">100%</td></tr>';
-                return;
-            }
-
-            const categoryCount = {};
-            events.forEach(event => {
-                const category = event.category || 'Uncategorized';
-                categoryCount[category] = (categoryCount[category] || 0) + 1;
-            });
-
-            const totalEvents = events.length;
-            const sortedCategories = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]);
-
-            let chartLabels = sortedCategories.slice(0, 3).map(([category]) => category);
-            let chartData = sortedCategories.slice(0, 3).map(([, count]) => (count / totalEvents * 100).toFixed(2));
-
-            const otherCount = sortedCategories.slice(3).reduce((sum, [, count]) => sum + count, 0);
-            if (otherCount > 0) {
-                chartLabels.push('Others');
-                chartData.push((otherCount / totalEvents * 100).toFixed(2));
-            }
-
-            pieChart.data.labels = chartLabels;
-            pieChart.data.datasets[0].data = chartData;
-            pieChart.update();
-
-            const tableBody = document.getElementById('eventTypesTableBody');
-            tableBody.innerHTML = '';
-            chartLabels.forEach((label, index) => {
-                tableBody.innerHTML += `<tr><td>${label}</td><td class="text-end">${chartData[index]}%</td></tr>`;
-            });
-        }
-
-        // Load User Dashboard
-        function loadUserDashboard(user) {
-            document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${user.username}'s</span> Personalized Dashboard`;
-            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
-            const userRegistrations = registrations.filter(reg => reg.username === user.username);
-            const totalTickets = userRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
-            const totalSpent = userRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-            
-            document.getElementById('totalTickets').textContent = totalTickets;
-            document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
-
-            const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-            const eventsContainer = document.getElementById('user-list-view');
-            eventsContainer.innerHTML = userRegistrations.length > 0 ? '' : '<p class="p-4 text-center text-gray-600">No event registrations found.</p>';
-            userRegistrations.forEach(reg => {
-                const event = events.find(e => e.id === reg.eventId);
-                if (event) {
-                    const priceDisplay = reg.totalCost > 0 ? `$${(reg.totalCost / reg.quantity).toFixed(2)}` : 'FREE';
-                    eventsContainer.innerHTML += `
-                        <div class="event-row">
-                            <div class="event-image">
-                                <img src="${event.image || 'https://via.placeholder.com/150'}" alt="${event.title}">
-                            </div>
-                            <div class="event-info">
-                                <h3>${event.title}</h3>
-                                <div class="meta">
-                                    <span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location || 'N/A'}</span>
-                                    <span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span>
-                                    <span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category || 'N/A'}</span>
-                                </div>
-                            </div>
-                            <div class="event-action">
-                                <span class="price">${priceDisplay}</span>
-                                <button onclick="showEventDetails('${reg.id}')">See Details</button>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const userRequests = requests.filter(req => req.username === user.username);
-            const requestsList = document.getElementById('userRequestsList');
-            if (userRequests.length > 0) {
-                let html = '<table class="table table-hover my-0"><thead><tr><th>Event Name</th><th>Date</th><th>Status</th></tr></thead><tbody>';
-                userRequests.forEach(req => {
-                    html += `<tr><td>${req.eventName}</td><td>${req.eventDate}</td><td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td></tr>`;
-                });
-                html += '</tbody></table>';
-                requestsList.innerHTML = html;
-            } else {
-                requestsList.innerHTML = '<p class="text-center text-gray-600">No rental requests found.</p>';
-            }
-        }
-
-        // Generate Seats
-        function generateSeats(seatingChartDiv) {
-            const seatGroups = seatingChartDiv.querySelectorAll('.seat-group');
-            const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-            seatGroups.forEach((group, colIndex) => {
-                for (let i = 0; i < 8; i++) {
-                    const seatRow = document.createElement('div');
-                    seatRow.className = 'seat-row';
-                    for (let seatNum = 1; seatNum <= 2; seatNum++) {
-                        const seat = document.createElement('div');
-                        seat.className = 'seat available';
-                        const rowLetter = rows[colIndex];
-                        const seatLabel = `${rowLetter}${i * 2 + seatNum}`;
-                        seat.textContent = seatLabel;
-                        seat.title = seatLabel;
-                        seatRow.appendChild(seat);
-                    }
-                    group.appendChild(seatRow);
-                }
-            });
-        }
-
-        // Show Event Details Popup
-        function showEventDetails(registrationId) {
-            const registrations = JSON.parse(localStorage.getItem(REGISTRATIONS_KEY)) || [];
-            const registration = registrations.find(reg => reg.id === registrationId);
-            if (!registration) {
-                showPopup('Error', 'Registration not found');
-                return;
-            }
-            const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-            const event = events.find(e => e.id === registration.eventId);
-            if (!event) {
-                showPopup('Error', 'Event not found');
-                return;
-            }
-
-            const ticketPopup = document.getElementById('ticketPopup');
-            ticketPopup.classList.add('active', 'view-mode');
-            document.getElementById('ticketOverlay').style.display = 'block';
-
-            document.getElementById('popupEventTitle').textContent = event.title;
-
-            const seatingChartDiv = document.getElementById('popupSeatingChart');
-            seatingChartDiv.innerHTML = '';
-            const standMapping = { 'NORTH STAND': 'north', 'SOUTH STAND': 'south', 'EAST STAND': 'east', 'WEST STAND': 'west' };
-            if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
-                seatingChartDiv.innerHTML = `
-                    <div class="arena-container2">
-                        <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
-                        <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
-                        <div class="capacity-section east">EAST STAND • 750 SEATS</div>
-                        <div class="capacity-section west">WEST STAND • 750 SEATS</div>
-                        <div class="main-floor2">
-                            <div class="court-display">
-                                <div class="court-text">MAIN COURT</div>
-                                <div class="court-subtext">Performance-ready Surface</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                if (registration.seatingInfo && registration.seatingInfo.type === 'stand') {
-                    const standClass = standMapping[registration.seatingInfo.stand];
-                    if (standClass) {
-                        const standElement = seatingChartDiv.querySelector(`.capacity-section.${standClass}`);
-                        if (standElement) standElement.classList.add('selected');
-                    }
-                }
-            } else if (['Performances', 'Competitions'].includes(event.category)) {
-                seatingChartDiv.innerHTML = `
-                    <div class="arena-container">
-                        <div class="capacity-section north closed">NORTH STAND (CLOSED)</div>
-                        <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
-                        <div class="capacity-section east">EAST STAND • 750 SEATS</div>
-                        <div class="capacity-section west">WEST STAND • 750 SEATS</div>
-                        <div class="stage-container">
-                            <div class="stage">MAIN STAGE</div>
-                        </div>
-                        <div class="main-floor">
-                            <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 50px;">
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                                <div class="seat-group"></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                generateSeats(seatingChartDiv);
-                if (registration.seatingInfo && registration.seatingInfo.type === 'seats') {
-                    registration.seatingInfo.seats.forEach(seatLabel => {
-                        const seat = seatingChartDiv.querySelector(`.seat[title="${seatLabel}"]`);
-                        if (seat) seat.classList.add('selected');
+                    requests.forEach(req => {
+                        const row = tableBody.insertRow();
+                        row.style.cursor = 'pointer';
+                        row.innerHTML = `
+                            <td>${req.eventName || 'N/A'}</td>
+                            <td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td>
+                            <td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td>
+                            <td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>
+                        `;
+                        row.onclick = () => showRequestPopup(req.id);
                     });
                 }
-            }
-            let seatingText = 'None';
-            if (registration.seatingInfo) {
-                if (registration.seatingInfo.type === 'stand') {
-                    seatingText = `Stand: ${registration.seatingInfo.stand} (${registration.seatingInfo.quantity})`;
-                } else if (registration.seatingInfo.type === 'seats') {
-                    seatingText = registration.seatingInfo.seats.join(', ');
-                }
-            }
-            document.getElementById('selectedSeatsText').textContent = seatingText;
-
-            document.getElementById('fullName').value = registration.name;
-            document.getElementById('email').value = registration.email;
-            document.getElementById('phone').value = registration.phone;
-            document.getElementById('quantity').value = registration.quantity;
-            const totalCostElement = document.getElementById('totalCost');
-            totalCostElement.textContent = registration.totalCost > 0 ? `$${registration.totalCost.toFixed(2)}` : 'FREE';
-            if (registration.totalCost > 0) {
-                document.getElementById('cardPaymentNumber').value = registration.cardPaymentNumber ? `**** **** **** ${registration.cardPaymentNumber.slice(-4)}` : 'N/A';
-                document.getElementById('expiry').value = registration.expiry || 'N/A';
-                document.getElementById('cvv').value = registration.cvv || 'N/A';
-                document.querySelectorAll('.payment-group').forEach(group => group.style.display = 'block');
-            } else {
-                document.querySelectorAll('.payment-group').forEach(group => group.style.display = 'none');
-            }
-
-            const scheduleTable = document.getElementById('popupScheduleTable');
-            scheduleTable.innerHTML = '';
-            const schedule = defaultSchedules[event.category] || [];
-            schedule.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${item.event}</td><td>${item.time}</td>`;
-                scheduleTable.appendChild(row);
-            });
-
-            document.getElementById('ticketForm').onsubmit = function(e) {
-                e.preventDefault();
-            };
-        }
-
-        // Show Request Popup
-        function showRequestPopup(requestId) {
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const request = requests.find(req => req.id === requestId);
-            if (!request) {
-                showPopup('Error', 'Request not found');
-                return;
-            }
-            const requestPopup = document.getElementById('requestPopup');
-            requestPopup.dataset.requestId = requestId;
-            document.getElementById('requestDetails').innerHTML = `
-                <p><strong>Requester:</strong> ${request.firstName || request.username} ${request.lastName || ''}</p>
-                <p><strong>Email:</strong> ${request.email || 'N/A'}</p>
-                <p><strong>Status:</strong> ${request.status}</p>
-            `;
-            document.getElementById('mockEventTile').innerHTML = `
-                <div class="relative mb-4">
-                    <img src="${request.image || 'https://via.placeholder.com/150'}" class="w-full h-40 object-cover rounded-lg" alt="${request.eventName || 'Venue Request'}">
-                    <span class="price-tag absolute top-2 right-2">${request.eventPrice > 0 ? `$${request.eventPrice.toFixed(2)}` : request.cost > 0 ? `$${request.cost}` : 'FREE'}</span>
-                </div>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">${request.eventName || 'Venue Request'}</h3>
-                <div class="event-meta text-sm mb-2">
-                    <span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${request.venue || 'N/A'}</span>
-                    <span class="flex items-center"><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(request.eventDate || request.day).toLocaleDateString()}</span>
-                </div>
-                <div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${request.category || 'N/A'}</span></div>
-                <p class="text-gray-600 event-description">${request.description || 'No description provided.'}</p>
-            `;
-            requestPopup.classList.add('active');
-            document.getElementById('requestOverlay').style.display = 'block';
-        }
-
-        // Update Request Status
-        function updateRequestStatus(newStatus) {
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const requestId = document.getElementById('requestPopup').dataset.requestId;
-            const requestIndex = requests.findIndex(req => req.id === requestId);
-            if (requestIndex === -1) return;
-            requests[requestIndex].status = newStatus;
-            if (newStatus === 'accepted') {
-                const request = requests[requestIndex];
-                const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-                const newEvent = {
-                    id: Date.now().toString(),
-                    title: request.eventName || 'Venue Rental Event',
-                    date: request.eventDate || request.day,
-                    location: request.venue || 'Large Gym',
-                    price: request.eventPrice || request.cost || 0,
-                    category: request.category || 'Custom',
-                    image: request.image || 'https://via.placeholder.com/150',
-                    desc: request.description || 'This is a newly added event from a rental request.',
-                    signedUpUsers: []
-                };
-                events.push(newEvent);
-                localStorage.setItem(EVENTS_KEY, JSON.stringify(events));
-            }
-            localStorage.setItem(REQUESTS_KEY, JSON.stringify(requests));
-            closeRequestPopup();
-            updateAdminDashboard();
-        }
-
-        // Delete Request
-        function deleteRequest() {
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const requestId = document.getElementById('requestPopup').dataset.requestId;
-            const updatedRequests = requests.filter(req => req.id !== requestId);
-            localStorage.setItem(REQUESTS_KEY, JSON.stringify(updatedRequests));
-            closeRequestPopup();
-            updateAdminDashboard();
-        }
-
-        // Close Request Popup
-        function closeRequestPopup() {
-            document.getElementById('requestPopup').classList.remove('active');
-            document.getElementById('requestOverlay').style.display = 'none';
-        }
-
-        // Close Ticket Popup
-        function closeTicketPopup() {
-            document.getElementById('ticketPopup').classList.remove('active', 'view-mode');
-            document.getElementById('ticketOverlay').style.display = 'none';
-        }
-
-        // Add Venue Request
-        function addVenueRequest(requestData, user) {
-            const requests = JSON.parse(localStorage.getItem(REQUESTS_KEY)) || [];
-            const newRequest = {
-                id: Date.now().toString(),
-                username: user.username,
-                firstName: user.firstName || user.username,
-                lastName: user.lastName || '',
-                email: user.email || 'N/A',
-                eventName: 'Venue Rental Request',
-                description: requestData.description,
-                time: requestData.time,
-                day: requestData.day,
-                cost: parseFloat(requestData.cost),
-                status: 'pending',
-                venue: 'Large Gym', // Default venue, could be dynamic
-                category: 'Custom',
-                image: 'https://via.placeholder.com/150', // Default image
-                created: new Date().toISOString()
-            };
-            requests.push(newRequest);
-            localStorage.setItem(REQUESTS_KEY, JSON.stringify(requests));
-            return newRequest;
-        }
-
-        // Logout Handler
-        function handleLogout() {
-            const adminDashboard = document.querySelector('.dashboard-wrapper');
-            const userDashboard = document.querySelector('.user-dashboard-wrapper');
-            if (adminDashboard.style.display === 'block') {
-                adminDashboard.classList.add('fade-out');
-                setTimeout(() => {
-                    adminDashboard.style.display = 'none';
-                    adminDashboard.classList.remove('fade-out');
-                    showLoginContainer();
-                }, 500);
-            } else if (userDashboard.style.display === 'block') {
-                userDashboard.classList.add('fade-out');
-                setTimeout(() => {
-                    userDashboard.style.display = 'none';
-                    userDashboard.classList.remove('fade-out');
-                    showLoginContainer();
-                }, 500);
-            }
-            localStorage.removeItem('currentUser');
-            currentUser = null;
-            document.getElementById('loginLink').textContent = 'Log In';
-            document.getElementById('loginLink').removeEventListener('click', handleLogout);
-        }
-
-        // Show Login Container
-        function showLoginContainer() {
-            const loginContainer = document.querySelector('.login-container');
-            loginContainer.style.display = 'block';
-            loginContainer.classList.add('fade-in');
-            setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
-        }
-
-        // Event Listeners
-        document.querySelector('.sign-up-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = {
-                username: this.querySelector('#signupUsername').value,
-                email: this.querySelector('#signupEmail').value,
-                password: this.querySelector('#signupPassword').value,
-                confirmPassword: this.querySelector('#signupConfirm').value
-            };
-            if (validateSignUp(formData) && registerUser(formData)) {
-                const successEl = document.getElementById('signupSuccess');
-                successEl.style.display = 'block';
-                successEl.textContent = 'Account created! Redirecting...';
-                setTimeout(() => {
-                    document.querySelector(".login-container").classList.remove("sign-up-mode");
-                    successEl.style.display = 'none';
-                }, 2000);
-            }
-        });
-
-        document.querySelector('.sign-in-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const credentials = {
-                username: this.querySelector('#loginUsername').value,
-                password: this.querySelector('#loginPassword').value
-            };
-            handleLogin(credentials);
-        });
-
-        const sign_in_btn = document.querySelector("#sign-in-btn");
-        const sign_up_btn = document.querySelector("#sign-up-btn");
-        const login_container = document.querySelector(".login-container");
-        sign_up_btn.addEventListener("click", () => login_container.classList.add("sign-up-mode"));
-        sign_in_btn.addEventListener("click", () => login_container.classList.remove("sign-up-mode"));
-
-        document.getElementById('popupClose').addEventListener('click', hidePopup);
-        document.getElementById('popupOverlay').addEventListener('click', hidePopup);
-
-        document.getElementById('venuePopupClose').addEventListener('click', () => {
-            document.getElementById('venuePopup').classList.remove('active');
-            document.getElementById('popupOverlay').style.display = 'none';
-        });
-
-        document.getElementById('venueRequestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!currentUser) {
-                showPopup('Error', 'Please log in again');
-                return;
-            }
-            const requestData = {
-                description: this.querySelector('#venueDescription').value,
-                time: this.querySelector('#venueTime').value,
-                day: this.querySelector('#venueDay').value,
-                cost: this.querySelector('#venueCost').value
-            };
-            addVenueRequest(requestData, currentUser);
-            showPopup('Success', 'Venue request submitted successfully', true);
-            this.reset();
-            setTimeout(() => {
-                document.getElementById('venuePopup').classList.remove('active');
-                document.getElementById('popupOverlay').style.display = 'none';
-                loadUserDashboard(currentUser);
-            }, 2000);
-        });
-
-        document.getElementById('eventDetailsClose').addEventListener('click', closeTicketPopup);
-        document.getElementById('eventDetailsOverlay').addEventListener('click', closeTicketPopup);
-        document.getElementById('popupClose').addEventListener('click', closeTicketPopup);
-        document.getElementById('ticketOverlay').addEventListener('click', closeTicketPopup);
-        document.getElementById('requestClose').addEventListener('click', closeRequestPopup);
-        document.getElementById('requestOverlay').addEventListener('click', closeRequestPopup);
-
-        // Chart.js and Flatpickr Initialization + Auto-Login
-        document.addEventListener("DOMContentLoaded", function() {
-            try {
-                var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-                var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-                gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-                gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-                new Chart(document.getElementById("chartjs-dashboard-line"), {
-                    type: "line",
-                    data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                        datasets: [{
-                            label: "Views",
-                            fill: true,
-                            backgroundColor: gradient,
-                            borderColor: '#f82249',
-                            data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327]
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        legend: { display: false },
-                        tooltips: { intersect: false },
-                        hover: { intersect: true },
-                        plugins: { filler: { propagate: false } },
-                        scales: {
-                            xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }],
-                            yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }]
-                        }
-                    }
-                });
-
-                pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), {
-                    type: "doughnut",
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            data: [],
-                            backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'],
-                            borderWidth: 5
-                        }]
-                    },
-                    options: {
-                        responsive: !window.MSInputMethodContext,
-                        maintainAspectRatio: false,
-                        legend: { display: false },
-                        cutoutPercentage: 75
-                    }
-                });
-
-                flatpickrInstance = flatpickr(document.getElementById("datetimepicker-dashboard"), {
-                    inline: true,
-                    prevArrow: "<span title=\"Previous month\">«</span>",
-                    nextArrow: "<span title=\"Next month\">»</span>",
-                    defaultDate: "today",
-                    onDayCreate: function(dObj, dStr, fp, dayElem) {
-                        const events = JSON.parse(localStorage.getItem(EVENTS_KEY)) || [];
-                        const eventDates = events.map(event => event.date);
-                        if (eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])) {
-                            dayElem.classList.add('event');
-                        }
-                    }
-                });
             } catch (error) {
-                console.error("Error initializing charts or calendar:", error);
+                console.error("Error loading admin requests:", error);
+                showPopup('Error', 'Failed to load rental requests.');
             }
+        }
 
-            const storedUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (storedUser) {
-                handleLogin(storedUser);
-                const loginLink = document.getElementById('loginLink');
-                loginLink.textContent = 'Log in';
-                loginLink.href = '#';
-                loginLink.addEventListener('click', handleLogout);
-            }
-        });
+        async function loadUserDashboard() {
+            if (!currentUser) return;
+            console.log("Fetching data for user:", currentUser.username);
+            document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Personalized Dashboard`;
+            
+            // This is where you'd fetch user-specific data, e.g., their registrations
+            // Example:
+            // const registrationsSnapshot = await db.collection('registrations').where('userId', '==', currentUser.uid).get();
+            // const userRegistrations = registrationsSnapshot.docs.map(doc => doc.data());
+            // Then update the UI with this data
+        }
 
-     
-
+        function showRequestPopup(requestId) {
+            console.log("Showing popup for request ID:", requestId);
+            // You will need to implement this function to fetch the specific request
+            // from Firestore and display its details in the `request-popup`.
+        }
     </script>
-    <script src="static/js/app2.js"></script>
-    <script src="lib/jquery/jquery.min.js"></script>
+    
+    <!-- Other JS Libraries -->
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
