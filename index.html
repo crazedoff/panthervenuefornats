@@ -392,188 +392,158 @@
 
 <body>
 
+
 <!--==========================
     Header
   ============================-->
-<header id="header">
-  <div class="container">
+  <header id="header">
+    <div class="container">
 
-    <div id="logo" class="pull-left">
-      <a href="#intro" class="scrollto">
-        <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo" title="">
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a href="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" class="scrollto">
+          <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="" title="">
       </a>
+      
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active menu-has-children"><a href="#intro">Home</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#services">
+                <i class="fas fa-concierge-bell"></i>
+                <span>Amenities</span>
+              </a></li>
+              <li><a class="dropdown-item" href="#seating">
+                <i class="fas fa-chair"></i>
+                <span>Seating Charts</span>
+              </a></li>
+              <li><a class="dropdown-item" href="#schedule">
+                <i class="fas fa-scroll"></i>
+                <span>Policies</span>
+              </a></li>
+              <li><a class="dropdown-item" href="#hotels">
+                <i class="fas fa-hotel"></i>
+                <span>Hotels</span>
+              </a></li>
+              <li><a class="dropdown-item" href="#faq">
+                <i class="fas fa-question-circle"></i>
+                <span>FAQ</span>
+              </a></li>
+              <li><a class="dropdown-item" href="#panther-footer-final">
+                <i class="fas fa-shoe-prints"></i>
+                <span>Footer</span>
+              </a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#about">About</a></li> <!--Instructions will be here-->
+          <li><a href="event.html">Events</a></li> <!--Seating will be here-->
+          <li><a href="rent.html">Rent Venue</a></li>
+          <li class="buy-tickets"><a href="login.html">Log In</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
     </div>
+  </header><!-- #header -->
+  <style>
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Nav Menu Essentials */
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-    <nav id="nav-menu-container">
-      <ul class="nav-menu">
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
 
-        <!-- HOME LINK WITH THE CORRECT MEGA MENU -->
-        <li class="menu-active menu-has-children">
-          <a href="#intro">Home</a>
-          <div class="dropdown-menu mega-menu">
-            <div class="container">
-              <div class="row">
-                <!-- Column 1 -->
-                <div class="col-lg-4">
-                  <a href="#services" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-concierge-bell"></i></div>
-                    <h5>Amenities</h5>
-                  </a>
-                  <a href="#seating" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-chair"></i></div>
-                    <h5>Seating Charts</h5>
-                  </a>
-                </div>
-                <!-- Column 2 -->
-                <div class="col-lg-4">
-                  <a href="#schedule" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-scroll"></i></div>
-                    <h5>Policies</h5>
-                  </a>
-                  <a href="#hotels" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-hotel"></i></div>
-                    <h5>Hotels</h5>
-                  </a>
-                </div>
-                <!-- Column 3 -->
-                <div class="col-lg-4">
-                  <a href="#faq" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-question-circle"></i></div>
-                    <h5>F.A.Q.</h5>
-                  </a>
-                  <a href="#contact" class="mega-menu-item">
-                    <div class="icon-box"><i class="fas fa-address-book"></i></div>
-                    <h5>Contact Us</h5>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+.nav-menu li {
+  position: relative;
+  white-space: nowrap;
+}
 
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="event.html">Events</a></li>
-        <li><a href="rent.html">Rent Venue</a></li>
-        <li class="buy-tickets"><a href="login.html">Log In</a></li>
+.nav-menu > li {
+  float: left;
+}
 
-      </ul>
-    </nav><!-- #nav-menu-container -->
-  </div>
-</header><!-- #header -->
+/* Dropdown chevron */
+.nav-menu li.menu-has-children > a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  padding-left: 10px;
+  position: relative;
+  top: -1px;
+  color: #e0072f; /* Red arrow */
+}
 
-<style>
-  /*
-  ========================================================
-      DEFINITIVE DROPDOWN STYLES (VERTICAL + STYLED)
-  ========================================================
-  */
+/* General Dropdown Styling */
+.nav-menu ul ul {
+  top: 0;
+  left: 100%;
+}
 
-  /* The Dropdown Panel: Clean, white, and animated */
-  .nav-menu .dropdown-menu {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: calc(100% + 5px);
-    margin: 0;
-    padding: 10px;
-    
-    min-width: 260px; /* A good width for a single column */
-    
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
-    
-    /* Animation */
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(15px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 999;
-  }
+.nav-menu ul li {
+  min-width: 200px;
+}
 
-  /* Show the panel on hover */
-  .nav-menu .menu-has-children:hover > .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
+/* Dropdown Menu - Main Container */
+.nav-menu .dropdown-menu {
+  padding: 10px;
+  border: 0;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+  transition: all 0.3s ease;
+  transform: translateY(10px);
+}
 
-  /* The Red Dropdown Arrow */
-  .nav-menu li.menu-has-children > a:after {
-    content: "\f107";
-    font-family: FontAwesome;
-    padding-left: 8px;
-    font-size: 14px;
-    color: #e0072f;
-  }
+.nav-menu > li:hover > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
-  /* Each Clickable Item Block (The <a> Tag) */
-  .dropdown-item-styled {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 8px;
-    text-decoration: none !important;
-    transition: all 0.25s ease-in-out;
-  }
+/* Dropdown Items */
+.nav-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #333;
+}
 
-  /* Hover effect for each item */
-  .dropdown-item-styled:hover {
-    background-color: #fef6f7; /* Very light red */
-    transform: translateX(5px);
-  }
+.nav-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #e0072f;
+}
 
-  /* The Light Red Icon Square */
-  .dropdown-item-styled .icon-box {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fce8ec;
-    border-radius: 8px;
-  }
+/* Icons in Dropdown */
+.nav-menu .dropdown-item i {
+  font-size: 20px;
+  margin-right: 15px;
+  width: 25px;
+  text-align: center;
+}
 
-  /* The Dark Red Icon */
-  .dropdown-item-styled .icon-box i {
-    font-size: 20px;
-    color: #c71c3a;
-  }
+/* Text in Dropdown */
+.nav-menu .dropdown-item span {
+  font-weight: 500;
+}
 
-  /* The Black Title */
-  .dropdown-item-styled h5 {
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-    transition: color 0.2s ease;
-  }
-  
-  .dropdown-item-styled:hover h5 {
-    color: #e0072f;
-  }
-
-  /* Housekeeping: Remove conflicting styles from default template */
-  .nav-menu ul {
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-  .nav-menu ul li {
-    min-width: unset;
-  }
 </style>
-
-
-
-
-
   <!--==========================
     Intro Section
 ============================-->
