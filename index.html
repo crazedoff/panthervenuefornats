@@ -432,35 +432,31 @@
 <style>
   /*
   ========================================================
-      MEGA MENU STYLES (INSPIRED BY THE VIDEO)
+      NEW & CORRECTED DROPDOWN MENU STYLES
   ========================================================
   */
 
-  /* General Dropdown Positioning */
+  /* Dropdown Positioning & Animation */
   .nav-menu .menu-has-children .dropdown-menu {
     display: block;
     position: absolute;
-    left: 50%; /* Center the menu */
-    transform: translateX(-50%);
-    top: 100%;
-    margin-top: 10px; /* Space between nav and menu */
+    left: 0;
+    top: calc(100% + 5px); /* Position below parent with a small gap */
     
-    width: 80vw; /* Wide menu */
-    max-width: 800px; /* Max width */
+    min-width: 240px; /* Set an appropriate width */
     
     background: #ffffff;
-    border: 1px solid #e9e9e9;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     
-    padding: 20px;
+    padding: 10px;
     
+    /* Animation properties */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    
-    transform: translateX(-50%) translateY(20px);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
   }
 
@@ -469,7 +465,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 
   /* Dropdown Arrow Indicator */
@@ -481,71 +477,54 @@
     color: #e0072f; /* Panther Red Arrow */
   }
 
-  /* Mega Menu Item Styling (the <a> tag) */
-  .mega-menu-item {
+  /* Styling for each link in the dropdown */
+  .dropdown-menu li a {
     display: flex;
     align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none !important;
-    margin-bottom: 10px;
-  }
-
-  .mega-menu-item:hover {
-    background-color: #fce8ec; /* Light Panther Red */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(224, 7, 47, 0.1);
-  }
-
-  /* Icon Box */
-  .mega-menu-item .icon-box {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
     
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    background-color: rgba(224, 7, 47, 0.1); /* Subtle red background */
-    border-radius: 10px;
-  }
-  
-  .mega-menu-item .icon-box i {
-    font-size: 24px;
-    color: #c71c3a; /* Darker Panther Red */
-  }
-
-  /* Text Box */
-  .mega-menu-item .text-box h5 {
     font-family: "Raleway", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: #222;
-    margin: 0 0 4px 0;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 15px;
+    color: #444;
+    
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
   }
 
-  .mega-menu-item .text-box p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-    color: #666;
-    margin: 0;
+  /* Hover effect for each link */
+  .dropdown-menu li a:hover {
+    background-color: #fde8eb; /* Light Panther Red */
+    color: #e0072f;
+    transform: translateX(5px); /* Subtle animation */
+  }
+
+  /* Icon styling within the link */
+  .dropdown-menu li a i {
+    font-size: 18px;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+    color: #c71c3a; /* Darker red for icons */
+    transition: color 0.2s ease-in-out;
+  }
+
+  /* Change icon color on hover to match the text */
+  .dropdown-menu li a:hover i {
+    color: #e0072f;
   }
   
-  .mega-menu-item:hover .text-box h5 {
-      color: #e0072f;
-  }
-
-  /* To prevent style conflicts, we remove the default dropdown styles from superfish */
+  /* Housekeeping: Remove conflicting old styles */
   .nav-menu ul {
-    background: none;
-    border: none;
-    box-shadow: none;
+      background: none;
+      border: none;
+      box-shadow: none;
   }
-
+  .nav-menu li a {
+      text-decoration: none;
+  }
 </style>
   <!--==========================
     Intro Section
