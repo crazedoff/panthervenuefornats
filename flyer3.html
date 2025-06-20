@@ -27,29 +27,24 @@
             margin: 0;
         }
 
-        /* The main container has a fixed aspect ratio and is the positioning parent. */
+        /* --- THE FIX IS HERE --- */
         #flyer-container {
             position: relative;
             width: 1080px;
             height: 1350px;
             overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        /* The flyer template is the bottom-most layer. */
-        #background-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; 
+            
+            /* The template is now a CSS background, the correct approach */
+            background-image: url('https://hc-cdn.hel1.your-objectstorage.com/s/v3/bd0262f544e32438cdc972af448e2d38ecad1ffa_panthervenue_event_flyer.png');
+            background-size: cover; /* Ensures it fits the container */
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Each dynamic element is an overlay positioned on top of the background. */
         .overlay {
             position: absolute;
-            z-index: 1; /* Ensures all overlays are on top of the background */
             font-family: 'Poppins', sans-serif;
             box-sizing: border-box;
         }
@@ -155,11 +150,8 @@
     <p>Change values in the script tag to update the flyer. Then click download.</p>
 
     <div id="flyer-container">
-        <!-- THE FIX: The template is now a single background image. -->
-        <img id="background-img" 
-             src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/bd0262f544e32438cdc972af448e2d38ecad1ffa_panthervenue_event_flyer.png" 
-             crossorigin="anonymous" 
-             alt="Flyer Background Template">
+        <!-- The background image is now set via CSS on this container. -->
+        <!-- The <img id="background-img"> has been REMOVED. -->
 
         <!-- All other elements are layered on top of the background image -->
         <div id="title" class="overlay"></div>
