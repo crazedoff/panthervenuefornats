@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <link rel="prefetch" href="index.html">
-<!-- Google tag (gtag.js) -->
+  <link rel="prefetch" href="/home.html">
+<!-- Google analytics tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -29,25 +28,25 @@
  
 </a>
 
-  <!-- Favicons -->
+  <!-- our favicon -->
   <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
 
-  <!-- Icon Libraries (including Font Awesome for Decorations) -->
+  <!-- icons and stuff (Font Awesome for decos) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-  <!-- Google Fonts -->
+  <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
 
-  <!-- Bootstrap 5 CSS File -->
+  <!-- bootstrap 5 css -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Libraries CSS Files -->
+  <!-- other css libs -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/venobox/venobox.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-  <!-- Main Stylesheet File -->
+  <!-- my main stylesheet -->
   <link href="css/style.css" rel="stylesheet">
 
   <link href="assets/img/favicon.png" rel="icon">
@@ -67,35 +66,33 @@
   
 
  
-    <!-- 
-    ========================================================
-        DECORATIVE BACKGROUND STYLES & PARALLAX
-    ========================================================
+    <!--
+    DECORATIVE BACKGROUND STYLES & PARALLAX
     -->
     <style>
-      /* --- This rule makes the FAQ section a container for its decorations --- */
+      /* makes the FAQ section a container for its decorations */
       #faq {
         position: relative;
-        background: #f8f9fa; /* Fallback for when decorations are hidden */
+        background: #f8f9fa; /* Fallback for when decos are hidden */
       }
       
-      /* --- 1. HERO IMAGE PARALLAX (Desktop Only) --- */
+      /* HERO IMAGE PARALLAX - desktop only */
       #intro {
-        background-attachment: fixed; /* Creates parallax effect */
+        background-attachment: fixed; /* this creates the parallax effect */
         
       }
       
-      /* --- 2. DECORATIVE STYLES (Desktop Only) --- */
+      /* DECORATIVE STYLES - desktop only */
       @media (min-width: 1200px) {
 
-        /* -- Setup for sections with decorations -- */
+        /* setup for sections with decorations */
         #about, #seating, #team, #contact, #hotels, #services, #schedule {
             position: relative;
             overflow: hidden;
             z-index: 1; 
         }
 
-        /* -- NEW: Setup for the third blob in the Policies section -- */
+        /* new blob for the Policies section */
         #schedule .container {
             position: relative;
             z-index: 1;
@@ -111,7 +108,7 @@
             pointer-events: none;
         }
 
-        /* -- Gray Blob for About Us -- */
+        /* Gray Blob for About Us */
         #about::before {
             content: '';
             position: absolute;
@@ -128,7 +125,7 @@
             pointer-events: none;
         }
         
-        /* -- Red Blobs for Amenities Section (#services) -- */
+        /* Red Blobs for Amenities Section (#services) */
         #services::before, #services::after {
             content: '';
             position: absolute;
@@ -154,7 +151,7 @@
             transform: rotate(-45deg) scaleX(-1);
         }
 
-        /* -- Gray Blobs for Hotel Section -- */
+        /* Gray Blobs for Hotel Section */
         #hotels::before, #hotels::after {
             content: '';
             position: absolute;
@@ -165,14 +162,14 @@
             opacity: 0.2;
             pointer-events: none;
         }
-        #hotels::before { /* Top Left */
+        #hotels::before { /* top left */
             width: 450px;
             height: 450px;
             top: -100px;
             left: -150px;
             transform: rotate(20deg);
         }
-        #hotels::after { /* Bottom Right */
+        #hotels::after { /* bottom right */
             width: 550px;
             height: 550px;
             bottom: -220px;
@@ -180,7 +177,7 @@
             transform: rotate(-30deg) scaleX(-1);
         }
 
-        /* -- Red Blobs for Seating Chart Section -- */
+        /* Red Blobs for Seating Chart Section */
         #seating::before, #seating::after {
             content: '';
             position: absolute;
@@ -191,14 +188,14 @@
             opacity: 0.3;
             pointer-events: none;
         }
-        #seating::before { /* Top Right */
+        #seating::before { /* top right */
             width: 500px;
             height: 500px;
             top: -150px;
             right: -180px;
             transform: rotate(45deg);
         }
-        #seating::after { /* Bottom Left */
+        #seating::after { /* bottom left */
             width: 400px;
             height: 400px;
             bottom: -150px;
@@ -206,7 +203,7 @@
             transform: rotate(-60deg) scaleX(-1);
         }
 
-        /* -- Team Section Red Blobs -- */
+        /* Team Section Red Blobs */
         #team::before, #team::after {
             content: '';
             position: absolute;
@@ -217,14 +214,14 @@
             opacity: 0.4;
             pointer-events: none;
         }
-        #team::before { /* Top Left */
+        #team::before { /* top left */
             width: 600px;
             height: 600px;
             top: -200px;
             left: -250px;
             transform: rotate(15deg);
         }
-        #team::after { /* Bottom Right */
+        #team::after { /* bottom right */
             width: 700px;
             height: 700px;
             bottom: -300px;
@@ -232,7 +229,7 @@
             transform: rotate(-25deg);
         }
         
-        /* -- Contact Section Red Blobs -- */
+        /* Contact Section Red Blobs */
         #contact::before, #contact::after {
             content: '';
             position: absolute;
@@ -242,7 +239,7 @@
             background-size: contain;
             pointer-events: none;
         }
-        #contact::before { /* Bottom Right */
+        #contact::before { /* bottom right */
             width: 600px;
             height: 600px;
             bottom: -200px;
@@ -250,7 +247,7 @@
             opacity: 0.4;
             transform: rotate(30deg);
         }
-        #contact::after { /* Top Left */
+        #contact::after { /* top left */
             width: 500px;
             height: 500px;
             top: -180px;
@@ -259,7 +256,7 @@
             transform: rotate(-25deg) scaleX(-1);
         }
         
-        /* -- Policies Section Three Gray Blobs -- */
+        /* Policies Section Three Gray Blobs */
         #schedule::before, #schedule::after, #schedule .container::before {
             content: '';
             position: absolute;
@@ -270,21 +267,21 @@
             opacity: 0.25;
             pointer-events: none;
         }
-        #schedule::before { /* Top Right */
+        #schedule::before { /* top right */
             width: 500px;
             height: 400px;
             top: -100px;
             right: -150px;
             transform: rotate(50deg);
         }
-        #schedule::after { /* Bottom Right */
+        #schedule::after { /* bottom right */
             width: 500px;
             height: 500px;
             bottom: -200px;
             right: -240px;
             transform: rotate(-30deg);
         }
-        #schedule .container::before { /* Middle Left */
+        #schedule .container::before { /* middle left */
             width: 450px;
             height: 450px;
             top: 50%;
@@ -293,7 +290,7 @@
             opacity: 0.2;
         }
 
-        /* --- Team Section Animated Line --- */
+        /* Team Section Animated Line */
         #team-line-svg {
             position: absolute;
             top: 0;
@@ -314,7 +311,7 @@
             stroke-linejoin: round;
         }
         
-        /* -- FAQ Section Background Icons -- */
+        /* FAQ Section Background Icons */
         #faq {
           background: transparent !important;
         }
@@ -376,13 +373,13 @@
    <script>
     (function() {
       const path = window.location.pathname.toLowerCase();
-      // Add ALL your valid .html pages to this list
-      const validPages = ['/', '/index.html', '/event.html', '/rent.html', '/login.html', '/404.html']; 
+      // list of all valid .html pages
+      const validPages = ['/', '/home.html', '/event.html', '/rent.html', '/login.html', '/404.html']; 
       
       const isFile = path.endsWith('.html');
       const isValidPage = validPages.some(page => path.endsWith(page));
 
-      // If the user is trying to access an .html file that is NOT on our valid list, redirect them.
+      // if user tries to open a non-existent .html file, send em to 404
       if (isFile && !isValidPage) {
         window.location.replace('/404.html');
       }
@@ -393,14 +390,12 @@
 <body>
 
 
-<!--==========================
-    Header
-  ============================-->
+<!-- Header -->
   <header id="header">
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- use a text logo instead of img if you want -->
         <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
         <a href="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" class="scrollto">
           <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="" title="">
@@ -410,23 +405,64 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="index.html#about">About</a></li> <!--Instructions will be here-->
-          <li><a href="event.html">Events</a></li> <!--Seating will be here-->
-          <li><a href="rent.html">Rent Venue</a></li>
-          <li class="buy-tickets"><a href="login.html">Log In</a></li>
+          <li class="menu-active"><a href="/home.html">Home</a></li>
+          <li><a href="/home.html#about">About</a></li> <!-- Instructions will be here -->
+          <li><a href="/event.html">Events</a></li> <!-- Seating will be here -->
+          <li><a href="/rent.html">Rent Venue</a></li>
+         <li class="buy-tickets"><a href="/login.html" id="loginButton">Log In</a></li>
         </ul>
-      </nav><!-- #nav-menu-container -->
+      </nav>
     </div>
-  </header><!-- #header -->
+  </header>
+
+  <!-- Firebase and Auth Logic -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
+    authDomain: "panthervenue.firebaseapp.com",
+    projectId: "panthervenue",
+    storageBucket: "panthervenue.appspot.com",
+    messagingSenderId: "15387964560",
+    appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
+  };
+
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // Listen for authentication state changes
+  auth.onAuthStateChanged(async (user) => {
+    const loginButton = document.getElementById('loginButton');
+    if (!loginButton) return; // Exit if the button isn't found
+
+    if (user) {
+      // User is logged in, show "Dashboard"
+      const userDoc = await db.collection('users').doc(user.uid).get();
+      if(userDoc.exists) {
+        loginButton.textContent = 'Dashboard';
+        loginButton.href = '/login.html'; // This page handles routing to the dashboard
+      }
+    } else {
+      // User is not logged in, show "Log In"
+      loginButton.textContent = 'Log In';
+      loginButton.href = '/login.html';
+    }
+  });
+</script>
 
 
   <style>
 
-    /*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Nav Menu Essentials */
+    /* Nav Menu */
+/* nav menu basics */
 .nav-menu, .nav-menu * {
   margin: 0;
   padding: 0;
@@ -450,7 +486,7 @@
   float: left;
 }
 
-/* Dropdown chevron */
+/* dropdown arrow thingy */
 .nav-menu li.menu-has-children > a:after {
   content: "\f107";
   font-family: FontAwesome;
@@ -519,9 +555,7 @@
 }
   </style>
 
-  <!--==========================
-    Intro Section
-============================-->
+  <!-- Intro Section -->
 <section id="intro">
   <div class="intro-container wow fadeIn">
     <h1 class="mb-4 pb-0">
@@ -530,7 +564,7 @@
     </h1>
     <p class="mb-4 pb-0">Bridgewater-Raritan High School, New Jersey</p>
     <a href="#!" class="venobox play-btn mb-4" data-vbtype="iframe" data-autoplay="true" id="play-button" data-href="viewer.html"></a>
-    <a href="event.html" class="about-btn scrollto">See Events</a>
+    <a href="/event.html" class="about-btn scrollto">See Events</a>
   </div>
 </section>
 
@@ -545,9 +579,9 @@ function type() {
   if (index < fullText.length) {
     typingElement.innerHTML += fullText.charAt(index);
     index++;
-    setTimeout(type, 70); // Adjust typing speed here (in milliseconds)
+    setTimeout(type, 70); // typing speed in ms
   } else {
-    // Once the first part is typed, start typing "Excellence"
+    // after the first part, type 'Excellence'
     typeExcellence();
   }
 }
@@ -558,17 +592,17 @@ function typeExcellence() {
     if (indexExcellence < excellenceText.length) {
       excellenceElement.innerHTML += excellenceText.charAt(indexExcellence);
       indexExcellence++;
-      setTimeout(typeNext, 150); // Adjust typing speed here (in milliseconds)
+      setTimeout(typeNext, 150); // typing speed in ms
     }
   }
   typeNext(); // Start typing "Excellence"
 }
 
-// Start the typing effect when the page loads
-// Note: This is now called by the main script at the bottom of the page
+// start typing on load
+// this gets called by the main script at the bottom
 </script>
 
-  <!-- Wave Animation SVG -->
+  <!-- cool wave svg -->
   <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
     <defs>
       <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
@@ -586,7 +620,6 @@ function typeExcellence() {
 </section>
 
 <style>
-/* Add these CSS styles */
 .hero {
   position: relative;
   width: 100%;
@@ -636,7 +669,7 @@ function typeExcellence() {
   animation-delay: -2s;
 }
 #excellence {
-  min-height: 1.5em; /* Adjust this value based on your font size */
+  min-height: 1.5em; /* Adjust based on your font size */
 }
 
 @keyframes move-forever1 {
@@ -654,7 +687,7 @@ function typeExcellence() {
   100% { transform: translate(85px, 0%); }
 }
 
-/* Adjust your existing content positioning */
+/* adjust content positioning */
 .hero h1 {
   font-size: 3.5rem;
   text-shadow: 2px 2px 4px rgba(211, 42, 42, 0.5);
@@ -667,7 +700,7 @@ function typeExcellence() {
 </style>
 
 <style>
-  /* Add these CSS animations */
+  /* css animations */
   @keyframes dramatic-appear {
       from {
           opacity: 0;
@@ -794,7 +827,7 @@ function typeExcellence() {
               el.style.setProperty('--index', index);
           }
           
-          // Add hover effect restoration
+          // restore hover effect
           el.addEventListener('animationend', () => {
               el.style.transform = 'none'; // Reset transform after animation
           });
@@ -828,34 +861,29 @@ function typeExcellence() {
 
   <div class="col-xl-2 col-md-3 col-6 client-logo">
     <img src="img/sponsors/1.png" class="img-fluid" alt="">
-  </div><!-- End Client Item -->
+  </div>
 
   <div class="col-xl-2 col-md-3 col-6 client-logo">
     <img src="img/sponsors/2.png" class="img-fluid" alt="">
-  </div><!-- End Client Item -->
+  </div>
 
   <div class="col-xl-2 col-md-3 col-6 client-logo">
     <img src="img/sponsors/3.png" class="img-fluid" alt="">
-  </div><!-- End Client Item -->
-
-  <!-- Removed #4 -->
-
-  <!-- Removed #6 -->
+  </div>
 
   <div class="col-xl-2 col-md-3 col-6 client-logo">
     <img src="img/sponsors/7.png" class="img-fluid" alt="">
-  </div><!-- End Client Item -->
+  </div>
 
 </div>
 
       </div>
 
-    </section><!-- /Clients Section -->
+    </section>
 
     <!-- About Section -->
     <section id="about" class="about section">
 
-      <!-- Section Title -->
       <div class="section-header">
         <h2>About Us</h2>
         <p>Learn more about PantherVenue and its vision.</p>
@@ -896,10 +924,10 @@ function typeExcellence() {
           </div>
         </div>
       </div>
-    </section><!-- /About Section -->
+    </section>
 <section id="stats" class="stats section">
 
-  <!-- SVG For the Animated Gradient Line -->
+  <!-- SVG for the animated line -->
   <svg id="stats-line-svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
       <defs>
           <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -909,13 +937,13 @@ function typeExcellence() {
           </linearGradient>
       </defs>
       
-      <!-- THIS IS THE NEW, HAND-CRAFTED PATH BASED ON YOUR DRAWING -->
+      <!-- here's the custom path for the line -->
       <path id="stats-scroll-line" stroke="url(#redGradient)" 
             d="M -34 66 C 675 -6 378 1062 113 635 S 374 473 570 691 S 1250 650 1295 796" />
 
   </svg>
 
-  <!-- This is your original content, which will now appear ON TOP of the line -->
+  <!-- original content goes on top of the line -->
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="row gy-4 align-items-center">
       <div class="col-lg-5">
@@ -964,17 +992,15 @@ function typeExcellence() {
     </div>
   </div>
 </section>
- <!-- ====================================================== -->
-<!--      FINAL CSS FOR THE STATS ANIMATION (REVISED)       -->
-<!-- ====================================================== -->
+ <!-- FINAL CSS for the stats animation -->
 <style>
-  /* Make the stats section a positioning container */
+  /* make the stats section a positioning container */
   #stats {
     position: relative;
     overflow: hidden; 
   }
 
-  /* The SVG canvas for the line must be at the very bottom layer */
+  /* the SVG canvas for the line must be at the very bottom layer */
   #stats-line-svg {
       position: absolute;
       top: 0;
@@ -985,24 +1011,24 @@ function typeExcellence() {
       z-index: 0; /* BOTTOM LAYER */
   }
 
-  /* Ensure both columns of your content are lifted above the line */
+  /* ensure both columns of your content are lifted above the line */
   #stats .col-lg-5,
   #stats .col-lg-7 {
       position: relative;
       z-index: 2; /* TOP LAYER */
   }
 
-  /* --- THIS IS THE MAGIC --- */
-  /* Apply a filter to the image itself to create an opaque background */
+  /* THIS is the magic */
+  /* apply a filter to the image itself to create an opaque background */
   #stats .col-lg-5 img {
-      /* This filter creates a solid white shape directly behind the image's content.
-         We stack multiple shadows to make it fully opaque. */
+      /* this filter creates a solid white shape directly behind the image's content.
+         we stack multiple shadows to make it fully opaque. */
       filter: drop-shadow(0px 0px 15px #ffffff) 
               drop-shadow(0px 0px 15px #ffffff) 
               drop-shadow(0px 0px 15px #ffffff);
   }
   
-  /* The animated line itself */
+  /* the animated line itself */
   #stats-scroll-line {
       stroke-width: 40; 
       fill: none;
@@ -1011,12 +1037,7 @@ function typeExcellence() {
   }
 </style>
 
-<!-- ====================================================== -->
-<!--    FINAL JAVASCRIPT FOR STATS ANIMATION (REVISED)      -->
-<!-- (This version includes Tapering AND the Scroll Offset)  -->
-<!-- ====================================================== -->
-
-
+<!-- FINAL JAVASCRIPT for stats animation (Tapering + Scroll Offset) -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
       const statsPath = document.querySelector('#stats-scroll-line');
@@ -1024,25 +1045,23 @@ function typeExcellence() {
 
       if (statsPath && statsSection) {
           
-          //==============================================================
-          //  ==> YOUR SETTINGS <==
-          //  Tweak these four values to perfect the effect.
-          //==============================================================
-
-          // 1. SCROLL DELAY: When the animation starts. 
+          // ==> SETTINGS <==
+          // Tweak these to change the animation.
+          
+          // 1. scroll delay: when the anim starts
           const scrollStartOffset = 0.25; 
 
-          // 2. MAX THICKNESS: How thick the line is at the beginning.
+          // 2. max thickness: how thick the line is at the beginning
           const maxStrokeWidth = 40; 
 
-          // 3. MIN THICKNESS: How thin the line is at the end.
+          // 3. min thickness: how thin the line is at the end
           const minStrokeWidth = 10;
           
-          // 4. SPEED FACTOR: How long the animation takes.
-          //    1.0 = normal speed. > 1.0 = slower. < 1.0 = faster.
-          const animationSpeedFactor = 0.8; // <-- TAD BIT SLOWER
+          // 4. speed factor: how long the anim takes
+          //    1.0 = normal, > 1.0 = slower, < 1.0 = faster
+          const animationSpeedFactor = 0.8; // a little slower
 
-          // --- The rest of the script works automatically ---
+          // -- script works automatically from here --
           const pathLength = statsPath.getTotalLength();
           statsPath.style.strokeDasharray = pathLength + ' ' + pathLength;
           statsPath.style.strokeDashoffset = pathLength;
@@ -1055,20 +1074,20 @@ function typeExcellence() {
               const scrollDistance = scrollTop - sectionTop;
 
               if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight * animationSpeedFactor) {
-                  // Calculate the raw progress, adjusted by our speed factor
+                  // calculate the raw progress, adjusted by our speed factor
                   const progress = (scrollDistance + viewportHeight) / ((sectionHeight + viewportHeight) * animationSpeedFactor);
                   
-                  // Adjust progress based on your scroll delay
+                  // adjust progress based on your scroll delay
                   const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
 
-                  // Clamp the final progress between 0 and 1 to prevent errors
+                  // clamp the final progress between 0 and 1 to prevent errors
                   const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
                   
-                  // Calculate the draw length using the final progress
+                  // calculate the draw length using the final progress
                   const drawLength = pathLength * finalProgress;
                   statsPath.style.strokeDashoffset = pathLength - drawLength;
 
-                  // Calculate the new stroke width using the same final progress
+                  // calculate the new stroke width using the same final progress
                   const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
                   statsPath.style.strokeWidth = `${currentStrokeWidth}px`;
               }
@@ -1165,7 +1184,7 @@ function typeExcellence() {
 
     </div>
   </div>
-</section><!-- /Services Section -->
+</section>
 
 <style>
       #services {
@@ -1174,10 +1193,10 @@ function typeExcellence() {
     </style>
 
 <style>
-/* --- START: STYLES FOR FINAL AMENITIES SECTION --- */
-/* Main Box Container - The base is a white box */
+/* STYLES FOR AMENITIES SECTION */
+/* main box container - the base is a white box */
 .services .service-item.amenity-box {
-    background-color: var(--surface-color); /* White background */
+    background-color: var(--surface-color); /* white background */
     box-shadow: 0px 0 30px 0 rgba(0, 0, 0, 0.1);
     padding: 50px 30px;
     transition: all ease-in-out 0.4s;
@@ -1186,7 +1205,7 @@ function typeExcellence() {
     z-index: 1;
 }
 
-/* Image & Overlay Container - Sits in the background */
+/* image & overlay container - sits in the background */
 .services .amenity-box .amenity-bg-container {
     position: absolute;
     top: 0;
@@ -1194,42 +1213,40 @@ function typeExcellence() {
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0; /* Hidden by default */
+    opacity: 0; /* hidden by default */
     transition: opacity 0.5s ease-in-out;
 }
 .services .amenity-box:hover .amenity-bg-container {
-    opacity: 1; /* Revealed on hover */
+    opacity: 1; /* revealed on hover */
 }
 
-/* Background Image - Inside the container, ready to animate */
+/* background image - inside the container, ready to animate */
 .services .amenity-box .amenity-bg-img {
-
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.15); /* Start zoomed in */
+    transform: scale(1.15); /* start zoomed in */
     transition: transform 0.5s ease-in-out;
-
 }
 .services .amenity-box:hover .amenity-bg-img {
-    transform: scale(1); /* Zoom out on hover */
+    transform: scale(1); /* zoom out on hover */
 }
 
-/* Darkening Overlay for text readability */
+/* darkening overlay for text readability */
 .services .amenity-box .amenity-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(25, 25, 25, 0.6); /* Semi-transparent dark layer */
+    background: rgba(25, 25, 25, 0.6); /* semi-transparent dark layer */
 }
 
-/* Content Wrapper - This holds all visible text and icons */
+/* content wrapper - this holds all visible text and icons */
 .services .amenity-box .amenity-content-wrapper {
     position: relative;
-    z-index: 3; /* Sits on top of everything */
+    z-index: 3; /* sits on top of everything */
 }
 
-/* Layered Corner Circles - from the original design */
+/* layered corner circles - from the original design */
 .services .service-item.amenity-box::before,
 .services .service-item.amenity-box::after {
     content: "";
@@ -1239,7 +1256,7 @@ function typeExcellence() {
     height: 150px;
     border-radius: 50%;
     transition: all 0.5s;
-    z-index: 2; /* Sits above the white box, below the content */
+    z-index: 2; /* sits above the white box, below the content */
 }
 .services .service-item.amenity-box::before {
     right: -80px;
@@ -1254,13 +1271,13 @@ function typeExcellence() {
 }
 .services .service-item.amenity-box:hover::before,
 .services .service-item.amenity-box:hover::after {
-    background: var(--accent-color); /* The circles become solid red on hover */
+    background: var(--accent-color); /* the circles become solid red on hover */
     right: 0;
     top: 0;
     width: 100%;
     height: 100%;
     border-radius: 0px;
-    opacity: 0; /* Then fade out to reveal the image underneath */
+    opacity: 0; /* then fade out to reveal the image underneath */
 }
 
 /* Icon & Text Styling */
@@ -1297,36 +1314,32 @@ function typeExcellence() {
     color: var(--default-color);
 }
 
-/* Text color change on hover */
-
+/* text color change on hover */
 .services .service-item.amenity-box:hover .icon-wrapper i {
     color: #c71c3a;
-    
 }
 
 .services .service-item.amenity-box:hover h4 {
-
     color: #fff;
 }
-
 
 .services .service-item.amenity-box:hover p {
   color: #fff;
 }
 
 .services .service-item.amenity-box:hover .icon-wrapper {
-    background-color: #feebee; /* Light red background */
-    border: 4px solid #c71c3a; /* Darker red border */
+    background-color: #feebee; /* light red background */
+    border: 4px solid #c71c3a; /* darker red border */
 }
 
-/* Square-to-Rectangle Plus Button */
+/* square-to-rectangle plus button */
 .services .amenity-box .plus-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: #feebee; /* Light red background */
+    background-color: #feebee; /* light red background */
     overflow: hidden;
     white-space: nowrap;
     text-decoration: none;
@@ -1336,7 +1349,7 @@ function typeExcellence() {
 }
 
 .services .amenity-box .plus-btn i {
-    color: #c71c3a; /* Darker red plus sign */
+    color: #c71c3a; /* darker red plus sign */
     font-size: 16px;
     margin-left: 6px;
 }
@@ -1360,16 +1373,13 @@ function typeExcellence() {
     opacity: 1;
 }
 
-/* Remove the old :hover h4 a rule to prevent color conflicts */
+/* remove the old :hover h4 a rule to prevent color conflicts */
 .services .service-item:hover h4 a {
     color: inherit;
 }
-/* --- END: STYLES FOR FINAL AMENITIES SECTION --- */
 </style>
 
-<!-- ==========================
-  Seating Charts Section
-=========================== -->
+<!-- Seating Charts Section -->
 <section id="seating" class="section">
   <div class="container" data-aos="fade-up">
     <div class="section-header">
@@ -1440,12 +1450,12 @@ function typeExcellence() {
 <style>
 
 
-  /* Hide the iPad replacement image by default */
+  /* hide the iPad replacement image by default */
 .ipad-seating-replacement {
   display: none;
 }
 
-/* Show the image and hide arena-container only on iPad-sized screens */
+/* show the image and hide arena-container only on iPad-sized screens */
 @media screen and (min-width: 768px) and (max-width: 1024px) and (pointer: coarse) and (-webkit-device-pixel-ratio: 2) {  .ipad-seating-replacement {
     display: block;
     width: 100%;
@@ -1463,10 +1473,10 @@ function typeExcellence() {
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const seatGroups = document.querySelectorAll('.seat-group');
-    const rows = ['A', 'B', 'C', 'D', 'E', 'F']; // Adjust the number of rows as needed
+    const rows = ['A', 'B', 'C', 'D', 'E', 'F']; // Adjust number of rows as needed
 
     seatGroups.forEach((group, colIndex) => {
-        if (colIndex >= rows.length) return; // Prevents undefined errors
+        if (colIndex >= rows.length) return; // prevents undefined errors
 
         for (let i = 0; i < 7; i++) {
             const seatRow = document.createElement('div');
@@ -1529,8 +1539,8 @@ function typeExcellence() {
   }
   
   .main-floor, .main-floor2 {
-    top: 40px; /* Moved up by decreasing this value */
-    left: 50px; /* Moved right by increasing this value */
+    top: 40px; /* moved up by decreasing this value */
+    left: 50px; /* moved right by increasing this value */
     right: 30px;
     bottom: 30px;
     
@@ -1543,7 +1553,7 @@ function typeExcellence() {
   
   .stage-container {
     height: 30px;
-    top: 40px; /* Moved up by decreasing this value */
+    top: 40px; /* moved up by decreasing this value */
   }
   
   .court-text {
@@ -1701,18 +1711,17 @@ function typeExcellence() {
       </div>
     </div>
   </div>
-</section><!-- /Schedule Section -->
+</section>
 
 <!-- Team Section -->
 <section id="team" class="team section">
 
-  <!-- Section Title -->
   <div class="section-header">
     <h2>Team</h2>
     <p>Take a quick glance at our group of hardworking individuals.</p>
   </div>
 
-  <!-- START: SVG for the Team section line -->
+  <!-- SVG for the Team section line -->
   <svg id="team-line-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
     <defs>
       <linearGradient id="teamRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -1721,11 +1730,10 @@ function typeExcellence() {
         <stop offset="100%" style="stop-color:#ff0936;" />
       </linearGradient>
     </defs>
-    <!-- This path is hand-crafted to follow your drawing's trajectory -->
+    <!-- this path is hand-crafted to follow the drawing's trajectory -->
     <path id="team-scroll-line" stroke="url(#teamRedGradient)"
           d="M 1229 51 C 1022 -51 748 309 984 539 S 349 99 429 453 S 19 80 -249 643" />
   </svg>
-  <!-- END: SVG for the Team section line -->
   <div class="container">
   <div class="container">
 
@@ -1748,7 +1756,7 @@ function typeExcellence() {
             <p>Bill runs the venue and oversees all athletic events for smooth operations.</p>
           </div>
         </div>
-      </div><!-- End Team Member -->
+      </div>
 
       <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
         <div class="team-member">
@@ -1767,7 +1775,7 @@ function typeExcellence() {
             <p>Keri runs the logistics and business side of the venue, and keeps operations efficient and profitable.</p>
           </div>
         </div>
-      </div><!-- End Team Member -->
+      </div>
 
       <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
         <div class="team-member">
@@ -1786,7 +1794,7 @@ function typeExcellence() {
             <p>Daniel oversees the school's operations to ensure a supportive environment for students and staff.</p>
           </div>
         </div>
-      </div><!-- End Team Member -->
+      </div>
 
       <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
         <div class="team-member">
@@ -1805,7 +1813,7 @@ function typeExcellence() {
             <p>Anvay coded the entire website for the venue, to create a perfect user experience.</p>
           </div>
         </div>
-      </div><!-- End Team Member -->
+      </div>
 
     </div>
 
@@ -1813,7 +1821,7 @@ function typeExcellence() {
 
   </div>
 
-</section><!-- /Team Section -->
+</section>
 
 <!-- Preloader -->
 <div id="preloader"></div>
@@ -2013,25 +2021,24 @@ function typeExcellence() {
     --nav-font: "Poppins", sans-serif;
   }
 
-  /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+  /* global colors - changing these will change the whole site's scheme */
   :root {
     --background-color: #ffffff;
-    /* Background color for the entire website, including individual sections */
+    /* bg color for the whole site */
     --default-color: #444444;
-    /* Default color used for the majority of the text content across the entire website */
+    /* default text color */
     --heading-color: #222222;
-    /* Color for headings, subheadings and title throughout the website */
+    /* color for headings, titles, etc */
     --accent-color: #f82249;
-    /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+    /* accent color for brand, buttons, links, etc */
     --surface-color: #ffffff;
-    /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+    /* bg for boxed elements like cards, icon boxes, etc */
     --contrast-color: #ffffff;
-    /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+    /* contrast color for text on dark backgrounds */
   }
 
  
-  /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
+  /* color presets - these classes override global colors */
   .light-background {
     --background-color: #f4fafd;
     --surface-color: #ffffff;
@@ -2045,14 +2052,12 @@ function typeExcellence() {
     --contrast-color: #ffffff;
   }
 
-  /* Smooth scroll */
+  /* smooth scroll */
   :root {
     scroll-behavior: smooth;
   }
 
-  /*--------------------------------------------------------------
-# General Styling & Shared Classes
---------------------------------------------------------------*/
+  /* General Styling & Shared Classes */
   body {
     color: var(--default-color);
     background-color: var(--background-color);
@@ -2083,18 +2088,14 @@ function typeExcellence() {
 
 
 
-  /*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
+  /* disable aos animation delay on mobile */
   @media screen and (max-width: 768px) {
     [data-aos-delay] {
       transition-delay: 0 !important;
     }
   }
 
-  /*--------------------------------------------------------------
-# Global Page Titles & Breadcrumbs
---------------------------------------------------------------*/
+  /* Global Page Titles & Breadcrumbs */
   .page-title {
     --background-color: color-mix(in srgb, var(--default-color), transparent 96%);
     color: var(--default-color);
@@ -2130,9 +2131,7 @@ function typeExcellence() {
     color: color-mix(in srgb, var(--default-color), transparent 70%);
   }
 
-  /*--------------------------------------------------------------
-# Global Sections
---------------------------------------------------------------*/
+  /* Global Sections */
   section,
   .section {
     color: var(--default-color);
@@ -2150,9 +2149,7 @@ function typeExcellence() {
     }
   }
 
-  /*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
+  /* Global Section Titles */
   .section-title {
     text-align: center;
     padding-bottom: 60px;
@@ -2188,9 +2185,7 @@ function typeExcellence() {
 
 
 
-  /*--------------------------------------------------------------
-# Clients Section
---------------------------------------------------------------*/
+  /* Clients Section */
   .clients {
     padding: 20px 0;
   }
@@ -2221,9 +2216,7 @@ function typeExcellence() {
     }
   }
 
-  /*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
+  /* About Section */
   .about .content h3 {
     font-weight: 700;
     font-size: 34px;
@@ -2284,9 +2277,7 @@ function typeExcellence() {
     color: var(--accent-color);
   }
 
-  /*--------------------------------------------------------------
-# Stats Section
---------------------------------------------------------------*/
+  /* Stats Section */
   .stats .stats-item {
     padding: 10px;
   }
@@ -2319,9 +2310,7 @@ function typeExcellence() {
   
 
 
-  /*--------------------------------------------------------------
-# Testimonials Section
---------------------------------------------------------------*/
+  /* Testimonials Section */
   .testimonials .testimonial-wrap {
     padding-left: 50px;
   }
@@ -2440,9 +2429,7 @@ function typeExcellence() {
 
 
 
-  /*--------------------------------------------------------------
-# Pricing Section
---------------------------------------------------------------*/
+  /* Pricing Section */
   .pricing .pricing-item {
     background-color: var(--surface-color);
     box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
@@ -2557,7 +2544,7 @@ function typeExcellence() {
 </style>
 
 
-      <!-- Add this CSS -->
+      <!-- Hotels CSS -->
 <style>
   .hotels-row {
       display: flex;
@@ -2627,7 +2614,7 @@ function typeExcellence() {
   }
   </style>
   
-  <!-- Modified Hotels Section -->
+  <!-- Hotels Section -->
   <section id="hotels" class="section-with-bg wow fadeInUp">
       <div class="container" data-aos="fade-up">
           <div class="section-header">
@@ -2701,12 +2688,12 @@ function typeExcellence() {
           </div>
       </div>
   </section>
+
+
+  
   
   <style>
-    /*--------------------------------------------------------------
-    # F.A.Q Section
-    --------------------------------------------------------------*/
-    
+    /* F.A.Q Section */
     #faq-list {
       padding: 0;
       list-style: none;
@@ -2750,7 +2737,7 @@ function typeExcellence() {
       color: #f82249;
     }
     
-    /* When expanded, rotate the icon */
+    /* when expanded, rotate the icon */
     #faq-list a[aria-expanded="true"] i {
       transform: rotate(135deg);
     }
@@ -2801,12 +2788,12 @@ function typeExcellence() {
       max-height: 500px;
     }
     
-    /* FIX: Padding is on the static wrapper div to prevent text reflow during animation */
+    /* FIX: padding is on the static wrapper div to prevent text reflow during animation */
     .faq-answer-content {
         padding: 0 30px 25px;
     }
     
-    /* FIX: Padding and its transition removed from the p tag itself */
+    /* FIX: padding and its transition removed from the p tag itself */
     .collapse p {
         padding: 0;
         color: #555;
@@ -2823,7 +2810,7 @@ function typeExcellence() {
       border-radius: 3px;
     }
     
-    /* Ensure our dedicated text spans behave nicely */
+    /* ensure our dedicated text spans behave nicely */
     .question-text,
     .answer-text {
       display: inline-block;
@@ -2903,14 +2890,12 @@ function typeExcellence() {
       <div class="swiper-pagination"></div>
     </div>
   </div>
-</section><!-- /Testimonials Section -->
+</section>
 
-<!-- =================================
-     Frequently Asked Questions Section
-     ================================= -->
+<!-- Frequently Asked Questions Section -->
 <section id="faq">
 
-  <!-- Decorations container is now INSIDE the FAQ section -->
+  <!-- decorations container is now INSIDE the FAQ section -->
   <div class="background-decorations">
       <!-- Left Side Icons -->
       <i class="fas fa-paw decor-icon red"></i>
@@ -2962,7 +2947,7 @@ function typeExcellence() {
           <i class="fas fa-plus"></i>
         </a>
         <div class="collapse" id="faq1" data-parent="#faq-list">
-          <!-- FIX: Added wrapper div to hold padding and prevent content shift -->
+          <!-- FIX: added wrapper div to hold padding and prevent content shift -->
           <div class="faq-answer-content">
             <p>
               <span class="answer-text">
@@ -3079,7 +3064,7 @@ function typeExcellence() {
     const faqItems = document.querySelectorAll('#faq-list li');
     const searchInput = document.getElementById('faq-search');
     
-    // Cache original text for search highlighting
+    // cache original text for search highlighting
     faqItems.forEach(item => {
       const questionTextElem = item.querySelector('.question-text');
       const answerTextElem = item.querySelector('.answer-text');
@@ -3135,9 +3120,8 @@ function typeExcellence() {
       manageSearch(this.value.trim());
     });
 
-    // FIX: Changed event listeners from 'shown/hidden' to 'show/hide'.
-    // This makes the icon animation start immediately with the accordion,
-    // removing the perceived delay.
+    // FIX: changed event listeners from 'shown/hidden' to 'show/hide'
+    // this makes the icon animation start immediately with the accordion
     faqItems.forEach(item => {
       const aElem = item.querySelector('a');
       const collapseElem = item.querySelector('.collapse');
@@ -3184,9 +3168,7 @@ function typeExcellence() {
 
     
 
- <!--==========================
-  Contact Section
-============================-->
+ <!-- Contact Section -->
 <section id="contact" class="section-bg wow fadeInUp">
   <div class="container">
     <div class="section-header">
@@ -3244,10 +3226,10 @@ function typeExcellence() {
               <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
               <div class="validation"></div>
             </div>
- <!-- The form's "action" attribute is where the user will be sent -->
-<form action="404.html">
+ <!-- form action points to where user is sent -->
+<form action="/404.html">
     <div class="text-center">
-        <!-- The type="submit" button will trigger the form's action -->
+        <!-- submit triggers the form action -->
         <button type="submit">Send Message</button>
     </div>
 </form>
@@ -3269,13 +3251,13 @@ function typeExcellence() {
       </div>
     </div>
   </div>
-</section><!-- #contact -->
+</section>
   </main>
 
-<!-- START: PantherVenue Final Footer -->
+<!-- FINAL FOOTER -->
 <footer id="panther-footer-final">
   
-  <!-- This is the new, reliable wave -->
+  <!-- the new, reliable wave -->
   <div class="footer-shape-divider">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z" class="shape-fill"></path>
@@ -3287,7 +3269,7 @@ function typeExcellence() {
            <div class="row gy-4 justify-content-between">
 
         <div class="col-lg-4 col-md-12 panther-footer-info">
-          <a href="index.html" class="panther-footer-logo d-flex align-items-center">
+          <a href="/home.html" class="panther-footer-logo d-flex align-items-center">
             <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo">
           </a>
           <p>The premier venue at Bridgewater-Raritan High School, perfect for sports, ceremonies, and community events. <br><br>Venue Credits: BRRSD Board of Education & Athletics <br><br> PantherVenue Website Credits: Bootstrap, Tailwind, Panolens, Google Firebase, Google Fonts, jQuery</p>
@@ -3296,9 +3278,9 @@ function typeExcellence() {
         <div class="col-lg-2 col-md-4 col-6 panther-footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="index.html">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/home.html">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="event.html">Events</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/event.html">Events</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#schedule">Venue Policies</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="https://www.brrsd.org/fs/pages/500" target="_blank">Privacy Policy</a></li>
           </ul>
@@ -3355,19 +3337,19 @@ function typeExcellence() {
 
 
 <style>
-/* START: CSS for PantherVenue Final Footer */
+/* CSS for PantherVenue Final Footer */
 
-/* This is the main footer container. It must be relative so the wave can be positioned inside it. */
+/* main footer container, needs to be relative so the wave can be positioned */
 #panther-footer-final {
   background-color: #000000;
   color: rgba(255, 255, 255, 0.75);
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
   position: relative;
-  /* NO top padding here anymore. We add it to the content area instead. */
+  /* no top padding here, moved it to the content area */
 }
 
-/* --- THIS IS THE NEW WAVE STYLING --- */
+/* NEW WAVE STYLING */
 .footer-shape-divider {
   position: absolute;
   top: 0;
@@ -3375,31 +3357,31 @@ function typeExcellence() {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  transform: translateY(-1px); /* A little trick to prevent pixel gaps */
+  transform: translateY(-1px); /* trick to prevent pixel gaps */
 }
 
 .footer-shape-divider svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 110px; /* Adjust height of the wave */
+  height: 110px; /* adjust height of the wave */
 }
 
 .footer-shape-divider .shape-fill {
-  /* This is the key: The wave's color matches the section ABOVE it to create a seamless transition. Your contact section has a light grey background (#f8f9fa) */
+  /* IMPORTANT: wave color has to match the section above it. contact section is a light grey */
   fill: #f8f9fa;
 }
 
-/* We push the content area down to make room for the wave */
+/* we push the content area down to make room for the wave */
 .panther-footer-content-area {
-  padding: 100px 0 40px 0; /* Increased top padding to clear the wave */
+  padding: 100px 0 40px 0; /* increased top padding to clear the wave */
   position: relative;
-  z-index: 2; /* Ensures content is above the footer's black background */
+  z-index: 2; /* ensures content is above the footer's black background */
 }
 
 .panther-footer-content-area .container {
-  padding-left: 15px; /* Corrected to match the right side */
-  padding-right: 15px; /* Standard Bootstrap padding on the right */
+  padding-left: 15px;
+  padding-right: 15px; /* standard bootstrap padding */
 }
 
 /* Info Column */
@@ -3452,7 +3434,7 @@ function typeExcellence() {
 
 .footer-social-blob-svg {
     position: absolute;
-    /* CHANGE #1: Adjusted the blob to stick out a bit */
+    /* adjusted the blob to stick out a bit */
     top: -50px; 
     left: 0; 
     width: 100%; 
@@ -3460,7 +3442,7 @@ function typeExcellence() {
 }
 
 .footer-social-blob-path {
-  fill: #b01a35; /* Match the bottom bar color */
+  fill: #b01a35; /* match the bottom bar color */
 }
 
 .footer-social-container .social-link {
@@ -3500,42 +3482,41 @@ d
   }
 }
 
-/* END: CSS for PantherVenue Final Footer */
 </style>
 
 
 <style> 
-/* FIX: Stack contact info/form and map vertically, optimize space and center on iPad-sized touch devices */
+/* FIX: stack contact info/form and map vertically on iPad-sized touch devices */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   #contact .container > .row {
     flex-direction: column;
-    align-items: center; /* Center the columns vertically */
+    align-items: center; /* center the columns vertically */
   }
 
   #contact .col-md-6 {
     flex: 0 0 100%;
-    max-width: 90%; /* Use more width but not full */
+    max-width: 90%; /* use more width but not full */
     width: 100%;
-    margin-bottom: 40px; /* Space between form/info and map */
+    margin-bottom: 40px; /* space between form/info and map */
   }
 
-  /* Make the contact info boxes display side-by-side */
+  /* make the contact info boxes display side-by-side */
   #contact .contact-info {
     display: flex;
-    flex-wrap: nowrap; /* Force them to stay in a single row */
-    justify-content: space-around; /* Distribute them evenly */
+    flex-wrap: nowrap; /* force them to stay in a single row */
+    justify-content: space-around; /* distribute them evenly */
     text-align: center;
-    margin-bottom: 30px; /* Space between info and form */
+    margin-bottom: 30px; /* space between info and form */
   }
 
   #contact .contact-info .col-md-4 {
-    flex: 1; /* Allow them to share space */
-    max-width: 30%; /* Control their max width */
+    flex: 1; /* allow them to share space */
+    max-width: 30%; /* control their max width */
   }
 
-  /* Center the form and map */
+  /* center the form and map */
   #contact .form {
-    max-width: 80%; /* Control form width */
+    max-width: 80%; /* control form width */
     margin: 0 auto;
   }
   
@@ -3546,12 +3527,12 @@ d
 
   #contact iframe {
     width: 100%;
-    max-width: 80%; /* Match form width for alignment */
+    max-width: 80%; /* match form width for alignment */
     height: 350px;
   }
 }
 
-/* For smaller screens (including vertical mobile) where they should stack nicely */
+/* for smaller screens where they should stack nicely */
 @media screen and (max-width: 767px) {
     #contact .contact-info {
         flex-direction: column;
@@ -3574,15 +3555,15 @@ d
   <style>
   .arena-container {
     position: relative;
-    border: 4px solid #e0072f; /* Outer border */
+    border: 4px solid #e0072f; /* outer border */
     background: rgba(224, 7, 47, 0.276);
     border-radius: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     min-height: 600px;
     margin: 2rem auto;
     max-width: 1200px;
-    max-width: 800px;  /* Smaller width */
-    min-height: 400px; /* Smaller height */
+    max-width: 800px;  /* smaller width */
+    min-height: 400px; /* smaller height */
     
     
     
@@ -3590,20 +3571,20 @@ d
 
 .arena-container2 {
     position: relative;
-    border: 4px solid #e0072f; /* Outer border */
+    border: 4px solid #e0072f; /* outer border */
     background: rgba(224, 7, 47, 0.276);
     border-radius: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     min-height: 600px;
     margin: 2rem auto;
     max-width: 1200px;
-    max-width: 800px;  /* Smaller width */
-    min-height: 400px; /* Smaller height */
+    max-width: 800px;  /* smaller width */
+    min-height: 400px; /* smaller height */
     
     
     
 }
-/* Inner border pseudo-element */
+/* inner border pseudo-element */
 .arena-container::after {
     content: '';
     position: absolute;
@@ -3615,7 +3596,7 @@ d
     pointer-events: none;
     z-index: 1;
     border-radius: 2px;
-    background: #fff; /* Ensure white background */
+    background: #fff; /* ensure white background */
     background: rgb(255, 242, 242);
    
 }
@@ -3627,16 +3608,16 @@ d
     left: 60px;
     right: 60px;
     bottom: 60px;
-    border: 4px solid #e0072f; /* Outer border */
+    border: 4px solid #e0072f; /* outer border */
     pointer-events: none;
     z-index: 1;
     border-radius: 2px;
-    background: #fff; /* Ensure white background */
+    background: #fff; /* ensure white background */
     
    
 }
 
-/* Capacity sections styling */
+/* capacity sections styling */
 .capacity-section {
     position: absolute;
     background: transparent !important;
@@ -3650,7 +3631,7 @@ d
     border: none !important;
 }
 
-/* Position adjustments */
+/* position adjustments */
 .north { 
     top: 4px;
     left: 60px;
@@ -3683,7 +3664,7 @@ d
     padding-right: 8px;
 }
 
-/* Main floor adjustments */
+/* main floor adjustments */
 .main-floor {
     position: absolute;
     top: 130px; /* 60px north + 60px stage + 20px */
@@ -3693,7 +3674,7 @@ d
     background: #fff;
     z-index: 0;
     background: rgb(255, 242, 242);
-    z-index: 2; /* Change from 0 to 2 */
+    z-index: 2; /* change from 0 to 2 */
     
 
     
@@ -3701,10 +3682,10 @@ d
 
 .main-floor2 {
     position: absolute;
-    top: 60px; /* Changed from 60px */
+    top: 60px; /* changed from 60px */
     left: 60px;
     right: 60px;
-    bottom: 60px; /* Keep original */
+    bottom: 60px; /* keep original */
     background: #fff;
     display: flex;
     align-items: center;
@@ -3728,7 +3709,7 @@ d
     }
     .stage-container {
     position: absolute;
-    top: 81px; /* Keep as is, adjust if needed */
+    top: 81px; /* keep as is, adjust if needed */
     left: 80px;
     right: 80px;
     height: 40px;
@@ -3741,14 +3722,14 @@ d
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
-    margin-bottom: -20px;  /* Adjust negative margin to reduce gap between stage and seat group */
+    margin-bottom: -20px;  /* adjust negative margin to reduce gap between stage and seat group */
 }
 
 .stage {
     background: #d8526b;
     color: white;
     height: 100%;
-    width: 100%; /* New width rule */
+    width: 100%; /* new width rule */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3762,7 +3743,7 @@ d
     grid-template-rows: repeat(9, auto);
     gap: 8px;  /* smaller gap between rows */
     margin-right: 10px;  /* less space between seat groups */
-    margin-top: 0;  /* Ensure no top margin */
+    margin-top: 0;  /* ensure no top margin */
 }
 
 .seat-row {
@@ -3820,18 +3801,18 @@ d
         }
     }
 
-/* North border - top and bottom borders only (no sides) */
+/* north border - top and bottom borders only (no sides) */
 .north {
     border-top: 2px solid #e0072f;
     border-bottom: 2px solid #e0072f;
     border-left: none;
     border-right: none;
-    left: 60px;  /* Match west border width */
-    right: 60px; /* Match east border width */
+    left: 60px;  /* match west border width */
+    right: 60px; /* match east border width */
     height: 60px;
 }
 
-/* South border - bottom and top borders only (no sides) */
+/* south border - bottom and top borders only (no sides) */
 .south {
     border-bottom: 2px solid #e0072f;
     border-top: 2px solid #e0072f;
@@ -3842,18 +3823,18 @@ d
     height: 60px;
 }
 
-/* East border - right and left borders only (no top/bottom) */
+/* east border - right and left borders only (no top/bottom) */
 .east {
     border-right: 2px solid #e0072f;
     border-left: 2px solid #e0072f;
     border-top: none;
     border-bottom: none;
-    top: 60px;    /* Match north border height */
-    bottom: 60px; /* Match south border height */
+    top: 60px;    /* match north border height */
+    bottom: 60px; /* match south border height */
     width: 60px;
 }
 
-/* West border - left and right borders only (no top/bottom) */
+/* west border - left and right borders only (no top/bottom) */
 .west {
     border-left: 2px solid #e0072f;
     border-right: 2px solid #e0072f;
@@ -3879,33 +3860,30 @@ d
   <script src="lib/venobox/venobox.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-  <!-- Contact Form JavaScript File -->
-  <!-- <script src="contactform/contactform.js"></script> -->
-  <!-- START: New script to redirect the contact form -->
+  <!-- script to redirect the contact form -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Find the contact form on the page
+      // find the contact form
       const contactForm = document.querySelector('.contactForm');
 
-      // Check if the form actually exists on this page before proceeding
+      // check if the form exists before proceeding
       if (contactForm) {
         
-        // Add an event listener that waits for the form to be submitted
+        // wait for the form to be submitted
         contactForm.addEventListener('submit', function(event) {
           
-          // 1. Prevent the form from trying to do anything else (like sending data)
+          // 1. prevent the form from doing anything else
           event.preventDefault();
           
-          // 2. Immediately redirect the user to the 404 page
-          window.location.href = '404.html';
+          // 2. immediately redirect the user
+          window.location.href = '/404.html';
 
         });
       }
     });
   </script>
-  <!-- END: New script to redirect the contact form -->
 
-  <!-- Template Main Javascript File -->
+  <!-- main javascript file -->
   <script src="js/main.js"></script>
 
     <script src="js/jquery.min.js"></script>
@@ -3926,13 +3904,11 @@ d
     
 <style>
   /*
-  =======================================================
-     *** CUSTOM RESPONSIVE FIXES FOR UNIVERSAL COMPATIBILITY ***
-     This block contains all the targeted fixes for the issues you described.
-  ========================================================
+  CUSTOM RESPONSIVE FIXES FOR UNIVERSAL COMPATIBILITY
+  this block contains targeted fixes for various devices
   */
 
-  /* PARALLAX FIX: Disable fixed background on tablets/mobile to prevent zoom/performance issues */
+  /* PARALLAX FIX: disable fixed background on tablets/mobile to prevent zoom/performance issues */
   @media (max-width: 1024px) {
     #intro {
       background-attachment: scroll !important;
@@ -3954,7 +3930,7 @@ d
       }
   }
 
-  /* Hide the Stray "Hamburger" Icon */
+  /* hide the stray "hamburger" icon */
   .mobile-nav-toggle.d-xl-none.bi.bi-list {
     display: none !important;
   }
@@ -4027,7 +4003,7 @@ d
 }
 </style>
 
-<!-- NEW SCRIPT FOR VIDEO PARALLAX EFFECT -->
+<!-- SCRIPT for video parallax effect -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.querySelector('#subscribe video');
@@ -4035,13 +4011,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (video && section) {
         window.addEventListener('scroll', () => {
-            // Get the position of the top of the section relative to the viewport
+            // get the position of the top of the section relative to the viewport
             const rect = section.getBoundingClientRect();
-            // Calculate how much the video should move. It should move slower than the scroll.
+            // calculate how much the video should move. It should move slower than the scroll.
             const speed = 0.4;
             let offset = rect.top * speed;
             
-            // Apply the transform to the video
+            // apply the transform to the video
             video.style.transform = `translateY(${offset}px)`;
         });
     }
@@ -4052,8 +4028,8 @@ document.addEventListener('DOMContentLoaded', () => {
 #subscribe {
   position: relative;
   overflow: hidden;
-  height: auto; /* Keeps section height driven by content */
-  min-height: 300px; /* Fallback for minimal visibility */
+  height: auto; /* keeps section height driven by content */
+  min-height: 300px; /* fallback for minimal visibility */
 }
 
 #subscribe video {
@@ -4061,7 +4037,7 @@ document.addEventListener('DOMContentLoaded', () => {
   top: -300px;
   left: 0;
   width: 100%;
-  height: 250%; /* Oversized for parallax, adjust as needed */
+  height: 250%; /* oversized for parallax, adjust as needed */
   object-fit: cover;
 
   z-index: 0;
@@ -4114,7 +4090,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    <!-- START: Chatbot Integration Body -->
+<!-- Chatbot Integration Body -->
 <!-- Chatbot Toggler -->
 <button id="chatbot-toggler">
   <span class="material-symbols-rounded">mode_comment</span>
@@ -4369,7 +4345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.show-chatbot #chatbot-toggler span:last-child {
       opacity: 1;
     }
-    .chatbot-popup {
+   .chatbot-popup {
       position: fixed;
       right: 35px;
       bottom: 90px;
@@ -4385,14 +4361,13 @@ document.addEventListener('DOMContentLoaded', () => {
         0 32px 64px -48px rgba(0, 0, 0, 0.5);
       transition: all 0.1s ease;
       z-index: 1000;
-
+      display: none;
     }
     body.show-chatbot .chatbot-popup {
       opacity: 1;
       pointer-events: auto;
       transform: scale(1);
-
-
+      display: block;
     }
     .chat-header {
       display: flex;
