@@ -856,7 +856,6 @@ function preventNavigationIfLoggedIn(e) {
     try {
         await auth.signOut();
         // Ensure UI updates are handled by auth state change listener
-        showPopup('Success', 'Successfully logged out.', true);
     } catch (error) {
         console.error("Logout error:", error);
         showPopup('Error', 'Failed to log out. Please try again.');
