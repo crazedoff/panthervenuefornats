@@ -463,100 +463,116 @@
 <style>
   /*
   ========================================================
-      NEW & CORRECTED DROPDOWN MENU STYLES
+      FINAL & CORRECTED MEGA MENU STYLES
   ========================================================
   */
 
-  /* Dropdown Positioning & Animation */
-  .nav-menu .menu-has-children .dropdown-menu {
+  /* Main panel for the mega menu */
+  .mega-menu {
     display: block;
     position: absolute;
-    left: 0;
-    top: calc(100% + 5px); /* Position below parent with a small gap */
-    
-    min-width: 240px; /* Set an appropriate width */
-    
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    margin-top: 10px;
+    width: 80vw;
+    max-width: 800px;
     background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    
-    padding: 10px;
-    
-    /* Animation properties */
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.09);
+    padding: 25px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(15px);
+    transform: translateX(-50%) translateY(20px) scale(0.95);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
   }
 
-  /* Show on Hover */
-  .nav-menu .menu-has-children:hover > .dropdown-menu {
+  /* Show the menu on hover */
+  .nav-menu .menu-has-children:hover > .mega-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 
-  /* Dropdown Arrow Indicator */
+  /* Red dropdown arrow on the "Home" link */
   .nav-menu li.menu-has-children > a:after {
     content: "\f107";
     font-family: FontAwesome;
     padding-left: 8px;
     font-size: 14px;
-    color: #e0072f; /* Panther Red Arrow */
+    color: #e0072f;
   }
 
-  /* Styling for each link in the dropdown */
-  .dropdown-menu li a {
+  /* Styling for each clickable item block */
+  .mega-menu-item {
     display: flex;
     align-items: center;
-    padding: 12px 15px;
-    border-radius: 8px;
-    
-    font-family: "Raleway", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: #444;
-    
+    padding: 12px;
+    border-radius: 10px;
     text-decoration: none !important;
-    white-space: nowrap;
-    transition: all 0.2s ease-in-out;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    transition: all 0.25s ease-in-out;
   }
 
-  /* Hover effect for each link */
-  .dropdown-menu li a:hover {
-    background-color: #fde8eb; /* Light Panther Red */
-    color: #e0072f;
-    transform: translateX(5px); /* Subtle animation */
+  .mega-menu-item:hover {
+    background-color: #fff;
+    transform: translateY(-3px);
+    border-color: #fbebee;
+    box-shadow: 0 8px 25px rgba(224, 7, 47, 0.1);
   }
 
-  /* Icon styling within the link */
-  .dropdown-menu li a i {
-    font-size: 18px;
+  /* The light red square for the icon */
+  .mega-menu-item .icon-box {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
     margin-right: 15px;
-    width: 20px;
-    text-align: center;
-    color: #c71c3a; /* Darker red for icons */
-    transition: color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fce8ec; /* Light Panther Red */
+    border-radius: 10px;
   }
 
-  /* Change icon color on hover to match the text */
-  .dropdown-menu li a:hover i {
+  /* The dark red icon */
+  .mega-menu-item .icon-box i {
+    font-size: 22px;
+    color: #c71c3a; /* Darker Panther Red */
+  }
+
+  /* The black title text */
+  .mega-menu-item h5 {
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  .mega-menu-item:hover h5 {
     color: #e0072f;
   }
   
-  /* Housekeeping: Remove conflicting old styles */
+  /* Housekeeping: Prevent conflicts with old styles */
   .nav-menu ul {
       background: none;
       border: none;
       box-shadow: none;
   }
-  .nav-menu li a {
-      text-decoration: none;
-  }
 </style>
+
+
+
+
+
+
   <!--==========================
     Intro Section
 ============================-->
