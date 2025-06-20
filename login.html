@@ -266,36 +266,27 @@
     opacity: 0;
     transition: all 0.3s ease;
 }
+@media (min-width: 1000px) {
+    .ticket-popup {
+        max-width: 1000px;
+    }
+}
 .ticket-popup.active {
     display: block;
     opacity: 1;
 }
 .popup-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-}
-@media (min-width: 768px) {
-    .popup-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 .event-details {
-    padding-right: 0;
-    border-right: none;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    flex: 1;
+    min-width: 300px;
 }
-@media (min-width: 768px) {
-    .event-details {
-        padding-right: 2rem;
-        border-right: 2px solid #eee;
-        border-bottom: none;
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
+.registration-form {
+    flex: 1;
+    min-width: 450px; /* Increased to allow 50% wider inputs */
 }
 .seating-chart {
     background: #f8f9fa;
@@ -339,7 +330,7 @@
     font-weight: 600;
 }
 .form-group input {
-    width: 100%; /* Updated to be responsive */
+    width: 100%; /* Takes full width of container */
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -352,7 +343,7 @@
 }
 .cc-group {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr; /* Single column to stack inputs vertically */
     gap: 1rem;
 }
 .purchase-button {
