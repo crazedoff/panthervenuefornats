@@ -852,14 +852,16 @@ function preventNavigationIfLoggedIn(e) {
                 }
             }
 
-            window.handleLogout = async function() {
-                try {
-                    await auth.signOut();
-                } catch(error) {
-                    showPopup('Error', error.message);
-                }
-            }
-
+           window.handleLogout = async function() {
+    try {
+        await auth.signOut();
+        // Ensure UI updates are handled by auth state change listener
+        showPopup('Success', 'Successfully logged out.', true);
+    } catch (error) {
+        console.error("Logout error:", error);
+        showPopup('Error', 'Failed to log out. Please try again.');
+    }
+}
             async function updateAdminDashboard() {
                 if (!currentUser || !currentUser.isAdmin) return;
                 const [registrationsSnapshot, eventsSnapshot, requestsSnapshot] = await Promise.all([
