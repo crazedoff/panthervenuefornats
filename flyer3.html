@@ -9,11 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 
     <!-- Third-party libraries -->
-    <!-- For converting HTML to an image -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- For generating the QR code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
@@ -24,158 +23,254 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px;
             margin: 0;
         }
 
-        /* This is the main container for the flyer. It has a fixed aspect ratio. */
         #flyer-container {
             position: relative;
             width: 1080px;
             height: 1350px;
-            overflow: hidden; /* Ensures nothing spills out */
+            overflow: hidden;
+            background-color: #FEF8F8; /* Light pinkish background from your image */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        /* --- THE FIX: The background is now an <img> tag --- */
-        #background-img {
+        /* --- RECREATING THE BACKGROUND SWOOSHES WITH CSS --- */
+        .swoosh {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Placed at the very bottom layer */
+            width: 400px;
+            height: 400px;
+            background-color: #B52A2D; /* The dark red from your image */
+            z-index: 1;
         }
 
-        /* Each element is positioned absolutely on top of the background */
+        #top-left-swoosh {
+            top: -150px;
+            left: -150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #B52A2D 50%, #9a2326 100%);
+        }
+
+        #top-right-swoosh {
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        #bottom-left-swoosh {
+            bottom: -250px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        #bottom-right-swoosh {
+            bottom: -300px;
+            right: -200px;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+        }
+
+
+        /* Each element is positioned absolutely */
         .overlay {
             position: absolute;
-            color: #2c2c2c;
+            color: #383838;
+            z-index: 2; /* All content is on top of swooshes */
+        }
+        
+        #header {
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        #logo-img {
+            width: 250px;
+        }
+
+        #presents-text {
+            font-size: 24px;
             font-weight: 700;
-            z-index: 1; /* All overlays are on a higher layer than the background */
+            color: #555;
+            margin-top: -10px;
         }
 
         #title {
-            top: 215px;
+            top: 220px;
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 115px;
+            font-size: 130px;
             color: #383838;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1;
         }
         
-        #event-image {
-            top: 420px;
-            left: 175px;
-            width: 730px;
-            height: 330px;
-            object-fit: cover; /* Ensures the image covers the area without distortion */
-            border-radius: 25px;
-        }
-        
-        .side-tag {
-            position: absolute;
-            background-color: #B52A2D;
-            color: white;
-            padding: 15px 25px;
+        /* The container for the event image, with the black border */
+        #event-image-wrapper {
+            top: 380px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 780px;
+            height: 400px;
+            background-color: #383838;
+            border: 8px solid white;
             border-radius: 30px;
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center;
-            z-index: 1; /* Also on top */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        #left-tag {
-            top: 550px;
-            left: -10px;
-            transform: rotate(-10deg);
-        }
-
-        #right-tag {
-            top: 550px;
-            right: 20px;
-            transform: rotate(10deg);
-        }
-
-        #description {
-            top: 800px;
-            left: 55px;
-            width: 450px;
-            font-size: 28px;
-            line-height: 1.4;
+        #event-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
             color: #383838;
+            padding: 8px 40px;
+            border-radius: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            border: 4px solid #383838;
         }
 
-        #price {
-            top: 800px;
-            left: 580px;
-            width: 200px;
-            height: 70px;
-            font-size: 36px;
-            color: white;
+        #event-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .paw-print {
+            width: 90px;
+        }
+        #paw-left {
+            top: 480px;
+            left: 50px;
+        }
+        #paw-right {
+            top: 480px;
+            right: 50px;
+        }
+
+        #description-box {
+            top: 810px;
+            left: 50px;
+            width: 480px;
+            height: 200px;
             background-color: #B52A2D;
-            border-radius: 15px;
+            color: white;
+            border-radius: 25px;
+            padding: 30px;
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.4;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        #date {
-            top: 800px;
-            left: 810px;
-            width: 200px;
-            height: 70px;
+        #info-box {
+            top: 810px;
+            left: 560px;
+            width: 470px;
+        }
+
+        .info-pill {
+            padding: 15px 25px;
+            background-color: #B52A2D;
+            color: white;
+            border-radius: 20px;
             font-size: 32px;
-            color: white;
-            background-color: #B52A2D;
-            border-radius: 15px;
-            display: flex;
+            font-weight: 700;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            min-width: 220px;
+            text-align: center;
         }
+        .info-pill i { margin-right: 15px; }
 
         .info-line {
             display: flex;
             align-items: center;
             font-size: 24px;
             color: #383838;
+            margin-top: 15px;
         }
-        
-        .info-line img {
-            width: 32px;
-            height: 32px;
-            margin-right: 15px;
-        }
+        .info-line i { font-size: 32px; color: #B52A2D; margin-right: 15px; width: 35px; text-align: center; }
 
-        #phone {
-            top: 900px;
-            left: 580px;
-        }
-
-        #location {
-            top: 955px;
-            left: 580px;
-            width: 450px;
-        }
-        
-        #qr-code-container {
-            top: 1088px;
-            left: 710px;
-            width: 256px;
-            height: 256px;
+        /* The container for the QR Code section */
+        #qr-section-wrapper {
+            top: 1050px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 980px;
+            height: 250px;
+            background-color: #383838;
+            border: 8px solid white;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
-        /* Style the image generated by QRCode.js */
+
+        #qr-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            color: #383838;
+            padding: 8px 40px;
+            border-radius: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            border: 4px solid #383838;
+        }
+
+        #qr-text-content {
+            flex-grow: 1;
+            padding: 0 40px;
+        }
+        #qr-text-content p {
+            font-size: 24px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        #qr-text-content i {
+            font-size: 80px;
+            margin-top: 20px;
+        }
+
+        #qr-code-container {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
         #qr-code-container img {
             width: 100% !important;
             height: 100% !important;
+            border-radius: 5px;
         }
         
         #download-btn {
-            margin-top: 20px;
+            margin-top: 40px;
             padding: 15px 30px;
             font-size: 20px;
             font-weight: 700;
@@ -186,10 +281,10 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         #download-btn:hover {
             background-color: #8c1e20;
         }
+
     </style>
 </head>
 <body>
@@ -197,85 +292,111 @@
     <h1>PantherVenue Flyer Preview</h1>
     <p>Change values in the script tag to update the flyer. Then click download.</p>
 
-    <!-- This is the container that will be turned into an image -->
     <div id="flyer-container">
-        <!-- THE FIX: The background is now a real <img> tag with crossorigin="anonymous" -->
-        <img id="background-img" src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/1fe55a0e39ddba374906647406ecf206f083efbd_screenshot_2025-06-16_at_5.45.34___pm.png" crossorigin="anonymous" alt="Flyer Background">
+        <!-- Background Elements -->
+        <div id="top-left-swoosh" class="swoosh"></div>
+        <div id="top-right-swoosh" class="swoosh"></div>
+        <div id="bottom-left-swoosh" class="swoosh"></div>
+        <div id="bottom-right-swoosh" class="swoosh"></div>
 
-        <!-- All other elements will be layered on top -->
+        <!-- Header -->
+        <div id="header" class="overlay">
+            <img id="logo-img" src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" crossorigin="anonymous" alt="PantherVenue Logo">
+            <div id="presents-text">presents...</div>
+        </div>
+
+        <!-- Main Title -->
         <div id="title" class="overlay"></div>
-        <img id="event-image" class="overlay" src="" crossorigin="anonymous" alt="Event Image">
-        <div id="left-tag" class="side-tag"></div>
-        <div id="right-tag" class="side-tag"></div>
-        <div id="description" class="overlay"></div>
-        <div id="price" class="overlay"></div>
-        <div id="date" class="overlay"></div>
-        <div id="phone" class="overlay info-line">
-            <img src="https://img.icons8.com/ios-filled/50/B52A2D/phone.png" alt="phone icon"/>
-            <span id="phone-text"></span>
+
+        <!-- Paw Prints -->
+        <img id="paw-left" class="overlay paw-print" src="https://i.imgur.com/kY3s4yI.png" crossorigin="anonymous" alt="paw print">
+        <img id="paw-right" class="overlay paw-print" src="https://i.imgur.com/kY3s4yI.png" crossorigin="anonymous" alt="paw print">
+        
+        <!-- Event Image Section -->
+        <div id="event-image-wrapper" class="overlay">
+            <div id="event-label">The Event</div>
+            <img id="event-image" src="" crossorigin="anonymous" alt="Event Image">
         </div>
-        <div id="location" class="overlay info-line">
-            <img src="https://img.icons8.com/ios-filled/50/B52A2D/marker.png" alt="location icon"/>
-            <span id="location-text"></span>
+
+        <!-- Description & Info -->
+        <div id="description-box" class="overlay">
+            <p id="description-text"></p>
         </div>
-        <div id="qr-code-container" class="overlay"></div>
+        
+        <div id="info-box" class="overlay">
+            <div id="price" class="info-pill"></div>
+            <div id="date" class="info-pill"></div>
+            <div id="phone" class="info-line">
+                <i class="fas fa-phone-alt"></i>
+                <span id="phone-text"></span>
+            </div>
+            <div id="location" class="info-line">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="location-text"></span>
+            </div>
+        </div>
+        
+        <!-- QR Code Section -->
+        <div id="qr-section-wrapper" class="overlay">
+            <div id="qr-label">Event Ticket & QR Code</div>
+            <div id="qr-text-content">
+                <p>This is your unique QR code for the event. Please do not share it and keep it safe, as it is required for entry.</p>
+                <i class="fas fa-long-arrow-alt-right"></i>
+            </div>
+            <div id="qr-code-container"></div>
+        </div>
     </div>
 
     <button id="download-btn">Download Flyer</button>
 
     <script>
-        // --- STEP 1: DEFINE ALL THE FLYER'S DATA HERE ---
         const flyerData = {
-            title: "Fall College Fair",
-            eventImage: "https://i.imgur.com/k6O6M88.jpeg", // Using an imgur link of the filled flyer image for demonstration
-            leftTag: "Gathering Event",
-            rightTag: "Large Gym",
-            description: "Meet representatives from top universities nationwide and explore academic opportunities.",
+            title: "Cheerleading",
+            eventImage: "https://cloud-3g41qhj1y-hack-club-bot.vercel.app/0image.png",
+            description: "Open tryouts for next year's varsity cheer squad. No experience required.",
             price: "FREE",
-            date: "4/16/2025",
+            date: "7/14/2025",
             phone: "(908) 231-8660",
             location: "600 Garretson Road, Bridgewater, New Jersey",
-            qrCodeData: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1fe55a0e39ddba374906647406ecf206f083efbd_screenshot_2025-06-16_at_5.45.34___pm.png",
-            downloadFileName: "Fall_College_Fair_Ticket.png"
+            // The QR code can link to the event page or a ticket validation URL
+            qrCodeData: "https://panther-venue.vercel.app/event.html#event-4", 
+            downloadFileName: "PantherVenue_Cheerleading_Flyer.png"
         };
 
-        // --- STEP 2: POPULATE THE FLYER WHEN THE PAGE LOADS ---
         document.addEventListener('DOMContentLoaded', function() {
+            // Populate all the elements
             document.getElementById('title').innerText = flyerData.title;
-            document.getElementById('left-tag').innerText = flyerData.leftTag;
-            document.getElementById('right-tag').innerText = flyerData.rightTag;
-            document.getElementById('description').innerText = flyerData.description;
-            document.getElementById('price').innerText = flyerData.price;
-            document.getElementById('date').innerText = flyerData.date;
+            document.getElementById('event-image').src = flyerData.eventImage;
+            document.getElementById('description-text').innerText = flyerData.description;
+            document.getElementById('price').innerHTML = `<i class="fas fa-dollar-sign"></i> ${flyerData.price}`;
+            document.getElementById('date').innerHTML = `<i class="fas fa-calendar-alt"></i> ${flyerData.date}`;
             document.getElementById('phone-text').innerText = flyerData.phone;
             document.getElementById('location-text').innerText = flyerData.location;
-            document.getElementById('event-image').src = flyerData.eventImage;
 
+            // Generate the QR Code
             const qrCodeContainer = document.getElementById('qr-code-container');
             new QRCode(qrCodeContainer, {
                 text: flyerData.qrCodeData,
-                width: 256,
-                height: 256,
+                width: 180,
+                height: 180,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
             });
         });
 
-        // --- STEP 3: HANDLE THE DOWNLOAD BUTTON CLICK ---
         document.getElementById('download-btn').addEventListener('click', function() {
             const flyerElement = document.getElementById('flyer-container');
             console.log("Generating image from flyer element...");
 
             // Use html2canvas with options to handle cross-origin images
             html2canvas(flyerElement, {
-                useCORS: true, // This must be true to attempt loading cross-origin images
-                allowTaint: true, // This allows loading of images, but we rely on useCORS and the crossorigin attribute
+                useCORS: true, // MUST be true for external images
+                allowTaint: true, // Helps with certain configurations
                 scale: 2 // Increase scale for higher resolution output
             }).then(canvas => {
-                const image = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
-                link.href = image;
+                link.href = canvas.toDataURL('image/png');
                 link.download = flyerData.downloadFileName;
                 
                 document.body.appendChild(link);
@@ -284,11 +405,11 @@
 
                 console.log("Download initiated.");
             }).catch(error => {
-                console.error("Oops, html2canvas failed!", error);
+                console.error("Oops, html2canvas failed! This is often a CORS issue with images.", error);
+                alert("Could not generate the flyer. One of the images might be blocked. Please check the console for errors.");
             });
         });
     </script>
 
 </body>
 </html>
-
