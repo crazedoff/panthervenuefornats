@@ -710,84 +710,97 @@
             const loginLink = document.getElementById('loginLink');
             const mobileLoginLink = document.getElementById('mobileLoginLink');
 
-            auth.onAuthStateChanged(async (user) => {
-                const wasLoggedIn = !!currentUser;
+           auth.onAuthStateChanged(async (user) => {
+    const wasLoggedIn = !!currentUser;
 
-                if (user) {
-                    try {
-                        const userDoc = await db.collection("users").doc(user.uid).get();
-                        if (!userDoc.exists) throw new Error("User data not found in Firestore.");
-                        
-                        currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
-                        
-                        if (!wasLoggedIn) {
-                            loginContainer.classList.add('fade-out');
-                            setTimeout(() => {
-                                loginContainer.style.display = 'none';
-                                loginContainer.classList.remove('fade-out');
-                                if (currentUser.isAdmin) {
-                                    adminDashboard.style.display = 'block';
-                                    adminDashboard.classList.add('fade-in');
-                                    setTimeout(() => adminDashboard.classList.remove('fade-in'), 500);
-                                    updateAdminDashboard();
-                                } else {
-                                    userDashboard.style.display = 'block';
-                                    userDashboard.classList.add('fade-in');
-                                    setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
-                                    loadUserDashboard();
-                                }
-                            }, 500);
-                        } else {
-                            if (currentUser.isAdmin) {
-                                adminDashboard.style.display = 'block';
-                                userDashboard.style.display = 'none';
-                                updateAdminDashboard();
-                            } else {
-                                userDashboard.style.display = 'block';
-                                adminDashboard.style.display = 'none';
-                                loadUserDashboard();
-                            }
-                            loginContainer.style.display = 'none';
-                        }
-                        
-                        // --- FIX `isAdmin` error: Logic moved inside successful data fetch ---
-                        loginLink.textContent = 'Dashboard';
-                        mobileLoginLink.textContent = 'Dashboard';
-                        loginLink.href = "login.html";
-                        mobileLoginLink.href = "login.html";
-
-                    } catch (error) {
-                        console.error("Error fetching user profile:", error);
-                        showPopup('Error', 'Could not load your profile. Please log out and try again.');
-                        await handleLogout();
-                    }
-                } else {
-                    currentUser = null;
-                    if(wasLoggedIn) {
-                        adminDashboard.classList.add('fade-out');
-                        userDashboard.classList.add('fade-out');
-                        setTimeout(() => {
-                            adminDashboard.style.display = 'none';
-                            userDashboard.style.display = 'none';
-                            adminDashboard.classList.remove('fade-out');
-                            userDashboard.classList.remove('fade-out');
-                            loginContainer.style.display = 'block';
-                            loginContainer.classList.add('fade-in');
-                            setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
-                        }, 500);
-                    } else {
-                        adminDashboard.style.display = 'none';
-                        userDashboard.style.display = 'none';
-                        loginContainer.style.display = 'block';
-                    }
-
-                    loginLink.textContent = 'Log In';
-                    mobileLoginLink.textContent = 'Log In';
-                    loginLink.href = "login.html";
-                    mobileLoginLink.href = "login.html";
-                }
-            });
+    if (user) {
+        try {
+            const userDoc = await db.collection("users").doc(user.uid).get();
+            if (!userDoc.exists) throw new Error("User data not found in Firestore.");
             
+            currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
+            
+            if (!wasLoggedIn) {
+                loginContainer.classList.add('fade-out');
+                setTimeout(() => {
+                    loginContainer.style.display = 'none';
+                    loginContainer.classList.remove('fade-out');
+                    if (currentUser.isAdmin) {
+                        adminDashboard.style.display = 'block';
+                        adminDashboard.classList.add('fade-in');
+                        setTimeout(() => adminDashboard.classList.remove('fade-in'), 500);
+                        updateAdminDashboard();
+                    } else {
+                        userDashboard.style.display = 'block';
+                        userDashboard.classList.add('fade-in');
+                        setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
+                        loadUserDashboard();
+                    }
+                }, 500);
+            } else {
+                if (currentUser.isAdmin) {
+                    adminDashboard.style.display = 'block';
+                    userDashboard.style.display = 'none';
+                    updateAdminDashboard();
+                } else {
+                    userDashboard.style.display = 'block';
+                    adminDashboard.style.display = 'none';
+                    loadUserDashboard();
+                }
+                loginContainer.style.display = 'none';
+            }
+            
+            // Update link text
+            loginLink.textContent = 'Dashboard';
+            mobileLoginLink.textContent = 'Dashboard';
+            // Prevent navigation to login.html when already logged in
+            loginLink.href = "#";
+            mobileLoginLink.href = "#";
+            loginLink.addEventListener('click', preventNavigationIfLoggedIn);
+            mobileLoginLink.addEventListener('click', preventNavigationIfLoggedIn);
+
+        } catch (error) {
+            console.error("Error fetching user profile:", error);
+            showPopup('Error', 'Could not load your profile. Please log out and try again.');
+            await handleLogout();
+        }
+    } else {
+        currentUser = null;
+        if (wasLoggedIn) {
+            adminDashboard.classList.add('fade-out');
+            userDashboard.classList.add('fade-out');
+            setTimeout(() => {
+                adminDashboard.style.display = 'none';
+                userDashboard.style.display = 'none';
+                adminDashboard.classList.remove('fade-out');
+                userDashboard.classList.remove('fade-out');
+                loginContainer.style.display = 'block';
+                loginContainer.classList.add('fade-in');
+                setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
+            }, 500);
+        } else {
+            adminDashboard.style.display = 'none';
+            userDashboard.style.display = 'none';
+            loginContainer.style.display = 'block';
+        }
+
+        loginLink.textContent = 'Log In';
+        mobileLoginLink.textContent = 'Log In';
+        loginLink.href = "login.html";
+        mobileLoginLink.href = "login.html";
+        // Remove event listeners to allow normal navigation
+        loginLink.removeEventListener('click', preventNavigationIfLoggedIn);
+        mobileLoginLink.removeEventListener('click', preventNavigationIfLoggedIn);
+    }
+});
+
+// Function to prevent navigation if logged in
+function preventNavigationIfLoggedIn(e) {
+    if (currentUser) {
+        e.preventDefault();
+        // Optionally, you can show the dashboard again or do nothing
+    }
+}
             // --- FIX #1: Signup Flow ---
             async function handleSignUp(email, password, username) {
                 if (password.length < 8) {
