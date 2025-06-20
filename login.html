@@ -267,9 +267,10 @@
         .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
         .form-group input:focus { outline: none; border-color: #f82249; box-shadow: 0 0 0 3px rgba(248,34,73,0.1); }
         .cc-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+       /* View Mode Styles for Read-Only Popup */
         .ticket-popup.view-mode .form-group input, .ticket-popup.view-mode .payment-field { background: #f8f9fa; border-color: #e9ecef; cursor: not-allowed; pointer-events: none; }
+        .ticket-popup.view-mode .purchase-button { display: none; }
         .ticket-popup.view-mode .seat, .ticket-popup.view-mode .capacity-section { pointer-events: none; }
-        /* --- End of popup style fix --- */
 
         .mock-event-tile { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
         .price-tag { background: #f82249; color: white; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; min-width: 70px; text-align: center; }
