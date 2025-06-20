@@ -599,13 +599,10 @@
             <label for="event-date" class="block text-sm font-medium mb-1">Event Date <span class="text-red-500">*</span></label>
             <input type="date" id="event-date" class="form-control rounded-full" required>
           </div>
-                    <!-- This is the CORRECT block -->
-          <div class="mb-4">
+          <div class="mb-4 position-relative">
             <label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label>
-            <div class="input-field">
-                <i class="fas fa-dollar-sign"></i>
-                <input type="number" step="0.01" id="event-price" placeholder="0.00" required>
-            </div>
+            <span class="position-absolute top-10 start-0 translate-middle-y ms-3 text-gray-500">$</span>
+            <input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required>
           </div>
           <div class="mb-6">
             <label for="event-description" class="block text-sm font-medium mb-1">Event Description <span class="text-red-500">*</span></label>
