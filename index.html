@@ -381,7 +381,7 @@
     (function() {
       const path = window.location.pathname.toLowerCase();
       // Add ALL your valid .html pages to this list
-      const validPages = ['/', '/index.html', '/event.html', '/rent.html', '/gallery.html', '/login.html', '/404.html']; 
+      const validPages = ['/', '/index.html', '/event.html', '/rent.html', '/login.html', '/404.html']; 
       
       const isFile = path.endsWith('.html');
       const isValidPage = validPages.some(page => path.endsWith(page));
@@ -418,7 +418,6 @@
           <li><a href="index.html#about">About</a></li> <!--Instructions will be here-->
           <li><a href="event.html">Events</a></li> <!--Seating will be here-->
           <li><a href="rent.html">Rent Venue</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
           <li class="buy-tickets"><a href="login.html">Log In</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
