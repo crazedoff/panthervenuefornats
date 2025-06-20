@@ -482,103 +482,122 @@
     </nav><!-- #nav-menu-container -->
   </div>
 </header><!-- #header -->
-
 <style>
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Nav Menu Essentials */
-.nav-menu, .nav-menu * {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  /*
+  ========================================================
+      MEGA MENU STYLES (INSPIRED BY THE VIDEO)
+  ========================================================
+  */
 
-.nav-menu ul {
-  position: absolute;
-  display: none;
-  top: 100%;
-  left: 0;
-  z-index: 99;
-}
+  /* General Dropdown Positioning */
+  .nav-menu .menu-has-children .dropdown-menu {
+    display: block;
+    position: absolute;
+    left: 50%; /* Center the menu */
+    transform: translateX(-50%);
+    top: 100%;
+    margin-top: 10px; /* Space between nav and menu */
+    
+    width: 80vw; /* Wide menu */
+    max-width: 800px; /* Max width */
+    
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    
+    padding: 20px;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    transform: translateX(-50%) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 999;
+  }
 
-.nav-menu li {
-  position: relative;
-  white-space: nowrap;
-}
+  /* Show on Hover */
+  .nav-menu .menu-has-children:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
 
-.nav-menu > li {
-  float: left;
-}
+  /* Dropdown Arrow Indicator */
+  .nav-menu li.menu-has-children > a:after {
+    content: "\f107";
+    font-family: FontAwesome;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #e0072f; /* Panther Red Arrow */
+  }
 
-/* Dropdown chevron */
-.nav-menu li.menu-has-children > a:after {
-  content: "\f107";
-  font-family: FontAwesome;
-  padding-left: 10px;
-  position: relative;
-  top: -1px;
-  color: #e0072f; /* Red arrow */
-}
+  /* Mega Menu Item Styling (the <a> tag) */
+  .mega-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none !important;
+    margin-bottom: 10px;
+  }
 
-/* General Dropdown Styling */
-.nav-menu ul ul {
-  top: 0;
-  left: 100%;
-}
+  .mega-menu-item:hover {
+    background-color: #fce8ec; /* Light Panther Red */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(224, 7, 47, 0.1);
+  }
 
-.nav-menu ul li {
-  min-width: 200px;
-}
+  /* Icon Box */
+  .mega-menu-item .icon-box {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgba(224, 7, 47, 0.1); /* Subtle red background */
+    border-radius: 10px;
+  }
+  
+  .mega-menu-item .icon-box i {
+    font-size: 24px;
+    color: #c71c3a; /* Darker Panther Red */
+  }
 
-/* Dropdown Menu - Main Container */
-.nav-menu .dropdown-menu {
-  padding: 10px;
-  border: 0;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-  margin-top: 10px;
-  opacity: 0;
-  visibility: hidden;
-  display: block;
-  transition: all 0.3s ease;
-  transform: translateY(10px);
-}
+  /* Text Box */
+  .mega-menu-item .text-box h5 {
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 4px 0;
+    transition: color 0.3s ease;
+  }
 
-.nav-menu > li:hover > .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+  .mega-menu-item .text-box p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .mega-menu-item:hover .text-box h5 {
+      color: #e0072f;
+  }
 
-/* Dropdown Items */
-.nav-menu .dropdown-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  color: #333;
-}
-
-.nav-menu .dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: #e0072f;
-}
-
-/* Icons in Dropdown */
-.nav-menu .dropdown-item i {
-  font-size: 20px;
-  margin-right: 15px;
-  width: 25px;
-  text-align: center;
-}
-
-/* Text in Dropdown */
-.nav-menu .dropdown-item span {
-  font-weight: 500;
-}
+  /* To prevent style conflicts, we remove the default dropdown styles from superfish */
+  .nav-menu ul {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
 
 </style>
   <!--==========================
