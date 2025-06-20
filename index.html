@@ -392,9 +392,6 @@
 
 <body>
 
-
-
-
 <!--==========================
     Header
   ============================-->
@@ -410,17 +407,48 @@
     <nav id="nav-menu-container">
       <ul class="nav-menu">
 
-        <!-- HOME LINK WITH THE FINAL, CORRECTED DROPDOWN -->
+        <!-- HOME LINK WITH THE CORRECT MEGA MENU -->
         <li class="menu-active menu-has-children">
           <a href="#intro">Home</a>
-          <ul class="dropdown-menu">
-            <li><a href="#services"><div class="icon-box"><i class="fas fa-concierge-bell"></i></div><span>Amenities</span></a></li>
-            <li><a href="#seating"><div class="icon-box"><i class="fas fa-chair"></i></div><span>Seating Charts</span></a></li>
-            <li><a href="#schedule"><div class="icon-box"><i class="fas fa-scroll"></i></div><span>Policies</span></a></li>
-            <li><a href="#hotels"><div class="icon-box"><i class="fas fa-hotel"></i></div><span>Hotels</span></a></li>
-            <li><a href="#faq"><div class="icon-box"><i class="fas fa-question-circle"></i></div><span>F.A.Q.</span></a></li>
-            <li><a href="#contact"><div class="icon-box"><i class="fas fa-address-book"></i></div><span>Contact Us</span></a></li>
-          </ul>
+          <div class="dropdown-menu mega-menu">
+            <div class="container">
+              <div class="row">
+                <!-- Column 1 -->
+                <div class="col-lg-4">
+                  <a href="#services" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-concierge-bell"></i></div>
+                    <h5>Amenities</h5>
+                  </a>
+                  <a href="#seating" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-chair"></i></div>
+                    <h5>Seating Charts</h5>
+                  </a>
+                </div>
+                <!-- Column 2 -->
+                <div class="col-lg-4">
+                  <a href="#schedule" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-scroll"></i></div>
+                    <h5>Policies</h5>
+                  </a>
+                  <a href="#hotels" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-hotel"></i></div>
+                    <h5>Hotels</h5>
+                  </a>
+                </div>
+                <!-- Column 3 -->
+                <div class="col-lg-4">
+                  <a href="#faq" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-question-circle"></i></div>
+                    <h5>F.A.Q.</h5>
+                  </a>
+                  <a href="#contact" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-address-book"></i></div>
+                    <h5>Contact Us</h5>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
 
         <li><a href="index.html#about">About</a></li>
@@ -432,29 +460,38 @@
     </nav><!-- #nav-menu-container -->
   </div>
 </header><!-- #header -->
+
 <style>
   /*
   ========================================================
-      FINAL, CORRECTED & POLISHED DROPDOWN MENU
+      DEFINITIVE DROPDOWN STYLES (VERTICAL + STYLED)
   ========================================================
   */
 
-  /* 1. FIX: Restore the active line under the "Home" button */
-  #header #nav-menu .menu-active > a {
-    color: #e0072f !important; /* Panther Red */
-  }
-  #header.header-scrolled #nav-menu .menu-active > a {
-     border-bottom: 2px solid #e0072f;
-  }
-  
-  /* 2. FIX: The hover tunnel problem. This padding creates an invisible bridge for the mouse */
-  #header #nav-menu > li {
-    padding-bottom: 10px;
-    margin-bottom: -10px;
+  /* The Dropdown Panel: Clean, white, and animated */
+  .nav-menu .dropdown-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 5px);
+    margin: 0;
+    padding: 10px;
+    
+    min-width: 260px; /* A good width for a single column */
+    
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    
+    /* Animation */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
   }
 
-  /* The Dropdown Panel: Positioned correctly with smooth animation */
- 
   /* Show the panel on hover */
   .nav-menu .menu-has-children:hover > .dropdown-menu {
     opacity: 1;
@@ -463,7 +500,7 @@
     transform: translateY(0);
   }
 
-  /* The red dropdown arrow */
+  /* The Red Dropdown Arrow */
   .nav-menu li.menu-has-children > a:after {
     content: "\f107";
     font-family: FontAwesome;
@@ -472,23 +509,57 @@
     color: #e0072f;
   }
 
- 
-
-
-
-  .dropdown-menu .icon-box i {
-    font-size: 18px;
-    color: #c31b2c; /* Darker Panther Red */
+  /* Each Clickable Item Block (The <a> Tag) */
+  .dropdown-item-styled {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: all 0.25s ease-in-out;
   }
 
-  
-  
-  /* 5. FIX: Name doesn't get hidden, turns red */
-  .dropdown-menu li a:hover span {
-    color: #ffffff;
+  /* Hover effect for each item */
+  .dropdown-item-styled:hover {
+    background-color: #fef6f7; /* Very light red */
+    transform: translateX(5px);
   }
 
-  /* Housekeeping: Prevent conflicts with template styles */
+  /* The Light Red Icon Square */
+  .dropdown-item-styled .icon-box {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fce8ec;
+    border-radius: 8px;
+  }
+
+  /* The Dark Red Icon */
+  .dropdown-item-styled .icon-box i {
+    font-size: 20px;
+    color: #c71c3a;
+  }
+
+  /* The Black Title */
+  .dropdown-item-styled h5 {
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+  
+  .dropdown-item-styled:hover h5 {
+    color: #e0072f;
+  }
+
+  /* Housekeeping: Remove conflicting styles from default template */
   .nav-menu ul {
     background: none;
     border: none;
@@ -497,73 +568,6 @@
   .nav-menu ul li {
     min-width: unset;
   }
-  /* Ensure the <a> tag has enough space and proper flex alignment */
-.dropdown-menu li a {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  text-decoration: none !important;
-  white-space: nowrap;
-  transition: all 0.25s ease-in-out;
-  min-width: 200px; /* Ensure enough width to prevent overlap */
-  position: relative; /* Ensure proper stacking context */
-}
-
-/* Icon box styling */
-.dropdown-menu .icon-box {
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f7d3d9;
-  border-radius: 8px;
-  z-index: 1; /* Ensure icon stays below text if needed */
-}
-
-/* Text styling */
-.dropdown-menu li a span {
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: #333;
-  transition: color 0.2s ease-in-out;
-  z-index: 2; /* Ensure text is above icon */
-  flex-grow: 1; /* Allow text to take available space */
-}
-
-/* Hover effect */
-.dropdown-menu li a:hover {
-  background-color: #fce8ec;
-  transform: translateX(5px); /* Move the entire <a> tag */
-}
-
-/* Ensure no overflow or clipping in the dropdown */
-.nav-menu .dropdown-menu {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  margin: 0;
-  padding: 10px;
-  min-width: 250px;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
-  overflow: visible; /* Prevent clipping of content */
-}
-
-  
 </style>
 
 
