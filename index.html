@@ -460,45 +460,48 @@
     </nav><!-- #nav-menu-container -->
   </div>
 </header><!-- #header -->
+
+
 <style>
   /*
   ========================================================
-      FINAL & CORRECTED MEGA MENU STYLES
+      DEFINITIVE DROPDOWN STYLES (VERTICAL + STYLED)
   ========================================================
   */
 
-  /* Main panel for the mega menu */
-  .mega-menu {
+  /* The Dropdown Panel: Clean, white, and animated */
+  .nav-menu .dropdown-menu {
     display: block;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100%;
-    margin-top: 10px;
-    width: 80vw;
-    max-width: 800px;
+    left: 0;
+    top: calc(100% + 5px);
+    margin: 0;
+    padding: 10px;
+    
+    min-width: 260px; /* A good width for a single column */
+    
     background: #ffffff;
-    border: 1px solid #f0f0f0;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.09);
-    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    
+    /* Animation */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(-50%) translateY(20px) scale(0.95);
+    transform: translateY(15px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
   }
 
-  /* Show the menu on hover */
-  .nav-menu .menu-has-children:hover > .mega-menu {
+  /* Show the panel on hover */
+  .nav-menu .menu-has-children:hover > .dropdown-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0) scale(1);
+    transform: translateY(0);
   }
 
-  /* Red dropdown arrow on the "Home" link */
+  /* The Red Dropdown Arrow */
   .nav-menu li.menu-has-children > a:after {
     content: "\f107";
     font-family: FontAwesome;
@@ -507,67 +510,66 @@
     color: #e0072f;
   }
 
-  /* Styling for each clickable item block */
-  .mega-menu-item {
+  /* Each Clickable Item Block (The <a> Tag) */
+  .dropdown-item-styled {
     display: flex;
     align-items: center;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
     text-decoration: none !important;
-    margin-bottom: 15px;
-    background-color: #fff;
-    border: 1px solid transparent;
     transition: all 0.25s ease-in-out;
   }
 
-  .mega-menu-item:hover {
-    background-color: #fff;
-    transform: translateY(-3px);
-    border-color: #fbebee;
-    box-shadow: 0 8px 25px rgba(224, 7, 47, 0.1);
+  /* Hover effect for each item */
+  .dropdown-item-styled:hover {
+    background-color: #fef6f7; /* Very light red */
+    transform: translateX(5px);
   }
 
-  /* The light red square for the icon */
-  .mega-menu-item .icon-box {
+  /* The Light Red Icon Square */
+  .dropdown-item-styled .icon-box {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     margin-right: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fce8ec; /* Light Panther Red */
-    border-radius: 10px;
+    background-color: #fce8ec;
+    border-radius: 8px;
   }
 
-  /* The dark red icon */
-  .mega-menu-item .icon-box i {
-    font-size: 22px;
-    color: #c71c3a; /* Darker Panther Red */
+  /* The Dark Red Icon */
+  .dropdown-item-styled .icon-box i {
+    font-size: 20px;
+    color: #c71c3a;
   }
 
-  /* The black title text */
-  .mega-menu-item h5 {
+  /* The Black Title */
+  .dropdown-item-styled h5 {
     font-family: "Raleway", sans-serif;
     font-size: 16px;
-    font-weight: 700;
-    color: #222;
+    font-weight: 600;
+    color: #333;
     margin: 0;
     transition: color 0.2s ease;
   }
-
-  .mega-menu-item:hover h5 {
+  
+  .dropdown-item-styled:hover h5 {
     color: #e0072f;
   }
-  
-  /* Housekeeping: Prevent conflicts with old styles */
+
+  /* Housekeeping: Remove conflicting styles from default template */
   .nav-menu ul {
-      background: none;
-      border: none;
-      box-shadow: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  .nav-menu ul li {
+    min-width: unset;
   }
 </style>
-
 
 
 
