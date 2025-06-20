@@ -439,71 +439,70 @@
   ========================================================
   */
 
- /* Ensure the <a> tag has enough space and proper flex alignment */
-.dropdown-menu li a {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  text-decoration: none !important;
-  white-space: nowrap;
-  transition: all 0.25s ease-in-out;
-  min-width: 200px; /* Ensure enough width to prevent overlap */
-  position: relative; /* Ensure proper stacking context */
-}
+  /* 1. FIX: Restore the active line under the "Home" button */
+  #header #nav-menu .menu-active > a {
+    color: #e0072f !important; /* Panther Red */
+  }
+  #header.header-scrolled #nav-menu .menu-active > a {
+     border-bottom: 2px solid #e0072f;
+  }
+  
+  /* 2. FIX: The hover tunnel problem. This padding creates an invisible bridge for the mouse */
+  #header #nav-menu > li {
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+  }
 
-/* Icon box styling */
-.dropdown-menu .icon-box {
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f7d3d9;
-  border-radius: 8px;
-  z-index: 1; /* Ensure icon stays below text if needed */
-}
+  /* The Dropdown Panel: Positioned correctly with smooth animation */
+ 
+  /* Show the panel on hover */
+  .nav-menu .menu-has-children:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 
-/* Text styling */
-.dropdown-menu li a span {
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: #333;
-  transition: color 0.2s ease-in-out;
-  z-index: 2; /* Ensure text is above icon */
-  flex-grow: 1; /* Allow text to take available space */
-}
+  /* The red dropdown arrow */
+  .nav-menu li.menu-has-children > a:after {
+    content: "\f107";
+    font-family: FontAwesome;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #e0072f;
+  }
 
-/* Hover effect */
-.dropdown-menu li a:hover {
-  background-color: #fce8ec;
-  transform: translateX(5px); /* Move the entire <a> tag */
-}
+ 
 
-/* Ensure no overflow or clipping in the dropdown */
-.nav-menu .dropdown-menu {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  margin: 0;
-  padding: 10px;
-  min-width: 250px;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
-  overflow: visible; /* Prevent clipping of content */
-}
+  /* 5. FIX: Better hover animation and colors */
+  .dropdown-menu li a:hover {
+    background-color: #fce8ec; /* Light red background */
+    transform: translateX(5px);
+  }
+
+
+  .dropdown-menu .icon-box i {
+    font-size: 18px;
+    color: #c31b2c; /* Darker Panther Red */
+  }
+
+  
+  
+  /* 5. FIX: Name doesn't get hidden, turns red */
+  .dropdown-menu li a:hover span {
+    color: #ffffff;
+  }
+
+  /* Housekeeping: Prevent conflicts with template styles */
+  .nav-menu ul {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  .nav-menu ul li {
+    min-width: unset;
+  }
+
   
 </style>
 
