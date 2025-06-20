@@ -1286,7 +1286,550 @@ function preventNavigationIfLoggedIn(e) {
   z-index: 0;
 }
 </style>
+<!-- START: PantherVenue AI Assistant Integration Body -->
 
+<!-- AI Assistant Interface Toggler Button -->
+<button id="pantherVenueAiBotInterfaceToggle">
+  <span class="material-symbols-rounded">mode_comment</span>
+  <span class="material-symbols-rounded">close</span>
+</button>
+
+<!-- AI Assistant Main Pop-up Window -->
+<div class="pantherVenueAiAssistantWindow">
+
+  <!-- AI Assistant Window Header Bar -->
+  <div class="pantherVenueAiAssistantHeaderBar">
+    <div class="pantherVenueAiAssistantHeaderInfoBlock">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="pantherVenueAiAssistantHeaderLogoImage" />
+      <h2 class="pantherVenueAiAssistantHeaderText">PantherBot</h2>
+    </div>
+    <button id="closePantherVenueAiBotWindowButton" class="material-symbols-rounded">keyboard_arrow_down</button>
+  </div>
+
+  <!-- AI Assistant Conversation Display Area -->
+  <div class="pantherVenueAiAssistantConversationArea">
+    <div class="pantherVenueConversationBubble pantherVenueBotResponseMessage">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="pantherVenueBotAvatarImage" />
+      <div class="pantherVenueBubbleContentText">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
+    </div>
+  </div>
+
+  <!-- AI Assistant Composition Footer -->
+  <div class="pantherVenueAiAssistantFooterControls">
+    <form action="#" class="pantherVenueUserMessageCompositionForm">
+      <textarea placeholder="Type a message..." class="pantherVenueUserInputTextbox" required></textarea>
+      <div class="pantherVenueMessageCompositionControls">
+        <button type="button" id="conversationEmojiSelectorButton" class="material-symbols-outlined">sentiment_satisfied</button>
+        <button type="submit" id="submitUserQueryButton" class="material-symbols-rounded">arrow_upward</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Linking Emoji Mart script for the emoji selection utility -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+
+<!-- Main PantherVenue AI Assistant Script -->
+<script>
+    const conversationDisplayAreaElement = document.querySelector(".pantherVenueAiAssistantConversationArea");
+    const userMessageInputField = document.querySelector(".pantherVenueUserInputTextbox");
+    const sendMessageSubmitButtonElement = document.querySelector("#submitUserQueryButton");
+    const userMessageCompositionFormElement = document.querySelector(".pantherVenueUserMessageCompositionForm");
+    const aiBotInterfaceToggleButton = document.querySelector("#pantherVenueAiBotInterfaceToggle");
+    const closeAiBotWindowButton = document.querySelector("#closePantherVenueAiBotWindowButton");
+
+    // API setup for Hack Club AI Service
+    const HACK_CLUB_AI_COMPLETION_ENDPOINT = "https://ai.hackclub.com/chat/completions";
+
+    const conversationTranscriptHistory = [{
+        role: "system",
+        content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
+
+---
+### General Venue Information
+- **Name:** PantherVenue
+- **Location:** Inside Bridgewater-Raritan High School, 600 Garretson Road, Bridgewater, New Jersey.
+- **Capacity:** Seats up to 3,500 people.
+- **Features:** A premier gymnasium renovated in 2024 with a high-quality sound system, adjustable lighting, a large video screen, new bleachers, and a resurfaced floor.
+- **Primary Use:** Ideal for sports events, graduations, performances, workshops, and community gatherings.
+- **Amenities:** Comfortable bleacher seating, top-tier audio system, adjustable lighting, large video screen for presentations.
+- **Layouts:**
+    - **Standard Gym Layout:** For sports. Uses all four stands (North/South: 1000 seats each, East/West: 750 seats each).
+    - **Ceremony Layout:** For graduations/presentations. Features a main stage, with seating in the stands and potentially on the floor.
+
+---
+### How the Website Works
+- **Events Page (event.html):**
+    - Users can see a list of all upcoming events, such as "Varsity Basketball Finals," "Fall Dance Recital," and "Yoga Wellness Workshop."
+    - Users can filter events by category, price, and date.
+    - **To purchase tickets, users must log in to their account.** A popup allows them to select seats and complete the purchase.
+- **Rent Venue Page (rent.html):**
+    - Users can request to rent the venue for their own private event.
+    - **Users must be logged in to submit a request.**
+    - The process is a 6-step form: 1. Personal Details, 2. Event Details, 3. Category, 4. Venue Choice, 5. Image Upload, 6. Confirmation.
+    - After submission, the request becomes "pending" and is reviewed by an administrator.
+- **User Accounts (login.html):**
+    - Users can sign up for an account or log in.
+    - After logging in, users see a personal dashboard.
+    - **User Dashboard:** Shows their purchased tickets, total money spent, and the status (pending, accepted, declined) of their venue rental requests.
+    - **Admin Dashboard:** Staff can view site analytics and manage all venue rental requests.
+
+---
+### Important Policies & FAQs
+- **General Rules:** No outside food or drink. All bags are subject to search. The venue is strictly non-smoking (including vapes/e-cigarettes). No alcohol. No pets are allowed, except for service animals.
+- **Parking:** Available in designated lots. Fees may apply depending on the event.
+- **Ticket Policy:** Tickets are non-refundable unless the event is canceled by the venue. There is a 10-ticket limit per transaction. Tickets are transferable if the box office is notified.
+- **Team & Contact:**
+    - Key Staff: Bill Deniz (Athletic Director), Keri Fry (Logistics and Business Manager).
+    - Phone: +1 908-524-4059
+    - Email: hs@brrsd.k12.nj.us (expect a response in 2-7 business days).
+- **Nearby Hotels:** Hampton Inn, Hyatt House, and TownePlace suites are all within 1.5 miles.
+
+---
+### Your Persona & Instructions
+- Be friendly, professional, and enthusiastic.
+- Your name is PantherBot.
+- Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.`
+    }];
+
+    const initialUserInputFieldScrollHeight = userMessageInputField.scrollHeight;
+
+    const constructNewMessageBubbleElement = (htmlContent, cssClassName) => {
+        const messageContainerDiv = document.createElement("div");
+        messageContainerDiv.classList.add("pantherVenueConversationBubble", cssClassName);
+        messageContainerDiv.innerHTML = htmlContent;
+        return messageContainerDiv;
+    };
+
+    const fetchAndRenderBotResponse = async (botResponseBubbleElement) => {
+        const textContainerElement = botResponseBubbleElement.querySelector(".pantherVenueBubbleContentText");
+
+        const apiFetchRequestConfiguration = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages: conversationTranscriptHistory,
+            }),
+        };
+
+        try {
+            const apiHttpResponse = await fetch(HACK_CLUB_AI_COMPLETION_ENDPOINT, apiFetchRequestConfiguration);
+            if (!apiHttpResponse.ok) {
+                const errorPayload = await apiHttpResponse.json();
+                console.error("API Error Response:", errorPayload);
+                throw new Error(`API request failed with status: ${apiHttpResponse.status}. ${errorPayload.error?.message || ''}`);
+            }
+            
+            const apiJsonParsedData = await apiHttpResponse.json();
+            const extractedBotReplyContent = apiJsonParsedData.choices[0].message.content.trim();
+            
+            textContainerElement.innerHTML = marked.parse(extractedBotReplyContent);
+
+            conversationTranscriptHistory.push({
+                role: "assistant",
+                content: extractedBotReplyContent,
+            });
+
+        } catch (error) {
+            console.error("API Error:", error);
+            textContainerElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
+            textContainerElement.style.color = "#dc3545";
+        } finally {
+            botResponseBubbleElement.classList.remove("botIsProcessingQuery");
+            conversationDisplayAreaElement.scrollTo({ top: conversationDisplayAreaElement.scrollHeight, behavior: "smooth" });
+        }
+    };
+
+    const processAndSubmitUserMessage = (event) => {
+        event.preventDefault();
+        const currentUserInputText = userMessageInputField.value.trim();
+        if (!currentUserInputText) return;
+
+        userMessageInputField.value = "";
+        userMessageInputField.style.height = `${initialUserInputFieldScrollHeight}px`;
+
+        conversationTranscriptHistory.push({ role: "user", content: currentUserInputText });
+
+        const userMessageHtmlContent = `<div class="pantherVenueBubbleContentText">${currentUserInputText}</div>`;
+        const outgoingUserMessageBubble = constructNewMessageBubbleElement(userMessageHtmlContent, "pantherVenueUserQueryMessage");
+        conversationDisplayAreaElement.appendChild(outgoingUserMessageBubble);
+        conversationDisplayAreaElement.scrollTo({ top: conversationDisplayAreaElement.scrollHeight, behavior: "smooth" });
+
+        setTimeout(() => {
+            const botThinkingHtmlContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="pantherVenueBotAvatarImage" />
+            <div class="pantherVenueBubbleContentText">
+              <div class="botTypingAnimationIndicator">
+                <div class="botTypingAnimationDot"></div>
+                <div class="botTypingAnimationDot"></div>
+                <div class="botTypingAnimationDot"></div>
+              </div>
+            </div>`;
+            const incomingBotMessageBubble = constructNewMessageBubbleElement(botThinkingHtmlContent, "pantherVenueBotResponseMessage", "botIsProcessingQuery");
+            conversationDisplayAreaElement.appendChild(incomingBotMessageBubble);
+            conversationDisplayAreaElement.scrollTo({ top: conversationDisplayAreaElement.scrollHeight, behavior: "smooth" });
+            fetchAndRenderBotResponse(incomingBotMessageBubble);
+        }, 600);
+    };
+    
+    userMessageInputField.addEventListener("input", () => {
+        userMessageInputField.style.height = `${initialUserInputFieldScrollHeight}px`;
+        const calculatedNewHeight = userMessageInputField.scrollHeight;
+        userMessageInputField.style.height = `${calculatedNewHeight}px`;
+    });
+
+    userMessageInputField.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey && window.innerWidth > 768) {
+            processAndSubmitUserMessage(event);
+        }
+    });
+
+    const emojiMartPickerInstance = new EmojiMart.Picker({
+        theme: "light",
+        skinTonePosition: "none",
+        previewPosition: "none",
+        onEmojiSelect: (selectedEmoji) => {
+            const { selectionStart: cursorStartPosition, selectionEnd: cursorEndPosition } = userMessageInputField;
+            userMessageInputField.setRangeText(selectedEmoji.native, cursorStartPosition, cursorEndPosition, "end");
+            userMessageInputField.focus();
+        },
+        onClickOutside: (event) => {
+            if (event.target.id === "conversationEmojiSelectorButton") {
+                document.body.classList.toggle("displayEmojiSelectionPalette");
+            } else if (document.body.classList.contains("displayEmojiSelectionPalette")) {
+                document.body.classList.remove("displayEmojiSelectionPalette");
+            }
+        },
+    });
+    document.querySelector(".pantherVenueAiAssistantFooterControls").appendChild(emojiMartPickerInstance);
+
+    userMessageCompositionFormElement.addEventListener("submit", processAndSubmitUserMessage);
+    document.querySelector("#conversationEmojiSelectorButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        document.body.classList.toggle("displayEmojiSelectionPalette");
+    });
+    closeAiBotWindowButton.addEventListener("click", () => document.body.classList.remove("displayPantherVenueAssistantInterface"));
+    aiBotInterfaceToggleButton.addEventListener("click", () => document.body.classList.toggle("displayPantherVenueAssistantInterface"));
+</script>
+<!-- END: PantherVenue AI Assistant Integration Body -->
+
+  <style>
+    /* Importing Google Fonts - Inter for PantherVenue AI Assistant */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+    
+    /* --- PantherVenue AI Assistant Styles --- */
+    #pantherVenueAiBotInterfaceToggle {
+      position: fixed;
+      bottom: 30px;
+      right: 35px;
+      border: none;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 1000; /* Ensure it's above other content */
+    }
+    body.displayPantherVenueAssistantInterface #pantherVenueAiBotInterfaceToggle {
+      transform: rotate(90deg);
+    }
+    #pantherVenueAiBotInterfaceToggle span {
+      color: #fff;
+      position: absolute;
+    }
+    #pantherVenueAiBotInterfaceToggle span:last-child,
+    body.displayPantherVenueAssistantInterface #pantherVenueAiBotInterfaceToggle span:first-child {
+      opacity: 0;
+    }
+    body.displayPantherVenueAssistantInterface #pantherVenueAiBotInterfaceToggle span:last-child {
+      opacity: 1;
+    }
+    .pantherVenueAiAssistantWindow {
+      position: fixed;
+      right: 35px;
+      bottom: 90px;
+      width: 400px; 
+      overflow: hidden;
+      background: #fff;
+      border-radius: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.2);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s ease;
+      z-index: 1000;
+    }
+    body.displayPantherVenueAssistantInterface .pantherVenueAiAssistantWindow {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    .pantherVenueAiAssistantHeaderBar {
+      display: flex;
+      align-items: center;
+      padding: 15px 22px;
+      background: #dc3545; /* Red */
+      border-bottom: 1px solid #d4d4d4;
+      justify-content: space-between;
+    }
+    .pantherVenueAiAssistantHeaderBar .pantherVenueAiAssistantHeaderInfoBlock {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .pantherVenueAiAssistantHeaderInfoBlock .pantherVenueAiAssistantHeaderLogoImage {
+      width: 35px;
+      height: 35px;
+      padding: 2px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .pantherVenueAiAssistantHeaderInfoBlock .pantherVenueAiAssistantHeaderText {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.31rem;
+      letter-spacing: 0.02rem;
+      font-family: "Inter", sans-serif;
+    }
+    .pantherVenueAiAssistantHeaderBar #closePantherVenueAiBotWindowButton {
+      border: none;
+      color: #fff;
+      height: 40px;
+      width: 40px;
+      font-size: 1.9rem;
+      margin-right: -10px;
+      padding-top: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .pantherVenueAiAssistantHeaderBar #closePantherVenueAiBotWindowButton:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .pantherVenueAiAssistantConversationArea {
+      font-family: "Inter", sans-serif;
+      padding: 25px 22px;
+      gap: 20px;
+      display: flex;
+      height: 400px; 
+      overflow-y: auto;
+      margin-bottom: 75px;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    .pantherVenueAiAssistantConversationArea::-webkit-scrollbar {
+      width: 6px;
+    }
+    .pantherVenueAiAssistantConversationArea::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueConversationBubble {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueConversationBubble .pantherVenueBotAvatarImage {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueConversationBubble .pantherVenueBubbleContentText {
+      font-family: "Inter", sans-serif;
+      padding: 12px 16px;
+      max-width: 75%;
+      font-size: 0.95rem;
+      word-wrap: break-word;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage.botIsProcessingQuery .pantherVenueBubbleContentText {
+      padding: 2px 16px;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .pantherVenueBubbleContentText {
+      background: #f0f0f0; /* Light Gray */
+      color: #000;
+      border-radius: 13px 13px 13px 3px;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueUserQueryMessage {
+      justify-content: flex-end;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueUserQueryMessage .pantherVenueBubbleContentText {
+      color: #fff;
+      background: #dc3545; /* Red */
+      border-radius: 13px 13px 3px 13px;
+    }
+    /* Markdown formatting inside bot message */
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText p,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText h1,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText h2,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText h3,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText ul,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText ol,
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText li {
+        font-family: "Inter", sans-serif;
+        margin-bottom: 0.5em;
+        font-size: 0.95rem;
+     }
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText p:last-child {
+        margin-bottom: 0;
+     }
+     .pantherVenueBotResponseMessage .pantherVenueBubbleContentText ul, .pantherVenueBotResponseMessage .pantherVenueBubbleContentText ol {
+        padding-left: 20px;
+     }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .botTypingAnimationIndicator {
+      display: flex;
+      gap: 4px;
+      padding-block: 15px;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .botTypingAnimationIndicator .botTypingAnimationDot {
+      height: 7px;
+      width: 7px;
+      opacity: 0.7;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      animation: dotPulseKeyframeAnimation 1.8s ease-in-out infinite;
+    }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .botTypingAnimationIndicator .botTypingAnimationDot:nth-child(1) { animation-delay: 0.2s; }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .botTypingAnimationIndicator .botTypingAnimationDot:nth-child(2) { animation-delay: 0.3s; }
+    .pantherVenueAiAssistantConversationArea .pantherVenueBotResponseMessage .botTypingAnimationIndicator .botTypingAnimationDot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulseKeyframeAnimation {
+      0%, 44% { transform: translateY(0); }
+      28% { opacity: 0.4; transform: translateY(-4px); }
+      44% { opacity: 0.2; }
+    }
+    .pantherVenueAiAssistantFooterControls {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 10px 22px 15px;
+      border-top: 1px solid #d4d4d4;
+    }
+    .pantherVenueAiAssistantFooterControls .pantherVenueUserMessageCompositionForm {
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: #fff;
+      border-radius: 32px;
+      outline: 1px solid #ccc;
+      transition: 0s ease;
+    }
+    .pantherVenueUserMessageCompositionForm:focus-within {
+      outline: 2px solid #dc3545; /* Red */
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueUserInputTextbox {
+      font-family: "Inter", sans-serif;
+      width: 100%;
+      height: 47px;
+      outline: none;
+      resize: none;
+      border: none;
+      max-height: 180px;
+      scrollbar-width: none;
+      border-radius: inherit;
+      font-size: 0.95rem;
+      padding: 14px 0 12px 18px;
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueUserInputTextbox::-webkit-scrollbar {
+        display: none;
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueMessageCompositionControls {
+      gap: 3px;
+      height: 47px;
+      display: flex;
+      padding-right: 6px;
+      align-items: center;
+      align-self: flex-end;
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueMessageCompositionControls button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      cursor: pointer;
+      color: #555; /* Dark Gray */
+      border-radius: 50%;
+      font-size: 1.15rem;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueMessageCompositionControls button:hover,
+    body.displayEmojiSelectionPalette .pantherVenueMessageCompositionControls #conversationEmojiSelectorButton {
+      color: #dc3545; /* Red */
+      background: #fdeaea; /* Light Red */
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueMessageCompositionControls #submitUserQueryButton {
+      color: #fff;
+      background: #dc3545; /* Red */
+      /* IPAD FIX: Perfect centering for the icon */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueMessageCompositionControls #submitUserQueryButton:hover {
+      background: #b02a37; /* Darker Red */
+    }
+    .pantherVenueUserMessageCompositionForm .pantherVenueUserInputTextbox:valid~.pantherVenueMessageCompositionControls #submitUserQueryButton {
+      display: flex; /* Changed from block to flex for centering fix */
+    }
+    em-emoji-picker {
+      position: absolute;
+      left: 50%;
+      bottom: 55px; /* Position above the input bar */
+      width: 100%;
+      max-width: 350px;
+      visibility: hidden;
+      max-height: 330px;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    body.displayEmojiSelectionPalette em-emoji-picker {
+      visibility: visible;
+    }
+
+    /* IPAD/MOBILE FIX: Make AI Assistant fullscreen on tablets (portrait) and phones */
+    @media (max-width: 768px) {
+      #pantherVenueAiBotInterfaceToggle {
+        right: 20px;
+        bottom: 20px;
+      }
+      .pantherVenueAiAssistantWindow {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+      }
+      .pantherVenueAiAssistantWindow .pantherVenueAiAssistantHeaderBar {
+        padding: 12px 15px;
+      }
+      .pantherVenueAiAssistantConversationArea {
+        height: calc(100% - 130px); /* Adjusted for full screen */
+        padding: 25px 15px;
+      }
+      .pantherVenueAiAssistantFooterControls {
+        padding: 10px 15px 15px;
+      }
+    }
+  </style>
+  <!-- END: PantherVenue AI Assistant Integration Head -->
+
+  <!-- START: PantherVenue AI Assistant Integration Head -->
+  <!-- Google Fonts for AI Assistant Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 
 <!-- SCRIPT for TEAM section animation -->
