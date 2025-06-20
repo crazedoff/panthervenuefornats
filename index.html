@@ -392,61 +392,98 @@
 
 <body>
 
-
 <!--==========================
     Header
   ============================-->
-  <header id="header">
-    <div class="container">
+<header id="header">
+  <div class="container">
 
-      <div id="logo" class="pull-left">
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-        <a href="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" class="scrollto">
-          <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="" title="">
+    <div id="logo" class="pull-left">
+      <a href="#intro" class="scrollto">
+        <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo" title="">
       </a>
-      
-      </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active menu-has-children"><a href="#intro">Home</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#services">
-                <i class="fas fa-concierge-bell"></i>
-                <span>Amenities</span>
-              </a></li>
-              <li><a class="dropdown-item" href="#seating">
-                <i class="fas fa-chair"></i>
-                <span>Seating Charts</span>
-              </a></li>
-              <li><a class="dropdown-item" href="#schedule">
-                <i class="fas fa-scroll"></i>
-                <span>Policies</span>
-              </a></li>
-              <li><a class="dropdown-item" href="#hotels">
-                <i class="fas fa-hotel"></i>
-                <span>Hotels</span>
-              </a></li>
-              <li><a class="dropdown-item" href="#faq">
-                <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
-              </a></li>
-              <li><a class="dropdown-item" href="#panther-footer-final">
-                <i class="fas fa-shoe-prints"></i>
-                <span>Footer</span>
-              </a></li>
-            </ul>
-          </li>
-          <li><a href="index.html#about">About</a></li> <!--Instructions will be here-->
-          <li><a href="event.html">Events</a></li> <!--Seating will be here-->
-          <li><a href="rent.html">Rent Venue</a></li>
-          <li class="buy-tickets"><a href="login.html">Log In</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
     </div>
-  </header><!-- #header -->
-  <style>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        
+        <!-- HOME LINK WITH MEGA MENU DROPDOWN -->
+        <li class="menu-active menu-has-children">
+          <a href="#intro">Home</a>
+          <div class="dropdown-menu">
+            <div class="container">
+              <div class="row">
+                
+                <!-- Column 1 -->
+                <div class="col-lg-4">
+                  <a href="#services" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-concierge-bell"></i></div>
+                    <div class="text-box">
+                      <h5>Amenities</h5>
+                      <p>Explore our top-tier facilities.</p>
+                    </div>
+                  </a>
+                  <a href="#seating" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-chair"></i></div>
+                    <div class="text-box">
+                      <h5>Seating Charts</h5>
+                      <p>View layouts for any event.</p>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-lg-4">
+                  <a href="#schedule" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-scroll"></i></div>
+                    <div class="text-box">
+                      <h5>Venue Policies</h5>
+                      <p>Review our rules & guidelines.</p>
+                    </div>
+                  </a>
+                  <a href="#hotels" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-hotel"></i></div>
+                    <div class="text-box">
+                      <h5>Nearby Hotels</h5>
+                      <p>Find accommodations.</p>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="col-lg-4">
+                  <a href="#faq" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-question-circle"></i></div>
+                    <div class="text-box">
+                      <h5>F.A.Q.</h5>
+                      <p>Get answers to your questions.</p>
+                    </div>
+                  </a>
+                  <a href="#panther-footer-final" class="mega-menu-item">
+                    <div class="icon-box"><i class="fas fa-shoe-prints"></i></div>
+                    <div class="text-box">
+                      <h5>Contact & Info</h5>
+                      <p>See our footer for details.</p>
+                    </div>
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="rent.html">Rent Venue</a></li>
+        <li class="buy-tickets"><a href="login.html">Log In</a></li>
+        
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
+
+<style>
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
