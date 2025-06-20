@@ -247,37 +247,25 @@
         .flatpickr-day.event { background-color: #ff6b6b00; color: #000000; position: relative; }
         .flatpickr-day.event:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #f80000; }
         .flatpickr-day.event:hover { background-color: #ff8787; }
-        
-        /* --- FIX: Styles for the User Dashboard event details popup, ensuring it's not "mushed" --- */
-        .ticket-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: white; width: 100%; max-width: 1200px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; max-height: 90vh; overflow-y: auto; display: block;}
-        .ticket-popup.active { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
-        .popup-close { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: #2f3138; transition: all 0.3s; }
-        .popup-close:hover { color: #f82249; }
+        .ticket-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; display: none; opacity: 0; transition: all 0.3s ease; }
+        .ticket-popup.active { display: block; opacity: 1; }
         .popup-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
         @media (min-width: 768px) { .popup-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
         .event-details { padding-right: 0; border-right: none; border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
         @media (min-width: 768px) { .event-details { padding-right: 2rem; border-right: 2px solid #eee; border-bottom: none; padding-bottom: 0; margin-bottom: 0; } }
-        .seating-chart { background: #f8f9fa; padding: 1rem; border-radius: 10px; height: 400px; display: flex; align-items: center; justify-content: center; margin: 1rem 0; overflow: hidden; position: relative; padding-bottom: 100px;}
+        .seating-chart { background: #f8f9fa; padding: 1rem; border-radius: 10px; height: 400px; align-items: center; justify-content: center; margin: 1rem 0; overflow: hidden; position: relative; padding-bottom: 100px; }
         .schedule-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
         .schedule-table td { padding: 0.8rem; border-bottom: 1px solid #eee; }
         .schedule-table tr:last-child td { border-bottom: none; }
         .availability { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 1rem; border-radius: 10px; margin: 1rem 0; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .form-group input { width: 500px; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
         .form-group input:focus { outline: none; border-color: #f82249; box-shadow: 0 0 0 3px rgba(248,34,73,0.1); }
         .cc-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-       /* View Mode Styles for Read-Only Popup */
-        .ticket-popup.view-mode .form-group input, .ticket-popup.view-mode .payment-field { background: #f8f9fa; border-color: #e9ecef; cursor: not-allowed; pointer-events: none; }
-        .ticket-popup.view-mode .purchase-button { display: none; }
-        .ticket-popup.view-mode .seat, .ticket-popup.view-mode .capacity-section { pointer-events: none; }
-
-        .mock-event-tile { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
-        .price-tag { background: #f82249; color: white; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; min-width: 70px; text-align: center; }
-        .event-meta { display: flex; gap: 1rem; align-items: center; color: #6c757d; font-size: 0.875rem; }
-        .event-description { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 72px; margin-bottom: 1rem; }
-
-        /* Seating Chart Styles */
+        .purchase-button { background: #f82249; color: white; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+        .purchase-button:hover { background: #e61e40; }
+        .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
         .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
         .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
         .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
@@ -303,7 +291,13 @@
         .seat.available { background: #a83232; }
         .seat.sold-out { background: #ccc; pointer-events: none; }
         .seat.selected { background: #ff0000; box-shadow: 0 0 5px #ff0000; color: white !important; }
-
+        .ticket-popup.view-mode .form-group input, .ticket-popup.view-mode .payment-field { background: #f8f9fa; border-color: #e9ecef; cursor: not-allowed; pointer-events: none; }
+        .ticket-popup.view-mode .purchase-button { display: none; }
+        .ticket-popup.view-mode .seat, .ticket-popup.view-mode .capacity-section { pointer-events: none; }
+        .mock-event-tile { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+        .price-tag { background: #f82249; color: white; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; min-width: 70px; text-align: center; }
+        .event-meta { display: flex; gap: 1rem; align-items: center; color: #6c757d; font-size: 0.875rem; }
+        .event-description { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 72px; margin-bottom: 1rem; }
         .dashboard-title, .admin-dashboard-title { font-size: 1.6875rem; font-weight: 700; color: #2d3748; font-family: 'Open Sans', sans-serif; }
         .dashboard-title span, .admin-dashboard-title strong { color: #f82249; }
         .btn-decline { background-color: #dc3545; color: white; }
@@ -315,9 +309,9 @@
         .rent-venue-box .btn { align-self: center; }
         .rent-venue-note { font-size: 0.875rem; color: #6c757d; text-align: center; margin-top: 1rem; }
         .dashboard-wrapper .content .container-fluid > .row:nth-child(3) > .col-12.col-lg-4.col-xxl-3 {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
     </style>
 </head>
 <body>
@@ -716,6 +710,9 @@
             const mobileLoginLink = document.getElementById('mobileLoginLink');
 
             auth.onAuthStateChanged(async (user) => {
+                const wasLoggedIn = !!currentUser;
+                const isLoggingIn = !!user;
+
                 if (user) {
                     try {
                         const userDoc = await db.collection("users").doc(user.uid).get();
@@ -723,39 +720,65 @@
                         
                         currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
                         
-                        loginContainer.classList.add('fade-out');
-                        setTimeout(() => {
-                            loginContainer.style.display = 'none';
-                            loginContainer.classList.remove('fade-out');
+                        if (!wasLoggedIn) { // Only animate if transitioning from logged out state
+                            loginContainer.classList.add('fade-out');
+                            setTimeout(() => {
+                                loginContainer.style.display = 'none';
+                                loginContainer.classList.remove('fade-out');
 
-                            if (currentUser.isAdmin) {
+                                if (currentUser.isAdmin) {
+                                    adminDashboard.style.display = 'block';
+                                    adminDashboard.classList.add('fade-in');
+                                    updateAdminDashboard();
+                                } else {
+                                    userDashboard.style.display = 'block';
+                                    userDashboard.classList.add('fade-in');
+                                    loadUserDashboard();
+                                }
+                            }, 500);
+                        } else { // If already logged in (e.g., page refresh), just show dashboard
+                             if (currentUser.isAdmin) {
                                 adminDashboard.style.display = 'block';
                                 userDashboard.style.display = 'none';
-                                adminDashboard.classList.add('fade-in');
                                 updateAdminDashboard();
                             } else {
                                 userDashboard.style.display = 'block';
                                 adminDashboard.style.display = 'none';
-                                userDashboard.classList.add('fade-in');
                                 loadUserDashboard();
                             }
-                        }, 500);
+                            loginContainer.style.display = 'none';
+                        }
                         
                         loginLink.textContent = 'Dashboard';
                         mobileLoginLink.textContent = 'Dashboard';
-                        loginLink.href = "login.html"; // Make it a link to this page
+                        loginLink.href = "login.html";
                         mobileLoginLink.href = "login.html";
 
                     } catch (error) {
                         console.error("Error fetching user profile:", error);
                         showPopup('Error', 'Could not load your profile. Please log out and try again.');
-                        handleLogout();
+                        await handleLogout();
                     }
-                } else {
+                } else { // User is logged out
                     currentUser = null;
-                    adminDashboard.style.display = 'none';
-                    userDashboard.style.display = 'none';
-                    loginContainer.style.display = 'block';
+                    if(wasLoggedIn) { // Only animate if transitioning from logged in state
+                        adminDashboard.classList.add('fade-out');
+                        userDashboard.classList.add('fade-out');
+                        setTimeout(() => {
+                            adminDashboard.style.display = 'none';
+                            userDashboard.style.display = 'none';
+                            adminDashboard.classList.remove('fade-out');
+                            userDashboard.classList.remove('fade-out');
+                            
+                            loginContainer.style.display = 'block';
+                            loginContainer.classList.add('fade-in');
+                             setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
+                        }, 500);
+                    } else { // If already logged out, just ensure correct state
+                        adminDashboard.style.display = 'none';
+                        userDashboard.style.display = 'none';
+                        loginContainer.style.display = 'block';
+                    }
 
                     loginLink.textContent = 'Log In';
                     mobileLoginLink.textContent = 'Log In';
@@ -764,6 +787,7 @@
                 }
             });
 
+            // --- FIX 1: Signup Flow ---
             async function handleSignUp(email, password, username) {
                 if (password.length < 8) {
                     showPopup('Error', 'Password must be at least 8 characters.');
@@ -779,25 +803,27 @@
                         created: firebase.firestore.FieldValue.serverTimestamp()
                     });
                     await auth.signOut();
+                    
                     const successEl = document.getElementById('signupSuccess');
                     const loginContainerEl = document.querySelector(".login-container");
+                    const loginEmailInput = document.getElementById('loginEmail');
+                    const loginPasswordInput = document.getElementById('loginPassword');
                     
                     document.getElementById('signupUsername').value = '';
                     document.getElementById('signupEmail').value = '';
                     document.getElementById('signupPassword').value = '';
                     document.getElementById('signupConfirm').value = '';
-                    let countdown = 3;
+                    
                     successEl.style.display = 'block';
-                    successEl.textContent = `Account created! Redirecting in ${countdown}...`;
-                    const countdownInterval = setInterval(() => {
-                        countdown--;
-                        successEl.textContent = `Account created! Redirecting in ${countdown}...`;
-                        if (countdown <= 0) {
-                            clearInterval(countdownInterval);
-                            successEl.style.display = 'none';
-                            loginContainerEl.classList.remove("sign-up-mode");
-                        }
-                    }, 1000);
+                    successEl.textContent = `Account created! Redirecting...`;
+                    
+                    setTimeout(() => {
+                        successEl.style.display = 'none';
+                        loginEmailInput.value = email; // Pre-fill email
+                        loginPasswordInput.value = password; // Pre-fill password
+                        loginContainerEl.classList.remove("sign-up-mode"); // Switch to login panel
+                    }, 2000); // Wait 2 seconds before switching
+
                 } catch (error) {
                     showPopup('Error', error.message);
                 }
@@ -811,8 +837,12 @@
                 }
             }
 
-            window.handleLogout = function() {
-                auth.signOut().catch(error => showPopup('Error', error.message));
+            window.handleLogout = async function() {
+                try {
+                    await auth.signOut();
+                } catch(error) {
+                    showPopup('Error', error.message);
+                }
             }
 
             async function updateAdminDashboard() {
@@ -827,7 +857,6 @@
                 const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 
-                // --- FIX #3: Restoring base values and percentage logic ---
                 const baseSales = 8;
                 const baseTickets = 4;
                 const baseVisitors = 10;
@@ -863,7 +892,6 @@
                 const activeEventsChangeEl = document.getElementById('activeEventsChange');
                 activeEventsChangeEl.textContent = `${activeEventsPercentage.toFixed(0)}%`;
                 activeEventsChangeEl.className = `font-bold ${activeEventsPercentage > 0 ? 'text-success' : activeEventsPercentage < 0 ? 'text-danger' : 'text-warning'}`;
-                // --- End of FIX #3 ---
 
                 const requestsTableBody = document.getElementById('requestsTableBody');
                 requestsTableBody.innerHTML = '';
@@ -1026,12 +1054,11 @@
                 schedule.forEach(item => { scheduleTable.innerHTML += `<tr><td>${item.event}</td><td>${item.time}</td></tr>`; });
             };
             
-            // --- FIX #2: Re-implementing Admin Request Management Functions ---
             window.showRequestPopup = (requestId, requestData) => {
                 const requestPopup = document.getElementById('requestPopup');
                 if (!requestPopup) return;
                 
-                requestPopup.dataset.requestId = requestId; // Store ID for actions
+                requestPopup.dataset.requestId = requestId;
                 
                 document.getElementById('requestDetails').innerHTML = `
                     <p><strong>Requester:</strong> ${requestData.firstName || requestData.username} ${requestData.lastName || ''}</p>
@@ -1082,7 +1109,7 @@
                     }
                     
                     closeRequestPopup();
-                    updateAdminDashboard(); // Refresh the dashboard view
+                    updateAdminDashboard();
                     showPopup('Success', `Request status updated to ${newStatus}.`, true);
                 } catch (error) {
                     console.error("Error updating request status:", error);
@@ -1113,7 +1140,6 @@
             }
             document.getElementById('requestClose').addEventListener('click', closeRequestPopup);
             document.getElementById('requestOverlay').addEventListener('click', closeRequestPopup);
-            // --- End of FIX #2 ---
 
             try { var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d"); var gradient = ctx.createLinearGradient(0, 0, 0, 225); gradient.addColorStop(0, "rgba(215, 227, 244, 1)"); gradient.addColorStop(1, "rgba(215, 227, 244, 0)"); new Chart(ctx, { type: "line", data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], datasets: [{ label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249', data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327] }] }, options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } } });
                 pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), { type: "doughnut", data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] }, options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 } });
