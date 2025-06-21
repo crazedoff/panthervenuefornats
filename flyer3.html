@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PantherVenue Flyer Generator (Local Files)</title>
+    <title>PantherVenue Flyer Generator</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
             height: 1350px;
             overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            background-color: #ccc; /* Placeholder color */
+            background-color: #ccc; /* Placeholder color while image loads */
         }
         
         #background-img {
@@ -156,21 +156,21 @@
         <h1>Flyer Generator</h1>
         
         <div class="control-group">
-            <label for="template-upload">Step 1: Upload Flyer Template</label>
-            <input type="file" id="template-upload" accept="image/*">
-        </div>
-        
-        <div class="control-group">
-            <label for="event-image-upload">Step 2: Upload Event Image</label>
+            <label for="event-image-upload">1. Upload Event Image</label>
             <input type="file" id="event-image-upload" accept="image/*">
         </div>
 
-        <button id="download-btn" disabled>Download Flyer</button>
+        <button id="download-btn" disabled>2. Download Flyer</button>
     </div>
 
     <div id="flyer-container">
-        <!-- These images will be populated by JavaScript after you select the files -->
-        <img id="background-img" class="overlay" src="" alt="Flyer Background Template">
+        <!-- The background is now hardcoded from your CDN link -->
+        <img id="background-img"
+             src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/bd0262f544e32438cdc972af448e2d38ecad1ffa_panthervenue_event_flyer.png"
+             crossorigin="anonymous" 
+             alt="Flyer Background Template">
+
+        <!-- This image will be populated by JavaScript after you select a file -->
         <img id="event-image" class="overlay" src="" alt="Event Image">
 
         <!-- All other elements are layered on top -->
@@ -191,7 +191,10 @@
             downloadFileName: "PantherVenue_Math_Olympiad_Flyer.png"
         };
         
-        // --- THIS IS THE CORE LOGIC ---
+        const eventImageUpload = document.getElementById('event-image-upload');
+        const eventImageEl = document.getElementById('event-image');
+        const downloadBtn = document.getElementById('download-btn');
+
         // Helper function to read a file and return a Data URL
         function readFileAsDataURL(file) {
             return new Promise((resolve, reject) => {
@@ -201,39 +204,14 @@
                 reader.readAsDataURL(file);
             });
         }
-
-        const templateUpload = document.getElementById('template-upload');
-        const eventImageUpload = document.getElementById('event-image-upload');
-        const backgroundEl = document.getElementById('background-img');
-        const eventImageEl = document.getElementById('event-image');
-        const downloadBtn = document.getElementById('download-btn');
-
-        let templateLoaded = false;
-        let eventImageLoaded = false;
-
-        function checkAllLoaded() {
-            if (templateLoaded && eventImageLoaded) {
-                downloadBtn.disabled = false;
-            }
-        }
-
-        templateUpload.addEventListener('change', async (event) => {
-            if (event.target.files && event.target.files[0]) {
-                const file = event.target.files[0];
-                const dataUrl = await readFileAsDataURL(file);
-                backgroundEl.src = dataUrl;
-                templateLoaded = true;
-                checkAllLoaded();
-            }
-        });
-
+        
+        // Listen for the user to upload the event image
         eventImageUpload.addEventListener('change', async (event) => {
             if (event.target.files && event.target.files[0]) {
                 const file = event.target.files[0];
                 const dataUrl = await readFileAsDataURL(file);
                 eventImageEl.src = dataUrl;
-                eventImageLoaded = true;
-                checkAllLoaded();
+                downloadBtn.disabled = false; // Enable the download button
             }
         });
         
@@ -252,7 +230,8 @@
 
         downloadBtn.addEventListener('click', function() {
             html2canvas(document.getElementById('flyer-container'), {
-                scale: 2 // Higher resolution output
+                useCORS: true, // This is still needed for the background CDN image
+                scale: 2 
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
