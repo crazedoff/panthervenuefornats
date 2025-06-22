@@ -165,11 +165,13 @@
     </div>
 
     <div id="flyer-container">
-        <!-- THE FIX: Using the DIRECT image link from Imgur (i.imgur.com) -->
+        <!-- The background is now hardcoded from your CDN link -->
         <img id="background-img"
-             src="https://i.imgur.com/g8o488m.png"
+             src="https://imgur.com/a/lx4rO91"
              crossorigin="anonymous" 
-             alt="Flyer Background Template">
+             alt="Flyer Background Template"
+             onload="console.log('Background image loaded successfully')"
+             onerror="console.error('Failed to load background image')">
 
         <!-- This image will be populated by JavaScript after you select a file -->
         <img id="event-image" class="overlay" src="" alt="Event Image">
@@ -206,6 +208,22 @@
             });
         }
         
+        // Test CDN image accessibility
+        function testCDNImage() {
+            const testImg = new Image();
+            testImg.crossOrigin = 'anonymous';
+            testImg.onload = () => {
+                console.log('CDN image is accessible');
+            };
+            testImg.onerror = () => {
+                console.error('CDN image is not accessible - CORS or network issue');
+            };
+            testImg.src = 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/bd0262f544e32438cdc972af448e2d38ecad1ffa_panthervenue_event_flyer.png';
+        }
+        
+        // Test the CDN image on page load
+        testCDNImage();
+        
         // Listen for the user to upload the event image
         eventImageUpload.addEventListener('change', async (event) => {
             if (event.target.files && event.target.files[0]) {
@@ -227,19 +245,78 @@
                 text: flyerData.qrCodeData, width: 230, height: 230,
                 colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
             });
+            
+            // Ensure background image loads
+            const backgroundImg = document.getElementById('background-img');
+            if (backgroundImg.complete) {
+                console.log('Background image already loaded');
+            } else {
+                backgroundImg.addEventListener('load', () => {
+                    console.log('Background image loaded successfully');
+                });
+                backgroundImg.addEventListener('error', (e) => {
+                    console.error('Background image failed to load:', e);
+                    // Fallback to a solid color if image fails
+                    document.getElementById('flyer-container').style.backgroundColor = '#B52A2D';
+                });
+            }
         });
 
         downloadBtn.addEventListener('click', function() {
-            html2canvas(document.getElementById('flyer-container'), {
-                useCORS: true, // This is still needed for the background CDN image
-                scale: 2 
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = flyerData.downloadFileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+            // Show loading state
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = 'Generating...';
+            
+            // Wait for all images to load before generating
+            const backgroundImg = document.getElementById('background-img');
+            const eventImg = document.getElementById('event-image');
+            
+            Promise.all([
+                new Promise(resolve => {
+                    if (backgroundImg.complete) {
+                        resolve();
+                    } else {
+                        backgroundImg.onload = resolve;
+                        backgroundImg.onerror = resolve; // Continue even if background fails
+                    }
+                }),
+                new Promise(resolve => {
+                    if (!eventImg.src || eventImg.complete) {
+                        resolve();
+                    } else {
+                        eventImg.onload = resolve;
+                        eventImg.onerror = resolve;
+                    }
+                })
+            ]).then(() => {
+                // Small delay to ensure everything is rendered
+                setTimeout(() => {
+                    html2canvas(document.getElementById('flyer-container'), {
+                        useCORS: true,
+                        allowTaint: true,
+                        scale: 2,
+                        backgroundColor: null,
+                        logging: false,
+                        width: 1080,
+                        height: 1350
+                    }).then(canvas => {
+                        const link = document.createElement('a');
+                        link.href = canvas.toDataURL('image/png', 1.0);
+                        link.download = flyerData.downloadFileName;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        // Reset button state
+                        downloadBtn.disabled = false;
+                        downloadBtn.textContent = '2. Download Flyer';
+                    }).catch(error => {
+                        console.error('Error generating flyer:', error);
+                        alert('Error generating flyer. Please try again.');
+                        downloadBtn.disabled = false;
+                        downloadBtn.textContent = '2. Download Flyer';
+                    });
+                }, 100);
             });
         });
     </script>
