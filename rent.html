@@ -999,14 +999,14 @@
   </script>
 
 
-
-    <!-- Chatbot stuff -->
+    <!-- START: Chatbot Integration Body -->
+<!-- Chatbot Toggler -->
 <button id="chatbot-toggler">
   <span class="material-symbols-rounded">mode_comment</span>
   <span class="material-symbols-rounded">close</span>
 </button>
-<div class="chatbot-popup">
-  <!-- chatbot header -->
+<div class="chatbot-popup" style="opacity: 0; ">
+  <!-- Chatbot Header -->
   <div class="chat-header">
     <div class="header-info">
       <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
@@ -1014,14 +1014,14 @@
     </div>
     <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
   </div>
-  <!-- chatbot body -->
+  <!-- Chatbot Body -->
   <div class="chat-body">
     <div class="message bot-message">
       <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
       <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
     </div>
   </div>
-  <!-- chatbot footer -->
+  <!-- Chatbot Footer -->
   <div class="chat-footer">
     <form action="#" class="chat-form">
       <textarea placeholder="Type a message..." class="message-input" required></textarea>
@@ -1032,24 +1032,179 @@
     </form>
   </div>
 </div>
-<!-- emoji picker script -->
+<!-- Linking Emoji Mart script for emoji picker -->
 <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
-<!-- chatbot script -->
 <script>
-    const chatBody = document.querySelector(".chat-body");
-    const messageInput = document.querySelector(".message-input");
-    const sendMessageButton = document.querySelector("#send-message");
-    const chatForm = document.querySelector(".chat-form");
-    const chatbotToggler = document.querySelector("#chatbot-toggler");
-    const closeChatbot = document.querySelector("#close-chatbot");
+  // Select DOM elements
+const chatBody = document.querySelector(".chat-body");
+const messageInput = document.querySelector(".message-input");
+const sendMessageButton = document.querySelector("#send-message");
+const chatForm = document.querySelector(".chat-form");
+const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot");
+const chatbotPopup = document.querySelector(".chatbot-popup");
+const initialInputHeight = messageInput.scrollHeight;
 
-    // API setup for Hack Club
-    const API_URL = "https://ai.hackclub.com/chat/completions";
+const API_URL = "https://ai.hackclub.com/chat/completions";
+let chatHistory;
 
- const chatHistory = [{
-        role: "system",
-        content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
+// Utility function to create message elements
+const createMessageElement = (content, className) => {
+    const div = document.createElement("div");
+    div.classList.add("message", className);
+    div.innerHTML = content;
+    return div;
+};
+
+// Function to display chat history
+const displayChatHistory = () => {
+    chatBody.innerHTML = ''; // Clear existing messages
+    chatHistory.forEach(msg => {
+        if (msg.role === "user") {
+            const userMessageContent = `<div class="message-text">${msg.content}</div>`;
+            const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+            chatBody.appendChild(outgoingMessageDiv);
+        } else if (msg.role === "assistant") {
+            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+            <div class="message-text">${marked.parse(msg.content)}</div>`;
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
+            chatBody.appendChild(incomingMessageDiv);
+        }
+    });
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+};
+
+// Function to generate bot response
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            messages: chatHistory,
+        }),
+    };
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("API Error Response:", errorData);
+            throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
+        }
+        const data = await response.json();
+        const apiResponseText = data.choices[0].message.content.trim();
+        messageElement.innerHTML = marked.parse(apiResponseText);
+        chatHistory.push({
+            role: "assistant",
+            content: apiResponseText,
+        });
+        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    } catch (error) {
+        console.error("API Error:", error);
+        messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
+        messageElement.style.color = "#dc3545";
+    } finally {
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    }
+};
+
+// Function to handle outgoing messages
+const handleOutgoingMessage = (e) => {
+    e.preventDefault();
+    const userMessage = messageInput.value.trim();
+    if (!userMessage) return;
+    messageInput.value = "";
+    messageInput.style.height = `${initialInputHeight}px`;
+    chatHistory.push({ role: "user", content: userMessage });
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+    const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+    chatBody.appendChild(outgoingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    setTimeout(() => {
+        const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+        <div class="message-text">
+          <div class="thinking-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>`;
+        const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
+        chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        generateBotResponse(incomingMessageDiv);
+    }, 600);
+};
+
+// Event listeners for input and form
+messageInput.addEventListener("input", () => {
+    messageInput.style.height = `${initialInputHeight}px`;
+    const newHeight = messageInput.scrollHeight;
+    messageInput.style.height = `${newHeight}px`;
+});
+
+messageInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
+        handleOutgoingMessage(e);
+    }
+});
+
+chatForm.addEventListener("submit", handleOutgoingMessage);
+
+// Emoji picker setup
+const picker = new EmojiMart.Picker({
+    theme: "light",
+    skinTonePosition: "none",
+    previewPosition: "none",
+    onEmojiSelect: (emoji) => {
+        const { selectionStart: start, selectionEnd: end } = messageInput;
+        messageInput.setRangeText(emoji.native, start, end, "end");
+        messageInput.focus();
+    },
+    onClickOutside: (e) => {
+        if (e.target.id === "emoji-picker") {
+            document.body.classList.toggle("show-emoji-picker");
+        } else if (document.body.classList.contains("show-emoji-picker")) {
+            document.body.classList.remove("show-emoji-picker");
+        }
+    },
+});
+document.querySelector(".chat-footer").appendChild(picker);
+
+document.querySelector("#emoji-picker").addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle("show-emoji-picker");
+});
+
+// Toggle and close functions
+function toggleChatbot() {
+    document.body.classList.toggle("show-chatbot");
+    const isOpen = document.body.classList.contains("show-chatbot");
+    localStorage.setItem('chatbotOpen', isOpen);
+}
+
+function closeChatbotFunc() {
+    document.body.classList.remove("show-chatbot");
+    localStorage.setItem('chatbotOpen', false);
+}
+
+chatbotToggler.addEventListener("click", toggleChatbot);
+closeChatbot.addEventListener("click", closeChatbotFunc);
+
+// Initialize chatbot state and history on page load
+document.addEventListener('DOMContentLoaded', () => {
+    chatbotPopup.classList.add('no-transition');
+    const savedHistory = localStorage.getItem('chatHistory');
+    if (savedHistory) {
+        chatHistory = JSON.parse(savedHistory);
+    } else {
+        chatHistory = [
+            {
+                role: "system",
+                content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
 
 ---
 ### General Venue Information
@@ -1096,129 +1251,33 @@
 - Be friendly, professional, and enthusiastic.
 - Your name is PantherBot.
 - Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.`
-    }];
-
-    const initialInputHeight = messageInput.scrollHeight;
-
-    const createMessageElement = (content, className) => {
-        const div = document.createElement("div");
-        div.classList.add("message", className);
-        div.innerHTML = content;
-        return div;
-    };
-
-    const generateBotResponse = async (incomingMessageDiv) => {
-        const messageElement = incomingMessageDiv.querySelector(".message-text");
-
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                messages: chatHistory,
-            }),
-        };
-
-        try {
-            const response = await fetch(API_URL, requestOptions);
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error("API Error Response:", errorData);
-                throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
-            }
-            
-            const data = await response.json();
-            const apiResponseText = data.choices[0].message.content.trim();
-            
-            messageElement.innerHTML = marked.parse(apiResponseText);
-
-            chatHistory.push({
+            },
+            {
                 role: "assistant",
-                content: apiResponseText,
-            });
-
-        } catch (error) {
-            console.error("API Error:", error);
-            messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
-            messageElement.style.color = "#dc3545";
-        } finally {
-            incomingMessageDiv.classList.remove("thinking");
-            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-        }
-    };
-
-    const handleOutgoingMessage = (e) => {
-        e.preventDefault();
-        const userMessage = messageInput.value.trim();
-        if (!userMessage) return;
-
-        messageInput.value = "";
-        messageInput.style.height = `${initialInputHeight}px`;
-
-        chatHistory.push({ role: "user", content: userMessage });
-
-        const userMessageContent = `<div class="message-text">${userMessage}</div>`;
-        const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
-        chatBody.appendChild(outgoingMessageDiv);
-        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-
-        setTimeout(() => {
-            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-            <div class="message-text">
-              <div class="thinking-indicator">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-              </div>
-            </div>`;
-            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message", "thinking");
-            chatBody.appendChild(incomingMessageDiv);
-            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-            generateBotResponse(incomingMessageDiv);
-        }, 600);
-    };
-    
-    messageInput.addEventListener("input", () => {
-        messageInput.style.height = `${initialInputHeight}px`;
-        const newHeight = messageInput.scrollHeight;
-        messageInput.style.height = `${newHeight}px`;
-    });
-
-    messageInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
-            handleOutgoingMessage(e);
-        }
-    });
-
-    const picker = new EmojiMart.Picker({
-        theme: "light",
-        skinTonePosition: "none",
-        previewPosition: "none",
-        onEmojiSelect: (emoji) => {
-            const { selectionStart: start, selectionEnd: end } = messageInput;
-            messageInput.setRangeText(emoji.native, start, end, "end");
-            messageInput.focus();
-        },
-        onClickOutside: (e) => {
-            if (e.target.id === "emoji-picker") {
-                document.body.classList.toggle("show-emoji-picker");
-            } else if (document.body.classList.contains("show-emoji-picker")) {
-                document.body.classList.remove("show-emoji-picker");
+                content: "Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?"
             }
-        },
-    });
-    document.querySelector(".chat-footer").appendChild(picker);
-
-    chatForm.addEventListener("submit", handleOutgoingMessage);
-    document.querySelector("#emoji-picker").addEventListener("click", (e) => {
-        e.stopPropagation();
-        document.body.classList.toggle("show-emoji-picker");
-    });
-    closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-    chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+        ];
+    }
+    displayChatHistory();
+    const isOpen = localStorage.getItem('chatbotOpen') === 'true';
+    if (isOpen) {
+        document.body.classList.add('show-chatbot');
+    } else {
+        document.body.classList.remove('show-chatbot');
+    }
+    setTimeout(() => {
+        chatbotPopup.classList.remove('no-transition');
+    }, 0);
+});
 </script>
 
+
+
+
+
+
   <style>
-    /* Google Fonts for Chatbot */
+    /* Importing Google Fonts - Inter for Chatbot */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
     
     /* --- Chatbot Styles --- */
@@ -1269,14 +1328,19 @@
         0 32px 64px -48px rgba(0, 0, 0, 0.5);
       transition: all 0.1s ease;
       z-index: 1000;
-      display: none;
+     visibility: hidden;
     }
     body.show-chatbot .chatbot-popup {
-      opacity: 1;
+      opacity: 1 !important;
       pointer-events: auto;
       transform: scale(1);
-      display: block;
+      visibility: visible;
+   
     }
+
+    .chatbot-popup.no-transition {
+    transition: none !important; /* Prevents animation on page load */
+}
     .chat-header {
       display: flex;
       align-items: center;
@@ -1531,13 +1595,13 @@
       }
     }
   </style>
-  
-  <!-- chatbot google fonts & markdown parser -->
+  <!-- END: Chatbot Integration Head -->
+
+  <!-- START: Chatbot Integration Head -->
+  <!-- Google Fonts for Chatbot Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-
-  <script type="module" src="/analytics.js"></script>
 
 
 </body>
