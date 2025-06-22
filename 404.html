@@ -200,6 +200,57 @@
     const chatbotToggler = document.querySelector("#chatbot-toggler");
     const closeChatbot = document.querySelector("#close-chatbot");
 
+
+
+    // Select elements
+const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot");
+const chatbotPopup = document.querySelector(".chatbot-popup");
+
+// Function to apply state without animation
+function setChatbotState(isOpen) {
+  if (isOpen) {
+    document.body.classList.add("show-chatbot");
+    // Set final styles directly to avoid animation on page load
+    chatbotPopup.style.transition = "none";
+    chatbotPopup.style.opacity = "1";
+    chatbotPopup.style.transform = "scale(1)";
+    chatbotPopup.style.display = "block";
+    // Re-enable transition after a brief delay for future toggles
+    setTimeout(() => {
+      chatbotPopup.style.transition = "all 0.1s ease";
+    }, 0);
+  } else {
+    document.body.classList.remove("show-chatbot");
+    // Ensure it's hidden without animation
+    chatbotPopup.style.transition = "none";
+    chatbotPopup.style.opacity = "0";
+    chatbotPopup.style.transform = "scale(0.2)";
+    chatbotPopup.style.display = "none";
+    setTimeout(() => {
+      chatbotPopup.style.transition = "all 0.1s ease";
+    }, 0);
+  }
+}
+
+// On page load, check localStorage and set state
+window.addEventListener("load", () => {
+  const isChatbotOpen = localStorage.getItem("chatbotOpen") === "true";
+  setChatbotState(isChatbotOpen);
+});
+
+// Toggle chatbot and save state
+chatbotToggler.addEventListener("click", () => {
+  const isOpen = !document.body.classList.contains("show-chatbot");
+  setChatbotState(isOpen);
+  localStorage.setItem("chatbotOpen", isOpen);
+});
+
+// Close chatbot via header button
+closeChatbot.addEventListener("click", () => {
+  setChatbotState(false);
+  localStorage.setItem("chatbotOpen", false);
+});
     // API setup for Hack Club
     const API_URL = "https://ai.hackclub.com/chat/completions";
 
