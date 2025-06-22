@@ -894,14 +894,15 @@
 <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
 <script>
-  // Select DOM elements
+ <script>
+// Select DOM elements
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
 const sendMessageButton = document.querySelector("#send-message");
 const chatForm = document.querySelector(".chat-form");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
-const chatbotPopup = document.querySelector(".chatbot-popup");
+const chatbotPopup = document.queryBox.querySelector(".chatbot-popup");
 const initialInputHeight = messageInput.scrollHeight;
 
 const API_URL = "https://ai.hackclub.com/chat/completions";
@@ -1054,7 +1055,9 @@ closeChatbot.addEventListener("click", closeChatbotFunc);
 
 // Initialize chatbot state and history on page load
 document.addEventListener('DOMContentLoaded', () => {
+    const chatbotPopup = document.querySelector(".chatbot-popup"); // Re-declare inside this scope
     chatbotPopup.classList.add('no-transition');
+
     const savedHistory = localStorage.getItem('chatHistory');
     if (savedHistory) {
         chatHistory = JSON.parse(savedHistory);
@@ -1117,16 +1120,27 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
     }
     displayChatHistory();
+
     const isOpen = localStorage.getItem('chatbotOpen') === 'true';
     if (isOpen) {
         document.body.classList.add('show-chatbot');
+        chatbotPopup.style.opacity = '1';
+        chatbotPopup.style.transform = 'scale(1)';
+        chatbotPopup.style.visibility = 'visible';
     } else {
         document.body.classList.remove('show-chatbot');
+        chatbotPopup.style.opacity = '0';
+        chatbotPopup.style.transform = 'scale(0.2)';
+        chatbotPopup.style.visibility = 'hidden';
     }
+
+    // Remove inline styles and no-transition after setup
     setTimeout(() => {
+        chatbotPopup.removeAttribute('style');
         chatbotPopup.classList.remove('no-transition');
     }, 0);
 });
+</script>
 </script>
 
 
