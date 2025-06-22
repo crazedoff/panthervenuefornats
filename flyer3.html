@@ -216,8 +216,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('title').innerText = flyerData.title;
             document.getElementById('description').innerText = flyerData.description;
-            document.getElementById('price').innerHTML = ${flyerData.price};
-            document.getElementById('date').innerHTML = ${flyerData.date};
+            document.getElementById('price').innerHTML = flyerData.price;
+            document.getElementById('date').innerHTML = flyerData.date;
 
             new QRCode(document.getElementById('qr-code-container'), {
                 text: flyerData.qrCodeData, width: 230, height: 230,
