@@ -335,6 +335,7 @@
                     <li><a href="/home.html#about">About</a></li>
                     <li><a href="/event.html">Events</a></li>
                     <li><a href="/rent.html">Rent Venue</a></li>
+                    <li><a href="/gallery.html">Gallery</a></li>
                     <li class="buy-tickets"><a href="/login.html" id="loginLink">Log In</a></li>
                 </ul>
             </nav>
@@ -349,6 +350,7 @@
             <li><a href="/home.html#about">About</a></li>
             <li><a href="/event.html">Events</a></li>
             <li><a href="/rent.html">Rent Venue</a></li>
+            <li><a href="/gallery.html">Gallery</a></li>
             <li id="mobileLoginContainer"><a href="login.html" id="mobileLoginLink">Log In</a></li>
         </ul>
     </nav>
@@ -377,7 +379,7 @@
         <div id="flyer-gen-qr-code" class="overlay"></div>
     </div>
 
-    <!-- Admin Dashboard (Structure unchanged) -->
+    <!-- Admin Dashboard -->
     <div class="dashboard-wrapper">
         <div class="wrapper">
             <div class="main">
@@ -415,7 +417,7 @@
         </div>
     </div>
 
-    <!-- User Dashboard (Structure unchanged, logic for event list will be modified) -->
+    <!-- User Dashboard -->
     <div class="user-dashboard-wrapper">
         <div class="wrapper">
             <div class="main">
@@ -456,7 +458,7 @@
         </div>
     </div>
 
-    <!-- Popups (Structure unchanged) -->
+    <!-- Popups -->
     <div class="popup-overlay" id="popupOverlay"></div>
     <div class="error-popup" id="errorPopup"><span class="popup-close" id="popupClose">×</span><i class="fas fa-exclamation-circle error-icon"></i><h3 class="text-xl font-bold mb-2" id="popupTitle">Error</h3><p id="popupMessage"></p></div>
     <div class="popup-overlay" id="ticketOverlay"></div>
@@ -464,7 +466,7 @@
     <div class="popup-overlay" id="requestOverlay"></div>
     <div class="request-popup" id="requestPopup"><span class="popup-close" id="requestClose">×</span><h3 class="text-xl font-bold mb-4">Rental Request Details</h3><div id="requestDetails" class="text-left mb-4"></div><div id="mockEventTile" class="mock-event-tile p-4 mb-4"></div><div class="flex justify-center gap-2"><button class="btn btn-decline" onclick="updateRequestStatus('declined')">Decline</button><button class="btn btn-pending" onclick="updateRequestStatus('pending')">Pending</button><button class="btn btn-accept" onclick="updateRequestStatus('accepted')">Accept</button><button class="btn btn-trash" onclick="deleteRequest()"><i class="fas fa-trash"></i></button></div></div>
 
-    <!-- Login Container (Structure unchanged) -->
+    <!-- Login Container -->
     <div class="login-container"><div class="forms-container"><div class="signin-signup"><form action="#" class="sign-in-form"><h2 class="title">Log in</h2><div class="input-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email" id="loginEmail" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Password" id="loginPassword" required></div><input type="submit" value="Login" class="btn solid" /><p class="social-text">Log in with social platforms:</p><div class="social-media"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-google"></i></a><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a></div></form><form action="#" class="sign-up-form"><h2 class="title">Sign up</h2><div class="input-field"><i class="fas fa-user"></i><input type="text" placeholder="Username" id="signupUsername" required></div><div class="input-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email" id="signupEmail" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Password" id="signupPassword" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Confirm Password" id="signupConfirm" required></div><div class="success-message" id="signupSuccess"></div><input type="submit" class="btn" value="Sign up" /><p class="social-text">Sign up with social platforms:</p><div class="social-media"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-google"></i></a><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a></div></form></div></div><div class="panels-container"><div class="panel left-panel"><div class="content"><h3>New here?</h3><p>Create an account to access exclusive features and manage your events!</p><button class="btn transparent" id="sign-up-btn">Sign up</button></div><img src="img/log.svg" class="image" alt="" /></div><div class="panel right-panel"><div class="content"><h3>Have an account?</h3><p>Welcome back! Log in to continue your experience with PantherVenue.</p><button class="btn transparent" id="sign-in-btn">Log in</button></div><img src="img/register.svg" class="image" alt="" /></div></div></div>
     
     <!-- Firebase SDKs -->
@@ -617,7 +619,55 @@
             async function handleLogin(email, password) { try { await auth.signInWithEmailAndPassword(email, password); } catch (error) { showPopup('Error', "Invalid credentials. Please check your email and password."); } }
             window.handleLogout = async function() { try { await auth.signOut(); } catch (error) { console.error("Logout error:", error); showPopup('Error', 'Failed to log out. Please try again.'); } }
             
-            async function updateAdminDashboard() { /* This function is unchanged */ }
+            async function updateAdminDashboard() { 
+                if (!currentUser || !currentUser.isAdmin) return;
+                const [registrationsSnapshot, eventsSnapshot, requestsSnapshot] = await Promise.all([
+                    db.collection('registrations').get(),
+                    db.collection('events').get(),
+                    db.collection('requests').orderBy('created', 'desc').get()
+                ]);
+
+                const registrations = registrationsSnapshot.docs.map(doc => doc.data());
+                const events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                const requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                const baseSales = 8; const baseTickets = 4; const baseVisitors = 10; const baseEvents = 12;
+                const totalSales = registrations.reduce((sum, reg) => sum + (reg.totalCost || 0), 0);
+                const ticketsSold = registrations.reduce((sum, reg) => sum + (reg.quantity || 0), 0);
+                const uniqueVisitors = new Set(registrations.map(reg => reg.userId)).size;
+                const activeEvents = events.length;
+                
+                const totalSalesPercentage = baseSales > 0 ? ((totalSales - baseSales) / baseSales) * 100 : 0;
+                const ticketsSoldPercentage = baseTickets > 0 ? ((ticketsSold - baseTickets) / baseTickets) * 100 : 0;
+                const uniqueVisitorsPercentage = baseVisitors > 0 ? ((uniqueVisitors - baseVisitors) / baseVisitors) * 100 : 0;
+                const activeEventsPercentage = baseEvents > 0 ? ((activeEvents - baseEvents) / baseEvents) * 100 : 0;
+
+                document.getElementById('totalSales').textContent = `$${totalSales.toFixed(2)}`;
+                document.getElementById('ticketsSold').textContent = ticketsSold;
+                document.getElementById('uniqueVisitors').textContent = uniqueVisitors;
+                document.getElementById('activeEvents').textContent = activeEvents;
+                
+                const updateTotalSalesChange = (elId, percentage) => { const el = document.getElementById(elId); el.textContent = `${percentage.toFixed(0)}%`; el.className = `font-bold ${percentage > 0 ? 'text-success' : percentage < 0 ? 'text-danger' : 'text-warning'}`; };
+                updateTotalSalesChange('totalSalesChange', totalSalesPercentage);
+                updateTotalSalesChange('ticketsSoldChange', ticketsSoldPercentage);
+                updateTotalSalesChange('uniqueVisitorsChange', uniqueVisitorsPercentage);
+                updateTotalSalesChange('activeEventsChange', activeEventsPercentage);
+
+                const requestsTableBody = document.getElementById('requestsTableBody');
+                requestsTableBody.innerHTML = '';
+                if (requests.length === 0) {
+                    requestsTableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4">No rental requests found.</td></tr>';
+                } else {
+                    requests.forEach(req => {
+                        const row = requestsTableBody.insertRow();
+                        row.style.cursor = 'pointer';
+                        row.innerHTML = `<td>${req.eventName || 'N/A'}</td><td class="d-none d-xl-table-cell">${req.eventDate || 'N/A'}</td><td><span class="badge bg-${req.status === 'accepted' ? 'success' : req.status === 'declined' ? 'danger' : 'warning'}">${req.status}</span></td><td class="d-none d-md-table-cell">${req.username || 'N/A'}</td>`;
+                        row.onclick = () => showRequestPopup(req.id, req);
+                    });
+                }
+                updateEventTypes(events);
+                updateCalendar(events);
+            }
             
             async function loadUserDashboard() {
                 if (!currentUser) return;
@@ -657,7 +707,6 @@
                                         </div>
                                     </div>
                                     <div class="event-action">
-                                        <!-- MODIFIED PART -->
                                         <a href="#" onclick="event.preventDefault(); generateFlyer('${eventDoc.id}')" class="text-red-600 underline font-semibold mb-2">Download PDF</a>
                                         <button onclick="showEventDetails('${reg.id}')">See Details</button>
                                     </div>
@@ -690,24 +739,28 @@
             document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) { document.body.classList.toggle('mobile-nav-active'); this.querySelector('i').classList.toggle('fa-bars'); this.querySelector('i').classList.toggle('fa-times'); let overly = document.getElementById('mobile-body-overly'); overly.style.display = document.body.classList.contains('mobile-nav-active') ? 'block' : 'none'; });
             document.getElementById('mobile-body-overly').addEventListener('click', function() { document.body.classList.remove('mobile-nav-active'); let toggle = document.getElementById('mobile-nav-toggle').querySelector('i'); toggle.classList.remove('fa-times'); toggle.classList.add('fa-bars'); this.style.display = 'none'; });
             const defaultSchedules = {"Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],"Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],"Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],"Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],"Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]};
-            function generateSeats(seatingChartDiv) { /* Unchanged */ }
+            function generateSeats(seatingChartDiv) { const seatGroups = seatingChartDiv.querySelectorAll('.seat-group'); const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']; seatGroups.forEach((group, colIndex) => { for (let i = 0; i < 8; i++) { const seatRow = document.createElement('div'); seatRow.className = 'seat-row'; for (let seatNum = 1; seatNum <= 2; seatNum++) { const seat = document.createElement('div'); seat.className = 'seat'; const rowLetter = rows[colIndex]; const seatLabel = `${rowLetter}${i * 2 + seatNum}`; seat.textContent = seatLabel; seat.title = seatLabel; seatRow.appendChild(seat); } group.appendChild(seatRow); } }); }
             function closeTicketPopup() { const ticketPopup = document.getElementById('ticketPopup'); const ticketOverlay = document.getElementById('ticketOverlay'); if (ticketPopup) ticketPopup.classList.remove('active', 'view-mode'); if (ticketOverlay) ticketOverlay.style.display = 'none'; document.body.style.overflow = 'auto'; }
             document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
             document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
             window.showEventDetails = async function(registrationId) { /* Unchanged */ };
-            window.showRequestPopup = (requestId, requestData) => { /* Unchanged */ }
-            window.updateRequestStatus = async (newStatus) => { /* Unchanged */ }
-            window.deleteRequest = async () => { /* Unchanged */ }
+            window.showRequestPopup = async (requestId, requestData) => { const requestPopup = document.getElementById('requestPopup'); if (!requestPopup) return; requestPopup.dataset.requestId = requestId; document.getElementById('requestDetails').innerHTML = `<p><strong>Requester:</strong> ${requestData.firstName || requestData.username} ${requestData.lastName || ''}</p><p><strong>Email:</strong> ${requestData.email || 'N/A'}</p><p><strong>Status:</strong> ${requestData.status}</p>`; document.getElementById('mockEventTile').innerHTML = `<div class="relative mb-4"><img src="${requestData.image || 'https://via.placeholder.com/400x200'}" class="w-full h-40 object-cover rounded-lg" alt="${requestData.eventName || 'Venue Request'}"><span class="price-tag absolute top-2 right-2">${requestData.eventPrice > 0 ? `$${requestData.eventPrice.toFixed(2)}` : 'FREE'}</span></div><h3 class="text-lg font-bold text-gray-800 mb-2">${requestData.eventName || 'Venue Request'}</h3><div class="event-meta text-sm mb-2"><span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${requestData.venue || 'N/A'}</span><span class="flex items-center"><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(requestData.eventDate).toLocaleDateString()}</span></div><div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${requestData.category || 'N/A'}</span></div><p class="text-gray-600 event-description">${requestData.description || 'No description provided.'}</p>`; requestPopup.classList.add('active'); document.getElementById('requestOverlay').style.display = 'block'; }
+            window.updateRequestStatus = async (newStatus) => { const requestId = document.getElementById('requestPopup').dataset.requestId; if (!requestId) return; const requestRef = db.collection('requests').doc(requestId); try { await requestRef.update({ status: newStatus }); if (newStatus === 'accepted') { const requestDoc = await requestRef.get(); const requestData = requestDoc.data(); const newEvent = { title: requestData.eventName, date: requestData.eventDate, location: requestData.venue, price: requestData.eventPrice, category: requestData.category, image: requestData.image || 'https://via.placeholder.com/400x200', desc: requestData.description, fromRequest: true, created: firebase.firestore.FieldValue.serverTimestamp() }; await db.collection('events').add(newEvent); } closeRequestPopup(); updateAdminDashboard(); showPopup('Success', `Request status updated to ${newStatus}.`, true); } catch (error) { console.error("Error updating request status:", error); showPopup('Error', "Could not update the request status."); } }
+            window.deleteRequest = async () => { const requestId = document.getElementById('requestPopup').dataset.requestId; if (!requestId) return; if(confirm("Are you sure you want to permanently delete this request?")) { try { await db.collection('requests').doc(requestId).delete(); closeRequestPopup(); updateAdminDashboard(); showPopup('Success', 'Request deleted successfully.', true); } catch (error) { console.error("Error deleting request:", error); showPopup('Error', "Could not delete the request."); } } }
             function closeRequestPopup() { document.getElementById('requestPopup').classList.remove('active'); document.getElementById('requestOverlay').style.display = 'none'; }
             document.getElementById('requestClose').addEventListener('click', closeRequestPopup);
             document.getElementById('requestOverlay').addEventListener('click', closeRequestPopup);
-            try { /* Chart and Calendar init unchanged */ } catch (error) { console.error("Error initializing charts or calendar:", error); }
-            function updateEventTypes(events) { /* Unchanged */ }
-            function updateCalendar(events) { /* Unchanged */ }
+            try { var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d"); var gradient = ctx.createLinearGradient(0, 0, 0, 225); gradient.addColorStop(0, "rgba(215, 227, 244, 1)"); gradient.addColorStop(1, "rgba(215, 227, 244, 0)"); new Chart(ctx, { type: "line", data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], datasets: [{ label: "Views", fill: true, backgroundColor: gradient, borderColor: '#f82249', data: [500, 350, 700, 1500, 1563, 1923, 2566, 2448, 2805, 2438, 2917, 3327] }] }, options: { maintainAspectRatio: false, legend: { display: false }, tooltips: { intersect: false }, hover: { intersect: true }, plugins: { filler: { propagate: false } }, scales: { xAxes: [{ reverse: true, gridLines: { color: "rgba(0,0,0,0.0)" } }], yAxes: [{ ticks: { stepSize: 1000 }, display: true, borderDash: [5, 5], gridLines: { color: "rgba(0,0,0,0.0)" } }] } } }); pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), { type: "doughnut", data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] }, options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 } }); flatpickrInstance = flatpickr(document.getElementById("datetimepicker-dashboard"), { inline: true, prevArrow: "<span title=\"Previous month\">«</span>", nextArrow: "<span title=\"Next month\">»</span>", defaultDate: "today" }); } catch (error) { console.error("Error initializing charts or calendar:", error); }
+            function updateEventTypes(events) { if (!pieChart || !events || events.length === 0) return; const categoryCount = events.reduce((acc, event) => { const category = event.category || 'Uncategorized'; acc[category] = (acc[category] || 0) + 1; return acc; }, {}); const totalEvents = events.length; const sortedCategories = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]); pieChart.data.labels = sortedCategories.map(([category]) => category); pieChart.data.datasets[0].data = sortedCategories.map(([, count]) => count); pieChart.update(); const tableBody = document.getElementById('eventTypesTableBody'); tableBody.innerHTML = ''; sortedCategories.forEach(([category, count]) => { const percentage = ((count / totalEvents) * 100).toFixed(1); tableBody.innerHTML += `<tr><td>${category}</td><td class="text-end">${percentage}%</td></tr>`; }); }
+            function updateCalendar(events) { if (!flatpickrInstance || !events) return; const eventDates = events.map(event => event.date); flatpickrInstance.set('onDayCreate', function(dObj, dStr, fp, dayElem){ if(eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])){ dayElem.classList.add('event'); } }); flatpickrInstance.redraw(); }
         });
     </script>
-
+    
+    <!-- Added/Restored Scripts -->
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="static/js/app2.js"></script>
+    <script type="module" src="/analytics.js"></script>
+
 </body>
 </html>
