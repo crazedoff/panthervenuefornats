@@ -31,9 +31,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style2.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <!-- PDF Generation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         /* nav menu */
@@ -105,14 +102,6 @@
         .event-meta { display: flex; gap: 1rem; align-items: center; color: #6c757d; font-size: 0.875rem; }
         .event-description { flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 72px; margin-bottom: 1rem; }
 
-        /* NEW/MODIFIED: Event Card Actions */
-        .event-card-actions { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem;}
-        .event-card-actions button { flex: 1; padding: 0.5rem; border-radius: 20px; border: none; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
-        .poster-button { background: #6c757d; color: white; }
-        .poster-button:hover { background: #5a6268; }
-        .register-button { background: #f82249; color: white; }
-        .register-button:hover { background: #e61e40; }
-
         /* grid/list view buttons */
         .view-toggle { border: 2px solid #dee2e6; border-radius: 6px; padding: 0.5rem 1rem; transition: all 0.3s ease; background: #fff; }
         .view-toggle.active { border-color: #f82249; background: rgba(248, 34, 73, 0.1); }
@@ -126,29 +115,101 @@
         /* clear filters btn & email section */
         .clear-filters { background: #f8f9fa; color: #2f3138; border: 1px solid #dee2e6; transition: all 0.3s ease; }
         .clear-filters:hover { background: #f82249; color: white; border-color: #f82249; }
-        .add-event-btn { background: #28a745; color: white; border: none; transition: all 0.3s ease; margin-top: 1rem; }
-        .add-event-btn:hover { background: #218838; }
         .email-section { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; }
+        .register-button { width: 75%; margin: 0 auto; transition: all 0.3s ease; }
+        .list-view-price { min-width: 80px; text-align: right; }
 
-        /* Popups and Overlays */
-        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 9999; }
-        .popup-overlay.active { opacity: 1; pointer-events: auto; }
-        
-        .popup-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
-        .popup-modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        /* ticket purchase popup */
+        .popup-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.8); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s ease; 
+            z-index: 9999; 
+        }
+        .popup-overlay.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+        }
+        .ticket-popup { 
+            display: block; 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%) scale(0.9); 
+            background: white; 
+            width: 90%; 
+            max-width: 800px; 
+            border-radius: 20px; 
+            padding: 2rem; 
+            box-shadow: 0 0 40px rgba(248,34,73,0.2); 
+            z-index: 10000; 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+            max-height: 90vh; 
+            overflow-y: auto; 
+        }
+        .ticket-popup.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            transform: translate(-50%, -50%) scale(1); 
+        }
         .popup-close { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: #2f3138; transition: all 0.3s; }
         .popup-close:hover { color: #f82249; }
-
-        .popup-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        @media (min-width: 768px) { .popup-grid { grid-template-columns: 1fr 1fr; } }
-        .event-details { padding-right: 0; border-right: none; border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
+        .popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .event-details { padding-right: 2rem; border-right: 2px solid #eee; }
         .seating-chart { background: #f8f9fa; padding: 1rem; border-radius: 10px; height: 400px; align-items: center; justify-content: center; margin: 1rem 0; overflow: hidden; position: relative; padding-bottom: 100px;}
+        .schedule-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .schedule-table td { padding: 0.8rem; border-bottom: 1px solid #eee; }
+        .schedule-table tr:last-child td { border-bottom: none; }
+        .availability { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 1rem; border-radius: 10px; margin: 1rem 0; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #f82249; box-shadow: 0 0 0 3px rgba(248,34,73,0.1); }
+        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .form-group input:focus { outline: none; border-color: #f82249; box-shadow: 0 0 0 3px rgba(248,34,73,0.1); }
+        .cc-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .purchase-button { background: #f82249; color: white; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
         .purchase-button:hover { background: #e61e40; }
+
+        /* popup updates */
+        .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
+        .popup-grid { grid-template-columns: 1fr; gap: 1rem; }
+        @media (min-width: 768px) { .popup-grid { grid-template-columns: 1fr 1fr; } }
+        .event-details { padding-right: 0; border-right: none; border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
+
+        /* seating chart diagram styles */
+        .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
+        .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
+        .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
+        .arena-container::after { content: ''; position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; border: 4px solid #a00000; pointer-events: none; z-index: 1; border-radius: 2px; background: #fff; }
+        .arena-container2::after { content: ''; position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; border: 4px solid #a00000; pointer-events: none; z-index: 1; border-radius: 2px; background: #fff; }
+        .capacity-section { position: absolute; background: transparent !important; color: #490b15; display: flex; align-items: center; justify-content: center; font-weight: 600; z-index: 2; padding: 8px; border: none !important; cursor: pointer; transition: all 0.3s ease; }
+        .north { top: 4px; left: 60px; right: 60px; height: 40px; border-top: 2px solid #a00000; border-bottom: 2px solid #a00000; }
+        .south { bottom: 4px; left: 60px; right: 60px; height: 40px; border-bottom: 2px solid #a00000; border-top: 2px solid #a00000; }
+        .east, .west { writing-mode: vertical-rl; transform: rotate(180deg); width: 40px; top: 60px; bottom: 60px; }
+        .east { right: 4px; padding-left: 8px; border-right: 2px solid #a00000; border-left: 2px solid #a00000; }
+        .west { left: 4px; padding-right: 8px; border-left: 2px solid #a00000; border-right: 2px solid #a00000; }
+        .main-floor { position: absolute; top: 100px; left: 100px; right: 100px; bottom: 100px; background: #fff; z-index: 2; overflow: hidden; }
+        .main-floor2 { position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .court-text { font-size: 3rem; font-weight: bold; color: #a00000; z-index: 10; text-align: center; }
+        .court-subtext { font-size: 2rem; color: #666; z-index: 10; text-align: center; }
+        .stage-container { position: absolute; top: 80px; left: 80px; right: 80px; height: 60px; z-index: 3; border-radius: 15px; background: #a00000; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; }
+        .stage { background: #d8526b; color: white; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; border-radius: 15px; }
+        .seat-group { display: grid; grid-template-rows: repeat(9, auto); gap: 15px; margin-right: 20px; }
+        .seat-row { display: flex; gap: 15px; justify-content: center; height: min-content; align-items: flex-start; }
+        .seat { width: 30px; height: 30px; flex-shrink: 0; background: #f1f3f5; border-radius: 4px; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; text-align: center; overflow: hidden; padding: 5px; }
+        .seat:hover { background: #a00000; color: white !important; cursor: pointer; transform: scale(1.1); }
+        .capacity-section.selected { background: #a00000 !important; color: white !important; }
+        .capacity-section.closed { background: #ffd7d7 !important; color: #666 !important; pointer-events: none; }
+        .seat.available { background: #a83232; }
+        .seat.sold-out { background: #ccc; pointer-events: none; }
+        .seat.selected { background: #ff0000; box-shadow: 0 0 5px #ff0000; color: white !important; }
 
         /* list view styles */
         #list-view { width: 100%; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
@@ -160,28 +221,45 @@
         #list-view .event-info { flex: 1; padding: 0 1rem; }
         #list-view .event-info h3 { font-size: 1.25rem; font-weight: bold; color: #2f3138; margin-bottom: 0.5rem; }
         #list-view .event-info .meta { display: flex; flex-wrap: wrap; gap: 1rem; color: #6c757d; font-size: 0.9rem; }
-        #list-view .event-action { flex: 0 0 250px; display: flex; align-items: center; gap: 0.5rem; }
+        #list-view .event-action { flex: 0 0 200px; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+        #list-view .event-action .price { font-size: 1rem; font-weight: 600; color: #f82249; }
+        #list-view .event-action button { background: #f82249; color: white; padding: 0.5rem 1.5rem; border-radius: 20px; border: none; font-size: 0.9rem; cursor: pointer; transition: background 0.3s ease; }
+        #list-view .event-action button:hover { background: #e61e40; }
 
         /* price slider styles */
-        #price-slider { margin: 1rem 0; height: 8px; background: #dee2e6; border-radius: 4px; overflow: visible; width: 93%; margin: 1rem auto; }
-        #price-slider .ui-slider-range { background: #f82249; height: 100%; border-radius: 4px; }
-        #price-slider .ui-slider-handle { background: #fff; border: 2px solid #f82249; border-radius: 50%; width: 16px; height: 16px; top: -4px; cursor: pointer; position: absolute; }
-        #price-slider .ui-slider-handle:focus { outline: none; }
-        .price-values { display: flex; justify-content: space-between; font-size: 0.9rem; color: #2f3138; }
-        
-        /* Flyer Generator Styles (hidden) */
-        #flyer-render-area { position: fixed; top: 0; left: -9999px; z-index: -1; }
-        #flyer-container { position: relative; width: 960px; height: 1200px; overflow: hidden; font-family: 'Poppins', sans-serif;}
-        #flyer-background-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        .flyer-overlay { position: absolute; z-index: 1; box-sizing: border-box; }
-        #flyer-title { top: 130px; left: 0; width: 100%; text-align: center; font-size: 80px; color: #383838; font-weight: 900; line-height: 1; }
-        #flyer-event-image { top: 355px; left: 210px; width: 538px; height: 308px; object-fit: cover; border-radius: 18px; }
-        #flyer-description { top: 730px; left: 240px; width: 460px; height: 185px; color: white; padding: 20px; font-size: 26px; font-weight: 400; line-height: 1.4; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .flyer-info-pill { position: absolute; top: 710px; height: 75px; padding: 10px 25px; color: white; border-radius: 15px; font-size: 22px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
-        #flyer-price { left: 515px; width: 215px; }
-        #flyer-date { left: 755px; width: 215px; }
-        #flyer-qr-code { top: 1045px; left: 580px; width: 230px; height: 230px; background: white; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
-        #flyer-qr-code img { width: 100% !important; height: 100% !important; }
+        #price-slider {
+            margin: 1rem 0;
+            height: 8px;
+            background: #dee2e6;
+            border-radius: 4px;
+            overflow: visible;
+            width: 93%;
+            margin: 1rem auto;
+        }
+        #price-slider .ui-slider-range {
+            background: #f82249;
+            height: 100%;
+            border-radius: 4px;
+        }
+        #price-slider .ui-slider-handle {
+            background: #fff;
+            border: 2px solid #f82249;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            top: -4px;
+            cursor: pointer;
+            position: absolute;
+        }
+        #price-slider .ui-slider-handle:focus {
+            outline: none;
+        }
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #2f3138;
+        }
     </style>
 </head>
 
@@ -203,15 +281,16 @@
         </div>
     </header>
 
-    <div class="popup-overlay" id="popupOverlay"></div>
-
-    <!-- Ticket Purchase Popup -->
-    <div class="popup-modal" id="ticketPopup">
+    <div class="popup-overlay" id="ticketOverlay"></div>
+    <div class="ticket-popup" id="ticketPopup">
         <span class="popup-close" id="popupClose">×</span>
         <div class="popup-grid">
             <div class="event-details">
                 <h2 class="text-2xl font-bold mb-4">Event Title</h2>
-                <div class="seating-chart"></div>
+                <div class="seating-chart">
+                    <!-- seating chart content goes here -->
+                </div>
+                <table class="schedule-table"></table>
                 <div class="availability">
                     <span>Available Seats:</span>
                     <span class="font-bold text-red-600">1,234/3,500</span>
@@ -229,30 +308,15 @@
                     <div class="form-group"><label>Email</label><input type="email" id="email" required></div>
                     <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" required></div>
                     <div class="form-group"><label>Tickets Quantity</label><input type="number" id="quantity" min="1" max="10" value="1" required></div>
+                    <div class="cc-group payment-group">
+                        <div class="form-group"><label>Card Payment Number</label><input type="text" id="cardPaymentNumber" class="payment-field"></div>
+                        <div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field"></div>
+                    </div>
+                    <div class="form-group payment-group"><label>CVV</label><input type="text" id="cvv" class="payment-field" maxlength="3"></div>
+                    <button type="submit" class="purchase-button">Complete Purchase</button>
                 </form>
             </div>
         </div>
-    </div>
-
-    <!-- Add Event Popup -->
-    <div class="popup-modal" id="addEventPopup">
-        <span class="popup-close" id="addEventClose">×</span>
-        <h2 class="text-2xl font-bold mb-4">Add a New Event</h2>
-        <form id="addEventForm">
-            <div class="form-group"><label for="addTitle">Event Title</label><input type="text" id="addTitle" required></div>
-            <div class="form-group"><label for="addDate">Date</label><input type="date" id="addDate" required></div>
-            <div class="form-group"><label for="addLocation">Location</label><input type="text" id="addLocation" value="PantherVenue" required></div>
-            <div class="form-group"><label for="addPrice">Price</label><input type="number" id="addPrice" step="0.01" value="0" required></div>
-            <div class="form-group"><label for="addCategory">Category</label>
-                <select id="addCategory" required>
-                    <option>Athletics</option><option>Performances</option><option>Workshops</option>
-                    <option>Gatherings</option><option>Competitions</option><option>Other</option>
-                </select>
-            </div>
-            <div class="form-group"><label for="addDesc">Description</label><textarea id="addDesc" rows="3" required></textarea></div>
-            <div class="form-group"><label for="addImage">Event Image</label><input type="file" id="addImage" accept="image/*" required></div>
-            <button type="submit" class="purchase-button">Submit Event</button>
-        </form>
     </div>
 
     <div class="container mx-auto p-4">
@@ -297,8 +361,7 @@
                         </div>
                     </div>
                     <button class="w-full clear-filters p-2 rounded mb-4 transition mt-4" onclick="clearFilters()">Clear Filters</button>
-                    <button class="w-full add-event-btn p-2 rounded" id="showAddEventBtn">Add Your Event</button>
-                    <div class="email-section p-4 rounded mt-4">
+                    <div class="email-section p-4 rounded">
                         <h2 class="font-bold mb-2">Stay in the Loop</h2>
                         <p class="mb-2 text-gray-600">Get updates about new events and offers</p>
                         <input type="email" id="subscribeEmail" class="w-full p-2 border border-gray-200 rounded mb-2" placeholder="your@email.com">
@@ -317,19 +380,6 @@
                 <div id="box-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 <div id="list-view" class="space-y-4 hidden"></div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Hidden Flyer Generator Structure -->
-    <div id="flyer-render-area">
-        <div id="flyer-container">
-            <img id="flyer-background-img" src="https://files.catbox.moe/ztzbsk.png" crossorigin="anonymous" alt="Flyer Background">
-            <img id="flyer-event-image" class="flyer-overlay" src="" crossorigin="anonymous" alt="Event Image">
-            <div id="flyer-title" class="flyer-overlay"></div>
-            <div id="flyer-description" class="flyer-overlay"></div>
-            <div id="flyer-price" class="flyer-overlay flyer-info-pill"></div>
-            <div id="flyer-date" class="flyer-overlay flyer-info-pill"></div>
-            <div id="flyer-qr-code" class="flyer-overlay"></div>
         </div>
     </div>
     
@@ -367,24 +417,34 @@
 
             const loginButton = document.getElementById('loginButton');
             const ticketPopup = document.getElementById('ticketPopup');
-            const addEventPopup = document.getElementById('addEventPopup');
-            const popupOverlay = document.getElementById('popupOverlay');
+            const ticketOverlay = document.getElementById('ticketOverlay');
 
-            const defaultEvents = [
-                { id: '5', title: "Alumni Basketball Game", date: "2025-07-20", location: "Large Gym", price: 10.00, category: "Athletics", image: "https://files.catbox.moe/wa68pl.png", desc: "Former students vs current varsity team exhibition match with halftime performances." },
-                { id: '1', title: "Varsity Basketball Finals", date: "2025-06-30", location: "Large Gym", price: 15.00, category: "Athletics", image: "https://files.catbox.moe/4o0bxx.png", desc: "Cheer for our school teams in the championship basketball game! Don't miss this exciting finale featuring our top players." },
-                { id: '4', title: "Cheerleading Tryouts", date: "2025-07-15", location: "Small Gym", price: 0.00, category: "Athletics", image: "https://files.catbox.moe/5jilpr.png", desc: "Open tryouts for next year's varsity cheer squad. No experience required - come show your spirit!" },
-                { id: '6', title: "Fall College Fair", date: "2025-07-25", location: "Large Gym", price: 0.00, category: "Gatherings", image: "https://files.catbox.moe/pisrj2.png", desc: "Meet representatives from top universities nationwide and explore academic opportunities." },
-                { id: '2', title: "Fall Dance Recital", date: "2025-07-05", location: "Small Gym", price: 10.00, category: "Performances", image: "https://files.catbox.moe/nialxs.png", desc: "Annual student choreography showcase featuring various dance styles from ballet to hip-hop." },
-                { id: '9', "title": "Spring Musical Auditions", date: "2025-08-09", location: "Small Gym", price: 0.00, category: "Performances", image: "https://files.catbox.moe/3sic1g.png", desc: "Open auditions for the annual school musical production. All grade levels welcome to try out." },
-                { id: '7', title: "Math Olympiad Tournament", date: "2025-07-30", location: "Large Gym", price: 10.00, category: "Competitions", image: "https://files.catbox.moe/m353st.png", desc: "District-wide mathematics competition for grades 9-12 with exciting prizes and recognition." },
-                { id: '8', title: "STEM Robotics Demo", date: "2025-08-04", location: "Large Gym", price: 10.00, category: "Workshops", image: "https://files.catbox.moe/6ybkp0.png", desc: "Interactive robotics demonstration and workshop for students interested in engineering." },
-                { id: '3', title: "Yoga Wellness Workshop", date: "2025-07-10", location: "Small Gym", price: 15.00, category: "Workshops", image: "https://files.catbox.moe/kdlrkf.png", desc: "Beginner-friendly yoga session with certified instructors focusing on stress relief and flexibility." },
-                { id: '11', title: "Parent-Teacher Mixer", date: "2025-08-19", location: "Small Gym", price: 0.00, category: "Gatherings", image: "https://files.catbox.moe/znd30z.jpg", desc: "Social event for parents and faculty to connect and discuss school initiatives." },
-                { id: '10', title: "Debate Tournament Finals", date: "2025-08-14", location: "Large Gym", price: 0.00, category: "Competitions", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/d3640f70237238ffd63f60fa5f6ca010504a5090_debate.png", desc: "Championship round of the regional debate competition featuring top student orators." },
-                { id: '12', title: "Self-Defense Workshop", date: "2025-08-24", location: "Large Gym", price: 20.00, category: "Workshops", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db2768abd24d61b834f35da103db2f138dcf4101_selfsafety.png", desc: "Basic self-defense techniques taught by certified martial arts instructors." }
-            ];
+ const defaultEvents = [
+    // event images are local now
+    { id: '1', title: "Varsity Basketball Finals", date: "2025-06-30", location: "Large Gym", price: 15.00, category: "Athletics", image: "image/bfinals.png", desc: "Cheer for our school teams in the championship basketball game! Don't miss this exciting finale featuring our top players." },
+    { id: '2', title: "Fall Dance Recital", date: "2025-07-05", location: "Small Gym", price: 10.00, category: "Performances", image: "image/fdance.png", desc: "Annual student choreography showcase featuring various dance styles from ballet to hip-hop." },
+    { id: '3', title: "Yoga Wellness Workshop", date: "2025-07-10", location: "Small Gym", price: 15.00, category: "Workshops", image: "image/yoga.png", desc: "Beginner-friendly yoga session with certified instructors focusing on stress relief and flexibility." },
+    { id: '4', title: "Cheerleading Tryouts", date: "2025-07-15", location: "Small Gym", price: 0.00, category: "Athletics", image: "image/cheerleading.png", desc: "Open tryouts for next year's varsity cheer squad. No experience required - come show your spirit!" },
+    { id: '5', title: "Alumni Basketball Game", date: "2025-07-20", location: "Large Gym", price: 10.00, category: "Athletics", image: "image/alum.png", desc: "Former students vs current varsity team exhibition match with halftime performances." },
+    { id: '6', title: "Fall College Fair", date: "2025-07-25", location: "Large Gym", price: 0.00, category: "Gatherings", image: "image/collegefair.png", desc: "Meet representatives from top universities nationwide and explore academic opportunities." },
+    { id: '7', title: "Math Olympiad Tournament", date: "2025-07-30", location: "Large Gym", price: 10.00, category: "Competitions", image: "image/olympiad.png", desc: "District-wide mathematics competition for grades 9-12 with exciting prizes and recognition." },
+    { id: '8', title: "STEM Robotics Demo", date: "2025-08-04", location: "Large Gym", price: 10.00, category: "Workshops", image: "image/stem.png", desc: "Interactive robotics demonstration and workshop for students interested in engineering." },
+    { id: '9', title: "Spring Musical Auditions", date: "2025-08-09", location: "Small Gym", price: 0.00, category: "Performances", image: "image/musical.png", desc: "Open auditions for the annual school musical production. All grade levels welcome to try out." },
+    
+    // these ones are still using web links
+    { id: '10', title: "Debate Tournament Finals", date: "2025-08-14", location: "Large Gym", price: 0.00, category: "Competitions", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/d3640f70237238ffd63f60fa5f6ca010504a5090_debate.png", desc: "Championship round of the regional debate competition featuring top student orators." },
+    { id: '11', title: "Parent-Teacher Mixer", date: "2025-08-19", location: "Small Gym", price: 0.00, category: "Gatherings", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad", desc: "Social event for parents and faculty to connect and discuss school initiatives." },
+    { id: '12', title: "Self-Defense Workshop", date: "2025-08-24", location: "Large Gym", price: 20.00, category: "Workshops", image: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db2768abd24d61b834f35da103db2f138dcf4101_selfsafety.png", desc: "Basic self-defense techniques taught by certified martial arts instructors." }
+];
             
+            const defaultSchedules = {
+                "Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],
+                "Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],
+                "Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],
+                "Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],
+                "Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]
+            };
+
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
                     const userDoc = await db.collection('users').doc(user.uid).get();
@@ -404,7 +464,7 @@
                 await initPage();
             });
             
-            async function initPage() {
+                       async function initPage() {
                 document.getElementById('eventCount').innerHTML = '<h2>Loading Events...</h2>';
                 const eventsSnapshot = await db.collection('events').get();
                 if (eventsSnapshot.empty) {
@@ -421,6 +481,7 @@
                     events = eventsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 }
 
+                // sort events by date, closest to furthest
                 const today = new Date().toISOString().split('T')[0]; 
                 events.sort((a, b) => {
                     const aIsPast = a.date < today;
@@ -431,45 +492,35 @@
                 });
 
                 filteredEvents = [...events];
+                
+                // call these after sorting
                 populateCategories();
                 renderEvents();
                 updateEventCount();
                 setupEventListeners();
                 initPriceSlider();
             }
-
-            window.generateAndDownloadFlyer = async function(eventId) {
-                const event = events.find(e => e.id === eventId);
-                if (!event) return;
-
-                document.getElementById('flyer-title').innerText = event.title;
-                document.getElementById('flyer-description').innerText = event.desc;
-                document.getElementById('flyer-price').innerText = event.price > 0 ? `$${event.price.toFixed(2)}` : 'FREE';
-                
-                const dateObj = new Date(event.date);
-                const formattedDate = `${dateObj.getUTCMonth() + 1}/${dateObj.getUTCDate()}/${dateObj.getUTCFullYear()}`;
-                document.getElementById('flyer-date').innerText = formattedDate;
-
-                const qrContainer = document.getElementById('flyer-qr-code');
-                qrContainer.innerHTML = '';
-                new QRCode(qrContainer, { text: `https://panther-venue.vercel.app/event.html#${event.id}`, width: 210, height: 210 });
-
-                const flyerEventImage = document.getElementById('flyer-event-image');
-                flyerEventImage.src = event.image;
-
-                await new Promise(resolve => setTimeout(resolve, 500)); 
-
-                html2canvas(document.getElementById('flyer-container'), {
-                    useCORS: true,
-                    scale: 2
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.href = canvas.toDataURL('image/png');
-                    link.download = `${event.title.replace(/\s+/g, '_')}_Flyer.png`;
-                    link.click();
+            // ok restored the original generateSeats func
+            function generateSeats() {
+                const seatGroups = document.querySelectorAll('.seat-group');
+                const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+                seatGroups.forEach((group, colIndex) => {
+                    for (let i = 0; i < 8; i++) {
+                        const seatRow = document.createElement('div');
+                        seatRow.className = 'seat-row';
+                        for (let seatNum = 1; seatNum <= 2; seatNum++) {
+                            const seat = document.createElement('div');
+                            seat.className = 'seat ' + (Math.random() < 0.7 ? 'available' : 'sold-out');
+                            const rowLetter = rows[colIndex];
+                            seat.textContent = `${rowLetter}${i * 2 + seatNum}`;
+                            seatRow.appendChild(seat);
+                        }
+                        group.appendChild(seatRow);
+                    }
                 });
             }
 
+            // restored the full ticket popup logic
             window.showTicketPopup = function(eventId) {
                 if (!currentUser) {
                     alert('Please log in to purchase tickets.');
@@ -479,14 +530,111 @@
                 const event = events.find(e => e.id === eventId);
                 if (!event) return;
                 currentEvent = event;
-                
+
                 ticketPopup.querySelector('h2').textContent = event.title;
-                document.getElementById('totalCost').dataset.price = event.price;
+                const seatingChartDiv = ticketPopup.querySelector('.seating-chart');
+                seatingChartDiv.innerHTML = ''; // Clear previous content
+                document.getElementById('selectedSeatsText').textContent = 'None';
+
+                if (['Athletics', 'Workshops', 'Gatherings'].includes(event.category)) {
+                    seatingChartDiv.innerHTML = `
+                        <div class="arena-container2">
+                            <div class="capacity-section north">NORTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                            <div class="main-floor2">
+                                <div class="court-display">
+                                    <div class="court-text">MAIN COURT</div>
+                                    <div class="court-subtext">Performance-ready Surface</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    const stands = seatingChartDiv.querySelectorAll('.capacity-section');
+                    stands.forEach(stand => {
+                        stand.addEventListener('click', () => {
+                            const quantity = parseInt(document.getElementById('quantity').value);
+                            stands.forEach(s => s.classList.remove('selected'));
+                            stand.classList.add('selected');
+                            const selectedStand = stand.textContent.split(' • ')[0];
+                            document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
+                        });
+                    });
+                } else if (['Performances', 'Competitions'].includes(event.category)) {
+                    seatingChartDiv.innerHTML = `
+                        <div class="arena-container">
+                            <div class="capacity-section north closed">NORTH STAND (CLOSED)</div>
+                            <div class="capacity-section south">SOUTH STAND • 1000 SEATS</div>
+                            <div class="capacity-section east">EAST STAND • 750 SEATS</div>
+                            <div class="capacity-section west">WEST STAND • 750 SEATS</div>
+                            <div class="stage-container"><div class="stage">MAIN STAGE</div></div>
+                            <div class="main-floor">
+                                <div class="seating-grid" style="display: flex; padding-left: 10px; padding-top: 50px;">
+                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
+                                    <div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div><div class="seat-group"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    generateSeats(); // Call the restored helper function
+                    const quantityInput = document.getElementById('quantity');
+                    const seats = seatingChartDiv.querySelectorAll('.seat.available');
+                    const selectedSeats = new Set();
+                    seats.forEach(seat => {
+                        seat.addEventListener('click', () => {
+                            const quantity = parseInt(quantityInput.value);
+                            if (selectedSeats.has(seat)) {
+                                selectedSeats.delete(seat);
+                                seat.classList.remove('selected');
+                            } else if (selectedSeats.size < quantity) {
+                                selectedSeats.add(seat);
+                                seat.classList.add('selected');
+                            } else {
+                                alert('You have reached the maximum number of tickets.');
+                            }
+                            const selectedSeatLabels = Array.from(selectedSeats).map(s => s.textContent).join(', ');
+                            document.getElementById('selectedSeatsText').textContent = selectedSeatLabels || 'None';
+                        });
+                    });
+                    quantityInput.addEventListener('change', () => {
+                        selectedSeats.clear();
+                        seats.forEach(seat => seat.classList.remove('selected'));
+                        document.getElementById('selectedSeatsText').textContent = 'None';
+                    });
+                    const stands = seatingChartDiv.querySelectorAll('.capacity-section:not(.closed)');
+                    stands.forEach(stand => {
+                        stand.addEventListener('click', () => {
+                            const quantity = parseInt(document.getElementById('quantity').value);
+                            stands.forEach(s => s.classList.remove('selected'));
+                            stand.classList.add('selected');
+                            const selectedStand = stand.textContent.split(' • ')[0];
+                            document.getElementById('selectedSeatsText').textContent = `Stand: ${selectedStand} (${quantity})`;
+                        });
+                    });
+                }
+
+                const scheduleTable = ticketPopup.querySelector('.schedule-table');
+                scheduleTable.innerHTML = '';
+                const schedule = defaultSchedules[event.category] || [];
+                schedule.forEach(item => {
+                    scheduleTable.appendChild(document.createElement('tr')).innerHTML = `<td>${item.event}</td><td>${item.time}</td>`;
+                });
+
+                const price = event.price;
+                document.getElementById('totalCost').dataset.price = price;
                 document.getElementById('quantity').value = 1;
-                updateTotalCost(event.price, 1);
+                updateTotalCost(price, 1);
+
+                document.querySelectorAll('.payment-group').forEach(group => group.style.display = price > 0 ? 'block' : 'none');
+                document.querySelectorAll('.payment-field').forEach(input => input.required = price > 0);
+
+                document.getElementById('fullName').value = currentUser.username || '';
+                document.getElementById('email').value = currentUser.email || '';
                 
                 ticketPopup.classList.add('active');
-                popupOverlay.classList.add('active');
+                ticketOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
 
             function initPriceSlider() {
@@ -515,10 +663,10 @@
                 }
             }
             
-            function closePopups() {
+            function closeTicketPopup() {
                 ticketPopup.classList.remove('active');
-                addEventPopup.classList.remove('active');
-                popupOverlay.classList.remove('active');
+                ticketOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
 
             function filterEvents() {
@@ -544,7 +692,7 @@
                 document.getElementById('startDate').value = '';
                 document.getElementById('endDate').value = '';
                 document.querySelectorAll('.category-checkbox').forEach(cb => cb.checked = false);
-                initPriceSlider(); 
+                initPriceSlider(); // Reset slider to full range
                 filteredEvents = [...events];
                 renderEvents();
                 updateEventCount();
@@ -556,9 +704,7 @@
                 boxView.innerHTML = '';
                 listView.innerHTML = '';
                 if(filteredEvents.length === 0) {
-                    const emptyMessage = `<p class="col-span-3 text-center text-gray-500">No events match your criteria.</p>`;
-                    boxView.innerHTML = emptyMessage;
-                    listView.innerHTML = emptyMessage;
+                    boxView.innerHTML = `<p class="col-span-3 text-center text-gray-500">No events match your criteria.</p>`;
                     return;
                 }
                 filteredEvents.forEach(event => {
@@ -571,17 +717,10 @@
             function createEventCard(event, viewType) {
                 const priceDisplay = event.price > 0 ? `$${event.price.toFixed(2)}` : 'FREE';
                 const formattedDate = new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                
-                const cardContent = `<div class="relative mb-4"><img src="${event.image}" class="w-full h-40 object-cover rounded-lg" alt="${event.title}"><span class="date-tag absolute top-2 right-2">${formattedDate}</span></div><h3 class="text-lg font-bold text-gray-800 mb-2">${event.title}</h3><div class="event-meta text-sm mb-2"><span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span class="flex items-center"><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span></div><div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${event.category}</span></div><p class="text-gray-600 event-description">${event.desc}</p>`;
-                const actionButtons = `<div class="event-card-actions"><button class="poster-button" onclick="generateAndDownloadFlyer('${event.id}')">Poster</button><button class="register-button" onclick="showTicketPopup('${event.id}')">Register</button></div>`;
-
                 if (viewType === 'box') {
-                    return `<div class="event-card p-4">${cardContent}${actionButtons}</div>`;
+                    return `<div class="event-card p-4"><div class="relative mb-4"><img src="${event.image}" class="w-full h-40 object-cover rounded-lg" alt="${event.title}"><span class="date-tag absolute top-2 right-2">${formattedDate}</span></div><h3 class="text-lg font-bold text-gray-800 mb-2">${event.title}</h3><div class="event-meta text-sm mb-2"><span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span class="flex items-center"><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span></div><div class="event-meta text-sm mb-4"><span class="flex items-center text-gray-500"><i class="fas fa-tag mr-2"></i>${event.category}</span></div><p class="text-gray-600 event-description">${event.desc}</p><button onclick="showTicketPopup('${event.id}')" class="register-button bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700">Register Now</button></div>`;
                 }
-
-                const listActionButtons = `<div class="event-card-actions" style="flex-direction: column; align-items: stretch;"><button class="poster-button" onclick="generateAndDownloadFlyer('${event.id}')">Poster</button><button class="register-button mt-2" onclick="showTicketPopup('${event.id}')">Register</button></div>`;
-                const listContent = `<div class="event-image"><img src="${event.image}" alt="${event.title}"></div><div class="event-info"><h3>${event.title}</h3><div class="meta"><span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span><span><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span><span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category}</span></div></div><div class="event-action">${listActionButtons}</div>`;
-                return `<div class="event-row">${listContent}</div>`;
+                return `<div class="event-row"><div class="event-image"><img src="${event.image}" alt="${event.title}"></div><div class="event-info"><h3>${event.title}</h3><div class="meta"><span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location}</span><span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span><span><i class="fas fa-dollar-sign mr-2 text-red-500"></i>${priceDisplay}</span><span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category}</span></div></div><div class="event-action"><button onclick="showTicketPopup('${event.id}')">Register Now</button></div></div>`;
             }
 
             function updateEventCount() {
@@ -589,16 +728,18 @@
                 document.getElementById('eventCount').innerHTML = `Welcome, <span class="text-red-600">${welcomeName}</span>! Showing <span class="text-red-600">${filteredEvents.length}</span> events:`;
             }
 
+            // restored the staggered animation
             function addFadeIn(viewType) {
                 const selector = viewType === 'box' ? '#box-view .event-card' : '#list-view .event-row';
-                document.querySelectorAll(selector).forEach((card, index) => {
+                const eventCards = document.querySelectorAll(selector);
+                eventCards.forEach((card, index) => {
                     card.style.opacity = 0;
                     card.style.transform = "translateY(20px)";
                     setTimeout(() => {
                         card.style.opacity = 1;
                         card.style.transform = "translateY(0)";
                         card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-                    }, index * 50);
+                    }, index * 50); // the key is this staggered delay
                 });
             }
 
@@ -629,61 +770,83 @@
                 document.getElementById('box-btn').addEventListener('click', () => { currentView = 'box'; document.getElementById('box-view').classList.remove('hidden'); document.getElementById('list-view').classList.add('hidden'); document.getElementById('box-btn').classList.add('active'); document.getElementById('list-btn').classList.remove('active'); addFadeIn('box'); });
                 document.getElementById('list-btn').addEventListener('click', () => { currentView = 'list'; document.getElementById('list-view').classList.remove('hidden'); document.getElementById('box-view').classList.add('hidden'); document.getElementById('list-btn').classList.add('active'); document.getElementById('box-btn').classList.remove('active'); addFadeIn('list'); });
                 
-                document.getElementById('popupClose').addEventListener('click', closePopups);
-                document.getElementById('addEventClose').addEventListener('click', closePopups);
-                popupOverlay.addEventListener('click', closePopups);
-                
+                document.getElementById('ticketForm').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    if(!currentUser || !currentEvent) return;
+
+                    const seatingText = document.getElementById('selectedSeatsText').textContent;
+                    const seatingInfo = parseSeatingInfo(seatingText);
+                    if (!seatingInfo) { alert('Please select seating.'); return; }
+
+                    const formData = {
+                        name: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        cardPaymentNumber: document.getElementById('cardPaymentNumber').value,
+                        expiry: document.getElementById('expiry').value,
+                        cvv: document.getElementById('cvv').value,
+                        quantity: parseInt(document.getElementById('quantity').value)
+                    };
+                    const price = parseFloat(document.getElementById('totalCost').dataset.price);
+                    if (!validateForm(formData, price > 0)) return;
+                    
+                    const registration = {
+                        userId: currentUser.uid, username: currentUser.username, eventId: currentEvent.id, eventName: currentEvent.title, eventDate: currentEvent.date,
+                        quantity: formData.quantity, seatingInfo: seatingInfo, totalCost: price * formData.quantity, name: formData.name, email: formData.email, phone: formData.phone,
+                        cardPaymentNumber: (price > 0) ? `**** **** **** ${formData.cardPaymentNumber.slice(-4)}` : '', expiry: (price > 0) ? formData.expiry : '', cvv: '',
+                        created: firebase.firestore.FieldValue.serverTimestamp()
+                    };
+                    
+                    try {
+                        await db.collection('registrations').add(registration);
+                        alert('Purchase successful! Check your account dashboard for tickets.');
+                        closeTicketPopup();
+                    } catch (error) {
+                        console.error("Error completing purchase:", error);
+                        alert("There was an error processing your purchase. Please try again.");
+                    }
+                });
+
+                document.getElementById('popupClose').addEventListener('click', closeTicketPopup);
+                ticketOverlay.addEventListener('click', closeTicketPopup);
                 document.getElementById('quantity').addEventListener('change', () => {
                     const price = parseFloat(document.getElementById('totalCost').dataset.price);
                     const quantity = parseInt(document.getElementById('quantity').value);
                     updateTotalCost(price, quantity);
                 });
 
-                document.getElementById('showAddEventBtn').addEventListener('click', () => {
-                    if (!currentUser) { alert('Please log in to add an event.'); return; }
-                    addEventPopup.classList.add('active');
-                    popupOverlay.classList.add('active');
-                });
-                
-                document.getElementById('addEventForm').addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    if (!currentUser) { alert('Please log in to add an event.'); return; }
-                    
-                    const imageFile = document.getElementById('addImage').files[0];
-                    if (!imageFile) { alert("Please select an image for the event."); return; }
-                    
-                    const base64Image = await readFileAsDataURL(imageFile);
-
-                    const newEvent = {
-                        title: document.getElementById('addTitle').value,
-                        date: document.getElementById('addDate').value,
-                        location: document.getElementById('addLocation').value,
-                        price: parseFloat(document.getElementById('addPrice').value),
-                        category: document.getElementById('addCategory').value,
-                        desc: document.getElementById('addDesc').value,
-                        image: base64Image,
-                        author: currentUser.uid
-                    };
-                    
-                    try {
-                        await db.collection('events').add(newEvent);
-                        alert('Event added successfully!');
-                        closePopups();
-                        initPage();
-                    } catch (error) {
-                        console.error("Error adding event:", error);
-                        alert("Failed to add event. Please try again.");
-                    }
+                document.getElementById('subscribeBtn').addEventListener('click', async function() {
+                    const email = document.getElementById('subscribeEmail').value.trim();
+                    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        try {
+                            await db.collection('subscribers').doc(email).set({ subscribedAt: firebase.firestore.FieldValue.serverTimestamp() });
+                            alert('Subscribed successfully!');
+                            document.getElementById('subscribeEmail').value = '';
+                        } catch (error) { alert("Could not subscribe. Please try again."); }
+                    } else { alert('Please enter a valid email address.'); }
                 });
             }
 
-            function readFileAsDataURL(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
-                });
+            function parseSeatingInfo(seatingText) {
+                if (seatingText === 'None' || !seatingText) return null;
+                if (seatingText.includes('Stand:')) {
+                    const [standPart, quantityPart] = seatingText.split('(');
+                    const stand = standPart.replace('Stand: ', '').trim();
+                    const quantity = parseInt(quantityPart.replace(')', '').trim());
+                    return { type: 'stand', stand, quantity };
+                } else {
+                    const seats = seatingText.split(', ').map(seat => seat.trim());
+                    return { type: 'seats', seats };
+                }
+            }
+
+            function validateForm(formData, requirePayment) {
+                if (!formData.name || !formData.email || !formData.phone) { alert('Please fill in all required fields.'); return false; }
+                if (requirePayment) {
+                    if (!formData.cardPaymentNumber || formData.cardPaymentNumber.length < 16) { alert('Please enter a valid card number.'); return false; }
+                    if (!formData.expiry || !formData.cvv || formData.cvv.length < 3) { alert('Please enter valid payment details.'); return false; }
+                }
+                return true;
             }
         });
     </script>
@@ -691,221 +854,611 @@
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Chatbot stuff -->
-    <button id="chatbot-toggler">
-      <span class="material-symbols-rounded">mode_comment</span>
-      <span class="material-symbols-rounded">close</span>
-    </button>
-    <div class="chatbot-popup">
-        <div class="chat-header">
-            <div class="header-info">
-              <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
-              <h2 class="logo-text">PantherBot</h2>
-            </div>
-            <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
-        </div>
-        <div class="chat-body">
-            <div class="message bot-message">
-              <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-              <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <form action="#" class="chat-form">
-              <textarea placeholder="Type a message..." class="message-input" required></textarea>
-              <div class="chat-controls">
-                <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
-                <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
-              </div>
-            </form>
-        </div>
+
+
+
+    <!-- START: Chatbot Integration Body -->
+<!-- Chatbot Toggler -->
+<button id="chatbot-toggler">
+  <span class="material-symbols-rounded">mode_comment</span>
+  <span class="material-symbols-rounded">close</span>
+</button>
+<div class="chatbot-popup" style="opacity: 0; ">
+  <!-- Chatbot Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
+      <h2 class="logo-text">PantherBot</h2>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
-    <script>
-        const chatBody = document.querySelector(".chat-body");
-        const messageInput = document.querySelector(".message-input");
-        const sendMessageButton = document.querySelector("#send-message");
-        const chatForm = document.querySelector(".chat-form");
-        const chatbotToggler = document.querySelector("#chatbot-toggler");
-        const closeChatbot = document.querySelector("#close-chatbot");
+    <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+  </div>
+  <!-- Chatbot Body -->
+  <div class="chat-body">
+    <div class="message bot-message">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+      <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
+    </div>
+  </div>
+  <!-- Chatbot Footer -->
+  <div class="chat-footer">
+    <form action="#" class="chat-form">
+      <textarea placeholder="Type a message..." class="message-input" required></textarea>
+      <div class="chat-controls">
+        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+        <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Linking Emoji Mart script for emoji picker -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
-        const API_URL = "https://ai.hackclub.com/chat/completions";
+<script>
+  // Select DOM elements
+const chatBody = document.querySelector(".chat-body");
+const messageInput = document.querySelector(".message-input");
+const sendMessageButton = document.querySelector("#send-message");
+const chatForm = document.querySelector(".chat-form");
+const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot");
+const chatbotPopup = document.querySelector(".chatbot-popup");
+const initialInputHeight = messageInput.scrollHeight;
 
-        const chatHistory = [{
-            role: "system",
-            content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting. --- ### General Venue Information - **Name:** PantherVenue - **Location:** Inside Bridgewater-Raritan High School, 600 Garretson Road, Bridgewater, New Jersey. - **Capacity:** Seats up to 3,500 people. - **Features:** A premier gymnasium renovated in 2024 with a high-quality sound system, adjustable lighting, a large video screen, new bleachers, and a resurfaced floor. - **Primary Use:** Ideal for sports events, graduations, performances, workshops, and community gatherings. - **Amenities:** Comfortable bleacher seating, top-tier audio system, adjustable lighting, large video screen for presentations. - **Layouts:** - **Standard Gym Layout:** For sports. Uses all four stands (North/South: 1000 seats each, East/West: 750 seats each). - **Ceremony Layout:** For graduations/presentations. Features a main stage, with seating in the stands and potentially on the floor. --- ### How the Website Works - **Events Page (event.html):** - Users can see a list of all upcoming events, such as "Varsity Basketball Finals," "Fall Dance Recital," and "Yoga Wellness Workshop." - Users can filter events by category, price, and date. - **To purchase tickets, users must log in to their account.** A popup allows them to select seats and complete the purchase. - **Rent Venue Page (rent.html):** - Users can request to rent the venue for their own private event. - **Users must be logged in to submit a request.** - The process is a 6-step form: 1. Personal Details, 2. Event Details, 3. Category, 4. Venue Choice, 5. Image Upload, 6. Confirmation. - After submission, the request becomes "pending" and is reviewed by an administrator. - **User Accounts (login.html):** - Users can sign up for an account or log in. - After logging in, users see a personal dashboard. - **User Dashboard:** Shows their purchased tickets, total money spent, and the status (pending, accepted, declined) of their venue rental requests. - **Admin Dashboard:** Staff can view site analytics and manage all venue rental requests. --- ### Important Policies & FAQs - **General Rules:** No outside food or drink. All bags are subject to search. The venue is strictly non-smoking (including vapes/e-cigarettes). No alcohol. No pets are allowed, except for service animals. - **Parking:** Available in designated lots. Fees may apply depending on the event. - **Ticket Policy:** Tickets are non-refundable unless the event is canceled by the venue. There is a 10-ticket limit per transaction. Tickets are transferable if the box office is notified. - **Team & Contact:** - Key Staff: Bill Deniz (Athletic Director), Keri Fry (Logistics and Business Manager). - Phone: +1 908-524-4059 - Email: hs@brrsd.k12.nj.us (expect a response in 2-7 business days). - **Nearby Hotels:** Hampton Inn, Hyatt House, and TownePlace suites are all within 1.5 miles. --- ### Your Persona & Instructions - Be friendly, professional, and enthusiastic. - Your name is PantherBot. - Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.`
-        }];
+const API_URL = "https://ai.hackclub.com/chat/completions";
+let chatHistory;
 
-        const initialInputHeight = messageInput.scrollHeight;
+// Utility function to create message elements
+const createMessageElement = (content, className) => {
+    const div = document.createElement("div");
+    div.classList.add("message", className);
+    div.innerHTML = content;
+    return div;
+};
 
-        const createMessageElement = (content, className) => {
-            const div = document.createElement("div");
-            div.classList.add("message", className);
-            div.innerHTML = content;
-            return div;
-        };
-
-        const generateBotResponse = async (incomingMessageDiv) => {
-            const messageElement = incomingMessageDiv.querySelector(".message-text");
-
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    messages: chatHistory,
-                }),
-            };
-
-            try {
-                const response = await fetch(API_URL, requestOptions);
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("API Error Response:", errorData);
-                    throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
-                }
-                
-                const data = await response.json();
-                const apiResponseText = data.choices[0].message.content.trim();
-                
-                messageElement.innerHTML = marked.parse(apiResponseText);
-
-                chatHistory.push({
-                    role: "assistant",
-                    content: apiResponseText,
-                });
-
-            } catch (error) {
-                console.error("API Error:", error);
-                messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
-                messageElement.style.color = "#dc3545";
-            } finally {
-                incomingMessageDiv.classList.remove("thinking");
-                chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-            }
-        };
-
-        const handleOutgoingMessage = (e) => {
-            e.preventDefault();
-            const userMessage = messageInput.value.trim();
-            if (!userMessage) return;
-
-            messageInput.value = "";
-            messageInput.style.height = `${initialInputHeight}px`;
-
-            chatHistory.push({ role: "user", content: userMessage });
-
-            const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+// Function to display chat history
+const displayChatHistory = () => {
+    chatBody.innerHTML = ''; // Clear existing messages
+    chatHistory.forEach(msg => {
+        if (msg.role === "user") {
+            const userMessageContent = `<div class="message-text">${msg.content}</div>`;
             const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
             chatBody.appendChild(outgoingMessageDiv);
-            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        } else if (msg.role === "assistant") {
+            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+            <div class="message-text">${marked.parse(msg.content)}</div>`;
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
+            chatBody.appendChild(incomingMessageDiv);
+        }
+    });
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+};
 
-            setTimeout(() => {
-                const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-                <div class="message-text">
-                  <div class="thinking-indicator">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                  </div>
-                </div>`;
-                const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message", "thinking");
-                chatBody.appendChild(incomingMessageDiv);
-                chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-                generateBotResponse(incomingMessageDiv);
-            }, 600);
-        };
-        
-        messageInput.addEventListener("input", () => {
-            messageInput.style.height = `${initialInputHeight}px`;
-            const newHeight = messageInput.scrollHeight;
-            messageInput.style.height = `${newHeight}px`;
+// Function to generate bot response
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            messages: chatHistory,
+        }),
+    };
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("API Error Response:", errorData);
+            throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
+        }
+        const data = await response.json();
+        const apiResponseText = data.choices[0].message.content.trim();
+        messageElement.innerHTML = marked.parse(apiResponseText);
+        chatHistory.push({
+            role: "assistant",
+            content: apiResponseText,
         });
+        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    } catch (error) {
+        console.error("API Error:", error);
+        messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
+        messageElement.style.color = "#dc3545";
+    } finally {
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    }
+};
 
-        messageInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
-                handleOutgoingMessage(e);
-            }
-        });
+// Function to handle outgoing messages
+const handleOutgoingMessage = (e) => {
+    e.preventDefault();
+    const userMessage = messageInput.value.trim();
+    if (!userMessage) return;
+    messageInput.value = "";
+    messageInput.style.height = `${initialInputHeight}px`;
+    chatHistory.push({ role: "user", content: userMessage });
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+    const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+    chatBody.appendChild(outgoingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    setTimeout(() => {
+        const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+        <div class="message-text">
+          <div class="thinking-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>`;
+        const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
+        chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        generateBotResponse(incomingMessageDiv);
+    }, 600);
+};
 
-        const picker = new EmojiMart.Picker({
-            theme: "light",
-            skinTonePosition: "none",
-            previewPosition: "none",
-            onEmojiSelect: (emoji) => {
-                const { selectionStart: start, selectionEnd: end } = messageInput;
-                messageInput.setRangeText(emoji.native, start, end, "end");
-                messageInput.focus();
-            },
-            onClickOutside: (e) => {
-                if (e.target.id === "emoji-picker") {
-                    document.body.classList.toggle("show-emoji-picker");
-                } else if (document.body.classList.contains("show-emoji-picker")) {
-                    document.body.classList.remove("show-emoji-picker");
-                }
-            },
-        });
-        document.querySelector(".chat-footer").appendChild(picker);
+// Event listeners for input and form
+messageInput.addEventListener("input", () => {
+    messageInput.style.height = `${initialInputHeight}px`;
+    const newHeight = messageInput.scrollHeight;
+    messageInput.style.height = `${newHeight}px`;
+});
 
-        chatForm.addEventListener("submit", handleOutgoingMessage);
-        document.querySelector("#emoji-picker").addEventListener("click", (e) => {
-            e.stopPropagation();
+messageInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
+        handleOutgoingMessage(e);
+    }
+});
+
+chatForm.addEventListener("submit", handleOutgoingMessage);
+
+// Emoji picker setup
+const picker = new EmojiMart.Picker({
+    theme: "light",
+    skinTonePosition: "none",
+    previewPosition: "none",
+    onEmojiSelect: (emoji) => {
+        const { selectionStart: start, selectionEnd: end } = messageInput;
+        messageInput.setRangeText(emoji.native, start, end, "end");
+        messageInput.focus();
+    },
+    onClickOutside: (e) => {
+        if (e.target.id === "emoji-picker") {
             document.body.classList.toggle("show-emoji-picker");
-        });
-        closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-        chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
-        #chatbot-toggler { position: fixed; bottom: 30px; right: 35px; border: none; height: 50px; width: 50px; display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 50%; background: #dc3545; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); transition: all 0.2s ease; z-index: 1000; }
-        body.show-chatbot #chatbot-toggler { transform: rotate(90deg); }
-        #chatbot-toggler span { color: #fff; position: absolute; }
-        #chatbot-toggler span:last-child, body.show-chatbot #chatbot-toggler span:first-child { opacity: 0; }
-        body.show-chatbot #chatbot-toggler span:last-child { opacity: 1; }
-        .chatbot-popup { position: fixed; right: 35px; bottom: 90px; width: 400px; overflow: hidden; background: #fff; border-radius: 15px; opacity: 0; pointer-events: none; transform: scale(0.2); transform-origin: bottom right; box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5); transition: all 0.1s ease; z-index: 1000; display: none; }
-        body.show-chatbot .chatbot-popup { opacity: 1; pointer-events: auto; transform: scale(1); display: block; }
-        .chat-header { display: flex; align-items: center; padding: 15px 22px; background: #dc3545; border-bottom: 1px solid #d4d4d4; justify-content: space-between; }
-        .chat-header .header-info { display: flex; gap: 10px; align-items: center; }
-        .header-info .chatbot-logo { width: 35px; height: 35px; padding: 2px; object-fit: cover; flex-shrink: 0; background: #fff; border-radius: 50%; }
-        .header-info .logo-text { color: #fff; font-weight: 600; font-size: 1.31rem; letter-spacing: 0.02rem; font-family: "Inter", sans-serif; }
-        .chat-header #close-chatbot { border: none; color: #fff; height: 40px; width: 40px; font-size: 1.9rem; margin-right: -10px; padding-top: 2px; cursor: pointer; border-radius: 50%; background: none; transition: 0.2s ease; }
-        .chat-header #close-chatbot:hover { background: rgba(0, 0, 0, 0.1); }
-        .chat-body { font-family: "Inter", sans-serif; padding: 25px 22px; gap: 20px; display: flex; height: 400px; overflow-y: auto; margin-bottom: 75px; flex-direction: column; scrollbar-width: thin; scrollbar-color: #ccc transparent; }
-        .chat-body::-webkit-scrollbar { width: 6px; }
-        .chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-        .chat-body .message { display: flex; gap: 11px; align-items: flex-start; }
-        .chat-body .message .bot-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; flex-shrink: 0; align-self: flex-start; }
-        .chat-body .message .message-text { font-family: "Inter", sans-serif; padding: 12px 16px; max-width: 75%; font-size: 0.95rem; word-wrap: break-word; }
-        .chat-body .bot-message.thinking .message-text { padding: 2px 16px; }
-        .chat-body .bot-message .message-text { background: #f0f0f0; color: #000; border-radius: 13px 13px 13px 3px; }
-        .chat-body .user-message { justify-content: flex-end; }
-        .chat-body .user-message .message-text { color: #fff; background: #dc3545; border-radius: 13px 13px 3px 13px; }
-        .bot-message .message-text p, .bot-message .message-text h1, .bot-message .message-text h2, .bot-message .message-text h3, .bot-message .message-text ul, .bot-message .message-text ol, .bot-message .message-text li { font-family: "Inter", sans-serif; margin-bottom: 0.5em; font-size: 0.95rem; }
-        .bot-message .message-text p:last-child { margin-bottom: 0; }
-        .bot-message .message-text ul, .bot-message .message-text ol { padding-left: 20px; }
-        .chat-body .bot-message .thinking-indicator { display: flex; gap: 4px; padding-block: 15px; }
-        .chat-body .bot-message .thinking-indicator .dot { height: 7px; width: 7px; opacity: 0.7; border-radius: 50%; background: #dc3545; animation: dotPulse 1.8s ease-in-out infinite; }
-        .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
-        .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
-        .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes dotPulse { 0%, 44% { transform: translateY(0); } 28% { opacity: 0.4; transform: translateY(-4px); } 44% { opacity: 0.2; } }
-        .chat-footer { position: absolute; bottom: 0; width: 100%; background: #fff; padding: 10px 22px 15px; border-top: 1px solid #d4d4d4; }
-        .chat-footer .chat-form { display: flex; align-items: center; position: relative; background: #fff; border-radius: 32px; outline: 1px solid #ccc; transition: 0s ease; }
-        .chat-form:focus-within { outline: 2px solid #dc3545; }
-        .chat-form .message-input { font-family: "Inter", sans-serif; width: 100%; height: 47px; outline: none; resize: none; border: none; max-height: 180px; scrollbar-width: none; border-radius: inherit; font-size: 0.95rem; padding: 14px 0 12px 18px; }
-        .chat-form .message-input::-webkit-scrollbar { display: none; }
-        .chat-form .chat-controls { gap: 3px; height: 47px; display: flex; padding-right: 6px; align-items: center; align-self: flex-end; }
-        .chat-form .chat-controls button { height: 35px; width: 35px; border: none; cursor: pointer; color: #555; border-radius: 50%; font-size: 1.15rem; background: none; transition: 0.2s ease; }
-        .chat-form .chat-controls button:hover, body.show-emoji-picker .chat-controls #emoji-picker { color: #dc3545; background: #fdeaea; }
-        .chat-form .chat-controls #send-message { color: #fff; background: #dc3545; display: flex; align-items: center; justify-content: center; }
-        .chat-form .chat-controls #send-message:hover { background: #b02a37; }
-        .chat-form .message-input:valid~.chat-controls #send-message { display: flex; }
-        em-emoji-picker { position: absolute; left: 50%; bottom: 55px; width: 100%; max-width: 350px; visibility: hidden; max-height: 330px; transform: translateX(-50%); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; }
-        body.show-emoji-picker em-emoji-picker { visibility: visible; }
-        @media (max-width: 768px) { #chatbot-toggler { right: 20px; bottom: 20px; } .chatbot-popup { right: 0; bottom: 0; height: 100%; border-radius: 0; width: 100%; } .chatbot-popup .chat-header { padding: 12px 15px; } .chat-body { height: calc(100% - 130px); padding: 25px 15px; } .chat-footer { padding: 10px 15px 15px; } }
-    </style>
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="/analytics.js"></script>
+        } else if (document.body.classList.contains("show-emoji-picker")) {
+            document.body.classList.remove("show-emoji-picker");
+        }
+    },
+});
+document.querySelector(".chat-footer").appendChild(picker);
+
+document.querySelector("#emoji-picker").addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle("show-emoji-picker");
+});
+
+// Toggle and close functions
+function toggleChatbot() {
+    document.body.classList.toggle("show-chatbot");
+    const isOpen = document.body.classList.contains("show-chatbot");
+    localStorage.setItem('chatbotOpen', isOpen);
+}
+
+function closeChatbotFunc() {
+    document.body.classList.remove("show-chatbot");
+    localStorage.setItem('chatbotOpen', false);
+}
+
+chatbotToggler.addEventListener("click", toggleChatbot);
+closeChatbot.addEventListener("click", closeChatbotFunc);
+
+// Initialize chatbot state and history on page load
+document.addEventListener('DOMContentLoaded', () => {
+    chatbotPopup.classList.add('no-transition');
+    const savedHistory = localStorage.getItem('chatHistory');
+    if (savedHistory) {
+        chatHistory = JSON.parse(savedHistory);
+    } else {
+        chatHistory = [
+            {
+                role: "system",
+                content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
+
+---
+### General Venue Information
+- **Name:** PantherVenue
+- **Location:** Inside Bridgewater-Raritan High School, 600 Garretson Road, Bridgewater, New Jersey.
+- **Capacity:** Seats up to 3,500 people.
+- **Features:** A premier gymnasium renovated in 2024 with a high-quality sound system, adjustable lighting, a large video screen, new bleachers, and a resurfaced floor.
+- **Primary Use:** Ideal for sports events, graduations, performances, workshops, and community gatherings.
+- **Amenities:** Comfortable bleacher seating, top-tier audio system, adjustable lighting, large video screen for presentations.
+- **Layouts:**
+    - **Standard Gym Layout:** For sports. Uses all four stands (North/South: 1000 seats each, East/West: 750 seats each).
+    - **Ceremony Layout:** For graduations/presentations. Features a main stage, with seating in the stands and potentially on the floor.
+
+---
+### How the Website Works
+- **Events Page (event.html):**
+    - Users can see a list of all upcoming events, such as "Varsity Basketball Finals," "Fall Dance Recital," and "Yoga Wellness Workshop."
+    - Users can filter events by category, price, and date.
+    - **To purchase tickets, users must log in to their account.** A popup allows them to select seats and complete the purchase.
+- **Rent Venue Page (rent.html):**
+    - Users can request to rent the venue for their own private event.
+    - **Users must be logged in to submit a request.**
+    - The process is a 6-step form: 1. Personal Details, 2. Event Details, 3. Category, 4. Venue Choice, 5. Image Upload, 6. Confirmation.
+    - After submission, the request becomes "pending" and is reviewed by an administrator.
+- **User Accounts (login.html):**
+    - Users can sign up for an account or log in.
+    - After logging in, users see a personal dashboard.
+    - **User Dashboard:** Shows their purchased tickets, total money spent, and the status (pending, accepted, declined) of their venue rental requests.
+    - **Admin Dashboard:** Staff can view site analytics and manage all venue rental requests.
+
+---
+### Important Policies & FAQs
+- **General Rules:** No outside food or drink. All bags are subject to search. The venue is strictly non-smoking (including vapes/e-cigarettes). No alcohol. No pets are allowed, except for service animals.
+- **Parking:** Available in designated lots. Fees may apply depending on the event.
+- **Ticket Policy:** Tickets are non-refundable unless the event is canceled by the venue. There is a 10-ticket limit per transaction. Tickets are transferable if the box office is notified.
+- **Team & Contact:**
+    - Key Staff: Bill Deniz (Athletic Director), Keri Fry (Logistics and Business Manager).
+    - Phone: +1 908-524-4059
+    - Email: hs@brrsd.k12.nj.us (expect a response in 2-7 business days).
+- **Nearby Hotels:** Hampton Inn, Hyatt House, and TownePlace suites are all within 1.5 miles.
+
+---
+### Your Persona & Instructions
+- Be friendly, professional, and enthusiastic.
+- Your name is PantherBot.
+- Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.`
+            },
+            {
+                role: "assistant",
+                content: "Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?"
+            }
+        ];
+    }
+    displayChatHistory();
+    const isOpen = localStorage.getItem('chatbotOpen') === 'true';
+    if (isOpen) {
+        document.body.classList.add('show-chatbot');
+    } else {
+        document.body.classList.remove('show-chatbot');
+    }
+    setTimeout(() => {
+        chatbotPopup.classList.remove('no-transition');
+    }, 0);
+});
+</script>
+
+
+
+
+
+
+  <style>
+    /* Importing Google Fonts - Inter for Chatbot */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+    
+    /* --- Chatbot Styles --- */
+    #chatbot-toggler {
+      position: fixed;
+      bottom: 30px;
+      right: 35px;
+      border: none;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 1000; /* Ensure it's above other content */
+    }
+    body.show-chatbot #chatbot-toggler {
+      transform: rotate(90deg);
+    }
+    #chatbot-toggler span {
+      color: #fff;
+      position: absolute;
+    }
+    #chatbot-toggler span:last-child,
+    body.show-chatbot #chatbot-toggler span:first-child {
+      opacity: 0;
+    }
+    body.show-chatbot #chatbot-toggler span:last-child {
+      opacity: 1;
+    }
+    .chatbot-popup {
+      position: fixed;
+      right: 35px;
+      bottom: 90px;
+      width: 400px; 
+      overflow: hidden;
+      background: #fff;
+      border-radius: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.2);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s ease;
+      z-index: 1000;
+     visibility: hidden;
+    }
+    body.show-chatbot .chatbot-popup {
+      opacity: 1 !important;
+      pointer-events: auto;
+      transform: scale(1);
+      visibility: visible;
+   
+    }
+
+    .chatbot-popup.no-transition {
+    transition: none !important; /* Prevents animation on page load */
+}
+    .chat-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 22px;
+      background: #dc3545; /* Red */
+      border-bottom: 1px solid #d4d4d4;
+      justify-content: space-between;
+    }
+    .chat-header .header-info {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .header-info .chatbot-logo {
+      width: 35px;
+      height: 35px;
+      padding: 2px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .header-info .logo-text {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.31rem;
+      letter-spacing: 0.02rem;
+      font-family: "Inter", sans-serif;
+    }
+    .chat-header #close-chatbot {
+      border: none;
+      color: #fff;
+      height: 40px;
+      width: 40px;
+      font-size: 1.9rem;
+      margin-right: -10px;
+      padding-top: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-header #close-chatbot:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .chat-body {
+      font-family: "Inter", sans-serif;
+      padding: 25px 22px;
+      gap: 20px;
+      display: flex;
+      height: 400px; 
+      overflow-y: auto;
+      margin-bottom: 75px;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    .chat-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .chat-body .message {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .chat-body .message .bot-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .chat-body .message .message-text {
+      font-family: "Inter", sans-serif;
+      padding: 12px 16px;
+      max-width: 75%;
+      font-size: 0.95rem;
+      word-wrap: break-word;
+    }
+    .chat-body .bot-message.thinking .message-text {
+      padding: 2px 16px;
+    }
+    .chat-body .bot-message .message-text {
+      background: #f0f0f0; /* Light Gray */
+      color: #000;
+      border-radius: 13px 13px 13px 3px;
+    }
+    .chat-body .user-message {
+      justify-content: flex-end;
+    }
+    .chat-body .user-message .message-text {
+      color: #fff;
+      background: #dc3545; /* Red */
+      border-radius: 13px 13px 3px 13px;
+    }
+    /* Markdown formatting inside bot message */
+     .bot-message .message-text p,
+     .bot-message .message-text h1,
+     .bot-message .message-text h2,
+     .bot-message .message-text h3,
+     .bot-message .message-text ul,
+     .bot-message .message-text ol,
+     .bot-message .message-text li {
+        font-family: "Inter", sans-serif;
+        margin-bottom: 0.5em;
+        font-size: 0.95rem;
+     }
+     .bot-message .message-text p:last-child {
+        margin-bottom: 0;
+     }
+     .bot-message .message-text ul, .bot-message .message-text ol {
+        padding-left: 20px;
+     }
+    .chat-body .bot-message .thinking-indicator {
+      display: flex;
+      gap: 4px;
+      padding-block: 15px;
+    }
+    .chat-body .bot-message .thinking-indicator .dot {
+      height: 7px;
+      width: 7px;
+      opacity: 0.7;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse {
+      0%, 44% { transform: translateY(0); }
+      28% { opacity: 0.4; transform: translateY(-4px); }
+      44% { opacity: 0.2; }
+    }
+    .chat-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 10px 22px 15px;
+      border-top: 1px solid #d4d4d4;
+    }
+    .chat-footer .chat-form {
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: #fff;
+      border-radius: 32px;
+      outline: 1px solid #ccc;
+      transition: 0s ease;
+    }
+    .chat-form:focus-within {
+      outline: 2px solid #dc3545; /* Red */
+    }
+    .chat-form .message-input {
+      font-family: "Inter", sans-serif;
+      width: 100%;
+      height: 47px;
+      outline: none;
+      resize: none;
+      border: none;
+      max-height: 180px;
+      scrollbar-width: none;
+      border-radius: inherit;
+      font-size: 0.95rem;
+      padding: 14px 0 12px 18px;
+    }
+    .chat-form .message-input::-webkit-scrollbar {
+        display: none;
+    }
+    .chat-form .chat-controls {
+      gap: 3px;
+      height: 47px;
+      display: flex;
+      padding-right: 6px;
+      align-items: center;
+      align-self: flex-end;
+    }
+    .chat-form .chat-controls button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      cursor: pointer;
+      color: #555; /* Dark Gray */
+      border-radius: 50%;
+      font-size: 1.15rem;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-form .chat-controls button:hover,
+    body.show-emoji-picker .chat-controls #emoji-picker {
+      color: #dc3545; /* Red */
+      background: #fdeaea; /* Light Red */
+    }
+    .chat-form .chat-controls #send-message {
+      color: #fff;
+      background: #dc3545; /* Red */
+      /* IPAD FIX: Perfect centering for the icon */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-form .chat-controls #send-message:hover {
+      background: #b02a37; /* Darker Red */
+    }
+    .chat-form .message-input:valid~.chat-controls #send-message {
+      display: flex; /* Changed from block to flex for centering fix */
+    }
+    em-emoji-picker {
+      position: absolute;
+      left: 50%;
+      bottom: 55px; /* Position above the input bar */
+      width: 100%;
+      max-width: 350px;
+      visibility: hidden;
+      max-height: 330px;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    body.show-emoji-picker em-emoji-picker {
+      visibility: visible;
+    }
+
+    /* IPAD/MOBILE FIX: Make chatbot fullscreen on tablets (portrait) and phones */
+    @media (max-width: 768px) {
+      #chatbot-toggler {
+        right: 20px;
+        bottom: 20px;
+      }
+      .chatbot-popup {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+      }
+      .chatbot-popup .chat-header {
+        padding: 12px 15px;
+      }
+      .chat-body {
+        height: calc(100% - 130px); /* Adjusted for full screen */
+        padding: 25px 15px;
+      }
+      .chat-footer {
+        padding: 10px 15px 15px;
+      }
+    }
+  </style>
+  <!-- END: Chatbot Integration Head -->
+
+  <!-- START: Chatbot Integration Head -->
+  <!-- Google Fonts for Chatbot Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
