@@ -1,5 +1,5 @@
 {
-  "emeraldwalk.runonsave": {
+  "_emeraldwalk.runonsave": {
     "commands": [
       {
         "match": ".*",
@@ -7,5 +7,5 @@
       }
     ]
   },
-  "liveServer.settings.port": 5501
+  "_liveServer.settings.port": 5501
 }
