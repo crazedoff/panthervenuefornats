@@ -1417,11 +1417,7 @@ const picker = new EmojiMart.Picker({
     },
 });
 document.querySelector(".chat-footer").appendChild(picker);
-// Add this inside the DOMContentLoaded event listener, after the existing radio button event listeners
-document.querySelectorAll('input[name="venue"]').forEach(radio => {
-  input.checked = false; // Ensure no venue radio is pre-selected
-  radio.parentElement.classList.remove('selected'); // Remove any .selected class from labels
-});
+
 document.querySelector("#emoji-picker").addEventListener("click", (e) => {
     e.stopPropagation();
     document.body.classList.toggle("show-emoji-picker");
