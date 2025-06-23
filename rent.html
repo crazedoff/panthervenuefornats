@@ -24,12 +24,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
-  
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,16 +34,16 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- TailwindCSS for form styling -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Embedded Main CSS -->
   <style>
     /*
       ================================================================================
-      --- START: CORE STYLES FROM NEW TEMPLATE ---
+      --- START: EMBEDDED CSS FROM "COLLEGE" TEMPLATE (main.css) ---
+      --- THEME HAS BEEN CHANGED FROM BLUE TO PANTHERVENUE RED ---
       ================================================================================
     */
     :root {
@@ -55,17 +52,41 @@
       --nav-font: "Poppins", sans-serif;
     }
 
+    /* Red Theme Color Variables */
     :root {
       --background-color: #f1f5f7;
-      --default-color: #2f3138; 
-      --heading-color: #060c22; 
-      --accent-color: #f82249; 
+      --default-color: #2f3138; /* Darker text */
+      --heading-color: #060c22; /* Very dark blue from old nav */
+      --accent-color: #f82249; /* PantherVenue Red */
       --surface-color: #ffffff;
       --contrast-color: #ffffff;
     }
-    main {
-  padding-top: 60px; /* Adjusts all main content down by 30px */
-}
+
+    :root {
+      --nav-color: #ffffff;
+      --nav-hover-color: #f82249;
+      --nav-mobile-background-color: #060c22;
+      --nav-dropdown-background-color: #ffffff;
+      --nav-dropdown-color: #060c22;
+      --nav-dropdown-hover-color: #f82249;
+    }
+
+    .light-background {
+      --background-color: #e6edf0;
+      --surface-color: #ffffff;
+    }
+
+    .dark-background {
+      --background-color: #060606;
+      --default-color: #ffffff;
+      --heading-color: #ffffff;
+      --surface-color: #252525;
+      --contrast-color: #ffffff;
+    }
+
+    :root {
+      scroll-behavior: smooth;
+    }
 
     body {
       color: var(--default-color);
@@ -89,128 +110,81 @@
       font-family: var(--heading-font);
     }
 
-    /*
-      ================================================================================
-      --- START: CSS FOR OLD NAVBAR (FROM old code) ---
-      ================================================================================
-    */
-    #header {
-      height: 70px;
+    /* --- GLOBAL HEADER --- */
+    .header {
+      --background-color: rgba(6, 12, 34, 0.98); /* Old nav color */
+      color: var(--default-color);
+      background-color: var(--background-color);
       padding: 15px 0;
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      background: rgba(6, 12, 34, 0.98);
       transition: all 0.5s;
       z-index: 997;
     }
-    #header #logo img {
-      padding: 0;
-      margin: 0;
-      max-height: 40px;
-      padding-left: 80px;
-    }
-    #nav-menu-container {
-      float: right;
-      margin: 0;
-      padding-right: 65px;
-    }
-    .nav-menu, .nav-menu * {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .nav-menu ul {
-      position: absolute;
-      display: none;
-      top: 100%;
-      left: 0;
-      z-index: 99;
-    }
-    .nav-menu li {
+    .header .header-container {
+      background: transparent;
+      transition: all 0.5s;
       position: relative;
-      white-space: nowrap;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
-    .nav-menu > li {
-      float: left;
+    .header .logo {
+        position: static;
+        padding: 0;
     }
-    .nav-menu li:hover > ul, .nav-menu li.sfHover > ul {
-      display: block;
+    .header .logo img {
+      max-height: 40px;
+      margin-right: 8px;
     }
-    .nav-menu ul ul {
-      top: 0;
-      left: 100%;
+    .header .logo h1 {
+      font-size: 26px;
+      margin: 0;
+      font-weight: 500;
+      color: var(--contrast-color);
     }
-    .nav-menu ul li {
-      min-width: 180px;
+    @media (max-width: 1200px) {
+      .header .logo { order: 1; }
+      .header .navmenu { order: 3; }
     }
-    .nav-menu a {
-      padding: 8px;
-      text-decoration: none;
-      display: inline-block;
-      color: rgba(255, 255, 255, 0.8);
-      font-family: "Raleway";
-      font-weight: 700;
-      font-size: 14px;
-      outline: none;
+    .scrolled .header {
+      box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+      --background-color: rgba(6, 12, 34, 0.98);
     }
 
-    
-    .nav-menu .menu-active a, .nav-menu a:hover {
-      color: #fff;
+    /* --- NAVIGATION MENU --- */
+    @media (min-width: 1200px) {
+      .navmenu { padding: 0; }
+      .navmenu ul { margin: 0; padding: 0; display: flex; list-style: none; align-items: center; }
+      .navmenu li { position: relative; }
+      .navmenu a, .navmenu a:focus {
+        color: var(--nav-color);
+        padding: 18px 15px;
+        font-size: 14px;
+        font-family: var(--nav-font);
+        font-weight: 600;
+        display: flex; align-items: center; justify-content: space-between;
+        white-space: nowrap; transition: 0.3s;
+      }
+      .navmenu li:hover > a, .navmenu .active > a, .navmenu .active:focus > a { color: var(--nav-hover-color); }
+      .navmenu > li > a:before { content: ""; position: absolute; width: 0; height: 2px; bottom: 10px; left: 15px; background-color: var(--accent-color); visibility: hidden; transition: all 0.3s ease-in-out 0s; }
+      .navmenu a:hover:before, .navmenu li:hover > a:before, .navmenu .active > a:before { visibility: visible; width: calc(100% - 30px); }
+      .navmenu li.buy-tickets a {
+        color: #fff; background: var(--accent-color);
+        padding: 7px 22px; border-radius: 50px;
+        border: 2px solid var(--accent-color); transition: all ease-in-out 0.3s;
+        font-weight: 500; margin-left: 15px;
+      }
+      .navmenu li.buy-tickets a:hover { background: none; color: #fff; }
+      .navmenu li.buy-tickets a:before { content: none !important; }
     }
-    .nav-menu > li {
-      margin-left: 8px;
-    }
-    .nav-menu > li > a:before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #f82249;
-      visibility: hidden;
-      transition: all 0.3s ease-in-out 0s;
-    }
-    .nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before {
-      visibility: visible;
-      width: 100%;
-    }
-    .nav-menu li.buy-tickets a {
-      color: #fff;
-      background: #f82249;
-      padding: 7px 22px;
-      border-radius: 50px;
-      border: 2px solid #f82249;
-      transition: all ease-in-out 0.3s;
-      font-weight: 500;
-      margin-left: 8px;
-      margin-top: 2px;
-      line-height: 1;
-      font-size: 13px;
-    }
-    .nav-menu li.buy-tickets a:hover {
-      background: none;
-      text-decoration: none;
-    }
-    .nav-menu li.buy-tickets a:before {
-      content: none;
-    }
-    #mobile-nav-toggle {
-      position: fixed;
-      right: 0;
-      top: 0;
-      z-index: 999;
-      margin: 15px 15px 0 0;
-      border: 0;
-      background: none;
-      font-size: 24px;
-      display: none;
-      transition: all 0.4s;
-      outline: none;
-      cursor: pointer;
+    @media (max-width: 1199px) {
+      .mobile-nav-toggle { color: #fff; font-size: 28px; line-height: 0; margin-right: 10px; cursor: pointer; transition: color 0.3s; }
+      .navmenu { padding: 0; z-index: 9997; }
+      .navmenu ul { display: none; list-style: none; position: absolute; inset: 60px 20px 20px 20px; padding: 10px 0; margin: 0; border-radius: 6px; background-color: var(--nav-mobile-background-color); overflow-y: auto; transition: 0.3s; z-index: 9998; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1); }
+      .navmenu a, .navmenu a:focus { color: var(--nav-color); padding: 10px 20px; font-family: var(--nav-font); font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; white-space: nowrap; transition: 0.3s; }
+      .navmenu a:hover, .navmenu .active > a, .navmenu .active:focus > a { color: var(--nav-dropdown-hover-color); }
+      .mobile-nav-active { overflow: hidden; }
+      .mobile-nav-active .mobile-nav-toggle { color: #fff; position: absolute; font-size: 32px; top: 15px; right: 15px; margin-right: 0; z-index: 9999; }
+      .mobile-nav-active .navmenu { position: fixed; overflow: hidden; inset: 0; background: rgba(6, 12, 34, 0.9); transition: 0.3s; }
+      .mobile-nav-active .navmenu > ul { display: block; }
     }
 
     /* --- GLOBAL SECTIONS --- */
@@ -234,23 +208,9 @@
       position: relative;
       overflow: hidden;
       padding: 0px;
-
-      background-size: cover;
+      background-color: #f6f7fd;
     }
-    .hero::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-    }
-    .hero .hero-wrapper { 
-      padding: 80px; 
-      position: relative;
-      z-index: 2;
-    }
+    .hero .hero-wrapper { padding: 80px; }
     @media (max-width: 992px) {
       .hero .hero-wrapper { padding: 100px 0 60px; text-align: center; }
     }
@@ -274,7 +234,7 @@
     .hero .hero-wrapper .hero-content .action-buttons .btn-secondary:hover { color: var(--heading-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
     .hero .hero-wrapper .hero-media { position: relative; }
     @media (max-width: 992px) { .hero .hero-wrapper .hero-media { margin-top: 3rem; max-width: 80%; margin-left: auto; margin-right: auto; } }
-    .hero .hero-wrapper .hero-media .main-image { border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); transform: perspective(1000px) rotateY(-10deg); transition: all 0.5s ease; }
+    .hero .hero-wrapper .hero-media .main-image { border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); transform: perspective(1000px) rotateY(-5deg); transition: all 0.5s ease; }
     .hero .hero-wrapper .hero-media .main-image:hover { transform: perspective(1000px) rotateY(0); }
     .hero .hero-wrapper .hero-media .image-overlay { position: absolute; bottom: -20px; right: -20px; }
     @media (max-width: 992px) { .hero .hero-wrapper .hero-media .image-overlay { right: 0; } }
@@ -289,15 +249,14 @@
     .hero .feature-cards-wrapper .feature-card .feature-content { flex: 1; }
     .hero .feature-cards-wrapper .feature-card .feature-content h3 { font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700; }
     .hero .feature-cards-wrapper .feature-card .feature-content p { font-size: 0.9rem; color: color-mix(in srgb, var(--default-color), transparent 20%); margin: 0; }
-    .hero .upcoming-event { background: #060c22; color: var(--contrast-color); padding: 0; margin: 30px 0 0; }
+    .hero .upcoming-event { background: var(--heading-color); color: var(--contrast-color); padding: 0; margin: 30px 0 0; }
     .hero .upcoming-event .event-content { display: flex; align-items: center; flex-wrap: wrap; padding: 20px; position: relative; border-radius: 10px; overflow: hidden; }
     @media (max-width: 992px) { .hero .upcoming-event .event-content { flex-direction: column; text-align: center; } }
     .hero .upcoming-event .event-content>* { position: relative; z-index: 1; }
     .hero .upcoming-event .event-content .event-date { display: flex; flex-direction: column; background: var(--accent-color); color: var(--contrast-color); text-align: center; padding: 15px; border-radius: 8px; margin-right: 30px; min-width: 100px; }
     @media (max-width: 992px) { .hero .upcoming-event .event-content .event-date { margin: 0 auto 20px; } }
-    /* FIXED "BOOK NOW" FONT SIZES */
-    .hero .upcoming-event .event-content .event-date .day { font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
-    .hero .upcoming-event .event-content .event-date .month { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; }
+    .hero .upcoming-event .event-content .event-date .day { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+    .hero .upcoming-event .event-content .event-date .month { font-size: 1rem; font-weight: 600; text-transform: uppercase; }
     .hero .upcoming-event .event-content .event-info { flex: 1; margin-right: 30px; }
     @media (max-width: 992px) { .hero .upcoming-event .event-content .event-info { margin-right: 0; margin-bottom: 20px; } }
     .hero .upcoming-event .event-content .event-info h3 { font-size: 1.6rem; color: var(--contrast-color); margin-bottom: 10px; font-weight: 700; }
@@ -308,6 +267,12 @@
     .hero .upcoming-event .event-content .event-action .btn-event:hover { background: color-mix(in srgb, var(--accent-color), transparent 15%); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
     .hero .upcoming-event .event-content .event-action .countdown { font-size: 0.9rem; opacity: 0.8; }
     
+    /*
+      ================================================================================
+      --- START: EMBEDDED CSS FROM OLD "rent.html" & "event.html" ---
+      ================================================================================
+    */
+
     /* --- "FROM PAPERS TO AUTONOMY" SECTION --- */
     .alt-features .icon-box { display: flex; }
     .alt-features .icon-box h4 { font-family: "Raleway", sans-serif; font-size: 20px; font-weight: 700; margin: 0 0 10px 0; color: var(--heading-color); }
@@ -316,225 +281,33 @@
     #alt-features .icon-box a { color: var(--accent-color); text-decoration: underline !important; }
     #alt-features .icon-box a:hover { color: color-mix(in srgb, var(--accent-color), #000 20%); }
 
+    /* --- PHONE/PAPER ANIMATION --- */
+    #alt-features *, #alt-features *:before, #alt-features *:after { box-sizing: border-box; position: relative; transform-style: preserve-3d; }
+    #alt-features { --duration: 3.2s; --stagger: .8s; --easing: cubic-bezier(.36,.07,.25,1); --offscreen: 40vmax; --color-card: #f82249; --color-border: #000000; --color-shadow: #333333; }
+    #app { height: 45vmin; width: 28vmin; max-height: 360px; max-width: 210px; display: flex; justify-content: center; align-items: center; transform: rotateX(-20deg) rotateY(-55deg); background: var(--color-card); border-radius: 2vmin; perspective: 10000px; margin-left: 15rem; }
+    #app:before { border: 5vmin solid var(--color-border); border-left-width: 1.5vmin; border-right-width: 1.5vmin; border-radius: inherit; content: ''; position: absolute; height: 100%; width: 100%; top: 0; left: 0; background: var(--color-card); }
+    #app > .papers, #app:before { transform: translateZ(3vmin); }
+    #app:after { content: ''; position: absolute; height: 100%; width: 100%; top: 0; left: 0; background: inherit; border-radius: inherit; transform: translateZ(1.5vmin); }
+    #app > .shadow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: bottom center; transform: rotateX(90deg); background: var(--color-shadow); border-radius: inherit; }
+    .paper-shadow { background: var(--color-shadow); height: 50%; width: 100%; position: absolute; top: calc(100% + 3vmin); left: 0; transform-origin: top center; animation: shadow-in var(--duration) var(--easing) infinite; animation-delay: calc(var(--i) * var(--stagger)); animation-fill-mode: both; }
+    @keyframes shadow-in { 0%, 5% { transform: scale(.8, 1) translateY(var(--offscreen)); } 100% { transform: scale(.8, 0); } }
+    .papers { width: 20vmin; height: 30vmin; max-width: 160px; max-height: 230px; background: #f0f0f0; }
+    .paper { --segments: 5; --segment: calc(100% * 1 / var(--segments)); position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: calc(var(--total) - var(--i)); animation: fly-in var(--duration) var(--easing) infinite, paper-fade-in var(--duration) var(--easing) infinite; animation-delay: calc(var(--i) * var(--stagger)); }
+    @keyframes paper-fade-in { 0%, 15% { opacity: 0.2; } 80%, 100% { opacity: 1; } }
+    @keyframes fly-in { 0%, 2% { transform: translateZ(var(--offscreen)) translateY(80%) rotateX(30deg); } 80%, 100% { transform: translateZ(0px) translateY(0%) rotateX(0deg); } }
+    .paper > .segment { height: var(--segment); }
+    .segment { --rotate: 20deg; height: 100%; transform-origin: top center; background: #f0f0f0; border: 1px solid rgba(0, 0, 0, 0.2); border-top: none; border-bottom: none; animation: inherit; animation-name: curve-paper; }
+    .segment > .segment { top: 98%; }
+    @keyframes curve-paper { 0%, 2% { transform: rotateX(var(--rotate, 0deg)); } 90%, 100% { transform: rotateX(0deg); } }
+    .paper.-rogue { transform-origin: top center -5vmin; }
+    .paper.-rogue .segment { --rotate: 30deg; animation-name: curve-rogue-paper; }
+    @keyframes curve-rogue-paper { 0%, 50% { transform: rotateX(var(--rotate)); } 100% { transform: rotateX(0deg); } }
+    .paper.-rogue > .segment { animation: inherit; animation-name: rogue-paper; transform-origin: left top 20vmin; }
+    @keyframes rogue-paper { 0%, 2% { transform: rotateX(1turn); } 80%, 100% { transform: rotateX(0turn); } }
+    .paper .content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 2vmin; color: #000000; font-family: 'Courier New', monospace; font-size: 2vmin; line-height: 1.5; transform: translateZ(0.1px); opacity: 0.4; animation: fade-in-text var(--duration) var(--easing) infinite; animation-delay: calc(var(--i) * var(--stagger)); }
+    @keyframes fade-in-text { 0%, 20% { opacity: 0; } 40%, 100% { opacity: 1; } }
+    .paper.-rogue .content { font-weight: bold; color: #C8102E; }
     
-    /* new styles for the phone animation */
-    *, *:before, *:after {
-        box-sizing: border-box;
-        position: relative;
-    }
-
-    #alt-features *, #alt-features *:before, #alt-features *:after {
-      transform-style: preserve-3d;
-    }
-    
-    #alt-features {
-        --duration: 3.2s;
-        --stagger: .8s;
-        --easing: cubic-bezier(.36,.07,.25,1);
-        --offscreen: 40vmax;
-        --color-card: #c61032;
-        --color-border: #000000;
-        --color-shadow: #333333;
-    }
-
-    #app {
-        height: 45vmin;
-        width: 28vmin;
-        max-height: 360px;
-        max-width: 210px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: rotateX(-20deg) rotateY(-55deg);
-        background: var(--color-card);
-        border-radius: 2vmin;
-        perspective: 10000px;
-        margin-left: 15rem;
-    }
-
-    #app:before {
-        border: 5vmin solid var(--color-border);
-        border-left-width: 1.5vmin;
-        border-right-width: 1.5vmin;
-        border-radius: inherit;
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background: var(--color-card);
-    }
-
-    #app > .papers, #app:before {
-        transform: translateZ(3vmin);
-    }
-
-    #app:after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background: inherit;
-        border-radius: inherit;
-        transform: translateZ(1.5vmin);
-    }
-
-    #app > .shadow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform-origin: bottom center;
-        transform: rotateX(90deg);
-        background: var(--color-shadow);
-        border-radius: inherit;
-    }
-
-    .paper-shadow {
-        background: var(--color-shadow);
-        height: 50%;
-        width: 100%;
-        position: absolute;
-        top: calc(100% + 3vmin);
-        left: 0;
-        transform-origin: top center;
-        animation: shadow-in var(--duration) var(--easing) infinite;
-        animation-delay: calc(var(--i) * var(--stagger));
-        animation-fill-mode: both;
-    }
-
-    @keyframes shadow-in {
-        0%, 5% {
-            transform: scale(.8, 1) translateY(var(--offscreen));
-        }
-        100% {
-            transform: scale(.8, 0);
-        }
-    }
-
-    .papers {
-        width: 20vmin;
-        height: 30vmin;
-        max-width: 160px;
-        max-height: 230px;
-        background: #f0f0f0;
-    }
-
-    .paper {
-        --segments: 5;
-        --segment: calc(100% * 1 / var(--segments));
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        z-index: calc(var(--total) - var(--i));
-        animation: fly-in var(--duration) var(--easing) infinite,
-                   paper-fade-in var(--duration) var(--easing) infinite;
-        animation-delay: calc(var(--i) * var(--stagger));
-    }
-    
-    @keyframes paper-fade-in {
-        0%, 15% { opacity: 0.2; }
-        80%, 100% { opacity: 1; }
-    }
-
-
-    @keyframes fly-in {
-        0%, 2% {
-            transform: translateZ(var(--offscreen)) translateY(80%) rotateX(30deg);
-        }
-        80%, 100% {
-            transform: translateZ(0px) translateY(0%) rotateX(0deg);
-        }
-    }
-
-    .paper > .segment {
-        height: var(--segment);
-    }
-
-    .segment {
-        --rotate: 20deg;
-        height: 100%;
-        transform-origin: top center;
-        background: #f0f0f0;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-top: none;
-        border-bottom: none;
-        animation: inherit;
-        animation-name: curve-paper;
-    }
-
-    .segment > .segment {
-        top: 98%;
-    }
-
-    @keyframes curve-paper {
-        0%, 2% { transform: rotateX(var(--rotate, 0deg)); }
-        90%, 100% { transform: rotateX(0deg); }
-    }
-
-    .paper.-rogue {
-        transform-origin: top center -5vmin;
-    }
-
-    .paper.-rogue .segment {
-        --rotate: 30deg;
-        animation-name: curve-rogue-paper;
-    }
-
-    @keyframes curve-rogue-paper {
-        0%, 50% { transform: rotateX(var(--rotate)); }
-        100% { transform: rotateX(0deg); }
-    }
-
-    .paper.-rogue > .segment {
-        animation: inherit;
-        animation-name: rogue-paper;
-        transform-origin: left top 20vmin;
-    }
-
-    @keyframes rogue-paper {
-        0%, 2% {
-            transform: rotateX(1turn);
-        }
-        80%, 100% {
-            transform: rotateX(0turn);
-        }
-    }
-
-    .paper .content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 2vmin;
-        color: #000000;
-        font-family: 'Courier New', monospace;
-        font-size: 2vmin;
-        line-height: 1.5;
-        transform: translateZ(0.1px);
-        opacity: 0.4;
-        animation: fade-in-text var(--duration) var(--easing) infinite;
-        animation-delay: calc(var(--i) * var(--stagger));
-    }
-
-    @keyframes fade-in-text {
-        0%, 20% { opacity: 0; }
-        40%, 100% { opacity: 1; }
-    }
-
-    .paper.-rogue .content {
-        font-weight: bold;
-        color: #C8102E; 
-    }
-    
-
     /* --- RENTAL PROCESS SECTION --- */
     .rental-process { background-color: var(--background-color); padding: 60px 0; }
     .rental-process .icon-box { text-align: center; padding: 30px 20px; background: var(--surface-color); border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; height: 100%; }
@@ -544,7 +317,7 @@
     .rental-process .icon-box h4 { font-weight: 700; margin-bottom: 15px; font-size: 22px; color: var(--heading-color); }
     .rental-process .icon-box p { line-height: 24px; font-size: 14px; margin-bottom: 0; color: #6c757d; }
     
-    /* --- RENTAL FORM (FROM old code) --- */
+    /* --- RENTAL FORM --- */
     .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
     .step.active { display: block; opacity: 1; transform: translateX(0); }
     .step.exiting { opacity: 0; transform: translateX(-50px); }
@@ -560,30 +333,79 @@
     .btn-primary { background-color: #f82249; border-color: #f82249; }
     .btn-primary:hover { background-color: #e61e40; border-color: #e61e40; }
     #confirmation-details { background-color: #f9fafb; border: 1px solid #e5e7eb; }
-    .custom-radio input:checked + .btn-outline-danger, .custom-radio.selected { background-color: #f82249; color: #fff; }
-
+    
+    /* --- CHATBOT --- */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+    #chatbot-toggler { position: fixed; bottom: 30px; right: 35px; border: none; height: 50px; width: 50px; display: flex; cursor: pointer; align-items: center; justify-content: center; border-radius: 50%; background: #dc3545; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); transition: all 0.2s ease; z-index: 1000; }
+    body.show-chatbot #chatbot-toggler { transform: rotate(90deg); }
+    #chatbot-toggler span { color: #fff; position: absolute; }
+    #chatbot-toggler span:last-child, body.show-chatbot #chatbot-toggler span:first-child { opacity: 0; }
+    body.show-chatbot #chatbot-toggler span:last-child { opacity: 1; }
+    .chatbot-popup { position: fixed; right: 35px; bottom: 90px; width: 400px; overflow: hidden; background: #fff; border-radius: 15px; opacity: 0; pointer-events: none; transform: scale(0.2); transform-origin: bottom right; box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5); transition: all 0.1s ease; z-index: 1000; visibility: hidden; }
+    body.show-chatbot .chatbot-popup { opacity: 1 !important; pointer-events: auto; transform: scale(1); visibility: visible; }
+    .chatbot-popup.no-transition { transition: none !important; }
+    .chat-header { display: flex; align-items: center; padding: 15px 22px; background: #dc3545; border-bottom: 1px solid #d4d4d4; justify-content: space-between; }
+    .chat-header .header-info { display: flex; gap: 10px; align-items: center; }
+    .header-info .chatbot-logo { width: 35px; height: 35px; padding: 2px; object-fit: cover; flex-shrink: 0; background: #fff; border-radius: 50%; }
+    .header-info .logo-text { color: #fff; font-weight: 600; font-size: 1.31rem; letter-spacing: 0.02rem; font-family: "Inter", sans-serif; }
+    .chat-header #close-chatbot { border: none; color: #fff; height: 40px; width: 40px; font-size: 1.9rem; margin-right: -10px; padding-top: 2px; cursor: pointer; border-radius: 50%; background: none; transition: 0.2s ease; }
+    .chat-header #close-chatbot:hover { background: rgba(0, 0, 0, 0.1); }
+    .chat-body { font-family: "Inter", sans-serif; padding: 25px 22px; gap: 20px; display: flex; height: 400px; overflow-y: auto; margin-bottom: 75px; flex-direction: column; scrollbar-width: thin; scrollbar-color: #ccc transparent; }
+    .chat-body::-webkit-scrollbar { width: 6px; }
+    .chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+    .chat-body .message { display: flex; gap: 11px; align-items: flex-start; }
+    .chat-body .message .bot-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; flex-shrink: 0; align-self: flex-start; }
+    .chat-body .message .message-text { font-family: "Inter", sans-serif; padding: 12px 16px; max-width: 75%; font-size: 0.95rem; word-wrap: break-word; }
+    .chat-body .bot-message.thinking .message-text { padding: 2px 16px; }
+    .chat-body .bot-message .message-text { background: #f0f0f0; color: #000; border-radius: 13px 13px 13px 3px; }
+    .chat-body .user-message { justify-content: flex-end; }
+    .chat-body .user-message .message-text { color: #fff; background: #dc3545; border-radius: 13px 13px 3px 13px; }
+    .bot-message .message-text p, .bot-message .message-text h1, .bot-message .message-text h2, .bot-message .message-text h3, .bot-message .message-text ul, .bot-message .message-text ol, .bot-message .message-text li { font-family: "Inter", sans-serif; margin-bottom: 0.5em; font-size: 0.95rem; }
+    .bot-message .message-text p:last-child { margin-bottom: 0; }
+    .bot-message .message-text ul, .bot-message .message-text ol { padding-left: 20px; }
+    .chat-body .bot-message .thinking-indicator { display: flex; gap: 4px; padding-block: 15px; }
+    .chat-body .bot-message .thinking-indicator .dot { height: 7px; width: 7px; opacity: 0.7; border-radius: 50%; background: #dc3545; animation: dotPulse 1.8s ease-in-out infinite; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse { 0%, 44% { transform: translateY(0); } 28% { opacity: 0.4; transform: translateY(-4px); } 44% { opacity: 0.2; } }
+    .chat-footer { position: absolute; bottom: 0; width: 100%; background: #fff; padding: 10px 22px 15px; border-top: 1px solid #d4d4d4; }
+    .chat-footer .chat-form { display: flex; align-items: center; position: relative; background: #fff; border-radius: 32px; outline: 1px solid #ccc; transition: 0s ease; }
+    .chat-form:focus-within { outline: 2px solid #dc3545; }
+    .chat-form .message-input { font-family: "Inter", sans-serif; width: 100%; height: 47px; outline: none; resize: none; border: none; max-height: 180px; scrollbar-width: none; border-radius: inherit; font-size: 0.95rem; padding: 14px 0 12px 18px; }
+    .chat-form .message-input::-webkit-scrollbar { display: none; }
+    .chat-form .chat-controls { gap: 3px; height: 47px; display: flex; padding-right: 6px; align-items: center; align-self: flex-end; }
+    .chat-form .chat-controls button { height: 35px; width: 35px; border: none; cursor: pointer; color: #555; border-radius: 50%; font-size: 1.15rem; background: none; transition: 0.2s ease; }
+    .chat-form .chat-controls button:hover, body.show-emoji-picker .chat-controls #emoji-picker { color: #dc3545; background: #fdeaea; }
+    .chat-form .chat-controls #send-message { color: #fff; background: #dc3545; display: flex; align-items: center; justify-content: center; }
+    .chat-form .chat-controls #send-message:hover { background: #b02a37; }
+    .chat-form .message-input:valid~.chat-controls #send-message { display: flex; }
+    em-emoji-picker { position: absolute; left: 50%; bottom: 55px; width: 100%; max-width: 350px; visibility: hidden; max-height: 330px; transform: translateX(-50%); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; }
+    body.show-emoji-picker em-emoji-picker { visibility: visible; }
+    @media (max-width: 768px) { #chatbot-toggler { right: 20px; bottom: 20px; } .chatbot-popup { right: 0; bottom: 0; height: 100%; border-radius: 0; width: 100%; } .chatbot-popup .chat-header { padding: 12px 15px; } .chat-body { height: calc(100% - 130px); padding: 25px 15px; } .chat-footer { padding: 10px 15px 15px; } }
   </style>
 </head>
 
 <body class="index-page">
 
-  <!-- Header (FROM old code) -->
-  <header id="header">
-    <div class="container">
-      <div id="logo" class="pull-left">
-        <a href="home.html" class="scrollto">
-          <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo" title="">
-        </a>
-      </div>
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li><a href="/home.html">Home</a></li>
-          <li><a href="/home.html#about">About</a></li>
-          <li><a href="/event.html">Events</a></li>
-          <li class="menu-active"><a href="/rent.html">Rent Venue</a></li>
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="home.html" class="logo d-flex align-items-center me-auto">
+        <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="home.html#about">About</a></li>
+          <li><a href="event.html">Events</a></li>
+          <li><a href="rent.html" class="active">Rent Venue</a></li>
           <li class="buy-tickets"><a href="/login.html" id="loginButton">Log In</a></li>
         </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
     </div>
   </header>
 
@@ -617,7 +439,7 @@
               </div>
             </div>
             <div class="col-lg-6 hero-media" data-aos="zoom-in" data-aos-delay="200">
-              <img src="rentimg.jpeg" alt="PantherVenue Gymnasium" class="img-fluid main-image">
+              <img src="assets/img/rentimg.jpeg" alt="PantherVenue Gymnasium" class="img-fluid main-image">
               <div class="image-overlay">
                 <div class="badge-accredited">
                   <i class="bi bi-patch-check-fill"></i>
@@ -671,7 +493,7 @@
         </div>
       </div>
 
-      <div class="upcoming-event"  data-aos-delay="100">
+      <div class="upcoming-event" data-aos="fade-up" data-aos-delay="400">
         <div class="container">
           <div class="event-content">
             <div class="event-date">
@@ -796,8 +618,8 @@
       </div>
     </section>
 
-    <!-- Rental Form (FROM old code) -->
-    <section id="rental-form" class="section bg-light py-12">
+    <!-- Rental Form -->
+    <section id="rental-form" class="section py-12">
       <div class="container">
         <div class="section-header">
           <h2>Rent Our Venue</h2>
@@ -857,7 +679,7 @@
               </div>
               <div class="mb-4 position-relative">
                 <label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label>
-                <i class="fas fa-dollar-sign" style="color: #f82249; position: absolute; top: 30px; left: 15px; z-index: 5;"></i>
+                <i class="fas fa-dollar-sign" style="color: #f82249; position: absolute; top: 40px; left: 15px; z-index: 5;"></i>
                 <input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required>
               </div>
               <div class="mb-6">
@@ -875,21 +697,21 @@
           <div id="step3" class="step">
             <h2 class="text-2xl font-semibold mb-6">Step 3: Event Category</h2>
             <p class="text-gray-600 mb-4">Select one category for your event.</p>
-            <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Athletics" required> Athletics
+            <div class="mb-6 btn-group btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="category" value="Athletics" required class="d-none"> Athletics
               </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Performances"> Performances
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="category" value="Performances" class="d-none"> Performances
               </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Workshops"> Workshops
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="category" value="Workshops" class="d-none"> Workshops
               </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Gatherings"> Gatherings
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="category" value="Gatherings" class="d-none"> Gatherings
               </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Competitions"> Competitions
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="category" value="Competitions" class="d-none"> Competitions
               </label>
             </div>
             <div class="d-flex justify-content-between">
@@ -902,12 +724,12 @@
           <div id="step4" class="step">
             <h2 class="text-2xl font-semibold mb-6">Step 4: Venue Selection</h2>
             <p class="text-gray-600 mb-4">Choose the venue for your event.</p>
-            <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="venue" value="Large Gym" required> Large Gym
+            <div class="mb-6 btn-group btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="venue" value="Large Gym" required class="d-none"> Large Gym
               </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="venue" value="Small Gym"> Small Gym
+              <label class="btn btn-outline-danger rounded-full">
+                <input type="radio" name="venue" value="Small Gym" class="d-none"> Small Gym
               </label>
             </div>
             <div class="d-flex justify-content-between">
@@ -921,8 +743,8 @@
             <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
             <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
             <div class="custom-file mb-6">
-              <input type="file" class="custom-file-input" id="event-image" accept="image/*">
-              <label class="custom-file-label rounded-full" for="event-image">Choose file</label>
+              <input type="file" class="custom-file-input d-none" id="event-image" accept="image/*">
+              <label class="custom-file-label form-control rounded-full" for="event-image">Choose file</label>
             </div>
             <div class="d-flex justify-content-between">
               <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
@@ -945,6 +767,38 @@
 
   </main>
 
+  <!-- Chatbot -->
+  <button id="chatbot-toggler">
+    <span class="material-symbols-rounded">mode_comment</span>
+    <span class="material-symbols-rounded">close</span>
+  </button>
+  <div class="chatbot-popup" style="opacity: 0; ">
+    <div class="chat-header">
+      <div class="header-info">
+        <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
+        <h2 class="logo-text">PantherBot</h2>
+      </div>
+      <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+    </div>
+    <div class="chat-body">
+      <div class="message bot-message">
+        <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+        <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <form action="#" class="chat-form">
+        <textarea placeholder="Type a message..." class="message-input" required></textarea>
+        <div class="chat-controls">
+          <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+          <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- End Chatbot -->
+
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -955,6 +809,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <!-- Firebase JS -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -965,7 +820,43 @@
   <script>
     (function() {
       "use strict";
-      
+
+      /**
+       * Apply .scrolled class to the body as the page is scrolled down
+       */
+      function toggleScrolled() {
+        const selectBody = document.querySelector('body');
+        const selectHeader = document.querySelector('#header');
+        if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+        window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+      }
+      document.addEventListener('scroll', toggleScrolled);
+      window.addEventListener('load', toggleScrolled);
+
+      /**
+       * Mobile nav toggle
+       */
+      const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+      function mobileNavToogle() {
+        document.querySelector('body').classList.toggle('mobile-nav-active');
+        mobileNavToggleBtn.classList.toggle('bi-list');
+        mobileNavToggleBtn.classList.toggle('bi-x');
+      }
+      if (mobileNavToggleBtn) {
+        mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+      }
+
+      /**
+       * Hide mobile nav on same-page/hash links
+       */
+      document.querySelectorAll('#navmenu a').forEach(navmenu => {
+        navmenu.addEventListener('click', () => {
+          if (document.querySelector('.mobile-nav-active')) {
+            mobileNavToogle();
+          }
+        });
+      });
+
       /**
        * Animation on scroll function and init
        */
@@ -982,7 +873,7 @@
     })();
 
     /**
-     * PantherVenue Rental Form and Firebase Logic (FROM old code)
+     * PantherVenue Rental Form and Firebase Logic
      */
     const firebaseConfig = {
       apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
@@ -999,35 +890,35 @@
     let currentStep = 1;
     const totalSteps = 6;
     let eventImageData = '';
-    let currentUser = null; 
+    let currentUser = null;
 
     document.addEventListener('DOMContentLoaded', function() {
-      auth.onAuthStateChanged(async (user) => {
+      auth.onAuthStateChanged(async(user) => {
         const loginButton = document.getElementById('loginButton');
         if (user) {
-            const userDoc = await db.collection('users').doc(user.uid).get();
-            if (userDoc.exists) {
-                currentUser = { uid: user.uid, ...userDoc.data() };
-                document.getElementById('first-name').value = currentUser.firstName || '';
-                document.getElementById('last-name').value = currentUser.lastName || '';
-                document.getElementById('email').value = currentUser.email || '';
-                if (loginButton) {
-                    loginButton.textContent = 'Dashboard';
-                    loginButton.href = '/login.html';
-                }
-            } else {
-                currentUser = null;
-                if (loginButton) {
-                    loginButton.textContent = 'Log In';
-                    loginButton.href = '/login.html';
-                }
+          const userDoc = await db.collection('users').doc(user.uid).get();
+          if (userDoc.exists) {
+            currentUser = { uid: user.uid, ...userDoc.data() };
+            document.getElementById('first-name').value = currentUser.firstName || '';
+            document.getElementById('last-name').value = currentUser.lastName || '';
+            document.getElementById('email').value = currentUser.email || '';
+            if (loginButton) {
+              loginButton.textContent = 'Dashboard';
+              loginButton.href = '/login.html';
             }
-        } else {
+          } else {
             currentUser = null;
             if (loginButton) {
-                loginButton.textContent = 'Log In';
-                loginButton.href = '/login.html';
+              loginButton.textContent = 'Log In';
+              loginButton.href = '/login.html';
             }
+          }
+        } else {
+          currentUser = null;
+          if (loginButton) {
+            loginButton.textContent = 'Log In';
+            loginButton.href = '/login.html';
+          }
         }
       });
 
@@ -1044,12 +935,16 @@
         }
       });
 
-      document.querySelectorAll('.custom-radio input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-          document.querySelectorAll('.custom-radio').forEach(label => label.classList.remove('selected'));
-          if (this.checked) {
-            this.parentElement.classList.add('selected');
-          }
+      document.querySelectorAll('.btn-group-toggle .btn').forEach(label => {
+        label.addEventListener('click', function() {
+          const input = this.querySelector('input');
+          // Un-select all in the same group
+          document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
+            radio.parentElement.classList.remove('active');
+          });
+          // Select the clicked one
+          this.classList.add('active');
+          input.checked = true;
         });
       });
     });
@@ -1198,213 +1093,88 @@
         alert("There was an error submitting your request: " + error.message);
       }
     }
-  </script>
 
-  
+    /**
+     * Chatbot Logic
+     */
+    const chatBody = document.querySelector(".chat-body");
+    const messageInput = document.querySelector(".message-input");
+    const chatForm = document.querySelector(".chat-form");
+    const chatbotToggler = document.querySelector("#chatbot-toggler");
+    const closeChatbot = document.querySelector("#close-chatbot");
+    const chatbotPopup = document.querySelector(".chatbot-popup");
+    const API_URL = "https://ai.hackclub.com/chat/completions";
+    let chatHistory;
 
-    <!-- START: Chatbot Integration Body -->
-<!-- Chatbot Toggler -->
-<button id="chatbot-toggler">
-  <span class="material-symbols-rounded">mode_comment</span>
-  <span class="material-symbols-rounded">close</span>
-</button>
-<div class="chatbot-popup" style="opacity: 0; ">
-  <!-- Chatbot Header -->
-  <div class="chat-header">
-    <div class="header-info">
-      <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
-      <h2 class="logo-text">PantherBot</h2>
-    </div>
-    <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
-  </div>
-  <!-- Chatbot Body -->
-  <div class="chat-body">
-    <div class="message bot-message">
-      <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-      <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
-    </div>
-  </div>
-  <!-- Chatbot Footer -->
-  <div class="chat-footer">
-    <form action="#" class="chat-form">
-      <textarea placeholder="Type a message..." class="message-input" required></textarea>
-      <div class="chat-controls">
-        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
-        <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
-      </div>
-    </form>
-  </div>
-</div>
-<!-- Linking Emoji Mart script for emoji picker -->
-<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
-
-<script>
-  // Select DOM elements
-const chatBody = document.querySelector(".chat-body");
-const messageInput = document.querySelector(".message-input");
-const sendMessageButton = document.querySelector("#send-message");
-const chatForm = document.querySelector(".chat-form");
-const chatbotToggler = document.querySelector("#chatbot-toggler");
-const closeChatbot = document.querySelector("#close-chatbot");
-const chatbotPopup = document.querySelector(".chatbot-popup");
-const initialInputHeight = messageInput.scrollHeight;
-
-const API_URL = "https://ai.hackclub.com/chat/completions";
-let chatHistory;
-
-// Utility function to create message elements
-const createMessageElement = (content, className) => {
-    const div = document.createElement("div");
-    div.classList.add("message", className);
-    div.innerHTML = content;
-    return div;
-};
-
-// Function to display chat history
-const displayChatHistory = () => {
-    chatBody.innerHTML = ''; // Clear existing messages
-    chatHistory.forEach(msg => {
-        if (msg.role === "user") {
-            const userMessageContent = `<div class="message-text">${msg.content}</div>`;
-            const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
-            chatBody.appendChild(outgoingMessageDiv);
-        } else if (msg.role === "assistant") {
-            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-            <div class="message-text">${marked.parse(msg.content)}</div>`;
-            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
-            chatBody.appendChild(incomingMessageDiv);
-        }
-    });
-    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-};
-
-// Function to generate bot response
-const generateBotResponse = async (incomingMessageDiv) => {
-    const messageElement = incomingMessageDiv.querySelector(".message-text");
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            messages: chatHistory,
-        }),
+    const createMessageElement = (content, className) => {
+        const div = document.createElement("div");
+        div.classList.add("message", className);
+        div.innerHTML = content;
+        return div;
     };
-    try {
-        const response = await fetch(API_URL, requestOptions);
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("API Error Response:", errorData);
-            throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
-        }
-        const data = await response.json();
-        const apiResponseText = data.choices[0].message.content.trim();
-        messageElement.innerHTML = marked.parse(apiResponseText);
-        chatHistory.push({
-            role: "assistant",
-            content: apiResponseText,
+    const displayChatHistory = () => {
+        chatBody.innerHTML = '';
+        chatHistory.forEach(msg => {
+            if (msg.role === "user") {
+                const userMessageContent = `<div class="message-text">${msg.content}</div>`;
+                const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+                chatBody.appendChild(outgoingMessageDiv);
+            } else if (msg.role === "assistant") {
+                const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" /><div class="message-text">${marked.parse(msg.content)}</div>`;
+                const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
+                chatBody.appendChild(incomingMessageDiv);
+            }
         });
-        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-    } catch (error) {
-        console.error("API Error:", error);
-        messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
-        messageElement.style.color = "#dc3545";
-    } finally {
-        incomingMessageDiv.classList.remove("thinking");
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-    }
-};
-
-// Function to handle outgoing messages
-const handleOutgoingMessage = (e) => {
-    e.preventDefault();
-    const userMessage = messageInput.value.trim();
-    if (!userMessage) return;
-    messageInput.value = "";
-    messageInput.style.height = `${initialInputHeight}px`;
-    chatHistory.push({ role: "user", content: userMessage });
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-    const userMessageContent = `<div class="message-text">${userMessage}</div>`;
-    const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
-    chatBody.appendChild(outgoingMessageDiv);
-    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-    setTimeout(() => {
-        const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
-        <div class="message-text">
-          <div class="thinking-indicator">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>`;
-        const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
-        chatBody.appendChild(incomingMessageDiv);
-        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-        generateBotResponse(incomingMessageDiv);
-    }, 600);
-};
-
-// Event listeners for input and form
-messageInput.addEventListener("input", () => {
-    messageInput.style.height = `${initialInputHeight}px`;
-    const newHeight = messageInput.scrollHeight;
-    messageInput.style.height = `${newHeight}px`;
-});
-
-messageInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
-        handleOutgoingMessage(e);
-    }
-});
-
-chatForm.addEventListener("submit", handleOutgoingMessage);
-
-// Emoji picker setup
-const picker = new EmojiMart.Picker({
-    theme: "light",
-    skinTonePosition: "none",
-    previewPosition: "none",
-    onEmojiSelect: (emoji) => {
-        const { selectionStart: start, selectionEnd: end } = messageInput;
-        messageInput.setRangeText(emoji.native, start, end, "end");
-        messageInput.focus();
-    },
-    onClickOutside: (e) => {
-        if (e.target.id === "emoji-picker") {
-            document.body.classList.toggle("show-emoji-picker");
-        } else if (document.body.classList.contains("show-emoji-picker")) {
-            document.body.classList.remove("show-emoji-picker");
+    };
+    const generateBotResponse = async (incomingMessageDiv) => {
+        const messageElement = incomingMessageDiv.querySelector(".message-text");
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ messages: chatHistory }),
+            });
+            const data = await response.json();
+            const apiResponseText = data.choices[0].message.content.trim();
+            messageElement.innerHTML = marked.parse(apiResponseText);
+            chatHistory.push({ role: "assistant", content: apiResponseText });
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+        } catch (error) {
+            messageElement.innerText = "Oops! Something went wrong. Please try again later.";
+            messageElement.style.color = "#dc3545";
+        } finally {
+            incomingMessageDiv.classList.remove("thinking");
+            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
         }
-    },
-});
-document.querySelector(".chat-footer").appendChild(picker);
+    };
+    const handleOutgoingMessage = (e) => {
+        e.preventDefault();
+        const userMessage = messageInput.value.trim();
+        if (!userMessage) return;
+        messageInput.value = "";
+        messageInput.style.height = `${messageInput.scrollHeight}px`;
+        chatHistory.push({ role: "user", content: userMessage });
+        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+        const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+        const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+        chatBody.appendChild(outgoingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        setTimeout(() => {
+            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" /><div class="message-text"><div class="thinking-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
+            chatBody.appendChild(incomingMessageDiv);
+            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+            generateBotResponse(incomingMessageDiv);
+        }, 600);
+    };
 
-document.querySelector("#emoji-picker").addEventListener("click", (e) => {
-    e.stopPropagation();
-    document.body.classList.toggle("show-emoji-picker");
-});
-
-// Toggle and close functions
-function toggleChatbot() {
-    document.body.classList.toggle("show-chatbot");
-    const isOpen = document.body.classList.contains("show-chatbot");
-    localStorage.setItem('chatbotOpen', isOpen);
-}
-
-function closeChatbotFunc() {
-    document.body.classList.remove("show-chatbot");
-    localStorage.setItem('chatbotOpen', false);
-}
-
-chatbotToggler.addEventListener("click", toggleChatbot);
-closeChatbot.addEventListener("click", closeChatbotFunc);
-
-// Initialize chatbot state and history on page load
-document.addEventListener('DOMContentLoaded', () => {
-    chatbotPopup.classList.add('no-transition');
-    const savedHistory = localStorage.getItem('chatHistory');
-    if (savedHistory) {
-        chatHistory = JSON.parse(savedHistory);
-    } else {
-        chatHistory = [
+    chatForm.addEventListener("submit", handleOutgoingMessage);
+    chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+    closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedHistory = localStorage.getItem('chatHistory');
+        chatHistory = savedHistory ? JSON.parse(savedHistory) : [
             {
                 role: "system",
                 content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
@@ -1460,350 +1230,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: "Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?"
             }
         ];
-    }
-    displayChatHistory();
-    const isOpen = localStorage.getItem('chatbotOpen') === 'true';
-    if (isOpen) {
-        document.body.classList.add('show-chatbot');
-    } else {
-        document.body.classList.remove('show-chatbot');
-    }
-    setTimeout(() => {
-        chatbotPopup.classList.remove('no-transition');
-    }, 0);
-});
-</script>
-
-
-
-
-
-
-  <style>
-    /* Importing Google Fonts - Inter for Chatbot */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
-    
-    /* --- Chatbot Styles --- */
-    #chatbot-toggler {
-      position: fixed;
-      bottom: 30px;
-      right: 35px;
-      border: none;
-      height: 50px;
-      width: 50px;
-      display: flex;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #dc3545; /* Red */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-      z-index: 1000; /* Ensure it's above other content */
-    }
-    body.show-chatbot #chatbot-toggler {
-      transform: rotate(90deg);
-    }
-    #chatbot-toggler span {
-      color: #fff;
-      position: absolute;
-    }
-    #chatbot-toggler span:last-child,
-    body.show-chatbot #chatbot-toggler span:first-child {
-      opacity: 0;
-    }
-    body.show-chatbot #chatbot-toggler span:last-child {
-      opacity: 1;
-    }
-    .chatbot-popup {
-      position: fixed;
-      right: 35px;
-      bottom: 90px;
-      width: 400px; 
-      overflow: hidden;
-      background: #fff;
-      border-radius: 15px;
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.2);
-      transform-origin: bottom right;
-      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-        0 32px 64px -48px rgba(0, 0, 0, 0.5);
-      transition: all 0.1s ease;
-      z-index: 1000;
-     visibility: hidden;
-    }
-    body.show-chatbot .chatbot-popup {
-      opacity: 1 !important;
-      pointer-events: auto;
-      transform: scale(1);
-      visibility: visible;
-   
-    }
-
-    .chatbot-popup.no-transition {
-    transition: none !important; /* Prevents animation on page load */
-}
-    .chat-header {
-      display: flex;
-      align-items: center;
-      padding: 15px 22px;
-      background: #dc3545; /* Red */
-      border-bottom: 1px solid #d4d4d4;
-      justify-content: space-between;
-    }
-    .chat-header .header-info {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .header-info .chatbot-logo {
-      width: 35px;
-      height: 35px;
-      padding: 2px;
-      object-fit: cover;
-      flex-shrink: 0;
-      background: #fff;
-      border-radius: 50%;
-    }
-    .header-info .logo-text {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.31rem;
-      letter-spacing: 0.02rem;
-      font-family: "Inter", sans-serif;
-    }
-    .chat-header #close-chatbot {
-      border: none;
-      color: #fff;
-      height: 40px;
-      width: 40px;
-      font-size: 1.9rem;
-      margin-right: -10px;
-      padding-top: 2px;
-      cursor: pointer;
-      border-radius: 50%;
-      background: none;
-      transition: 0.2s ease;
-    }
-    .chat-header #close-chatbot:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-    .chat-body {
-      font-family: "Inter", sans-serif;
-      padding: 25px 22px;
-      gap: 20px;
-      display: flex;
-      height: 400px; 
-      overflow-y: auto;
-      margin-bottom: 75px;
-      flex-direction: column;
-      scrollbar-width: thin;
-      scrollbar-color: #ccc transparent;
-    }
-    .chat-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .chat-body::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 3px;
-    }
-    .chat-body .message {
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
-    }
-    .chat-body .message .bot-avatar {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      align-self: flex-start;
-    }
-    .chat-body .message .message-text {
-      font-family: "Inter", sans-serif;
-      padding: 12px 16px;
-      max-width: 75%;
-      font-size: 0.95rem;
-      word-wrap: break-word;
-    }
-    .chat-body .bot-message.thinking .message-text {
-      padding: 2px 16px;
-    }
-    .chat-body .bot-message .message-text {
-      background: #f0f0f0; /* Light Gray */
-      color: #000;
-      border-radius: 13px 13px 13px 3px;
-    }
-    .chat-body .user-message {
-      justify-content: flex-end;
-    }
-    .chat-body .user-message .message-text {
-      color: #fff;
-      background: #dc3545; /* Red */
-      border-radius: 13px 13px 3px 13px;
-    }
-    /* Markdown formatting inside bot message */
-     .bot-message .message-text p,
-     .bot-message .message-text h1,
-     .bot-message .message-text h2,
-     .bot-message .message-text h3,
-     .bot-message .message-text ul,
-     .bot-message .message-text ol,
-     .bot-message .message-text li {
-        font-family: "Inter", sans-serif;
-        margin-bottom: 0.5em;
-        font-size: 0.95rem;
-     }
-     .bot-message .message-text p:last-child {
-        margin-bottom: 0;
-     }
-     .bot-message .message-text ul, .bot-message .message-text ol {
-        padding-left: 20px;
-     }
-    .chat-body .bot-message .thinking-indicator {
-      display: flex;
-      gap: 4px;
-      padding-block: 15px;
-    }
-    .chat-body .bot-message .thinking-indicator .dot {
-      height: 7px;
-      width: 7px;
-      opacity: 0.7;
-      border-radius: 50%;
-      background: #dc3545; /* Red */
-      animation: dotPulse 1.8s ease-in-out infinite;
-    }
-    .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
-    .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
-    .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes dotPulse {
-      0%, 44% { transform: translateY(0); }
-      28% { opacity: 0.4; transform: translateY(-4px); }
-      44% { opacity: 0.2; }
-    }
-    .chat-footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: #fff;
-      padding: 10px 22px 15px;
-      border-top: 1px solid #d4d4d4;
-    }
-    .chat-footer .chat-form {
-      display: flex;
-      align-items: center;
-      position: relative;
-      background: #fff;
-      border-radius: 32px;
-      outline: 1px solid #ccc;
-      transition: 0s ease;
-    }
-    .chat-form:focus-within {
-      outline: 2px solid #dc3545; /* Red */
-    }
-    .chat-form .message-input {
-      font-family: "Inter", sans-serif;
-      width: 100%;
-      height: 47px;
-      outline: none;
-      resize: none;
-      border: none;
-      max-height: 180px;
-      scrollbar-width: none;
-      border-radius: inherit;
-      font-size: 0.95rem;
-      padding: 14px 0 12px 18px;
-    }
-    .chat-form .message-input::-webkit-scrollbar {
-        display: none;
-    }
-    .chat-form .chat-controls {
-      gap: 3px;
-      height: 47px;
-      display: flex;
-      padding-right: 6px;
-      align-items: center;
-      align-self: flex-end;
-    }
-    .chat-form .chat-controls button {
-      height: 35px;
-      width: 35px;
-      border: none;
-      cursor: pointer;
-      color: #555; /* Dark Gray */
-      border-radius: 50%;
-      font-size: 1.15rem;
-      background: none;
-      transition: 0.2s ease;
-    }
-    .chat-form .chat-controls button:hover,
-    body.show-emoji-picker .chat-controls #emoji-picker {
-      color: #dc3545; /* Red */
-      background: #fdeaea; /* Light Red */
-    }
-    .chat-form .chat-controls #send-message {
-      color: #fff;
-      background: #dc3545; /* Red */
-      /* IPAD FIX: Perfect centering for the icon */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .chat-form .chat-controls #send-message:hover {
-      background: #b02a37; /* Darker Red */
-    }
-    .chat-form .message-input:valid~.chat-controls #send-message {
-      display: flex; /* Changed from block to flex for centering fix */
-    }
-    em-emoji-picker {
-      position: absolute;
-      left: 50%;
-      bottom: 55px; /* Position above the input bar */
-      width: 100%;
-      max-width: 350px;
-      visibility: hidden;
-      max-height: 330px;
-      transform: translateX(-50%);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-    body.show-emoji-picker em-emoji-picker {
-      visibility: visible;
-    }
-
-    /* IPAD/MOBILE FIX: Make chatbot fullscreen on tablets (portrait) and phones */
-    @media (max-width: 768px) {
-      #chatbot-toggler {
-        right: 20px;
-        bottom: 20px;
-      }
-      .chatbot-popup {
-        right: 0;
-        bottom: 0;
-        height: 100%;
-        border-radius: 0;
-        width: 100%;
-      }
-      .chatbot-popup .chat-header {
-        padding: 12px 15px;
-      }
-      .chat-body {
-        height: calc(100% - 130px); /* Adjusted for full screen */
-        padding: 25px 15px;
-      }
-      .chat-footer {
-        padding: 10px 15px 15px;
-      }
-    }
-  </style>
-  <!-- END: Chatbot Integration Head -->a
-
-  <!-- START: Chatbot Integration Head -->
-  <!-- Google Fonts for Chatbot Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
-  <!-- Marked.js for Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        displayChatHistory();
+    });
+  </script>
 </body>
+
 </html>
