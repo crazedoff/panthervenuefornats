@@ -94,6 +94,16 @@
       --- START: CSS FOR OLD NAVBAR (FROM old code) ---
       ================================================================================
     */
+
+        .btn-group-toggle > .btn input[type="radio"] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+        pointer-events: none;
+    }
+    .btn:focus, .btn.focus, .btn:active, .btn.active {
+        box-shadow: none !important;
+        outline: 0 !important;
+    }
     #header {
       height: 70px;
       padding: 15px 0;
