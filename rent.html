@@ -1328,7 +1328,7 @@ const displayChatHistory = () => {
         } else if (msg.role === "assistant") {
             const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
             <div class="message-text">${marked.parse(msg.content)}</div>`;
-                    const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message", "thinking");
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
             chatBody.appendChild(incomingMessageDiv);
         }
     });
