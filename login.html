@@ -1151,67 +1151,7 @@
                 const totalSpent = userRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
                 document.getElementById('totalTickets').textContent = totalTickets;
                 document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
-                // START: Add this code inside the loadUserDashboard function
-
-// --- Monthly Analytics Calculation ---
-const now = new Date();
-const currentYear = now.getFullYear();
-const currentMonth = now.getMonth(); // 0-11
-
-// Filter registrations for the current month
-const currentMonthRegistrations = userRegistrations.filter(reg => {
-    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
-    const regDate = reg.created.toDate();
-    return regDate.getFullYear() === currentYear && regDate.getMonth() === currentMonth;
-});
-
-// Filter registrations for the last month
-const lastMonthRegistrations = userRegistrations.filter(reg => {
-    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
-    const regDate = reg.created.toDate();
-    // Handles year boundary (e.g., if current month is January)
-    if (currentMonth === 0) { // January
-        return regDate.getFullYear() === currentYear - 1 && regDate.getMonth() === 11; // December of last year
-    } else {
-        return regDate.getFullYear() === currentYear && regDate.getMonth() === currentMonth - 1;
-    }
-});
-
-const monthlyTickets = currentMonthRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
-const monthlySpent = currentMonthRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-
-const lastMonthTickets = lastMonthRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
-const lastMonthSpent = lastMonthRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-
-document.getElementById('monthlyTickets').textContent = monthlyTickets;
-document.getElementById('monthlySpent').textContent = `$${monthlySpent.toFixed(2)}`;
-
-const calculatePercentageChange = (current, previous) => {
-    if (previous === 0) {
-        return current > 0 ? 100 : 0; // If nothing was spent last month, any new spending is a big jump
-    }
-    return ((current - previous) / previous) * 100;
-};
-
-const updateChangeElement = (elementId, changeValue) => {
-    const el = document.getElementById(elementId);
-    el.textContent = `${changeValue.toFixed(0)}%`;
-    if (changeValue > 0) {
-        el.className = 'text-success font-weight-bold';
-        el.textContent = `+${changeValue.toFixed(0)}%`;
-    } else if (changeValue < 0) {
-        el.className = 'text-danger font-weight-bold';
-    } else {
-        el.className = 'text-warning font-weight-bold';
-    }
-};
-
-updateChangeElement('monthlyTicketsChange', calculatePercentageChange(monthlyTickets, lastMonthTickets));
-updateChangeElement('monthlySpentChange', calculatePercentageChange(monthlySpent, lastMonthSpent));
-
-// --- End of Monthly Analytics Calculation ---
-
-// END: Add this code
+                
 
                 const eventsContainer = document.getElementById('user-list-view');
                 eventsContainer.innerHTML = '';
