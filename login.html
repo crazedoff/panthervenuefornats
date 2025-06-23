@@ -1146,6 +1146,68 @@
                 document.getElementById('totalTickets').textContent = totalTickets;
                 document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
 
+
+
+
+                // START: Add this code inside the loadUserDashboard function
+
+// --- Weekly Analytics Calculation ---
+const now = new Date();
+const startOfThisWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+startOfThisWeek.setHours(0, 0, 0, 0);
+
+const startOfLastWeek = new Date(new Date().setDate(startOfThisWeek.getDate() - 7));
+startOfLastWeek.setHours(0, 0, 0, 0);
+
+const endOfLastWeek = new Date(new Date().setDate(startOfThisWeek.getDate() - 1));
+endOfLastWeek.setHours(23, 59, 59, 999);
+
+// Filter registrations for this week and last week
+const thisWeeksRegistrations = userRegistrations.filter(reg => {
+    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
+    return reg.created.toDate() >= startOfThisWeek;
+});
+const lastWeeksRegistrations = userRegistrations.filter(reg => {
+    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
+    const regDate = reg.created.toDate();
+    return regDate >= startOfLastWeek && regDate <= endOfLastWeek;
+});
+
+// Aggregate data for both periods
+const thisWeeksTickets = thisWeeksRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
+const thisWeeksSpent = thisWeeksRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
+const lastWeeksTickets = lastWeeksRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
+const lastWeeksSpent = lastWeeksRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
+
+const calculatePercentageChange = (current, previous) => {
+    if (previous === 0) return current > 0 ? 100 : 0;
+    return ((current - previous) / previous) * 100;
+};
+
+const updateChangeElement = (elementId, changeValue) => {
+    const el = document.getElementById(elementId);
+    el.textContent = `${changeValue.toFixed(0)}%`;
+    if (changeValue > 0) {
+        el.className = 'text-success font-weight-bold';
+        el.textContent = `+${el.textContent}`;
+    } else if (changeValue < 0) {
+        el.className = 'text-danger font-weight-bold';
+    } else {
+        el.className = 'text-warning font-weight-bold';
+    }
+};
+
+updateChangeElement('weeklyTicketsChange', calculatePercentageChange(thisWeeksTickets, lastWeeksTickets));
+updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpent, lastWeeksSpent));
+
+// --- End of Weekly Analytics Calculation ---
+
+// END: Add this code
+
+
+
+
+
                 const eventsContainer = document.getElementById('user-list-view');
                 eventsContainer.innerHTML = '';
                 if(userRegistrations.length === 0) {
