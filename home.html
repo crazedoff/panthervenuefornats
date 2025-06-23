@@ -4695,5 +4695,23 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Check if the URL has the instruction "?action=play"
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldPlay = urlParams.get('action') === 'play';
+
+    if (shouldPlay) {
+      // 2. Find the play button on the homepage
+      const playButton = document.getElementById('play-button');
+
+      // 3. If the button exists, programmatically "click" it
+      if (playButton) {
+        playButton.click();
+      }
+    }
+  });
+</script>
 </body>
 </html>
