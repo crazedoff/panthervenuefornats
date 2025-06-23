@@ -1034,37 +1034,16 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.href = '/login.html';
       }
     }
-    // Ensure no venue radio is pre-selected
-    document.querySelectorAll('input[name="venue"]').forEach(radio => {
-      radio.checked = false; // Uncheck all venue radios
-      radio.parentElement.classList.remove('selected'); // Remove .selected class
-    });
-  });
-
-  document.getElementById('event-image').addEventListener('change', function() {
-    const file = this.files[0];
-    const fileName = file ? file.name : 'No file chosen';
-    this.nextElementSibling.textContent = fileName;
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        eventImageData = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      eventImageData = '';
-    }
-  });
-
-  document.querySelectorAll('.custom-radio input[type="radio"]').forEach(radio => {
+    document.querySelectorAll('.custom-radio input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', function() {
       document.querySelectorAll('.custom-radio').forEach(label => label.classList.remove('selected'));
       if (this.checked) {
         this.parentElement.classList.add('selected');
       }
     });
-  });
 });
+  });
+
   document.getElementById('event-image').addEventListener('change', function() {
     const file = this.files[0];
     const fileName = file ? file.name : 'No file chosen';
