@@ -544,24 +544,50 @@
     .rental-process .icon-box h4 { font-weight: 700; margin-bottom: 15px; font-size: 22px; color: var(--heading-color); }
     .rental-process .icon-box p { line-height: 24px; font-size: 14px; margin-bottom: 0; color: #6c757d; }
     
-    /* --- RENTAL FORM (FROM old code) --- */
     .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
-    .step.active { display: block; opacity: 1; transform: translateX(0); }
-    .step.exiting { opacity: 0; transform: translateX(-50px); }
-    .form-control { border-radius: 50px; }
-    .form-control:focus { box-shadow: 0 0 0 2px #f82249; border-color: #f82249; }
-    .custom-file-label { border-radius: 50px; background-color: #f0f0f0; color: #2f3138; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; }
-    .custom-file-input:focus ~ .custom-file-label { box-shadow: 0 0 0 2px #f82249; }
-    .btn-outline-danger { border-color: #f82249; color: #f82249; }
-    .btn-outline-danger:hover { background-color: #f82249; color: #fff; }
-    .btn-group-toggle > .btn-outline-danger.active, .btn-group-toggle > .btn-outline-danger.selected { background-color: #f82249; color: #fff; }
-    #step-indicators { position: relative; }
-    .progress-fill { position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 2px; background: #f82249; transition: width 0.5s ease; z-index: -1; }
-    .btn-primary { background-color: #f82249; border-color: #f82249; }
-    .btn-primary:hover { background-color: #e61e40; border-color: #e61e40; }
-    #confirmation-details { background-color: #f9fafb; border: 1px solid #e5e7eb; }
-    .custom-radio input:checked + .btn-outline-danger, .custom-radio.selected { background-color: #f82249; color: #fff; }
-
+.step.active { display: block; opacity: 1; transform: translateX(0); }
+.step.exiting { opacity: 0; transform: translateX(-50px); }
+.input-field { max-width: 380px; width: 100%; background-color: #e5e7eb; margin: 10px 0; height: 55px; border-radius: 55px; display: grid; grid-template-columns: 15% 85%; padding: 0 0.4rem; position: relative; transition: all 0.3s ease; }
+.input-field i { text-align: center; line-height: 55px; color: #6b7280; font-size: 1.1rem; }
+.input-field input, .input-field select { background: none; outline: none; border: none; line-height: 1; font-weight: 600; font-size: 1.1rem; color: #000; font-family: 'Open Sans', sans-serif; }
+.input-field input::placeholder, .input-field select::placeholder { color: #9ca3af; font-weight: 500; }
+.input-field:focus-within { box-shadow: 0 0 0 2px #f82249; background: #fff; }
+.input-field:focus-within i { color: #f82249; }
+.form-radio { appearance: none; width: 20px; height: 20px; border: 2px solid #f82249; border-radius: 50%; margin-right: 10px; cursor: pointer; }
+.form-radio:checked { background-color: #f82249; border-color: #f82249; }
+.progress-bar { transition: all 0.5s ease; }
+.form-control { border-radius: 50px; }
+.form-control:focus { box-shadow: 0 0 0 2px #f82249; border-color: #f82249; }
+.custom-file-label { border-radius: 50px; background-color: #f0f0f0; color: #2f3138; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; }
+.custom-file-input:focus ~ .custom-file-label { box-shadow: 0 0 0 2px #f82249; }
+.btn-outline-danger { border-color: #f82249; color: #f82249; }
+.btn-outline-danger:hover { background-color: #f82249; color: #fff; }
+.btn-outline-danger.active { background-color: #f82249; color: #fff; }
+#step-indicators { position: relative; }
+.progress-fill { position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 2px; background: #f82249; transition: width 0.5s ease; z-index: -1; }
+.btn-primary { background-color: #f82249; border-color: #f82249; }
+.btn-primary:hover { background-color: #e61e40; border-color: #e61e40; }
+.btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+.btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+.btn-success { background-color: #28a745; border-color: #28a745; }
+.btn-success:hover { background-color: #218838; border-color: #1e7e34; }
+.custom-radio input:checked + .btn-outline-danger { background-color: #f82249; color: #fff; transition: all 0.3s ease; }
+#confirmation-details { background-color: #f9fafb; border: 1px solid #e5e7eb; }
+.btn-group-toggle .btn.active { background-color: #f82249; color: #fff; }
+.btn:focus, .btn:active { box-shadow: 0 0 0 2px #f82249; }
+.section-header { margin-bottom: 60px; position: relative; padding-bottom: 20px; }
+.section-header::before { content: ''; position: absolute; display: block; width: 60px; height: 5px; background: #f82249; bottom: 0; left: calc(50% - 25px); }
+.section-header h2 { font-family: "Open Sans"; font-size: 46px; text-transform: uppercase; text-align: center; font-weight: 700; margin-bottom: 10px; }
+.section-header p { text-align: center; padding: 0; margin: 0; font-size: 18px; font-weight: 500; color: #45464b; }
+.section-with-bg { background-color: #f6f7fd; }
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.top-50 { top: 50%; }
+.start-0 { left: 0; }
+.translate-middle-y { transform: translateY(-50%); }
+.ms-3 { margin-left: 1rem; }
+.ps-5 { padding-left: 3rem; }
+.custom-radio.selected { background-color: #f82249; color: #fff; }
   </style>
 </head>
 
