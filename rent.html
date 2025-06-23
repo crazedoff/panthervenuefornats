@@ -796,152 +796,152 @@
       </div>
     </section>
 
-    <!-- Rental Form (FROM old code) -->
-    <section id="rental-form" class="section bg-light py-12">
-      <div class="container">
-        <div class="section-header">
-          <h2>Rent Our Venue</h2>
-          <p>Fill out this form to request an event at PantherVenue.</p>
-        </div>
-        <div class="w-full max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg" id="form-container">
-          <!-- Progress Bar -->
-          <div id="progress-bar" class="flex items-center justify-between mb-8">
-            <div id="step-indicators" class="flex items-center w-full relative">
-              <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
-              <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center">1</div>
-              <div class="flex-1 h-1 bg-gray-300"></div>
-              <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">2</div>
-              <div class="flex-1 h-1 bg-gray-300"></div>
-              <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">3</div>
-              <div class="flex-1 h-1 bg-gray-300"></div>
-              <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">4</div>
-              <div class="flex-1 h-1 bg-gray-300"></div>
-              <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">5</div>
-              <div class="flex-1 h-1 bg-gray-300"></div>
-              <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">6</div>
-            </div>
-          </div>
-
-          <!-- Step 1: Personal Details -->
-          <div id="step1" class="step active">
-            <h2 class="text-2xl font-semibold mb-6">Step 1: Personal Details</h2>
-            <p class="text-gray-600 mb-4">Log in to pre-fill your details.</p>
-            <form>
-              <div class="mb-4">
-                <label for="first-name" class="block text-sm font-medium mb-1">First Name <span class="text-red-500">*</span></label>
-                <input type="text" id="first-name" class="form-control rounded-full" required>
-              </div>
-              <div class="mb-4">
-                <label for="last-name" class="block text-sm font-medium mb-1">Last Name <span class="text-red-500">*</span></label>
-                <input type="text" id="last-name" class="form-control rounded-full" required>
-              </div>
-              <div class="mb-6">
-                <label for="email" class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label>
-                <input type="email" id="email" class="form-control rounded-full" required>
-              </div>
-              <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-            </form>
-          </div>
-
-          <!-- Step 2: Event Details -->
-          <div id="step2" class="step">
-            <h2 class="text-2xl font-semibold mb-6">Step 2: Event Details</h2>
-            <form>
-              <div class="mb-4">
-                <label for="event-name" class="block text-sm font-medium mb-1">Event Name <span class="text-red-500">*</span></label>
-                <input type="text" id="event-name" class="form-control rounded-full" required>
-              </div>
-              <div class="mb-4">
-                <label for="event-date" class="block text-sm font-medium mb-1">Event Date <span class="text-red-500">*</span></label>
-                <input type="date" id="event-date" class="form-control rounded-full" required>
-              </div>
-              <div class="mb-4 position-relative">
-                <label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label>
-                <i class="fas fa-dollar-sign" style="color: #f82249; position: absolute; top: px; left: 15px; z-index: 5;"></i>
-                <input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required>
-              </div>
-              <div class="mb-6">
-                <label for="event-description" class="block text-sm font-medium mb-1">Event Description <span class="text-red-500">*</span></label>
-                <textarea id="event-description" class="form-control rounded-lg" rows="3" placeholder="Describe your event (recommended: 3 sentences)" required></textarea>
-              </div>
-              <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-                <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-              </div>
-            </form>
-          </div>
-
-          <!-- Step 3: Event Category -->
-          <div id="step3" class="step">
-            <h2 class="text-2xl font-semibold mb-6">Step 3: Event Category</h2>
-            <p class="text-gray-600 mb-4">Select one category for your event.</p>
-            <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Athletics" required> Athletics
-              </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Performances"> Performances
-              </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Workshops"> Workshops
-              </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Gatherings"> Gatherings
-              </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="category" value="Competitions"> Competitions
-              </label>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-              <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 4: Venue Selection -->
-          <div id="step4" class="step">
-            <h2 class="text-2xl font-semibold mb-6">Step 4: Venue Selection</h2>
-            <p class="text-gray-600 mb-4">Choose the venue for your event.</p>
-            <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="venue" value="Large Gym" required> Large Gym
-              </label>
-              <label class="btn btn-outline-danger rounded-full custom-radio">
-                <input type="radio" name="venue" value="Small Gym"> Small Gym
-              </label>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-              <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 5: Event Image -->
-          <div id="step5" class="step">
-            <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
-            <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
-            <div class="custom-file mb-6">
-              <input type="file" class="custom-file-input" id="event-image" accept="image/*">
-              <label class="custom-file-label rounded-full" for="event-image">Choose file</label>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-              <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 6: Confirmation -->
-          <div id="step6" class="step">
-            <h2 class="text-2xl font-semibold mb-6">Step 6: Confirmation</h2>
-            <div id="confirmation-details" class="mb-6 p-4 bg-light rounded"></div>
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-              <button type="button" class="btn btn-success rounded-full px-8 py-2" id="confetti-button" onclick="submitForm()">Submit</button>
-            </div>
-          </div>
+   <section id="rental-form" class="section bg-light py-12">
+  <div class="container">
+    <div class="section-header">
+      <h2>Rent Our Venue</h2>
+      <p>Fill out this form to request an event at PantherVenue.</p>
+    </div>
+    
+    <div class="w-full max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg" id="form-container">
+      <!-- Progress Bar -->
+      <div id="progress-bar" class="flex items-center justify-between mb-8">
+        <div id="step-indicators" class="flex items-center w-full relative">
+          <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+          <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center">1</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">2</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">3</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">4</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">5</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">6</div>
         </div>
       </div>
-    </section>
+
+      <!-- Step 1: Personal Details -->
+      <div id="step1" class="step active">
+        <h2 class="text-2xl font-semibold mb-6">Step 1: Personal Details</h2>
+        <p class="text-gray-600 mb-4">Log in to pre-fill your details.</p>
+        <form>
+          <div class="mb-4">
+            <label for="first-name" class="block text-sm font-medium mb-1">First Name <span class="text-red-500">*</span></label>
+            <input type="text" id="first-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4">
+            <label for="last-name" class="block text-sm font-medium mb-1">Last Name <span class="text-red-500">*</span></label>
+            <input type="text" id="last-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label>
+            <input type="email" id="email" class="form-control rounded-full" required>
+          </div>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </form>
+      </div>
+
+      <!-- Step 2: Event Details -->
+      <div id="step2" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 2: Event Details</h2>
+        <form>
+          <div class="mb-4">
+            <label for="event-name" class="block text-sm font-medium mb-1">Event Name <span class="text-red-500">*</span></label>
+            <input type="text" id="event-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4">
+            <label for="event-date" class="block text-sm font-medium mb-1">Event Date <span class="text-red-500">*</span></label>
+            <input type="date" id="event-date" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4 position-relative">
+            <label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label>
+            <i class="fas fa-dollar-sign" style="color: rgb(173, 32, 32); position: relative; top: 30px; left: 15px; z-index: 10000;"></i>          
+            <input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required>
+          </div>
+          <div class="mb-6">
+            <label for="event-description" class="block text-sm font-medium mb-1">Event Description <span class="text-red-500">*</span></label>
+            <textarea id="event-description" class="form-control rounded-lg" rows="3" placeholder="Describe your event (recommended: 3 sentences)" required></textarea>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+            <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Event Category -->
+      <div id="step3" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 3: Event Category</h2>
+        <p class="text-gray-600 mb-4">Select one category for your event.</p>
+        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Athletics" required> Athletics
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Performances"> Performances
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Workshops"> Workshops
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Gatherings"> Gatherings
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Competitions"> Competitions
+          </label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 4: Venue Selection -->
+      <div id="step4" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 4: Venue Selection</h2>
+        <p class="text-gray-600 mb-4">Choose the venue for your event.</p>
+        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="venue" value="Large Gym" required> Large Gym
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="venue" value="Small Gym"> Small Gym
+          </label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 5: Event Image -->
+      <div id="step5" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
+        <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
+        <div class="custom-file mb-6">
+          <input type="file" class="custom-file-input" id="event-image" accept="image/*">
+          <label class="custom-file-label rounded-full" for="event-image">Choose file</label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 6: Confirmation -->
+      <div id="step6" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 6: Confirmation</h2>
+        <div id="confirmation-details" class="mb-6 p-4 bg-light rounded"></div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-success rounded-full px-8 py-2" id="confetti-button" onclick="submitForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   </main>
 
