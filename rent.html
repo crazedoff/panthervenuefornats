@@ -176,6 +176,20 @@
       visibility: visible;
       width: 100%;
     }
+
+     #nav-menu-container { float: right; margin: 0; padding-right: 65px; }
+        .nav-menu a { padding: 8px; text-decoration: none; display: inline-block; color: rgba(255, 255, 255, 0.8); font-family: "Raleway"; font-weight: 600; font-size: 14px; outline: none; }
+        .nav-menu .menu-active a, .nav-menu a:hover { color: #fff; }
+        .nav-menu > li { margin-left: 8px; }
+        .nav-menu > li > a:before { content: ""; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #f82249; visibility: hidden; transition: all 0.3s ease-in-out 0s; }
+        .nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before { visibility: visible; width: 100%; }
+        .nav-menu li.buy-tickets a { color: #fff; background: #f82249; padding: 7px 22px; border-radius: 50px; border: 2px solid #f82249; transition: all ease-in-out 0.3s; font-weight: 500; margin-left: 8px; margin-top: 2px; line-height: 1; font-size: 13px; }
+        .nav-menu li.buy-tickets a:hover { background: none; }
+        .nav-menu li.buy-tickets:hover a:before, .nav-menu li.buy-tickets.menu-active a:before { visibility: hidden; }
+        .nav-menu ul { margin: 4px 0 0 0; padding: 10px; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25); background: #fff; border-radius: 3px; }
+        .nav-menu ul li { transition: 0.3s; }
+        .nav-menu ul li a { padding: 10px; color: #060c22; transition: 0.3s; display: block; font-size: 13px; text-transform: none; border-radius: 3px; }
+        .nav-menu ul li:hover > a { backgro
     .nav-menu li.buy-tickets a {
       color: #fff;
       background: #f82249;
