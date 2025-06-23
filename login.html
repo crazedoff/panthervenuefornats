@@ -2,37 +2,46 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-G1N2QCDNHH');
-</script>
+      gtag('config', 'G-G1N2QCDNHH');
+    </script>
     <meta charset="utf-8">
     <title>PantherVenue - Log In</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
+    
+    <!-- Main Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Flyer Specific Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="static/css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-    <link href="static/css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Scripts for Flyer Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
     <style>
@@ -222,7 +231,6 @@
         #user-list-view .event-info h3 { font-size: 1.25rem; font-weight: bold; color: #2f3138; margin-bottom: 0.5rem; }
         #user-list-view .meta { display: flex; flex-wrap: wrap; gap: 1rem; color: #6c757d; font-size: 0.9rem; }
         #user-list-view .event-action { flex: 0 0 200px; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
-        #user-list-view .event-action .price { font-size: 1rem; font-weight: 600; color: #f82249; }
         #user-list-view .event-action button { background: #f82249; color: white; padding: 0.5rem 1.5rem; border-radius: 20px; border: none; font-size: 0.9rem; cursor: pointer; transition: background 0.3s ease; }
         #user-list-view .event-action button:hover { background: #e61e40; }
         .login-container .panel .content h3 { font-size: 2.5rem !important; color: #fff !important; margin-bottom: 0rem !important; font-weight: 700 !important; }
@@ -244,136 +252,33 @@
         #mobile-nav { transition: all 0.3s ease-in-out !important; }
         #header { z-index: 1001 !important; }
         .flatpickr-calendar { font-family: 'Open Sans', sans-serif; }
-        .flatpickr-day.today { background-color: #f82249; color: #fff; font-weight: bold; position: relative; }
-        .flatpickr-day.today:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #fff; }
-        .flatpickr-day.event { background-color: #ff6b6b00; color: #000000; position: relative; }
-        .flatpickr-day.event:after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #f80000; }
-        .flatpickr-day.event:hover { background-color: #ff8787; }
-        
-        /* Ticket Purchase */
-        /* Ticket Purchase */
-.ticket-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 0 40px rgba(248,34,73,0.2);
-    z-index: 10000;
-    display: none;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-@media (min-width: 1000px) {
-    .ticket-popup {
-        max-width: 1000px;
-    }
-}
-.ticket-popup.active {
-    display: block;
-    opacity: 1;
-}
-.popup-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-.event-details {
-    flex: 1;
-    min-width: 300px;
-}
-.registration-form {
-    flex: 1;
-    min-width: 450px; /* Increased to allow 50% wider inputs */
-}
-.seating-chart {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 10px;
-    height: 400px;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 0;
-    overflow: hidden;
-    position: relative;
-    padding-bottom: 100px;
-}
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-}
-.schedule-table td {
-    padding: 0.8rem;
-    border-bottom: 1px solid #eee;
-}
-.schedule-table tr:last-child td {
-    border-bottom: none;
-}
-.availability {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-}
-.form-group {
-    margin-bottom: 1rem;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-.form-group input {
-    width: 100%; /* Takes full width of container */
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-.form-group input:focus {
-    outline: none;
-    border-color: #f82249;
-    box-shadow: 0 0 0 3px rgba(248,34,73,0.1);
-}
-.cc-group {
-    display: grid;
-    grid-template-columns: 1fr; /* Single column to stack inputs vertically */
-    gap: 1rem;
-}
-.purchase-button {
-    background: #f82249;
-    color: white;
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.purchase-button:hover {
-    background: #e61e40;
-}
-.ticket-popup {
-    max-width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 1rem;
-}
-
+        .flatpickr-day.today { border-color: #f82249; background: #f82249; color: #fff; }
+        .flatpickr-day.selected { background: #e61e40; border-color: #e61e40; }
+        .flatpickr-day.event { background-color: rgba(248, 34, 73, 0.2); border-color: rgba(248, 34, 73, 0.2); color: #2f3138; font-weight: bold; }
+        .flatpickr-day.event:hover { background-color: rgba(248, 34, 73, 0.4); }
+        .ticket-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; display: none; opacity: 0; transition: all 0.3s ease; }
+        @media (min-width: 1000px) { .ticket-popup { max-width: 1000px; } }
+        .ticket-popup.active { display: block; opacity: 1; }
+        .popup-grid { display: flex; flex-wrap: wrap; gap: 2rem; }
+        .event-details { flex: 1; min-width: 300px; }
+        .registration-form { flex: 1; min-width: 450px; }
+        .seating-chart { background: #f8f9fa; padding: 1rem; border-radius: 10px; height: 400px; align-items: center; justify-content: center; margin: 1rem 0; overflow: hidden; position: relative; padding-bottom: 100px; }
+        .schedule-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .schedule-table td { padding: 0.8rem; border-bottom: 1px solid #eee; }
+        .schedule-table tr:last-child td { border-bottom: none; }
+        .availability { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 1rem; border-radius: 10px; margin: 1rem 0; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .form-group input:focus { outline: none; border-color: #f82249; box-shadow: 0 0 0 3px rgba(248,34,73,0.1); }
+        .cc-group { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        .purchase-button { background: #f82249; color: white; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+        .purchase-button:hover { background: #e61e40; }
+        .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
         .mock-event-tile { background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
         .price-tag { background: #f82249; color: white; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; min-width: 70px; text-align: center; }
         .event-meta { display: flex; gap: 1rem; align-items: center; color: #6c757d; font-size: 0.875rem; }
         .event-description { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 72px; margin-bottom: 1rem; }
-
         .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
         .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
         .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
@@ -426,7 +331,7 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="/home.html#intro">Home</a></li>
+                    <li><a href="/home.html">Home</a></li>
                     <li><a href="/home.html#about">About</a></li>
                     <li><a href="/event.html">Events</a></li>
                     <li><a href="/rent.html">Rent Venue</a></li>
@@ -440,15 +345,37 @@
     <!-- Mobile Navigation -->
     <nav id="mobile-nav">
         <ul>
-            <li><a href="/home.html#intro">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="event.html">Events</a></li>
-            <li><a href="rent.html">Rent Venue</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html#about">About</a></li>
+            <li><a href="/event.html">Events</a></li>
+            <li><a href="/rent.html">Rent Venue</a></li>
             <li id="mobileLoginContainer"><a href="login.html" id="mobileLoginLink">Log In</a></li>
         </ul>
     </nav>
     <div id="mobile-body-overly"></div>
+
+    <!-- HIDDEN FLYER GENERATOR -->
+    <div id="flyer-generator-container" style="position: fixed; left: -9999px; top: -9999px; width: 1080px; height: 1350px; overflow: hidden; background-color: #ccc; font-family: 'Poppins', sans-serif;">
+        <style>
+            #flyer-generator-container .overlay { position: absolute; z-index: 1; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+            #flyer-generator-container #flyer-gen-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; object-fit: cover; }
+            #flyer-generator-container #flyer-gen-title { top: 130px; left: 0; width: 100%; text-align: center; font-size: 80px; color: #383838; font-weight: 900; line-height: 1; }
+            #flyer-generator-container #flyer-gen-event-image { top: 355px; left: 210px; width: 538px; height: 308px; object-fit: cover; border-radius: 18px; }
+            #flyer-generator-container #flyer-gen-description { top: 730px; width: 460px; height: 185px; color: white; padding: 20px; font-size: 26px; font-weight: 400; line-height: 1.4; display: flex; align-items: center; justify-content: center; text-align: center; }
+            #flyer-generator-container .info-pill { top: 710px; height: 75px; padding: 10px 25px; color: white; border-radius: 15px; font-size: 22px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+            #flyer-generator-container #flyer-gen-price { left: 515px; width: 215px; }
+            #flyer-generator-container #flyer-gen-date { left: 755px; width: 215px; }
+            #flyer-generator-container #flyer-gen-qr-code { top: 1045px; left: 580px; width: 230px; height: 230px; background-color: white; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+            #flyer-generator-container #flyer-gen-qr-code img { width: 100% !important; height: 100% !important; }
+        </style>
+        <img id="flyer-gen-bg" src="https://files.catbox.moe/ztzbsk.png" crossorigin="anonymous" alt="Flyer Background Template">
+        <img id="flyer-gen-event-image" class="overlay" src="" alt="Event Image" crossorigin="anonymous">
+        <div id="flyer-gen-title" class="overlay"></div>
+        <div id="flyer-gen-description" class="overlay"></div>
+        <div id="flyer-gen-price" class="overlay info-pill"></div>
+        <div id="flyer-gen-date" class="overlay info-pill"></div>
+        <div id="flyer-gen-qr-code" class="overlay"></div>
+    </div>
 
     <!-- Admin Dashboard -->
     <div class="dashboard-wrapper">
@@ -465,105 +392,22 @@
                                 <div class="w-100">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Total Sales</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
-                                                    </div>
-                                                    <h1 id="totalSales" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
-                                                    <div class="mb-0">
-                                                        <span class="text-danger" id="totalSalesChange">0%</span>
-                                                        <span class="text-muted">since last week</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Unique Visitors</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-users"></i></div>
-                                                    </div>
-                                                    <h1 id="uniqueVisitors" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                                                    <div class="mb-0">
-                                                        <span class="text-success" id="uniqueVisitorsChange">0%</span>
-                                                        <span class="text-muted">since last week</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Sales</h5></div><div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div></div><h1 id="totalSales" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1><div class="mb-0"><span class="text-danger" id="totalSalesChange">0%</span><span class="text-muted">since last week</span></div></div></div>
+                                            <div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Unique Visitors</h5></div><div class="col-auto"><i class="align-middle fas fa-users"></i></div></div><h1 id="uniqueVisitors" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1><div class="mb-0"><span class="text-success" id="uniqueVisitorsChange">0%</span><span class="text-muted">since last week</span></div></div></div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Tickets Sold</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
-                                                    </div>
-                                                    <h1 id="ticketsSold" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                                                    <div class="mb-0">
-                                                        <span class="text-success" id="ticketsSoldChange">0%</span>
-                                                        <span class="text-muted">since last week</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Active Events</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-calendar-alt"></i></div>
-                                                    </div>
-                                                    <h1 id="activeEvents" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                                                    <div class="mb-0">
-                                                        <span class="text-success" id="activeEventsChange">0%</span>
-                                                        <span class="text-muted">since last week</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Tickets Sold</h5></div><div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div></div><h1 id="ticketsSold" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1><div class="mb-0"><span class="text-success" id="ticketsSoldChange">0%</span><span class="text-muted">since last week</span></div></div></div>
+                                            <div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Active Events</h5></div><div class="col-auto"><i class="align-middle fas fa-calendar-alt"></i></div></div><h1 id="activeEvents" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1><div class="mb-0"><span class="text-success" id="activeEventsChange">0%</span><span class="text-muted">since last week</span></div></div></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-xxl-7">
-                                <div class="card flex-fill w-100">
-                                    <div class="card-header"><h5 class="card-title mb-0">Desired Goals Graph</h5></div>
-                                    <div class="card-body py-3">
-                                        <div class="chart chart-sm"><canvas id="chartjs-dashboard-line"></canvas></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-xl-6 col-xxl-7"><div class="card flex-fill w-100"><div class="card-header"><h5 class="card-title mb-0">Desired Goals Graph</h5></div><div class="card-body py-3"><div class="chart chart-sm"><canvas id="chartjs-dashboard-line"></canvas></div></div></div></div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
-                                <div class="card flex-fill w-100">
-                                    <div class="card-header"><h5 class="card-title mb-0">Event Types</h5></div>
-                                    <div class="card-body d-flex">
-                                        <div class="align-self-center w-100">
-                                            <div class="py-3"><div class="chart chart-xs"><canvas id="chartjs-dashboard-pie"></canvas></div></div>
-                                            <table class="table mb-0">
-                                                <tbody id="eventTypesTableBody"></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
-                                <div class="card flex-fill w-100">
-                                    <table class="table table-hover my-0">
-                                        <thead>
-                                            <tr><th>Event Name</th><th class="d-none d-xl-table-cell">Date</th><th>Status</th><th class="d-none d-md-table-cell">Organizer</th></tr>
-                                        </thead>
-                                        <tbody id="requestsTableBody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-3 col-xxl-3 d-flex">
-                                <div class="card flex-fill w-100">
-                                    <div class="card-header"><h5 class="card-title mb-0">Calendar</h5></div>
-                                    <div class="card-body d-flex">
-                                        <div class="align-self-center w-100"><div class="chart"><div id="datetimepicker-dashboard"></div></div></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3"><div class="card flex-fill w-100"><div class="card-header"><h5 class="card-title mb-0">Event Types</h5></div><div class="card-body d-flex"><div class="align-self-center w-100"><div class="py-3"><div class="chart chart-xs"><canvas id="chartjs-dashboard-pie"></canvas></div></div><table class="table mb-0"><tbody id="eventTypesTableBody"></tbody></table></div></div></div></div>
+                            <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2"><div class="card flex-fill w-100"><table class="table table-hover my-0"><thead><tr><th>Event Name</th><th class="d-none d-xl-table-cell">Date</th><th>Status</th><th class="d-none d-md-table-cell">Organizer</th></tr></thead><tbody id="requestsTableBody"></tbody></table></div></div>
+                            <div class="col-12 col-lg-3 col-xxl-3 d-flex"><div class="card flex-fill w-100"><div class="card-header"><h5 class="card-title mb-0">Calendar</h5></div><div class="card-body d-flex"><div class="align-self-center w-100"><div class="chart"><div id="datetimepicker-dashboard"></div></div></div></div></div></div>
                         </div>
                     </div>
                 </main>
@@ -585,45 +429,11 @@
                             <div class="col-xl-4 col-xxl-3 d-flex">
                                 <div class="w-100">
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Total Tickets Bought</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
-                                                    </div>
-                                                    <h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Total Money Spent</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
-                                                    </div>
-                                                    <h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="col-sm-12"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Tickets Bought</h5></div><div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div></div><h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1></div></div></div>
+                                        <div class="col-sm-12"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"><h5 class="card-title">Total Money Spent</h5></div><div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div></div><h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1></div></div></div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-sm-14s">
-                                            <div class="card rent-venue-box" style="height: 258px;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Rent Venue</h5>
-                                                    <p class="rent-venue-note" >Host your event at PantherVenue. <br>
-                                                        Questions? Visit the 
-                                                        <a href="index.html#faq" class="text-red-500 underline decoration-red-500 decoration-2 hover:text-red-700 hover:decoration-red-700">F.A.Q. page.</a>
-                                                    </p>
-                                                    <div style="text-align: center; margin-top: 1px;">
-                                                        <a href="rent.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 16px; line-height: 1.5; display: inline-block;">Rent Now</a>
-                                                    </div>
-                                                    <p class="rent-venue-note" style=" margin-bottom: 20px;">Event accepted? An admin will reach out to you soon. Check your email!</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="col-sm-14s"><div class="card rent-venue-box" style="height: 258px;"><div class="card-body"><h5 class="card-title">Rent Venue</h5><p class="rent-venue-note" >Host your event at PantherVenue. <br>Questions? Visit the <a href="home.html#faq" class="text-red-500 underline decoration-red-500 decoration-2 hover:text-red-700 hover:decoration-red-700">F.A.Q. page.</a></p><div style="text-align: center; margin-top: 1px;"><a href="rent.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 16px; line-height: 1.5; display: inline-block;">Rent Now</a></div><p class="rent-venue-note" style=" margin-bottom: 20px;">Event accepted? An admin will reach out to you soon. Check your email!</p></div></div></div>
                                     </div>
                                 </div>
                             </div>
@@ -648,132 +458,14 @@
 
     <!-- Popups -->
     <div class="popup-overlay" id="popupOverlay"></div>
-    <div class="error-popup" id="errorPopup">
-        <span class="popup-close" id="popupClose">×</span>
-        <i class="fas fa-exclamation-circle error-icon"></i>
-        <h3 class="text-xl font-bold mb-2" id="popupTitle">Error</h3>
-        <p id="popupMessage"></p>
-    </div>
-    
-    <!-- User Event Details Popup -->
+    <div class="error-popup" id="errorPopup"><span class="popup-close" id="popupClose">×</span><i class="fas fa-exclamation-circle error-icon"></i><h3 class="text-xl font-bold mb-2" id="popupTitle">Error</h3><p id="popupMessage"></p></div>
     <div class="popup-overlay" id="ticketOverlay"></div>
-    <div class="ticket-popup" id="ticketPopup">
-        <span class="popup-close" id="ticketPopupClose">×</span>
-        <div class="popup-grid">
-            <div class="event-details">
-                <h2 class="text-2xl font-bold mb-4" id="popupEventTitle">Event Title</h2>
-                <div class="seating-chart" id="popupSeatingChart"></div>
-                <table class="schedule-table" id="popupScheduleTable"></table>
-                <div class="availability">
-                    <span>Selected Seats:</span>
-                    <span class="font-bold text-red-600" id="selectedSeatsText">None</span>
-                </div>
-            </div>
-            <div class="registration-form">
-                <h3 class="text-xl font-bold mb-4">Registration Details</h3>
-                <div id="totalCost" class="text-red-600 text-4xl font-bold mb-4 text-center"></div>
-                <!-- This form is now for display only -->
-                <form id="ticketForm">
-                    <div class="form-group"><label>Name</label><input type="text" id="fullName" readonly></div>
-                    <div class="form-group"><label>Email</label><input type="email" id="email" readonly></div>
-                    <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" readonly></div>
-                    <div class="form-group"><label>Tickets Quantity</label><input type="number" id="quantity" readonly></div>
-                    <div class="cc-group payment-group">
-                        <div class="form-group"><label>Card Number</label><input type="text" id="cardPaymentNumber" class="payment-field" readonly></div>
-                        <div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field" readonly></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Rental Request Popup -->
+    <div class="ticket-popup" id="ticketPopup"><span class="popup-close" id="ticketPopupClose">×</span><div class="popup-grid"><div class="event-details"><h2 class="text-2xl font-bold mb-4" id="popupEventTitle">Event Title</h2><div class="seating-chart" id="popupSeatingChart"></div><table class="schedule-table" id="popupScheduleTable"></table><div class="availability"><span>Selected Seats:</span><span class="font-bold text-red-600" id="selectedSeatsText">None</span></div></div><div class="registration-form"><h3 class="text-xl font-bold mb-4">Registration Details</h3><div id="totalCost" class="text-red-600 text-4xl font-bold mb-4 text-center"></div><form id="ticketForm"><div class="form-group"><label>Name</label><input type="text" id="fullName" readonly></div><div class="form-group"><label>Email</label><input type="email" id="email" readonly></div><div class="form-group"><label>Phone Number</label><input type="tel" id="phone" readonly></div><div class="form-group"><label>Tickets Quantity</label><input type="number" id="quantity" readonly></div><div class="cc-group payment-group"><div class="form-group"><label>Card Number</label><input type="text" id="cardPaymentNumber" class="payment-field" readonly></div><div class="form-group"><label>Expiry Date</label><input type="month" id="expiry" class="payment-field" readonly></div></div></form></div></div></div>
     <div class="popup-overlay" id="requestOverlay"></div>
-    <div class="request-popup" id="requestPopup">
-        <span class="popup-close" id="requestClose">×</span>
-        <h3 class="text-xl font-bold mb-4">Rental Request Details</h3>
-        <div id="requestDetails" class="text-left mb-4"></div>
-        <div id="mockEventTile" class="mock-event-tile p-4 mb-4"></div>
-        <div class="flex justify-center gap-2">
-            <button class="btn btn-decline" onclick="updateRequestStatus('declined')">Decline</button>
-            <button class="btn btn-pending" onclick="updateRequestStatus('pending')">Pending</button>
-            <button class="btn btn-accept" onclick="updateRequestStatus('accepted')">Accept</button>
-            <button class="btn btn-trash" onclick="deleteRequest()"><i class="fas fa-trash"></i></button>
-        </div>
-    </div>
+    <div class="request-popup" id="requestPopup"><span class="popup-close" id="requestClose">×</span><h3 class="text-xl font-bold mb-4">Rental Request Details</h3><div id="requestDetails" class="text-left mb-4"></div><div id="mockEventTile" class="mock-event-tile p-4 mb-4"></div><div class="flex justify-center gap-2"><button class="btn btn-decline" onclick="updateRequestStatus('declined')">Decline</button><button class="btn btn-pending" onclick="updateRequestStatus('pending')">Pending</button><button class="btn btn-accept" onclick="updateRequestStatus('accepted')">Accept</button><button class="btn btn-trash" onclick="deleteRequest()"><i class="fas fa-trash"></i></button></div></div>
 
     <!-- Login Container -->
-    <div class="login-container">
-        <div class="forms-container">
-            <div class="signin-signup">
-                <form action="#" class="sign-in-form">
-                    <h2 class="title">Log in</h2>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" id="loginEmail" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="loginPassword" required>
-                    </div>
-                    <input type="submit" value="Login" class="btn solid" />
-                    <p class="social-text">Log in with social platforms:</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </form>
-                <form action="#" class="sign-up-form">
-                    <h2 class="title">Sign up</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="signupUsername" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" id="signupEmail" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="signupPassword" required>
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Confirm Password" id="signupConfirm" required>
-                    </div>
-                    <div class="success-message" id="signupSuccess"></div>
-                    <input type="submit" class="btn" value="Sign up" />
-                    <p class="social-text">Sign up with social platforms:</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="panels-container">
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>New here?</h3>
-                    <p>Create an account to access exclusive features and manage your events!</p>
-                    <button class="btn transparent" id="sign-up-btn">Sign up</button>
-                </div>
-                <img src="img/log.svg" class="image" alt="" />
-            </div>
-            <div class="panel right-panel">
-                <div class="content">
-                    <h3>Have an account?</h3>
-                    <p>Welcome back! Log in to continue your experience with PantherVenue.</p>
-                    <button class="btn transparent" id="sign-in-btn">Log in</button>
-                </div>
-                <img src="img/register.svg" class="image" alt="" />
-            </div>
-        </div>
-    </div>
+    <div class="login-container"><div class="forms-container"><div class="signin-signup"><form action="#" class="sign-in-form"><h2 class="title">Log in</h2><div class="input-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email" id="loginEmail" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Password" id="loginPassword" required></div><input type="submit" value="Login" class="btn solid" /><p class="social-text">Log in with social platforms:</p><div class="social-media"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-google"></i></a><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a></div></form><form action="#" class="sign-up-form"><h2 class="title">Sign up</h2><div class="input-field"><i class="fas fa-user"></i><input type="text" placeholder="Username" id="signupUsername" required></div><div class="input-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email" id="signupEmail" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Password" id="signupPassword" required></div><div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Confirm Password" id="signupConfirm" required></div><div class="success-message" id="signupSuccess"></div><input type="submit" class="btn" value="Sign up" /><p class="social-text">Sign up with social platforms:</p><div class="social-media"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-google"></i></a><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a></div></form></div></div><div class="panels-container"><div class="panel left-panel"><div class="content"><h3>New here?</h3><p>Create an account to access exclusive features and manage your events!</p><button class="btn transparent" id="sign-up-btn">Sign up</button></div><img src="img/log.svg" class="image" alt="" /></div><div class="panel right-panel"><div class="content"><h3>Have an account?</h3><p>Welcome back! Log in to continue your experience with PantherVenue.</p><button class="btn transparent" id="sign-in-btn">Log in</button></div><img src="img/register.svg" class="image" alt="" /></div></div></div>
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -796,7 +488,7 @@
       const db = firebase.firestore();
     </script>
     
-    <!-- Main Application Logic (Firebase Integrated) -->
+    <!-- Main Application Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let currentUser = null;
@@ -809,157 +501,124 @@
             const loginLink = document.getElementById('loginLink');
             const mobileLoginLink = document.getElementById('mobileLoginLink');
 
-           auth.onAuthStateChanged(async (user) => {
-    const wasLoggedIn = !!currentUser;
+            const showPopup = (title, message, isSuccess = false) => { 
+                const popup = document.getElementById('errorPopup'); 
+                const overlay = document.getElementById('popupOverlay'); 
+                if(!popup || !overlay) return; 
+                const icon = popup.querySelector('.error-icon'); 
+                popup.querySelector('#popupTitle').textContent = title; 
+                popup.querySelector('#popupMessage').textContent = message; 
+                icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon'; 
+                icon.style.color = isSuccess ? '#4CAF50' : '#f82249'; 
+                popup.classList.add('active'); overlay.style.display = 'block'; 
+            };
 
-    if (user) {
-        try {
-            const userDoc = await db.collection("users").doc(user.uid).get();
-            if (!userDoc.exists) throw new Error("User data not found in Firestore.");
-            
-            currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
-            
-            if (!wasLoggedIn) {
-                loginContainer.classList.add('fade-out');
-                setTimeout(() => {
-                    loginContainer.style.display = 'none';
-                    loginContainer.classList.remove('fade-out');
-                    if (currentUser.isAdmin) {
-                        adminDashboard.style.display = 'block';
-                        adminDashboard.classList.add('fade-in');
-                        setTimeout(() => adminDashboard.classList.remove('fade-in'), 500);
-                        updateAdminDashboard();
-                    } else {
-                        userDashboard.style.display = 'block';
-                        userDashboard.classList.add('fade-in');
-                        setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
-                        loadUserDashboard();
-                    }
-                }, 500);
-            } else {
-                if (currentUser.isAdmin) {
-                    adminDashboard.style.display = 'block';
-                    userDashboard.style.display = 'none';
-                    updateAdminDashboard();
-                } else {
-                    userDashboard.style.display = 'block';
-                    adminDashboard.style.display = 'none';
-                    loadUserDashboard();
-                }
-                loginContainer.style.display = 'none';
-            }
-            
-            // Update link text
-            loginLink.textContent = 'Dashboard';
-            mobileLoginLink.textContent = 'Dashboard';
-            // Prevent navigation to login.html when already logged in
-            loginLink.href = "#";
-            mobileLoginLink.href = "#";
-            loginLink.addEventListener('click', preventNavigationIfLoggedIn);
-            mobileLoginLink.addEventListener('click', preventNavigationIfLoggedIn);
-
-        } catch (error) {
-            console.error("Error fetching user profile:", error);
-            showPopup('Error', 'Could not load your profile. Please log out and try again.');
-            await handleLogout();
-        }
-    } else {
-        currentUser = null;
-        if (wasLoggedIn) {
-            adminDashboard.classList.add('fade-out');
-            userDashboard.classList.add('fade-out');
-            setTimeout(() => {
-                adminDashboard.style.display = 'none';
-                userDashboard.style.display = 'none';
-                adminDashboard.classList.remove('fade-out');
-                userDashboard.classList.remove('fade-out');
-                loginContainer.style.display = 'block';
-                loginContainer.classList.add('fade-in');
-                setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
-            }, 500);
-        } else {
-            adminDashboard.style.display = 'none';
-            userDashboard.style.display = 'none';
-            loginContainer.style.display = 'block';
-        }
-
-        loginLink.textContent = 'Log In';
-        mobileLoginLink.textContent = 'Log In';
-        loginLink.href = "login.html";
-        mobileLoginLink.href = "login.html";
-        // Remove event listeners to allow normal navigation
-        loginLink.removeEventListener('click', preventNavigationIfLoggedIn);
-        mobileLoginLink.removeEventListener('click', preventNavigationIfLoggedIn);
-    }
-});
-
-// Function to prevent navigation if logged in
-function preventNavigationIfLoggedIn(e) {
-    if (currentUser) {
-        e.preventDefault();
-        // Optionally, you can show the dashboard again or do nothing
-    }
-}
-            // --- FIX #1: Signup Flow ---
-            async function handleSignUp(email, password, username) {
-                if (password.length < 8) {
-                    showPopup('Error', 'Password must be at least 8 characters.');
+            // NEW: Flyer Generation Function
+            window.generateFlyer = async function(eventId) {
+                const eventDoc = await db.collection('events').doc(eventId).get();
+                if (!eventDoc.exists) {
+                    showPopup('Error', 'Event details could not be found to generate a flyer.');
                     return;
                 }
-                try {
-                    const isAdmin = (email === 'anvay@panthervenue.com' && username === 'anvay_admin');
-                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                    await db.collection("users").doc(userCredential.user.uid).set({
-                        username: username,
-                        email: email,
-                        isAdmin: isAdmin,
-                        created: firebase.firestore.FieldValue.serverTimestamp()
+                const event = eventDoc.data();
+
+                const flyerContainer = document.getElementById('flyer-generator-container');
+                const qrContainer = document.getElementById('flyer-gen-qr-code');
+                qrContainer.innerHTML = ''; // Clear previous QR code
+
+                document.getElementById('flyer-gen-title').innerText = event.title;
+                document.getElementById('flyer-gen-description').innerText = event.desc;
+                document.getElementById('flyer-gen-price').innerText = event.price > 0 ? `$${event.price.toFixed(2)}` : 'FREE';
+                
+                const formattedDate = new Date(event.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' });
+                document.getElementById('flyer-gen-date').innerText = formattedDate;
+                
+                document.getElementById('flyer-gen-event-image').src = event.image;
+
+                new QRCode(qrContainer, {
+                    text: `https://panther-venue.vercel.app/event.html#event-${eventId}`,
+                    width: 230, height: 230,
+                    colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
+                });
+                
+                showPopup('Generating...', 'Your flyer is being created and will download shortly.', true);
+                
+                setTimeout(() => {
+                    html2canvas(flyerContainer, {
+                        useCORS: true, 
+                        allowTaint: true,
+                        scale: 1.5 
+                    }).then(canvas => {
+                        const link = document.createElement('a');
+                        link.href = canvas.toDataURL('image/png');
+                        link.download = `PantherVenue_${event.title.replace(/\s+/g, '_')}_Flyer.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
                     });
-                    await auth.signOut();
-                    
-                    const successEl = document.getElementById('signupSuccess');
-                    const loginContainerEl = document.querySelector(".login-container");
-                    
-                    // Clear the signup form after submission
-                    document.getElementById('signupUsername').value = '';
-                    document.getElementById('signupEmail').value = '';
-                    document.getElementById('signupPassword').value = '';
-                    document.getElementById('signupConfirm').value = '';
-                    
-                    successEl.style.display = 'block';
-                    successEl.textContent = `Account created! Redirecting...`;
-                    
-                    setTimeout(() => {
-                        successEl.style.display = 'none';
-                        // Pre-fill login form with the credentials they just used
-                        document.getElementById('loginEmail').value = email;
-                        document.getElementById('loginPassword').value = password;
-                        // Animate the switch to the login panel
-                        loginContainerEl.classList.remove("sign-up-mode");
-                    }, 2000);
-
-                } catch (error) {
-                    showPopup('Error', error.message);
-                }
+                }, 500);
             }
 
-            async function handleLogin(email, password) {
-                try {
-                    await auth.signInWithEmailAndPassword(email, password);
-                } catch (error) {
-                    showPopup('Error', "Invalid credentials. Please check your email and password.");
+            auth.onAuthStateChanged(async (user) => {
+                const wasLoggedIn = !!currentUser;
+                if (user) {
+                    try {
+                        const userDoc = await db.collection("users").doc(user.uid).get();
+                        if (!userDoc.exists) throw new Error("User data not found in Firestore.");
+                        currentUser = { uid: user.uid, email: user.email, ...userDoc.data() };
+                        if (!wasLoggedIn) {
+                            loginContainer.classList.add('fade-out');
+                            setTimeout(() => {
+                                loginContainer.style.display = 'none';
+                                loginContainer.classList.remove('fade-out');
+                                if (currentUser.isAdmin) {
+                                    adminDashboard.style.display = 'block';
+                                    adminDashboard.classList.add('fade-in');
+                                    setTimeout(() => adminDashboard.classList.remove('fade-in'), 500);
+                                    updateAdminDashboard();
+                                } else {
+                                    userDashboard.style.display = 'block';
+                                    userDashboard.classList.add('fade-in');
+                                    setTimeout(() => userDashboard.classList.remove('fade-in'), 500);
+                                    loadUserDashboard();
+                                }
+                            }, 500);
+                        } else {
+                            if (currentUser.isAdmin) { adminDashboard.style.display = 'block'; userDashboard.style.display = 'none'; updateAdminDashboard(); } 
+                            else { userDashboard.style.display = 'block'; adminDashboard.style.display = 'none'; loadUserDashboard(); }
+                            loginContainer.style.display = 'none';
+                        }
+                        loginLink.textContent = 'Dashboard'; mobileLoginLink.textContent = 'Dashboard';
+                        loginLink.href = "#"; mobileLoginLink.href = "#";
+                        loginLink.addEventListener('click', preventNavigationIfLoggedIn);
+                        mobileLoginLink.addEventListener('click', preventNavigationIfLoggedIn);
+                    } catch (error) { console.error("Error fetching user profile:", error); showPopup('Error', 'Could not load your profile. Please log out and try again.'); await handleLogout(); }
+                } else {
+                    currentUser = null;
+                    if (wasLoggedIn) {
+                        adminDashboard.classList.add('fade-out'); userDashboard.classList.add('fade-out');
+                        setTimeout(() => {
+                            adminDashboard.style.display = 'none'; userDashboard.style.display = 'none';
+                            adminDashboard.classList.remove('fade-out'); userDashboard.classList.remove('fade-out');
+                            loginContainer.style.display = 'block'; loginContainer.classList.add('fade-in');
+                            setTimeout(() => loginContainer.classList.remove('fade-in'), 500);
+                        }, 500);
+                    } else { adminDashboard.style.display = 'none'; userDashboard.style.display = 'none'; loginContainer.style.display = 'block'; }
+                    loginLink.textContent = 'Log In'; mobileLoginLink.textContent = 'Log In';
+                    loginLink.href = "login.html"; mobileLoginLink.href = "login.html";
+                    loginLink.removeEventListener('click', preventNavigationIfLoggedIn);
+                    mobileLoginLink.removeEventListener('click', preventNavigationIfLoggedIn);
                 }
-            }
+            });
 
-           window.handleLogout = async function() {
-    try {
-        await auth.signOut();
-        // Ensure UI updates are handled by auth state change listener
-    } catch (error) {
-        console.error("Logout error:", error);
-        showPopup('Error', 'Failed to log out. Please try again.');
-    }
-}
+            function preventNavigationIfLoggedIn(e) { if (currentUser) e.preventDefault(); }
+
+            async function handleSignUp(email, password, username) { if (password.length < 8) { showPopup('Error', 'Password must be at least 8 characters.'); return; } try { const isAdmin = (email === 'anvay@panthervenue.com' && username === 'anvay_admin'); const userCredential = await auth.createUserWithEmailAndPassword(email, password); await db.collection("users").doc(userCredential.user.uid).set({ username: username, email: email, isAdmin: isAdmin, created: firebase.firestore.FieldValue.serverTimestamp() }); await auth.signOut(); const successEl = document.getElementById('signupSuccess'); const loginContainerEl = document.querySelector(".login-container"); document.getElementById('signupUsername').value = ''; document.getElementById('signupEmail').value = ''; document.getElementById('signupPassword').value = ''; document.getElementById('signupConfirm').value = ''; successEl.style.display = 'block'; successEl.textContent = `Account created! Redirecting...`; setTimeout(() => { successEl.style.display = 'none'; document.getElementById('loginEmail').value = email; document.getElementById('loginPassword').value = password; loginContainerEl.classList.remove("sign-up-mode"); }, 2000); } catch (error) { showPopup('Error', error.message); } }
+            
+            async function handleLogin(email, password) { try { await auth.signInWithEmailAndPassword(email, password); } catch (error) { showPopup('Error', "Invalid credentials. Please check your email and password."); } }
+            
+            window.handleLogout = async function() { try { await auth.signOut(); } catch (error) { console.error("Logout error:", error); showPopup('Error', 'Failed to log out. Please try again.'); } }
+            
             async function updateAdminDashboard() {
                 if (!currentUser || !currentUser.isAdmin) return;
                 const [registrationsSnapshot, eventsSnapshot, requestsSnapshot] = await Promise.all([
@@ -1023,7 +682,7 @@ function preventNavigationIfLoggedIn(e) {
                 updateEventTypes(events);
                 updateCalendar(events);
             }
-
+            
             async function loadUserDashboard() {
                 if (!currentUser) return;
                 document.getElementById('dashboard-title').innerHTML = `<span style="color: #f82249;">${currentUser.username}'s</span> Personalized Dashboard`;
@@ -1050,7 +709,6 @@ function preventNavigationIfLoggedIn(e) {
                         const eventDoc = await db.collection('events').doc(reg.eventId).get();
                         if (eventDoc.exists) {
                             const event = eventDoc.data();
-                            const priceDisplay = reg.totalCost > 0 ? `$${(reg.totalCost / reg.quantity).toFixed(2)}` : 'FREE';
                             eventsContainer.innerHTML += `
                                 <div class="event-row">
                                     <div class="event-image"><img src="${event.image || 'https://via.placeholder.com/150'}" alt="${event.title}"></div>
@@ -1058,12 +716,12 @@ function preventNavigationIfLoggedIn(e) {
                                         <h3>${event.title}</h3>
                                         <div class="meta">
                                             <span><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>${event.location || 'N/A'}</span>
-                                            <span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date).toLocaleDateString()}</span>
+                                            <span><i class="fas fa-calendar-day mr-2 text-red-500"></i>${new Date(event.date + 'T00:00:00').toLocaleDateString()}</span>
                                             <span><i class="fas fa-tag mr-2 text-gray-500"></i>${event.category || 'N/A'}</span>
                                         </div>
                                     </div>
                                     <div class="event-action">
-                                        <span class="price">${priceDisplay}</span>
+                                        <a href="#" onclick="event.preventDefault(); generateFlyer('${eventDoc.id}')" class="text-red-600 underline font-semibold mb-2">Download PDF</a>
                                         <button onclick="showEventDetails('${reg.id}')">See Details</button>
                                     </div>
                                 </div>`;
@@ -1086,22 +744,29 @@ function preventNavigationIfLoggedIn(e) {
             }
             
             document.querySelector('.sign-up-form')?.addEventListener('submit', (e) => { e.preventDefault(); const username = e.target.querySelector('#signupUsername').value.trim(); const email = e.target.querySelector('#signupEmail').value.trim(); const password = e.target.querySelector('#signupPassword').value; const confirmPassword = e.target.querySelector('#signupConfirm').value; if (!username || !email || !password) return showPopup('Error', 'Please fill out all fields.'); if (password !== confirmPassword) return showPopup('Error', 'Passwords do not match.'); handleSignUp(email, password, username); });
+            
             document.querySelector('.sign-in-form')?.addEventListener('submit', (e) => { e.preventDefault(); const email = e.target.querySelector('#loginEmail').value.trim(); const password = e.target.querySelector('#loginPassword').value; if (!email || !password) return showPopup('Error', 'Please enter email and password.'); handleLogin(email, password); });
             
             const sign_in_btn = document.querySelector("#sign-in-btn"); const sign_up_btn = document.querySelector("#sign-up-btn"); const login_container_el = document.querySelector(".login-container"); if(sign_in_btn && sign_up_btn && login_container_el) { sign_up_btn.addEventListener("click", () => login_container_el.classList.add("sign-up-mode")); sign_in_btn.addEventListener("click", () => login_container_el.classList.remove("sign-up-mode")); }
             
-            const showPopup = (title, message, isSuccess = false) => { const popup = document.getElementById('errorPopup'); const overlay = document.getElementById('popupOverlay'); if(!popup || !overlay) return; const icon = popup.querySelector('.error-icon'); popup.querySelector('#popupTitle').textContent = title; popup.querySelector('#popupMessage').textContent = message; icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon'; icon.style.color = isSuccess ? '#4CAF50' : '#f82249'; popup.classList.add('active'); overlay.style.display = 'block'; };
             function hidePopup() { document.getElementById('errorPopup').classList.remove('active'); document.getElementById('popupOverlay').style.display = 'none'; }
+            
             document.getElementById('popupClose')?.addEventListener('click', hidePopup);
+            
             document.getElementById('popupOverlay')?.addEventListener('click', hidePopup);
+            
             document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) { document.body.classList.toggle('mobile-nav-active'); this.querySelector('i').classList.toggle('fa-bars'); this.querySelector('i').classList.toggle('fa-times'); let overly = document.getElementById('mobile-body-overly'); overly.style.display = document.body.classList.contains('mobile-nav-active') ? 'block' : 'none'; });
+            
             document.getElementById('mobile-body-overly').addEventListener('click', function() { document.body.classList.remove('mobile-nav-active'); let toggle = document.getElementById('mobile-nav-toggle').querySelector('i'); toggle.classList.remove('fa-times'); toggle.classList.add('fa-bars'); this.style.display = 'none'; });
             
             const defaultSchedules = {"Athletics": [{ event: "Doors Open", time: "6:00 PM" }, { event: "Game Start", time: "7:00 PM" }, { event: "Game End", time: "8:00 PM" }],"Performances": [{ event: "Doors Open", time: "7:00 PM" }, { event: "Show Start", time: "7:30 PM" }, { event: "Show End", time: "9:30 PM" }],"Competitions": [{ event: "Registration", time: "8:00 AM" }, { event: "Round 1", time: "9:00 AM" }, { event: "Round 2", time: "11:00 AM" }, { event: "Finals", time: "2:00 PM" }],"Workshops": [{ event: "Session 1", time: "9:30 AM" }, { event: "Break", time: "11:00 AM" }, { event: "Session 2", time: "11:30 AM" }],"Gatherings": [{ event: "Welcome", time: "10:00 AM" }, { event: "Networking", time: "12:00 PM" }, { event: "Closing", time: "1:00 PM" }]};
             
             function generateSeats(seatingChartDiv) { const seatGroups = seatingChartDiv.querySelectorAll('.seat-group'); const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']; seatGroups.forEach((group, colIndex) => { for (let i = 0; i < 8; i++) { const seatRow = document.createElement('div'); seatRow.className = 'seat-row'; for (let seatNum = 1; seatNum <= 2; seatNum++) { const seat = document.createElement('div'); seat.className = 'seat'; const rowLetter = rows[colIndex]; const seatLabel = `${rowLetter}${i * 2 + seatNum}`; seat.textContent = seatLabel; seat.title = seatLabel; seatRow.appendChild(seat); } group.appendChild(seatRow); } }); }
+            
             function closeTicketPopup() { const ticketPopup = document.getElementById('ticketPopup'); const ticketOverlay = document.getElementById('ticketOverlay'); if (ticketPopup) ticketPopup.classList.remove('active', 'view-mode'); if (ticketOverlay) ticketOverlay.style.display = 'none'; document.body.style.overflow = 'auto'; }
+            
             document.getElementById('ticketPopupClose')?.addEventListener('click', closeTicketPopup);
+            
             document.getElementById('ticketOverlay')?.addEventListener('click', closeTicketPopup);
 
             window.showEventDetails = async function(registrationId) {
@@ -1260,89 +925,14 @@ function preventNavigationIfLoggedIn(e) {
                 pieChart = new Chart(document.getElementById("chartjs-dashboard-pie"), { type: "doughnut", data: { labels: [], datasets: [{ data: [], backgroundColor: ['#f82249', '#ff6b6b', '#ff8787', '#ccc'], borderWidth: 5 }] }, options: { responsive: !window.MSInputMethodContext, maintainAspectRatio: false, legend: { display: false }, cutoutPercentage: 75 } });
                 flatpickrInstance = flatpickr(document.getElementById("datetimepicker-dashboard"), { inline: true, prevArrow: "<span title=\"Previous month\">«</span>", nextArrow: "<span title=\"Next month\">»</span>", defaultDate: "today" });
             } catch (error) { console.error("Error initializing charts or calendar:", error); }
+            
             function updateEventTypes(events) { if (!pieChart || !events || events.length === 0) return; const categoryCount = events.reduce((acc, event) => { const category = event.category || 'Uncategorized'; acc[category] = (acc[category] || 0) + 1; return acc; }, {}); const totalEvents = events.length; const sortedCategories = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]); pieChart.data.labels = sortedCategories.map(([category]) => category); pieChart.data.datasets[0].data = sortedCategories.map(([, count]) => count); pieChart.update(); const tableBody = document.getElementById('eventTypesTableBody'); tableBody.innerHTML = ''; sortedCategories.forEach(([category, count]) => { const percentage = ((count / totalEvents) * 100).toFixed(1); tableBody.innerHTML += `<tr><td>${category}</td><td class="text-end">${percentage}%</td></tr>`; }); }
+            
             function updateCalendar(events) { if (!flatpickrInstance || !events) return; const eventDates = events.map(event => event.date); flatpickrInstance.set('onDayCreate', function(dObj, dStr, fp, dayElem){ if(eventDates.includes(dayElem.dateObj.toISOString().split('T')[0])){ dayElem.classList.add('event'); } }); flatpickrInstance.redraw(); }
         });
     </script>
 
-
-
-<style>
-#subscribe {
-  position: relative;
-  overflow: hidden;
-  height: auto; /* Keeps section height driven by content */
-  min-height: 300px; /* Fallback for minimal visibility */
-}
-
-#subscribe video {
-  position: absolute;
-  top: -300px;
-  left: 0;
-  width: 100%;
-  height: 250%; /* Oversized for parallax, adjust as needed */
-  object-fit: cover;
-
-  z-index: 0;
-}
-</style>
-
-
-
-<!-- SCRIPT for TEAM section animation -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-      const teamPath = document.querySelector('#team-scroll-line');
-      const teamSection = document.querySelector('#team');
-
-      if (teamPath && teamSection) {
-          
-          const scrollStartOffset = 0.2;
-          const maxStrokeWidth = 25; 
-          const minStrokeWidth = 15;
-          const animationSpeedFactor = 0.75; 
-
-          const pathLength = teamPath.getTotalLength();
-          teamPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-          teamPath.style.strokeDashoffset = pathLength;
-
-          const handleScroll = () => {
-              const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-              const sectionTop = teamSection.offsetTop;
-              const sectionHeight = teamSection.offsetHeight;
-              const viewportHeight = window.innerHeight;
-              const scrollDistance = scrollTop - sectionTop;
-
-              if (scrollDistance >= -viewportHeight && scrollDistance <= sectionHeight * animationSpeedFactor) {
-                  const progress = (scrollDistance + viewportHeight) / ((sectionHeight + viewportHeight) * animationSpeedFactor);
-                  const adjustedProgress = (progress - scrollStartOffset) / (1 - scrollStartOffset);
-                  const finalProgress = Math.max(0, Math.min(1, adjustedProgress));
-                  
-                  const drawLength = pathLength * finalProgress;
-                  teamPath.style.strokeDashoffset = pathLength - drawLength;
-
-                  const currentStrokeWidth = maxStrokeWidth - (finalProgress * (maxStrokeWidth - minStrokeWidth));
-                  teamPath.style.strokeWidth = `${currentStrokeWidth}px`;
-              }
-          };
-          window.addEventListener('scroll', handleScroll);
-          handleScroll();
-      }
-  });
-</script>
-
-
-
-    <script src="static/js/app2.js"></script>
-    <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
-<script type="module" src="/analytics.js"></script>
-
-
-
-
-
-    
 </body>
 </html>
