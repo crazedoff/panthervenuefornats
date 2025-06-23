@@ -621,69 +621,44 @@
                         <button onclick="handleLogout()" class="btn btn-danger">log out</button>
                     </div>
                     <div class="container-fluid p-0">
-                      <!-- START: Add this code to your User Dashboard section -->
-<div class="row">
-    <div class="col-6">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mt-0">
-                        <h5 class="card-title">Total Tickets</h5>
+                      <!-- START: Add this code -->
+<div class="col-xl-4 col-xxl-3 d-flex">
+    <div class="w-100">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col mt-0"><h5 class="card-title">Total Tickets Bought</h5></div>
+                            <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
+                        </div>
+                        <h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
+                        <!-- Added Sub-text -->
+                        <div class="mb-0">
+                            <span id="weeklyTicketsChange" class="text-muted">--%</span>
+                            <span class="text-muted">vs last week</span>
+                        </div>
                     </div>
-                    <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
                 </div>
-                <h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
             </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mt-0">
-                        <h5 class="card-title">Total Spent</h5>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col mt-0"><h5 class="card-title">Total Money Spent</h5></div>
+                            <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
+                        </div>
+                        <h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
+                        <!-- Added Sub-text -->
+                        <div class="mb-0">
+                            <span id="weeklySpentChange" class="text-muted">--%</span>
+                            <span class="text-muted">vs last week</span>
+                        </div>
                     </div>
-                    <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
-                </div>
-                <h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
-            </div>
-        </div>
-    </div>
-    <div class="col-6 mt-3">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mt-0">
-                        <h5 class="card-title">Monthly Tickets</h5>
-                    </div>
-                    <div class="col-auto"><i class="align-middle fas fa-calendar-check"></i></div>
-                </div>
-                <h1 id="monthlyTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                <div class="mb-0">
-                    <span class="text-muted" id="monthlyTicketsChange">--%</span>
-                    <span class="text-muted"> vs last month</span>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-6 mt-3">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mt-0">
-                        <h5 class="card-title">Monthly Spend</h5>
-                    </div>
-                    <div class="col-auto"><i class="align-middle fas fa-wallet"></i></div>
-                </div>
-                <h1 id="monthlySpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
-                <div class="mb-0">
-                    <span class="text-muted" id="monthlySpentChange">--%</span>
-                    <span class="text-muted"> vs last month</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <!-- ... more code ... -->
 <!-- END: Add this code -->
                             </div>
                             <div class="col-xl-8 col-xxl-9">
@@ -1151,72 +1126,6 @@
                 const totalSpent = userRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
                 document.getElementById('totalTickets').textContent = totalTickets;
                 document.getElementById('totalSpent').textContent = `$${totalSpent.toFixed(2)}`;
-
-
-
-
-
-                // START: Add this code inside the loadUserDashboard function
-
-// --- Monthly Analytics Calculation ---
-const now = new Date();
-const currentYear = now.getFullYear();
-const currentMonth = now.getMonth(); // 0-11
-
-// Filter registrations for the current month
-const currentMonthRegistrations = userRegistrations.filter(reg => {
-    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
-    const regDate = reg.created.toDate();
-    return regDate.getFullYear() === currentYear && regDate.getMonth() === currentMonth;
-});
-
-// Filter registrations for the last month
-const lastMonthRegistrations = userRegistrations.filter(reg => {
-    if (!reg.created || typeof reg.created.toDate !== 'function') return false;
-    const regDate = reg.created.toDate();
-    // Handles year boundary (e.g., if current month is January)
-    if (currentMonth === 0) { // January
-        return regDate.getFullYear() === currentYear - 1 && regDate.getMonth() === 11; // December of last year
-    } else {
-        return regDate.getFullYear() === currentYear && regDate.getMonth() === currentMonth - 1;
-    }
-});
-
-const monthlyTickets = currentMonthRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
-const monthlySpent = currentMonthRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-
-const lastMonthTickets = lastMonthRegistrations.reduce((sum, reg) => sum + reg.quantity, 0);
-const lastMonthSpent = lastMonthRegistrations.reduce((sum, reg) => sum + reg.totalCost, 0);
-
-document.getElementById('monthlyTickets').textContent = monthlyTickets;
-document.getElementById('monthlySpent').textContent = `$${monthlySpent.toFixed(2)}`;
-
-const calculatePercentageChange = (current, previous) => {
-    if (previous === 0) {
-        return current > 0 ? 100 : 0; // If nothing was spent last month, any new spending is a big jump
-    }
-    return ((current - previous) / previous) * 100;
-};
-
-const updateChangeElement = (elementId, changeValue) => {
-    const el = document.getElementById(elementId);
-    el.textContent = `${changeValue.toFixed(0)}%`;
-    if (changeValue > 0) {
-        el.className = 'text-success font-weight-bold';
-        el.textContent = `+${changeValue.toFixed(0)}%`;
-    } else if (changeValue < 0) {
-        el.className = 'text-danger font-weight-bold';
-    } else {
-        el.className = 'text-warning font-weight-bold';
-    }
-};
-
-updateChangeElement('monthlyTicketsChange', calculatePercentageChange(monthlyTickets, lastMonthTickets));
-updateChangeElement('monthlySpentChange', calculatePercentageChange(monthlySpent, lastMonthSpent));
-
-// --- End of Monthly Analytics Calculation ---
-
-// END: Add this code
 
                 const eventsContainer = document.getElementById('user-list-view');
                 eventsContainer.innerHTML = '';
