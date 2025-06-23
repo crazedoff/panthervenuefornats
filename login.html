@@ -851,7 +851,7 @@
             
             const showPopup = (title, message, isSuccess = false) => { const popup = document.getElementById('errorPopup'); const overlay = document.getElementById('popupOverlay'); if(!popup || !overlay) return; const icon = popup.querySelector('.error-icon'); popup.querySelector('#popupTitle').textContent = title; popup.querySelector('#popupMessage').textContent = message; icon.className = isSuccess ? 'fas fa-check-circle error-icon' : 'fas fa-exclamation-circle error-icon'; icon.style.color = isSuccess ? '#4CAF50' : '#f82249'; popup.classList.add('active'); overlay.style.display = 'block'; };
 
-            // ADDED: Flyer Generation Function
+                     // ADDED: Flyer Generation Function
             window.generateFlyer = async function(eventId) {
                 const eventDoc = await db.collection('events').doc(eventId).get();
                 if (!eventDoc.exists) {
@@ -886,28 +886,28 @@
                         useCORS: true, 
                         allowTaint: true,
                         scale: 1.5 
-                   // ADD THIS NEW BLOCK
-.then(canvas => {
-    // This converts the canvas image into a real file-like object (a "Blob")
-    canvas.toBlob(function(blob) {
-        // This creates a temporary, downloadable URL for that file
-        const url = URL.createObjectURL(blob);
-        
-        // Create a hidden link to trigger the download
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `PantherVenue_${event.title.replace(/\s+/g, '_')}_Flyer.png`;
+                    }).then(canvas => {
+                        // This converts the canvas image into a real file-like object (a "Blob")
+                        canvas.toBlob(function(blob) {
+                            // This creates a temporary, downloadable URL for that file
+                            const url = URL.createObjectURL(blob);
+                            
+                            // Create a hidden link to trigger the download
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.download = `PantherVenue_${event.title.replace(/\s+/g, '_')}_Flyer.png`;
 
-        // Add the link to the page, click it, and then remove it
-        document.body.appendChild(link);
-        link.click();
-        
-        // Clean up the temporary URL and link
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-    }, 'image/png');
-});
+                            // Add the link to the page, click it, and then remove it
+                            document.body.appendChild(link);
+                            link.click();
+                            
+                            // Clean up the temporary URL and link
+                            document.body.removeChild(link);
+                            URL.revokeObjectURL(url);
+                        }, 'image/png');
+                    });
                 }, 500);
+            }; // <-- Notice there is no extra bracket here. It's now correct!
 
            auth.onAuthStateChanged(async (user) => {
                 const wasLoggedIn = !!currentUser;
