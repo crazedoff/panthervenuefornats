@@ -854,10 +854,7 @@
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 
-
-
-
-    <!-- START: Chatbot Integration Body -->
+  <!-- START: Chatbot Integration Body -->
 <!-- Chatbot Toggler -->
 <button id="chatbot-toggler">
   <span class="material-symbols-rounded">mode_comment</span>
@@ -908,13 +905,13 @@ const API_URL = "https://ai.hackclub.com/chat/completions";
 let chatHistory;
 
 // Utility function to create message elements
-const createMessageElement = (content, className) => {
+// Utility function to create message elements
+const createMessageElement = (content, ...classNames) => {
     const div = document.createElement("div");
-    div.classList.add("message", className);
+    div.classList.add("message", ...classNames); // This can now handle multiple classes
     div.innerHTML = content;
     return div;
 };
-
 // Function to display chat history
 const displayChatHistory = () => {
     chatBody.innerHTML = ''; // Clear existing messages
@@ -990,7 +987,7 @@ const handleOutgoingMessage = (e) => {
             <div class="dot"></div>
           </div>
         </div>`;
-        const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
+                const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message", "thinking");
         chatBody.appendChild(incomingMessageDiv);
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
         generateBotResponse(incomingMessageDiv);
@@ -1454,10 +1451,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   </style>
   <!-- END: Chatbot Integration Head -->
-
-  <!-- START: Chatbot Integration Head -->
-  <!-- Google Fonts for Chatbot Icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
