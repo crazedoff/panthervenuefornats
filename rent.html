@@ -543,18 +543,9 @@
 
 
 
-<!-- Rental Form -->
-<section id="rental-form" class="section bg-light py-12">
-  <div class="container">
-    <div class="section-header">
-      <h2>Rent Our Venue</h2>
-      <p>Fill out this form to request an event at PantherVenue.</p>
-
-
-
  <!-- Rental Process Section (New) -->
     <section class="rental-process">
-       
+        <div class="container">
           
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -579,15 +570,18 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </section>
 <style>
 
     /* --- Rental Process Section Styling --- */
-   
+    .rental-process {
+      background-color: var(--background-color);
+    }
     .rental-process .icon-box {
       text-align: center;
       padding: 30px 20px;
+      background: var(--surface-color);
       border-radius: 12px;
       box-shadow: 0 4px 25px rgba(0,0,0,0.05);
       transition: all 0.3s ease-in-out;
@@ -626,8 +620,15 @@
     }
 </style>
 
+
+
+<!-- Rental Form -->
+<section id="rental-form" class="section bg-light py-12">
+  <div class="container">
+    <div class="section-header">
+      <h2>Rent Our Venue</h2>
+      <p>Fill out this form to request an event at PantherVenue.</p>
     </div>
-    
     <div class="w-full max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg" id="form-container">
       <!-- Progress Bar -->
       <div id="progress-bar" class="flex items-center justify-between mb-8">
