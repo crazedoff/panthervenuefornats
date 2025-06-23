@@ -1034,10 +1034,9 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.href = '/login.html';
       }
     }
-    // Add this inside the DOMContentLoaded event listener, after the existing radio button event listeners
-document.querySelectorAll('input[name="venue"]').forEach(radio => {
-  input.checked = false; // Ensure no venue radio is pre-selected
-  radio.parentElement.classList.remove('selected'); // Remove any .selected class from labels
+    document.querySelectorAll('input[name="venue"]').forEach(radio => {
+  radio.checked = false; // Corrected from 'input.checked' to 'radio.checked'
+  radio.parentElement.classList.remove('selected'); // Remove .selected class from parent label
 });
   });
 
