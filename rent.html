@@ -1,280 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics & Meta -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-G1N2QCDNHH');
-  </script>
+  <!-- google analytics tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1N2QCDNHH');
+</script>
+
+
+
+
   <meta charset="utf-8">
-  <title>PantherVenue - Rent Venue</title>
+  <title>PantherVenue - Rent</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="Rent our gymnasium for your events, book venue, event space rental" name="keywords">
-  <meta content="Book the premier PantherVenue gymnasium for your next sporting event, ceremony, or large gathering. Use our seamless form to start your request." name="description">
+  <meta content="Rent our gymnasium for your events" name="keywords">
+  <meta content="Host sporting events, concerts, and more at PantherVenue" name="description">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- Favicon -->
+  <!-- our favicon -->
   <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Core & Template Fonts -->
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  
-  <!-- Vendor CSS Files (from both projects) -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- vendor css files -->
+  <link href="assets2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets2/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets2/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets2/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets2/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- bootstrap css -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- other css libs -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/venobox/venobox.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="https://cdn.tailwindcss.com" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-  <!-- Main Stylesheet (for header/footer consistency) -->
-  <link href="css/style.css" rel="stylesheet">
-  
-  <!-- Custom Styles for Merged Rent Page -->
+  <!-- main css -->
+  <link href="assets2/css/main.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
   <style>
-    /* 
-      SECTION 1: CORE BRANDING & TEMPLATE STYLES
-      This block contains styles adapted from the "College" template,
-      re-themed with PantherVenue's red color palette.
-    */
-    :root {
-      /* PantherVenue Core Colors */
-      --accent-color: #f82249;
-      --accent-color-rgb: 248, 34, 73;
-      --heading-color: #222222;
-      --default-color: #444444;
-      --surface-color: #ffffff;
-      --background-color: #f8f9fa;
-      --contrast-color: #ffffff;
+    /* nav menu styles */
+    .nav-menu, .nav-menu * { margin: 0; padding: 0; list-style: none; }
+    .nav-menu ul { position: absolute; display: none; top: 100%; left: 0; z-index: 99; }
+    .nav-menu li { position: relative; white-space: nowrap; }
+    .nav-menu > li { float: left; }
+    .nav-menu li:hover > ul, .nav-menu li.sfHover > ul { display: block; }
+    .nav-menu ul ul { top: 0; left: 100%; }
+    .nav-menu ul li { min-width: 180px; }
+    .sf-arrows .sf-with-ul { padding-right: 30px; }
+    .sf-arrows .sf-with-ul:after { content: "\f107"; position: absolute; right: 15px; font-family: FontAwesome; }
+    .sf-arrows ul .sf-with-ul:after { content: "\f105"; }
+    #nav-menu-container { float: right; margin: 0; padding-right: 65px; }
+    .nav-menu a { padding: 8px; text-decoration: none; display: inline-block; color: rgba(255, 255, 255, 0.8); font-family: "Raleway", sans-serif; font-weight: 600; font-size: 14px; outline: none; }
+    .nav-menu .menu-active a, .nav-menu a:hover { color: #fff; }
+    .nav-menu > li { margin-left: 8px; }
+    .nav-menu > li > a:before { content: ""; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #f82249; visibility: hidden; transition: all 0.3s ease-in-out 0s; }
+    .nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before { visibility: visible; width: 100%; }
+    .nav-menu li.buy-tickets a { color: #fff; background: #f82249; padding: 7px 22px; border-radius: 50px; border: 2px solid #f82249; transition: all ease-in-out 0.3s; font-weight: 500; margin-left: 8px; margin-top: 2px; line-height: 1; font-size: 13px; }
+    .nav-menu li.buy-tickets a:hover { background: none; text-decoration: none; }
+    .nav-menu li.buy-tickets a:before { content: none; }
+    .nav-menu ul { margin: 4px 0 0 0; padding: 10px; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25); background: #fff; border-radius: 3px; }
+    .nav-menu ul li a { padding: 10px; color: #060c22; transition: 0.3s; display: block; font-size: 13px; text-transform: none; border-radius: 3px; }
+    .nav-menu ul li:hover > a { background: #f82249; color: #fff; }
+    #header { height: 70px; padding: 15px 0; position: fixed; left: 0; top: 0; right: 0; background: rgba(6, 12, 34, 0.98); transition: all 0.5s; z-index: 997; }
+    #header #logo img { padding: 0; margin: 0; max-height: 40px; padding-left: 80px; }
+    #mobile-nav-toggle { position: fixed; right: 0; top: 0; z-index: 999; margin: 15px 15px 0 0; border: 0; background: none; font-size: 24px; display: none; transition: all 0.4s; outline: none; cursor: pointer; }
+    .alt-features .icon-box { display: flex; }
+    .alt-features .icon-box h4 { font-size: 20px; font-weight: 700; margin: 0 0 10px 0; }
+    .alt-features .icon-box i { font-size: 44px; line-height: 44px; color: #f82249; margin-right: 15px; }
+    .alt-features .icon-box p { font-size: 15px; font-weight: 500; color: rgba(255, 255, 255, 0.7); margin-bottom: 0; }
+    .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
+    .step.active { display: block; opacity: 1; transform: translateX(0); }
+    .step.exiting { opacity: 0; transform: translateX(-50px); }
+    .input-field { max-width: 380px; width: 100%; background-color: #e5e7eb; margin: 10px 0; height: 55px; border-radius: 55px; display: grid; grid-template-columns: 15% 85%; padding: 0 0.4rem; position: relative; transition: all 0.3s ease; }
+    .input-field i { text-align: center; line-height: 55px; color: #6b7280; font-size: 1.1rem; }
+    .input-field input, .input-field select { background: none; outline: none; border: none; line-height: 1; font-weight: 600; font-size: 1.1rem; color: #000; font-family: 'Open Sans', sans-serif; }
+    .input-field input::placeholder, .input-field select::placeholder { color: #9ca3af; font-weight: 500; }
+    .input-field:focus-within { box-shadow: 0 0 0 2px #f82249; background: #fff; }
+    .input-field:focus-within i { color: #f82249; }
+    .form-radio { appearance: none; width: 20px; height: 20px; border: 2px solid #f82249; border-radius: 50%; margin-right: 10px; cursor: pointer; }
+    .form-radio:checked { background-color: #f82249; border-color: #f82249; }
+    .progress-bar { transition: all 0.5s ease; }
+    .form-control { border-radius: 50px; }
+    .form-control:focus { box-shadow: 0 0 0 2px #f82249; border-color: #f82249; }
+    .custom-file-label { border-radius: 50px; background-color: #f0f0f0; color: #2f3138; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; }
+    .custom-file-input:focus ~ .custom-file-label { box-shadow: 0 0 0 2px #f82249; }
+    .btn-outline-danger { border-color: #f82249; color: #f82249; }
+    .btn-outline-danger:hover { background-color: #f82249; color: #fff; }
+    .btn-outline-danger.active { background-color: #f82249; color: #fff; }
+    #step-indicators { position: relative; }
+    .progress-fill { position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 2px; background: #f82249; transition: width 0.5s ease; z-index: -1; }
+    .btn-primary { background-color: #f82249; border-color: #f82249; }
+    .btn-primary:hover { background-color: #e61e40; border-color: #e61e40; }
+    .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+    .btn-secondary:hover { background-color: #5a6268; border-color: #545b62; }
+    .btn-success { background-color: #28a745; border-color: #28a745; }
+    .btn-success:hover { background-color: #218838; border-color: #1e7e34; }
+    .custom-radio input:checked + .btn-outline-danger { background-color: #f82249; color: #fff; transition: all 0.3s ease; }
+    #confirmation-details { background-color: #f9fafb; border: 1px solid #e5e7eb; }
+    .btn-group-toggle .btn.active { background-color: #f82249; color: #fff; }
+    .btn:focus, .btn:active { box-shadow: 0 0 0 2px #f82249; }
+    .section-header { margin-bottom: 60px; position: relative; padding-bottom: 20px; }
+    .section-header::before { content: ''; position: absolute; display: block; width: 60px; height: 5px; background: #f82249; bottom: 0; left: calc(50% - 25px); }
+    .section-header h2 { font-family: "Open Sans"; font-size: 46px; text-transform: uppercase; text-align: center; font-weight: 700; margin-bottom: 10px; }
+    .section-header p { text-align: center; padding: 0; margin: 0; font-size: 18px; font-weight: 500; color: #45464b; }
+    .section-with-bg { background-color: #f6f7fd; }
+    .position-relative { position: relative; }
+    .position-absolute { position: absolute; }
+    .top-50 { top: 50%; }
+    .start-0 { left: 0; }
+    .translate-middle-y { transform: translateY(-50%); }
+    .ms-3 { margin-left: 1rem; }
+    .ps-5 { padding-left: 3rem; }
+    .custom-radio.selected { background-color: #f82249; color: #fff; }
+    .alt-features .icon-box { display: flex; }
+    .alt-features .icon-box h4 { font-size: 20px; font-weight: 700; margin: 0 0 10px 0; }
+    .alt-features .icon-box i { font-size: 44px; line-height: 44px; color: var(--accent-color); margin-right: 15px; }
+    .alt-features .icon-box p { font-size: 15px; color: color-mix(in srgb, var(--default-color), transparent 30%); margin-bottom: 0; }
+    .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
+    .step.active { display: block; opacity: 1; transform: translateX(0); }
+    .step.exiting { opacity: 0; transform: translateX(-50px); }
 
-      /* PantherVenue Core Fonts */
-      --default-font: "Open Sans", sans-serif;
-      --heading-font: "Raleway", sans-serif;
-      --nav-font: "Poppins", sans-serif;
+    /* new styles for the phone animation */
+    *, *:before, *:after {
+        box-sizing: border-box;
+        position: relative;
     }
 
-    body {
-      color: var(--default-color);
-      background-color: var(--background-color);
-      font-family: var(--default-font);
-    }
-
-    /* --- Hero Section Styling --- */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 0;
-      background-color: #060c22; /* Fallback */
+    #alt-features *, #alt-features *:before, #alt-features *:after {
+      transform-style: preserve-3d;
     }
     
-    .hero .hero-wrapper {
-      padding: 80px 0;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      background: url('rentimg.jpeg') center center;
-      background-size: cover;
-      position: relative;
-    }
-    .hero .hero-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(6, 12, 34, 0.75); /* Dark overlay for contrast */
+    #alt-features {
+        --duration: 3.2s;
+        --stagger: .8s;
+        --easing: cubic-bezier(.36,.07,.25,1);
+        --offscreen: 40vmax;
+        --color-card: #c61032;
+        --color-border: #000000;
+        --color-shadow: #333333;
     }
 
-    .hero .hero-content {
-      position: relative;
-      z-index: 2;
+    #app {
+        height: 45vmin;
+        width: 28vmin;
+        max-height: 360px;
+        max-width: 210px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: rotateX(-20deg) rotateY(-55deg);
+        background: var(--color-card);
+        border-radius: 2vmin;
+        perspective: 10000px;
+        margin-left: 15rem;
     }
 
-    .hero .hero-content h1 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-      color: var(--contrast-color);
+    #app:before {
+        border: 5vmin solid var(--color-border);
+        border-left-width: 1.5vmin;
+        border-right-width: 1.5vmin;
+        border-radius: inherit;
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: var(--color-card);
+    }
+
+    #app > .papers, #app:before {
+        transform: translateZ(3vmin);
+    }
+
+    #app:after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: inherit;
+        border-radius: inherit;
+        transform: translateZ(1.5vmin);
+    }
+
+    #app > .shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-origin: bottom center;
+        transform: rotateX(90deg);
+        background: var(--color-shadow);
+        border-radius: inherit;
+    }
+
+    .paper-shadow {
+        background: var(--color-shadow);
+        height: 50%;
+        width: 100%;
+        position: absolute;
+        top: calc(100% + 3vmin);
+        left: 0;
+        transform-origin: top center;
+        animation: shadow-in var(--duration) var(--easing) infinite;
+        animation-delay: calc(var(--i) * var(--stagger));
+        animation-fill-mode: both;
+    }
+
+    @keyframes shadow-in {
+        0%, 5% {
+            transform: scale(.8, 1) translateY(var(--offscreen));
+        }
+        100% {
+            transform: scale(.8, 0);
+        }
+    }
+
+    .papers {
+        width: 20vmin;
+        height: 30vmin;
+        max-width: 160px;
+        max-height: 230px;
+        background: #f0f0f0;
+    }
+
+    .paper {
+        --segments: 5;
+        --segment: calc(100% * 1 / var(--segments));
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: calc(var(--total) - var(--i));
+        animation: fly-in var(--duration) var(--easing) infinite,
+                   paper-fade-in var(--duration) var(--easing) infinite;
+        animation-delay: calc(var(--i) * var(--stagger));
     }
     
-    .hero .hero-content .stats-row {
-      display: flex;
-      margin-top: 2.5rem;
-      gap: 2.5rem;
+    @keyframes paper-fade-in {
+        0%, 15% { opacity: 0.2; }
+        80%, 100% { opacity: 1; }
     }
 
-    .hero .hero-content .stats-row .stat-item {
-      text-align: left;
+
+    @keyframes fly-in {
+        0%, 2% {
+            transform: translateZ(var(--offscreen)) translateY(80%) rotateX(30deg);
+        }
+        80%, 100% {
+            transform: translateZ(0px) translateY(0%) rotateX(0deg);
+        }
+    }
+
+    .paper > .segment {
+        height: var(--segment);
+    }
+
+    .segment {
+        --rotate: 20deg;
+        height: 100%;
+        transform-origin: top center;
+        background: #f0f0f0;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: none;
+        border-bottom: none;
+        animation: inherit;
+        animation-name: curve-paper;
+    }
+
+    .segment > .segment {
+        top: 98%;
+    }
+
+    @keyframes curve-paper {
+        0%, 2% { transform: rotateX(var(--rotate, 0deg)); }
+        90%, 100% { transform: rotateX(0deg); }
+    }
+
+    .paper.-rogue {
+        transform-origin: top center -5vmin;
+    }
+
+    .paper.-rogue .segment {
+        --rotate: 30deg;
+        animation-name: curve-rogue-paper;
+    }
+
+    @keyframes curve-rogue-paper {
+        0%, 50% { transform: rotateX(var(--rotate)); }
+        100% { transform: rotateX(0deg); }
+    }
+
+    .paper.-rogue > .segment {
+        animation: inherit;
+        animation-name: rogue-paper;
+        transform-origin: left top 20vmin;
+    }
+
+    @keyframes rogue-paper {
+        0%, 2% {
+            transform: rotateX(1turn);
+        }
+        80%, 100% {
+            transform: rotateX(0turn);
+        }
+    }
+
+    .paper .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 2vmin;
+        color: #000000;
+        font-family: 'Courier New', monospace;
+        font-size: 2vmin;
+        line-height: 1.5;
+        transform: translateZ(0.1px);
+        opacity: 0.4;
+        animation: fade-in-text var(--duration) var(--easing) infinite;
+        animation-delay: calc(var(--i) * var(--stagger));
+    }
+
+    @keyframes fade-in-text {
+        0%, 20% { opacity: 0; }
+        40%, 100% { opacity: 1; }
+    }
+
+    .paper.-rogue .content {
+        font-weight: bold;
+        color: #C8102E; 
     }
     
-    .hero .hero-content .stats-row .stat-item .stat-number {
-      display: block;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent-color);
-    }
-
-    .hero .hero-content .stats-row .stat-item .stat-label {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.8);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .hero .feature-cards-wrapper {
-      margin-top: -60px; /* Pulls cards up over the hero */
-      padding-bottom: 40px;
-      position: relative;
-      z-index: 10;
-    }
-    .hero .feature-cards-wrapper .feature-card {
-      background: var(--surface-color);
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-      display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
-      height: 100%;
-      transition: all 0.3s ease;
-      border-left: 4px solid transparent;
-    }
-
-    .hero .feature-cards-wrapper .feature-card:hover,
-    .hero .feature-cards-wrapper .feature-card.active {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      border-left-color: var(--accent-color);
-    }
-
-    .hero .feature-cards-wrapper .feature-card .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: rgba(var(--accent-color-rgb), 0.1);
-      color: var(--accent-color);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      transition: all 0.3s ease;
-    }
-
-    .hero .feature-cards-wrapper .feature-card:hover .feature-icon,
-    .hero .feature-cards-wrapper .feature-card.active .feature-icon {
-      background: var(--accent-color);
-      color: var(--contrast-color);
-    }
-
-    .hero .feature-cards-wrapper .feature-card .feature-content h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      font-weight: 700;
-      color: var(--heading-color);
-    }
-    .hero .feature-cards-wrapper .feature-card .feature-content p {
-      font-size: 0.9rem;
-      color: var(--default-color);
-      margin: 0;
-    }
-
-    /* Upcoming Event Bar */
-    .upcoming-event {
-      background: var(--heading-color);
-      color: var(--contrast-color);
-      border-radius: 15px;
-      margin-top: -20px;
-      position: relative;
-      z-index: 11;
-    }
-    .upcoming-event .event-content {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 25px;
-    }
-    .upcoming-event .event-date {
-      display: flex; flex-direction: column; background: var(--accent-color);
-      color: var(--contrast-color); text-align: center; padding: 15px;
-      border-radius: 8px; margin-right: 30px; min-width: 100px;
-    }
-    .upcoming-event .event-date .day { font-size: 2.5rem; font-weight: 800; line-height: 1; }
-    .upcoming-event .event-date .month { font-size: 1rem; font-weight: 600; text-transform: uppercase; }
-    .upcoming-event .event-info { flex: 1; }
-    .upcoming-event .event-info h3 { font-size: 1.6rem; color: var(--contrast-color); margin-bottom: 10px; font-weight: 700; }
-    .upcoming-event .event-info p { font-size: 1rem; margin: 0; opacity: 0.8; }
-    .upcoming-event .event-action .btn-event {
-      background: var(--accent-color); color: var(--contrast-color);
-      padding: 12px 30px; border-radius: 50px; font-weight: 600;
-    }
-    
-    @media (max-width: 992px) {
-      .hero .hero-wrapper { text-align: center; }
-      .hero .hero-content h1 { font-size: 2.5rem; }
-      .hero .hero-content .stats-row { justify-content: center; }
-      .upcoming-event .event-content { flex-direction: column; text-align: center; }
-      .upcoming-event .event-date { margin: 0 auto 20px; }
-      .upcoming-event .event-info { margin-bottom: 20px; }
-    }
-
-    /* --- Form Section Styling --- */
-    #rental-form-section {
-      background-color: var(--background-color);
-      padding: 80px 0;
-    }
-    .form-sidebar {
-      background: linear-gradient(135deg, #fef2f2 0%, #fffafb 100%);
-      padding: 2.5rem; border-radius: 1rem; border: 2px solid #fee2e2;
-      height: 100%;
-    }
-    .form-sidebar h3 { color: #b91c1c; font-weight: 700; }
-    .form-sidebar p { color: #4b5563; }
-    .form-container-wrapper {
-      background: var(--surface-color); border-radius: 1rem; padding: 2.5rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.07);
-    }
-    #progress-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
-    .step-indicator {
-      width: 40px; height: 40px; border: 2px solid #fca5a5; color: var(--accent-color);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 600; transition: all 0.4s ease; position: relative; background: #fff; z-index: 2;
-    }
-    .step-indicator.active {
-      background-color: var(--accent-color); color: white; border-color: var(--accent-color); transform: scale(1.1);
-    }
-    .progress-line { flex: 1; height: 2px; background-color: #fdd8d8; margin: 0 -1px; }
-    .progress-line.active { background-color: var(--accent-color); }
-    #progress-fill { position: absolute; top: 50%; left: 0; height: 2px; background: var(--accent-color); transition: width 0.5s ease; z-index: 1; }
-
-    .form-step { display: none; }
-    .form-step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .form-label { font-weight: 600; color: #374151; margin-bottom: 0.5rem; display: block; }
-    .form-control {
-      border: 1px solid #ced4da; border-radius: 0.5rem; transition: all .15s ease-in-out;
-    }
-    .form-control:focus { border-color: var(--accent-color); box-shadow: 0 0 0 0.25rem rgba(var(--accent-color-rgb), 0.25); }
-    .btn-danger { background-color: var(--accent-color); border-color: var(--accent-color); }
-    .btn-danger:hover { background-color: #d11c3f; border-color: #d11c3f; }
-    .btn-success:hover { background-color: #1a7431; border-color: #1a7431; }
-    
-    .custom-radio-group .btn { border-color: #fca5a5; color: #ef4444; margin: 5px; }
-    .custom-radio-group .btn.active, .custom-radio-group .btn:hover { background-color: var(--accent-color); color: white; border-color: var(--accent-color); }
   </style>
 
 </head>
 
-<body class="index-page">
-  <!-- Header (from your original site) -->
+<body>
+  <!-- Header -->
   <header id="header">
     <div class="container">
       <div id="logo" class="pull-left">
-        <a href="/home.html" class="scrollto"><img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo"></a>
+        <a href="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" class="scrollto">
+          <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="" title="">
+        </a>
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
@@ -282,6 +379,7 @@
           <li><a href="/home.html#about">About</a></li>
           <li><a href="/event.html">Events</a></li>
           <li class="menu-active"><a href="/rent.html">Rent Venue</a></li>
+
           <li class="buy-tickets"><a href="/login.html" id="loginButton">Log In</a></li>
         </ul>
       </nav>
@@ -289,368 +387,1304 @@
   </header>
 
   <main class="main">
-    
-    <!-- Hero Section (New design, adapted from template) -->
+    <!-- Hero Section -->
     <section id="hero" class="hero section">
-      <div class="hero-wrapper">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-8 hero-content" data-aos="fade-right">
-              <h1>Your Event, Our Venue.<br>A Perfect Partnership.</h1>
-              <div class="stats-row">
-                <div class="stat-item"><span class="stat-number">$100K+</span><span class="stat-label">Donated to School</span></div>
-                <div class="stat-item"><span class="stat-number">100+</span><span class="stat-label">Events Hosted Annually</span></div>
-                <div class="stat-item"><span class="stat-number">25K</span><span class="stat-label">Square Feet of Space</span></div>
-              </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up">Rent Our Gymnasium <br> for Your Next Event</h1>
+            <p data-aos="fade-up" data-aos-delay="100">From sporting events to trade shows, the PantherVenue <br> facility has everything you need to host a successful event.</p>
+            <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
+              <a href="/rent.html#alt-features" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
+              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"></a>
             </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+            <img src="assets2/img/hero-img.png" class="img-fluid animated" alt="Gymnasium">
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="feature-cards-wrapper" data-aos="fade-up" data-aos-delay="200">
-        <div class="container">
-          <div class="row gy-4">
-            <div class="col-lg-4" data-aos-delay="300">
-              <div class="feature-card">
-                <div class="feature-icon"><i class="bi bi-calendar-check"></i></div>
-                <div class="feature-content"><h3>Flexible Scheduling</h3><p>Choose your ideal date with our straightforward availability calendar.</p></div>
-              </div>
+
+    
+<!-- Alt Features Section -->
+<section id="alt-features" class="alt-features section">
+  <div class="container">
+    <div class="section-header">
+      <h2>From Papers to Autonomy</h2>
+      <p>Find everything you need to book and plan your event with ease.</p>
+    </div>
+    <div class="row gy-5">
+      <div class="col-xl-7 d-flex order-2 order-xl-1" data-aos="fade-up" data-aos-delay="200">
+        <div class="row align-self-center gy-5">
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-calendar-event"></i>
+            <div>
+              <h4>Check Availability</h4>
+              <p>View our calendar to secure your preferred event date.</p>
             </div>
-            <div class="col-lg-4" data-aos-delay="400">
-              <div class="feature-card active">
-                <div class="feature-icon"><i class="bi bi-building"></i></div>
-                <div class="feature-content"><h3>Modern Facilities</h3><p>Utilize our state-of-the-art sound systems, lighting, and scoreboards.</p></div>
-              </div>
+          </div>
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-cash-coin"></i>
+            <div>
+              <h4>Rental Pricing</h4>
+              <p>Explore our rental rates, packages, and additional fees.</p>
             </div>
-            <div class="col-lg-4" data-aos-delay="500">
-              <div class="feature-card">
-                <div class="feature-icon"><i class="bi bi-people"></i></div>
-                <div class="feature-content"><h3>Dedicated Staff</h3><p>Our experienced team is here to support your event from start to finish.</p></div>
-              </div>
+          </div>
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-tools"></i>
+            <div>
+              <h4>Setup & Equipment</h4>
+              <p>Learn about available seating arrangements, A/V setups, and more.</p>
+            </div>
+          </div>
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-file-earmark-text"></i>
+            <div>
+              <h4>Rental Policies</h4>
+              <p>Review our rental terms, cancellation policies, and security rules.</p>
+            </div>
+          </div>
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-envelope"></i>
+            <div>
+              <h4>Rental Contacts</h4>
+              <p>If you have questions, visit the <span style="text-decoration: underline; color: red;"><a href="/home.html#questions">F.A.Q.</a></span> or <span style="text-decoration: underline; color: red;"><a href="/home.html#contactus">Contact Us</a></span>.</p>
+            </div>
+          </div>
+          <div class="col-md-6 icon-box">
+            <i class="bi bi-map"></i>
+            <div>
+              <h4>Venue Directions</h4>
+              <p>Get directions and venue details on the <span style="text-decoration: underline; color: red;"><a href="/home.html">Home Page</a></span>.</p>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="upcoming-event" data-aos="fade-up" data-aos-delay="400">
-        <div class="container">
-          <div class="event-content">
-            <div class="event-date"><span class="day">15</span><span class="month">NOV</span></div>
-            <div class="event-info"><h3>Next Available Large-Scale Slot</h3><p>Book now for major holiday events and tournaments. Limited availability!</p></div>
-            <div class="event-action"><a href="#rental-form-section" class="btn-event scrollto">Request Now</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- From Papers to Autonomy Section (from old rent.html) -->
-    <section id="alt-features" class="alt-features section" style="padding-top: 100px;">
-      <div class="container">
-        <div class="section-header">
-          <h2>From Papers to Autonomy</h2>
-          <p>Find everything you need to book and plan your event with ease.</p>
-        </div>
-        <div class="row gy-5">
-          <div class="col-xl-7 d-flex order-2 order-xl-1" data-aos="fade-up" data-aos-delay="200">
-            <div class="row align-self-center gy-5">
-              <div class="col-md-6 icon-box"><i class="bi bi-calendar-event"></i><div><h4>Check Availability</h4><p>View our calendar to secure your preferred event date.</p></div></div>
-              <div class="col-md-6 icon-box"><i class="bi bi-cash-coin"></i><div><h4>Rental Pricing</h4><p>Explore our rental rates, packages, and additional fees.</p></div></div>
-              <div class="col-md-6 icon-box"><i class="bi bi-tools"></i><div><h4>Setup & Equipment</h4><p>Learn about seating, A/V setups, and more.</p></div></div>
-              <div class="col-md-6 icon-box"><i class="bi bi-file-earmark-text"></i><div><h4>Rental Policies</h4><p>Review our rental terms, cancellation, and security rules.</p></div></div>
-            </div>
-          </div>
-          <div class="col-xl-5 d-flex align-items-center justify-content-center order-1 order-xl-2" data-aos="fade-up" data-aos-delay="100">
-            <img src="assets2/img/alt-features.png" class="img-fluid" alt="">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rental Form Section (Redesigned & from old rent.html) -->
-    <section id="rental-form-section" class="section-with-bg">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <h2>Rental Request Form</h2>
-            <p>Please log in to streamline the process. All fields with <span class="text-danger">*</span> are required.</p>
-        </div>
-        <div class="row gy-5 justify-content-center">
-            <div class="col-lg-10">
-                <div class="form-container-wrapper">
-                  <div id="progress-bar" class="mb-5">
-                    <div class="step-indicator active">1</div><div class="progress-line"></div>
-                    <div class="step-indicator">2</div><div class="progress-line"></div>
-                    <div class="step-indicator">3</div><div class="progress-line"></div>
-                    <div class="step-indicator">4</div><div class="progress-line"></div>
-                    <div class="step-indicator">5</div><div class="progress-line"></div>
-                    <div class="step-indicator">6</div>
+      <!-- responsive graphic section -->
+      <div class="col-xl-5 d-flex align-items-center justify-content-center order-1 order-xl-2" data-aos="fade-up" data-aos-delay="100">
+        
+        <!-- this is the phone animation. only visible on LARGE screens (d-lg-block) -->
+        <div class="d-none d-lg-block">
+          <div id="app">
+              <div class="papers" style="--total: 5">
+                  <div class="paper" style="--i: 0">
+                      <div class="content"></div>
+                      <div class="segment">
+                          <div class="segment">
+                              <div class="segment">
+                                  <div class="segment"><div class="segment"></div></div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
+                  <div class="paper" style="--i: 1">
+                      <div class="content"></div>
+                      <div class="segment">
+                          <div class="segment">
+                              <div class="segment">
+                                  <div class="segment"><div class="segment"></div></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="paper" style="--i: 2">
+                      <div class="content"></div>
+                      <div class="segment">
+                          <div class="segment">
+                              <div class="segment">
+                                  <div class="segment"><div class="segment"></div></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="paper" style="--i: 3">
+                      <div class="content"></div>
+                      <div class="segment">
+                          <div class="segment">
+                              <div class="segment">
+                                  <div class="segment"><div class="segment"></div></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="paper" style="--i: 4">
+                      <div class="content"></div>
+                      <div class="segment">
+                          <div class="segment">
+                              <div class="segment">
+                                  <div class="segment"><div class="segment"></div></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="shadow">
+                  <div class="paper-shadow" style="--i: 0"></div>
+                  <div class="paper-shadow" style="--i: 1"></div>
+                  <div class="paper-shadow" style="--i: 2"></div>
+                  <div class="paper-shadow" style="--i: 3"></div>
+                  <div class="paper-shadow" style="--i: 4"></div>
+              </div>
+          </div>
+        </div>
+        
+        <!-- this is the static image. only visible on MEDIUM screens and smaller (d-lg-none) -->
+        <img src="assets2/img/alt-features.png" class="img-fluid d-lg-none" alt="" style="max-width: 250px; margin-bottom: 2rem;">
 
-                  <form id="multi-step-form">
-                    <div id="step1" class="form-step active">
-                      <h3 class="font-bold text-2xl mb-4">Step 1: Personal Details</h3>
-                      <div class="row">
-                        <div class="col-md-6 mb-3"><label for="first-name" class="form-label">First Name <span class="text-danger">*</span></label><input type="text" id="first-name" class="form-control" required></div>
-                        <div class="col-md-6 mb-3"><label for="last-name" class="form-label">Last Name <span class="text-danger">*</span></label><input type="text" id="last-name" class="form-control" required></div>
-                        <div class="col-12 mb-3"><label for="email" class="form-label">Email <span class="text-danger">*</span></label><input type="email" id="email" class="form-control" required></div>
-                      </div>
-                      <div class="text-end mt-4"><button type="button" class="btn btn-danger rounded-pill px-4" onclick="nextStep()">Next <i class="bi bi-arrow-right"></i></button></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+ <!-- Rental Process Section (New) -->
+    <section class="rental-process">
+        <div class="container">
+          
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-pencil-square"></i></div>
+                        <h4>1. Fill Out the Form</h4>
+                        <p>Provide your personal and event details through our easy-to-use 6-step form below.</p>
                     </div>
-                    <div id="step2" class="form-step">
-                      <h3 class="font-bold text-2xl mb-4">Step 2: Event Details</h3>
-                      <div class="row">
-                        <div class="col-12 mb-3"><label for="event-name" class="form-label">Event Name <span class="text-danger">*</span></label><input type="text" id="event-name" class="form-control" required></div>
-                        <div class="col-md-6 mb-3"><label for="event-date" class="form-label">Event Date <span class="text-danger">*</span></label><input type="date" id="event-date" class="form-control" required></div>
-                        <div class="col-md-6 mb-3"><label for="event-price" class="form-label">Ticket Price ($) <span class="text-danger">*</span></label><input type="number" step="0.01" id="event-price" class="form-control" placeholder="0.00" required></div>
-                        <div class="col-12 mb-3"><label for="event-description" class="form-label">Event Description <span class="text-danger">*</span></label><textarea id="event-description" class="form-control" rows="3" required></textarea></div>
-                      </div>
-                      <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-secondary rounded-pill px-4" onclick="prevStep()"><i class="bi bi-arrow-left"></i> Back</button><button type="button" class="btn btn-danger rounded-pill px-4" onclick="nextStep()">Next <i class="bi bi-arrow-right"></i></button></div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-person-check"></i></div>
+                        <h4>2. Admin Review</h4>
+                        <p>Our team will review your request. You can check the status on your dashboard.</p>
                     </div>
-                    <div id="step3" class="form-step">
-                        <h3 class="font-bold text-2xl mb-4">Step 3: Event Category</h3>
-                        <div class="custom-radio-group btn-group-toggle d-flex flex-wrap" data-toggle="buttons">
-                            <label class="btn btn-outline-danger"><input type="radio" name="category" value="Athletics" required> Athletics</label>
-                            <label class="btn btn-outline-danger"><input type="radio" name="category" value="Performances"> Performances</label>
-                            <label class="btn btn-outline-danger"><input type="radio" name="category" value="Workshops"> Workshops</label>
-                            <label class="btn btn-outline-danger"><input type="radio" name="category" value="Gatherings"> Gatherings</label>
-                            <label class="btn btn-outline-danger"><input type="radio" name="category" value="Competitions"> Competitions</label>
-                        </div>
-                        <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-secondary rounded-pill px-4" onclick="prevStep()"><i class="bi bi-arrow-left"></i> Back</button><button type="button" class="btn btn-danger rounded-pill px-4" onclick="nextStep()">Next <i class="bi bi-arrow-right"></i></button></div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-calendar-check"></i></div>
+                        <h4>3. Confirmation</h4>
+                        <p>Once accepted, we'll contact you to finalize details, payment, and secure your date!</p>
                     </div>
-                    <div id="step4" class="form-step">
-                        <h3 class="font-bold text-2xl mb-4">Step 4: Venue Selection</h3>
-                        <div class="custom-radio-group btn-group-toggle d-flex flex-wrap" data-toggle="buttons">
-                            <label class="btn btn-outline-danger"><input type="radio" name="venue" value="Large Gym" required> Large Gym</label>
-                            <label class="btn btn-outline-danger"><input type="radio" name="venue" value="Small Gym"> Small Gym</label>
-                        </div>
-                        <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-secondary rounded-pill px-4" onclick="prevStep()"><i class="bi bi-arrow-left"></i> Back</button><button type="button" class="btn btn-danger rounded-pill px-4" onclick="nextStep()">Next <i class="bi bi-arrow-right"></i></button></div>
-                    </div>
-                    <div id="step5" class="form-step">
-                        <h3 class="font-bold text-2xl mb-4">Step 5: Event Image</h3>
-                        <div class="custom-file mb-3"><input type="file" class="custom-file-input form-control" id="event-image" accept="image/*"><label class="custom-file-label" for="event-image">Choose file...</label></div>
-                        <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-secondary rounded-pill px-4" onclick="prevStep()"><i class="bi bi-arrow-left"></i> Back</button><button type="button" class="btn btn-danger rounded-pill px-4" onclick="nextStep()">Review <i class="bi bi-arrow-right"></i></button></div>
-                    </div>
-                    <div id="step6" class="form-step">
-                      <h3 class="font-bold text-2xl mb-4">Step 6: Confirmation</h3>
-                      <div id="confirmation-details" class="mb-4 p-4 bg-light rounded-3 border"></div>
-                      <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-secondary rounded-pill px-4" onclick="prevStep()"><i class="bi bi-arrow-left"></i> Back</button><button type="button" class="btn btn-success rounded-pill px-4" id="confetti-button" onclick="submitForm()">Submit Request</button></div>
-                    </div>
-                  </form>
                 </div>
             </div>
         </div>
-      </div>
     </section>
+<style>
+
+    /* --- Rental Process Section Styling --- */
+    .rental-process {
+      background-color: var(--background-color);
+    }
+    .rental-process .icon-box {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--surface-color);
+      border-radius: 12px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s ease-in-out;
+      height: 100%;
+    }
+    .rental-process .icon-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(248,34,73,0.1);
+    }
+    .rental-process .icon-box .icon {
+      margin: 0 auto;
+      width: 64px;
+      height: 64px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    .rental-process .icon-box .icon i {
+      color: #fff;
+      font-size: 28px;
+    }
+    .rental-process .icon-box h4 {
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+    .rental-process .icon-box p {
+      line-height: 24px;
+      font-size: 14px;
+      margin-bottom: 0;
+      color: #6c757d;
+    }
+</style>
+
+
+
+<!-- Rental Form -->
+<section id="rental-form" class="section bg-light py-12">
+  <div class="container">
+    <div class="section-header">
+      <h2>Rent Our Venue</h2>
+      <p>Fill out this form to request an event at PantherVenue.</p>
+    </div>
+    <div class="w-full max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg" id="form-container">
+      <!-- Progress Bar -->
+      <div id="progress-bar" class="flex items-center justify-between mb-8">
+        <div id="step-indicators" class="flex items-center w-full relative">
+          <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+          <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center">1</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">2</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">3</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">4</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">5</div>
+          <div class="flex-1 h-1 bg-gray-300"></div>
+          <div class="w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center">6</div>
+        </div>
+      </div>
+
+      <!-- Step 1: Personal Details -->
+      <div id="step1" class="step active">
+        <h2 class="text-2xl font-semibold mb-6">Step 1: Personal Details</h2>
+        <p class="text-gray-600 mb-4">Log in to pre-fill your details.</p>
+        <form>
+          <div class="mb-4">
+            <label for="first-name" class="block text-sm font-medium mb-1">First Name <span class="text-red-500">*</span></label>
+            <input type="text" id="first-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4">
+            <label for="last-name" class="block text-sm font-medium mb-1">Last Name <span class="text-red-500">*</span></label>
+            <input type="text" id="last-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label>
+            <input type="email" id="email" class="form-control rounded-full" required>
+          </div>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </form>
+      </div>
+
+      <!-- Step 2: Event Details -->
+      <div id="step2" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 2: Event Details</h2>
+        <form>
+          <div class="mb-4">
+            <label for="event-name" class="block text-sm font-medium mb-1">Event Name <span class="text-red-500">*</span></label>
+            <input type="text" id="event-name" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4">
+            <label for="event-date" class="block text-sm font-medium mb-1">Event Date <span class="text-red-500">*</span></label>
+            <input type="date" id="event-date" class="form-control rounded-full" required>
+          </div>
+          <div class="mb-4 position-relative">
+            <label for="event-price" class="block text-sm font-medium mb-1">Event Price <span class="text-red-500">*</span></label>
+           <i class="fas fa-dollar-sign" style="color: rgb(173, 32, 32); position: relative; top: 30px; left: 15px; z-index: 10000;"></i>          
+            <input type="number" step="0.01" id="event-price" class="form-control rounded-full ps-5" required>
+          </div>
+          <div class="mb-6">
+            <label for="event-description" class="block text-sm font-medium mb-1">Event Description <span class="text-red-500">*</span></label>
+            <textarea id="event-description" class="form-control rounded-lg" rows="3" placeholder="Describe your event (recommended: 3 sentences)" required></textarea>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+            <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Event Category -->
+      <div id="step3" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 3: Event Category</h2>
+        <p class="text-gray-600 mb-4">Select one category for your event.</p>
+        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Athletics" required> Athletics
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Performances"> Performances
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Workshops"> Workshops
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Gatherings"> Gatherings
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="category" value="Competitions"> Competitions
+          </label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 4: Venue Selection -->
+      <div id="step4" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 4: Venue Selection</h2>
+        <p class="text-gray-600 mb-4">Choose the venue for your event.</p>
+        <div class="mb-6 btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="venue" value="Large Gym" required> Large Gym
+          </label>
+          <label class="btn btn-outline-danger rounded-full custom-radio">
+            <input type="radio" name="venue" value="Small Gym"> Small Gym
+          </label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 5: Event Image -->
+      <div id="step5" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
+        <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
+        <div class="custom-file mb-6">
+          <input type="file" class="custom-file-input" id="event-image" accept="image/*">
+          <label class="custom-file-label rounded-full" for="event-image">Choose file</label>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 6: Confirmation -->
+      <div id="step6" class="step">
+        <h2 class="text-2xl font-semibold mb-6">Step 6: Confirmation</h2>
+        <div id="confirmation-details" class="mb-6 p-4 bg-light rounded"></div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+          <button type="button" class="btn btn-success rounded-full px-8 py-2" id="confetti-button" onclick="submitForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   </main>
 
-  <!-- Footer (from your original site) -->
-  <footer id="footer">
-      <div class="footer-top">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-3 col-md-6 footer-info">
-                      <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue">
-                      <p>The premier venue at Bridgewater-Raritan High School, perfect for sports, ceremonies, and community events.</p>
-                  </div>
-                  <div class="col-lg-3 col-md-6 footer-links">
-                      <h4>Useful Links</h4>
-                      <ul>
-                          <li><i class="fa fa-angle-right"></i> <a href="/home.html">Home</a></li>
-                          <li><i class="fa fa-angle-right"></i> <a href="/home.html#about">About</a></li>
-                          <li><i class="fa fa-angle-right"></i> <a href="/home.html#schedule">Policies</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-lg-3 col-md-6 footer-links">
-                      <h4>Resources</h4>
-                      <ul>
-                        <li><i class="fa fa-angle-right"></i> <a href="/event.html">Events</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="/rent.html">Rent Venue</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="/login.html">Login/Dashboard</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-lg-3 col-md-6 footer-contact">
-                      <h4>Contact Us</h4>
-                      <p>600 Garretson Rd<br>Bridgewater, NJ 08807<br>United States <br>
-                          <strong>Phone:</strong> +1 908-231-8660<br>
-                          <strong>Email:</strong> hs@brrsd.k12.nj.us<br>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer>
+  <!-- Scroll Top -->
 
-  <!-- Vendor & Core JS Files -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Vendor JS Files -->
+
+  <script src="assets2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets2/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets2/vendor/aos/aos.js"></script>
+
+  <script src="assets2/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <script src="assets2/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <script src="assets2/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+  <script src="assets2/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <script src="assets2/vendor/swiper/swiper-bundle.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <!-- Main JS File -->
 
-  <!-- Main JS Logic -->
+  <script src="assets2/js/main.js"></script>
+    <!-- firebase stuff -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- firebase config -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA", // put your config here
+        authDomain: "panthervenue.firebaseapp.com",
+        projectId: "panthervenue",
+        storageBucket: "panthervenue.appspot.com",
+        messagingSenderId: "15387964560",
+        appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
+      };
+      
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+
   <script>
-    // Firebase Config (same as your original)
-    const firebaseConfig = {
-      apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
-      authDomain: "panthervenue.firebaseapp.com",
-      projectId: "panthervenue",
-      storageBucket: "panthervenue.appspot.com",
-      messagingSenderId: "15387964560",
-      appId: "1:15387964560:web:b9dbc68e3a97dd466b5415"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    // Template's main.js logic (for AOS init)
-    (function() {
-      "use strict";
-      function aosInit() { AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false }); }
-      window.addEventListener('load', aosInit);
-    })();
-
-    // Your Form Logic (from original rent.html)
     let currentStep = 1;
     const totalSteps = 6;
     let eventImageData = '';
-    let currentUser = null;
+    let currentUser = null; // holds the logged-in user's data
 
+    // init AOS and handle Firebase Auth
     document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        once: true,
+        duration: 1000
+      });
       auth.onAuthStateChanged(async (user) => {
         const loginButton = document.getElementById('loginButton');
+
         if (user) {
+            // User is signed in, get their profile from firestore
             const userDoc = await db.collection('users').doc(user.uid).get();
             if (userDoc.exists) {
                 currentUser = { uid: user.uid, ...userDoc.data() };
-                const nameParts = (currentUser.username || ' ').split(' ');
-                document.getElementById('first-name').value = nameParts[0] || '';
-                document.getElementById('last-name').value = nameParts.slice(1).join(' ') || '';
+                
+                // Pre-fill the form with user data
+                document.getElementById('first-name').value = currentUser.firstName || '';
+                document.getElementById('last-name').value = currentUser.lastName || '';
                 document.getElementById('email').value = currentUser.email || '';
-                if(loginButton) { loginButton.textContent = 'Dashboard'; loginButton.href = '/login.html'; }
-            } else { auth.signOut(); }
+                
+                // Update the button to "Dashboard"
+                if (loginButton) {
+                    loginButton.textContent = 'Dashboard';
+                    loginButton.href = '/login.html';
+                }
+            } else {
+                console.error("User exists in Auth, but not in Firestore.");
+                currentUser = null;
+                if (loginButton) {
+                    loginButton.textContent = 'Log In';
+                    loginButton.href = '/login.html';
+                }
+            }
         } else {
+            // User is signed out
             currentUser = null;
-            if(loginButton) { loginButton.textContent = 'Log In'; loginButton.href = '/login.html'; }
+            console.log("No user is logged in.");
+            if (loginButton) {
+                loginButton.textContent = 'Log In';
+                loginButton.href = '/login.html';
+            }
         }
       });
+
+      // update file label and store image
       document.getElementById('event-image').addEventListener('change', function() {
         const file = this.files[0];
-        this.nextElementSibling.textContent = file ? file.name : 'Choose file...';
+        const fileName = file ? file.name : 'No file chosen';
+        this.nextElementSibling.textContent = fileName;
         if (file) {
           const reader = new FileReader();
-          reader.onload = (e) => eventImageData = e.target.result;
+          reader.onload = function(e) {
+            eventImageData = e.target.result;
+          };
           reader.readAsDataURL(file);
-        } else { eventImageData = ''; }
+        } else {
+          eventImageData = '';
+        }
       });
-      document.querySelectorAll('.custom-radio-group .btn').forEach(button => {
-        button.addEventListener('click', function() {
-          this.querySelector('input').checked = true;
-          const group = this.closest('.btn-group-toggle');
-          group.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
+
+      // highlight selected radios
+      document.querySelectorAll('.custom-radio input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          document.querySelectorAll('.custom-radio').forEach(label => label.classList.remove('selected'));
+          if (this.checked) {
+            this.parentElement.classList.add('selected');
+          }
         });
       });
     });
-    
+
     function updateProgressBar() {
-        const indicators = document.querySelectorAll('.step-indicator');
-        const lines = document.querySelectorAll('.progress-line');
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index < currentStep);
-        });
-        lines.forEach((line, index) => {
-            line.classList.toggle('active', index < currentStep - 1);
-        });
-        const progressFill = document.getElementById('progress-fill');
-        if(progressFill) {
-            const stepPercentage = (currentStep - 1) / (totalSteps - 1) * 100;
-            progressFill.style.width = `${stepPercentage}%`;
+      const indicators = document.querySelectorAll('#step-indicators > div:not(.progress-fill)');
+      indicators.forEach((indicator, index) => {
+        if (index < currentStep * 2 - 1) {
+          if (index % 2 === 0) {
+            indicator.className = "w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center transition-all duration-500";
+          } else {
+            indicator.className = "flex-1 h-1 bg-red-600 transition-all duration-500";
+          }
+        } else {
+          if (index % 2 === 0) {
+            indicator.className = "w-10 h-10 border-2 border-gray-300 text-gray-500 rounded-full flex items-center justify-center";
+          } else {
+            indicator.className = "flex-1 h-1 bg-gray-300";
+          }
         }
+      });
+      const progressFill = document.getElementById('progress-fill');
+      const stepPercentage = (currentStep - 1) / (totalSteps - 1) * 100;
+      progressFill.style.width = `${stepPercentage}%`;
     }
 
-    function showStep(step) {
-        document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-        document.getElementById(`step${step}`).classList.add('active');
-        if (step === 6) {
-            populateConfirmation();
+    function showStep() {
+      const steps = document.querySelectorAll('.step');
+      steps.forEach((step, index) => {
+        if (index === currentStep - 1) {
+          step.classList.add('active');
+          step.classList.remove('exiting');
+          if (currentStep === 6) {
+            const confirmationDetails = document.getElementById('confirmation-details');
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const email = document.getElementById('email').value;
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventPrice = document.getElementById('event-price').value || 'N/A';
+            const eventDescription = document.getElementById('event-description').value;
+            const category = document.querySelector('input[name="category"]:checked')?.value || 'Not selected';
+            const venue = document.querySelector('input[name="venue"]:checked')?.value || 'Not selected';
+            const imagePreview = eventImageData ? `<img src="${eventImageData}" alt="Event Image" style="max-width: 100px; max-height: 100px;">` : 'No image uploaded';
+            confirmationDetails.innerHTML = `
+              <h3 class="text-xl font-semibold mb-4 text-red-700">Review Your Rental Request</h3>
+              <p class="mb-2"><span class="font-bold text-red-600">First Name:</span> <span class="text-gray-800">${firstName}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-600">Last Name:</span> <span class="text-gray-800">${lastName}</span></p>
+              <p class="mb-4"><span class="font-bold text-red-600">Email:</span> <span class="text-gray-800">${email}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Name:</span> <span class="text-gray-800">${eventName}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Date:</span> <span class="text-gray-800">${eventDate}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Price:</span> <span class="text-gray-800">$${eventPrice}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Description:</span> <span class="text-gray-800">${eventDescription}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Category:</span> <span class="text-gray-800">${category}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Venue:</span> <span class="text-gray-800">${venue}</span></p>
+              <p class="mb-2"><span class="font-bold text-red-500">Event Image:</span> ${imagePreview}</p>
+            `;
+          }
+        } else {
+          step.classList.remove('active');
         }
-        updateProgressBar();
+      });
     }
-    
+
     function nextStep() {
-      if (!validateStep(currentStep)) return;
-      if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
-    }
-    function prevStep() {
-      if (currentStep > 1) { currentStep--; showStep(currentStep); }
-    }
-
-    function validateStep(step) {
-      if (step === 1 && !currentUser) {
-        alert('Please log in to rent the venue.'); window.location.href = '/login.html'; return false;
+      const steps = document.querySelectorAll('.step');
+      const current = steps[currentStep - 1];
+      
+      // FIREBASE check: is user logged in?
+      if (currentStep === 1 && !currentUser) {
+        alert('Please log in to rent the venue.');
+        window.location.href = '/login.html';
+        return;
       }
-      const currentFormStep = document.getElementById(`step${step}`);
-      const inputs = currentFormStep.querySelectorAll('input[required], textarea[required]');
+
+      const inputs = current.querySelectorAll('input[required], select[required], textarea[required]');
       let allValid = true;
       inputs.forEach(input => {
-        input.classList.remove('is-invalid');
-        if (!input.value.trim()) { allValid = false; input.classList.add('is-invalid'); }
+        if (!input.value) {
+          allValid = false;
+          input.classList.add('is-invalid');
+        } else {
+          input.classList.remove('is-invalid');
+        }
       });
-      if(step === 3 || step === 4) {
-          const groupName = step === 3 ? 'category' : 'venue';
-          if(!document.querySelector(`input[name="${groupName}"]:checked`)) {
-              alert(`Please select an option for ${groupName}.`); allValid = false;
-          }
+
+      if (!allValid) return;
+
+      if (currentStep === 3) {
+        const categorySelected = document.querySelector('input[name="category"]:checked');
+        if (!categorySelected) {
+          alert('Please select an event category');
+          return;
+        }
       }
-      return allValid;
+      if (currentStep === 4) {
+        const venueSelected = document.querySelector('input[name="venue"]:checked');
+        if (!venueSelected) {
+          alert('Please select a venue');
+          return;
+        }
+      }
+
+      if (currentStep < totalSteps) {
+        current.classList.add('exiting');
+        setTimeout(() => {
+          current.classList.remove('active', 'exiting');
+          currentStep++;
+          updateProgressBar();
+          showStep();
+        }, 500);
+      }
     }
 
-    function populateConfirmation() {
-        const details = `
-            <p><strong>Full Name:</strong> ${document.getElementById('first-name').value} ${document.getElementById('last-name').value}</p>
-            <p><strong>Email:</strong> ${document.getElementById('email').value}</p><hr class="my-3">
-            <p><strong>Event Name:</strong> ${document.getElementById('event-name').value}</p>
-            <p><strong>Date:</strong> ${document.getElementById('event-date').value}</p>
-            <p><strong>Price:</strong> $${parseFloat(document.getElementById('event-price').value || 0).toFixed(2)}</p>
-            <p><strong>Description:</strong> ${document.getElementById('event-description').value}</p>
-            <p><strong>Category:</strong> ${document.querySelector('input[name="category"]:checked')?.value || 'N/A'}</p>
-            <p><strong>Venue:</strong> ${document.querySelector('input[name="venue"]:checked')?.value || 'N/A'}</p>
-            <p><strong>Image:</strong> ${eventImageData ? '<span class="text-success">Uploaded</span>' : 'None'}</p>`;
-        document.getElementById('confirmation-details').innerHTML = details;
-    }
-    
-    async function submitForm() {
-      if (!currentUser) { alert('Your session expired. Please log in again.'); window.location.href = '/login.html'; return; }
-      const newRequest = {
-        userId: currentUser.uid, username: currentUser.username,
-        firstName: document.getElementById('first-name').value,
-        lastName: document.getElementById('last-name').value,
-        email: document.getElementById('email').value,
-        eventName: document.getElementById('event-name').value,
-        eventDate: document.getElementById('event-date').value,
-        eventPrice: parseFloat(document.getElementById('event-price').value || 0),
-        description: document.getElementById('event-description').value,
-        category: document.querySelector('input[name="category"]:checked')?.value,
-        venue: document.querySelector('input[name="venue"]:checked')?.value,
-        image: eventImageData, status: 'pending',
-        created: firebase.firestore.FieldValue.serverTimestamp()
-      };
-      try {
-        await db.collection('requests').add(newRequest);
-        confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 }, colors: ['#f82249', '#ffffff', '#222222'] });
+    function prevStep() {
+      if (currentStep > 1) {
+        const steps = document.querySelectorAll('.step');
+        const current = steps[currentStep - 1];
+        current.classList.add('exiting');
         setTimeout(() => {
-          alert('Rental request submitted successfully! You can track its status on your dashboard.');
-          window.location.href = '/login.html';
-        }, 1500);
+          current.classList.remove('active', 'exiting');
+          currentStep--;
+          updateProgressBar();
+          showStep();
+        }, 500);
+      }
+    }
+
+    async function submitForm() {
+      // FIREBASE check again before submitting
+      if (!currentUser) {
+        alert('Your session has expired. Please log in again to submit your rental request.');
+        window.location.href = '/login.html';
+        return;
+      }
+
+      // grab all the data from the form
+      const firstName = document.getElementById('first-name').value;
+      const lastName = document.getElementById('last-name').value;
+      const email = document.getElementById('email').value;
+      const eventName = document.getElementById('event-name').value;
+      const eventDate = document.getElementById('event-date').value;
+      const eventPrice = document.getElementById('event-price').value || 0;
+      const eventDescription = document.getElementById('event-description').value;
+      const category = document.querySelector('input[name="category"]:checked')?.value || '';
+      const venue = document.querySelector('input[name="venue"]:checked')?.value || '';
+      const imageData = eventImageData || ''; // the base64 image data
+
+      // make the request object for firestore
+      const newRequest = {
+        userId: currentUser.uid, // Add the user's unique ID
+        username: currentUser.username, // Add the username
+        firstName,
+        lastName,
+        email,
+        eventName,
+        eventDate,
+        eventPrice: parseFloat(eventPrice),
+        description: eventDescription,
+        category,
+        venue,
+        image: imageData,
+        status: 'pending',
+        created: firebase.firestore.FieldValue.serverTimestamp() // Use server timestamp
+      };
+
+      try {
+        // FIREBASE: add request to the 'requests' collection
+        await db.collection('requests').add(newRequest);
+        
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ff0000', '#ffffff', '#000000']
+        });
+
+        setTimeout(function() {
+          alert('Rental request submitted successfully!');
+          window.location.href = '/rent.html'; // Or redirect to dashboard: '/login.html'
+        }, 1000);
+
       } catch (error) {
-        console.error("Error submitting request: ", error); alert("An error occurred: " + error.message);
+        console.error("Error submitting request: ", error);
+        alert("There was an error submitting your request: " + error.message);
       }
     }
   </script>
+
+
+    <!-- START: Chatbot Integration Body -->
+<!-- Chatbot Toggler -->
+<button id="chatbot-toggler">
+  <span class="material-symbols-rounded">mode_comment</span>
+  <span class="material-symbols-rounded">close</span>
+</button>
+<div class="chatbot-popup" style="opacity: 0; ">
+  <!-- Chatbot Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="chatbot-logo" />
+      <h2 class="logo-text">PantherBot</h2>
+    </div>
+    <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+  </div>
+  <!-- Chatbot Body -->
+  <div class="chat-body">
+    <div class="message bot-message">
+      <img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+      <div class="message-text">Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?</div>
+    </div>
+  </div>
+  <!-- Chatbot Footer -->
+  <div class="chat-footer">
+    <form action="#" class="chat-form">
+      <textarea placeholder="Type a message..." class="message-input" required></textarea>
+      <div class="chat-controls">
+        <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+        <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Linking Emoji Mart script for emoji picker -->
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+
+<script>
+  // Select DOM elements
+const chatBody = document.querySelector(".chat-body");
+const messageInput = document.querySelector(".message-input");
+const sendMessageButton = document.querySelector("#send-message");
+const chatForm = document.querySelector(".chat-form");
+const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot");
+const chatbotPopup = document.querySelector(".chatbot-popup");
+const initialInputHeight = messageInput.scrollHeight;
+
+const API_URL = "https://ai.hackclub.com/chat/completions";
+let chatHistory;
+
+// Utility function to create message elements
+const createMessageElement = (content, className) => {
+    const div = document.createElement("div");
+    div.classList.add("message", className);
+    div.innerHTML = content;
+    return div;
+};
+
+// Function to display chat history
+const displayChatHistory = () => {
+    chatBody.innerHTML = ''; // Clear existing messages
+    chatHistory.forEach(msg => {
+        if (msg.role === "user") {
+            const userMessageContent = `<div class="message-text">${msg.content}</div>`;
+            const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+            chatBody.appendChild(outgoingMessageDiv);
+        } else if (msg.role === "assistant") {
+            const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+            <div class="message-text">${marked.parse(msg.content)}</div>`;
+            const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message");
+            chatBody.appendChild(incomingMessageDiv);
+        }
+    });
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+};
+
+// Function to generate bot response
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            messages: chatHistory,
+        }),
+    };
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("API Error Response:", errorData);
+            throw new Error(`API request failed with status: ${response.status}. ${errorData.error?.message || ''}`);
+        }
+        const data = await response.json();
+        const apiResponseText = data.choices[0].message.content.trim();
+        messageElement.innerHTML = marked.parse(apiResponseText);
+        chatHistory.push({
+            role: "assistant",
+            content: apiResponseText,
+        });
+        localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    } catch (error) {
+        console.error("API Error:", error);
+        messageElement.innerText = "Oops! Something went wrong. The AI service might be temporarily unavailable. Please try again later.";
+        messageElement.style.color = "#dc3545";
+    } finally {
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    }
+};
+
+// Function to handle outgoing messages
+const handleOutgoingMessage = (e) => {
+    e.preventDefault();
+    const userMessage = messageInput.value.trim();
+    if (!userMessage) return;
+    messageInput.value = "";
+    messageInput.style.height = `${initialInputHeight}px`;
+    chatHistory.push({ role: "user", content: userMessage });
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    const userMessageContent = `<div class="message-text">${userMessage}</div>`;
+    const outgoingMessageDiv = createMessageElement(userMessageContent, "user-message");
+    chatBody.appendChild(outgoingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+    setTimeout(() => {
+        const botMessageContent = `<img src="aiprofile.png" alt="AI Profile Logo" class="bot-avatar" />
+        <div class="message-text">
+          <div class="thinking-indicator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>`;
+        const incomingMessageDiv = createMessageElement(botMessageContent, "bot-message thinking");
+        chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        generateBotResponse(incomingMessageDiv);
+    }, 600);
+};
+
+// Event listeners for input and form
+messageInput.addEventListener("input", () => {
+    messageInput.style.height = `${initialInputHeight}px`;
+    const newHeight = messageInput.scrollHeight;
+    messageInput.style.height = `${newHeight}px`;
+});
+
+messageInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 768) {
+        handleOutgoingMessage(e);
+    }
+});
+
+chatForm.addEventListener("submit", handleOutgoingMessage);
+
+// Emoji picker setup
+const picker = new EmojiMart.Picker({
+    theme: "light",
+    skinTonePosition: "none",
+    previewPosition: "none",
+    onEmojiSelect: (emoji) => {
+        const { selectionStart: start, selectionEnd: end } = messageInput;
+        messageInput.setRangeText(emoji.native, start, end, "end");
+        messageInput.focus();
+    },
+    onClickOutside: (e) => {
+        if (e.target.id === "emoji-picker") {
+            document.body.classList.toggle("show-emoji-picker");
+        } else if (document.body.classList.contains("show-emoji-picker")) {
+            document.body.classList.remove("show-emoji-picker");
+        }
+    },
+});
+document.querySelector(".chat-footer").appendChild(picker);
+
+document.querySelector("#emoji-picker").addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle("show-emoji-picker");
+});
+
+// Toggle and close functions
+function toggleChatbot() {
+    document.body.classList.toggle("show-chatbot");
+    const isOpen = document.body.classList.contains("show-chatbot");
+    localStorage.setItem('chatbotOpen', isOpen);
+}
+
+function closeChatbotFunc() {
+    document.body.classList.remove("show-chatbot");
+    localStorage.setItem('chatbotOpen', false);
+}
+
+chatbotToggler.addEventListener("click", toggleChatbot);
+closeChatbot.addEventListener("click", closeChatbotFunc);
+
+// Initialize chatbot state and history on page load
+document.addEventListener('DOMContentLoaded', () => {
+    chatbotPopup.classList.add('no-transition');
+    const savedHistory = localStorage.getItem('chatHistory');
+    if (savedHistory) {
+        chatHistory = JSON.parse(savedHistory);
+    } else {
+        chatHistory = [
+            {
+                role: "system",
+                content: `You are PantherBot, an expert AI assistant for PantherVenue. Your goal is to answer user questions accurately and helpfully based on the following information about the venue, its policies, and its website. Use Markdown for clear formatting.
+
+---
+### General Venue Information
+- **Name:** PantherVenue
+- **Location:** Inside Bridgewater-Raritan High School, 600 Garretson Road, Bridgewater, New Jersey.
+- **Capacity:** Seats up to 3,500 people.
+- **Features:** A premier gymnasium renovated in 2024 with a high-quality sound system, adjustable lighting, a large video screen, new bleachers, and a resurfaced floor.
+- **Primary Use:** Ideal for sports events, graduations, performances, workshops, and community gatherings.
+- **Amenities:** Comfortable bleacher seating, top-tier audio system, adjustable lighting, large video screen for presentations.
+- **Layouts:**
+    - **Standard Gym Layout:** For sports. Uses all four stands (North/South: 1000 seats each, East/West: 750 seats each).
+    - **Ceremony Layout:** For graduations/presentations. Features a main stage, with seating in the stands and potentially on the floor.
+
+---
+### How the Website Works
+- **Events Page (event.html):**
+    - Users can see a list of all upcoming events, such as "Varsity Basketball Finals," "Fall Dance Recital," and "Yoga Wellness Workshop."
+    - Users can filter events by category, price, and date.
+    - **To purchase tickets, users must log in to their account.** A popup allows them to select seats and complete the purchase.
+- **Rent Venue Page (rent.html):**
+    - Users can request to rent the venue for their own private event.
+    - **Users must be logged in to submit a request.**
+    - The process is a 6-step form: 1. Personal Details, 2. Event Details, 3. Category, 4. Venue Choice, 5. Image Upload, 6. Confirmation.
+    - After submission, the request becomes "pending" and is reviewed by an administrator.
+- **User Accounts (login.html):**
+    - Users can sign up for an account or log in.
+    - After logging in, users see a personal dashboard.
+    - **User Dashboard:** Shows their purchased tickets, total money spent, and the status (pending, accepted, declined) of their venue rental requests.
+    - **Admin Dashboard:** Staff can view site analytics and manage all venue rental requests.
+
+---
+### Important Policies & FAQs
+- **General Rules:** No outside food or drink. All bags are subject to search. The venue is strictly non-smoking (including vapes/e-cigarettes). No alcohol. No pets are allowed, except for service animals.
+- **Parking:** Available in designated lots. Fees may apply depending on the event.
+- **Ticket Policy:** Tickets are non-refundable unless the event is canceled by the venue. There is a 10-ticket limit per transaction. Tickets are transferable if the box office is notified.
+- **Team & Contact:**
+    - Key Staff: Bill Deniz (Athletic Director), Keri Fry (Logistics and Business Manager).
+    - Phone: +1 908-524-4059
+    - Email: hs@brrsd.k12.nj.us (expect a response in 2-7 business days).
+- **Nearby Hotels:** Hampton Inn, Hyatt House, and TownePlace suites are all within 1.5 miles.
+
+---
+### Your Persona & Instructions
+- Be friendly, professional, and enthusiastic.
+- Your name is PantherBot.
+- Refer to the information above to answer questions. If you don't know the answer, politely state that you don't have that information and suggest contacting the venue directly via phone or email.`
+            },
+            {
+                role: "assistant",
+                content: "Nice to meet you! I'm PantherBot, your AI chatbot for PantherVenue. How can I help you today?"
+            }
+        ];
+    }
+    displayChatHistory();
+    const isOpen = localStorage.getItem('chatbotOpen') === 'true';
+    if (isOpen) {
+        document.body.classList.add('show-chatbot');
+    } else {
+        document.body.classList.remove('show-chatbot');
+    }
+    setTimeout(() => {
+        chatbotPopup.classList.remove('no-transition');
+    }, 0);
+});
+</script>
+
+
+
+
+
+
+  <style>
+    /* Importing Google Fonts - Inter for Chatbot */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+    
+    /* --- Chatbot Styles --- */
+    #chatbot-toggler {
+      position: fixed;
+      bottom: 30px;
+      right: 35px;
+      border: none;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 1000; /* Ensure it's above other content */
+    }
+    body.show-chatbot #chatbot-toggler {
+      transform: rotate(90deg);
+    }
+    #chatbot-toggler span {
+      color: #fff;
+      position: absolute;
+    }
+    #chatbot-toggler span:last-child,
+    body.show-chatbot #chatbot-toggler span:first-child {
+      opacity: 0;
+    }
+    body.show-chatbot #chatbot-toggler span:last-child {
+      opacity: 1;
+    }
+    .chatbot-popup {
+      position: fixed;
+      right: 35px;
+      bottom: 90px;
+      width: 400px; 
+      overflow: hidden;
+      background: #fff;
+      border-radius: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.2);
+      transform-origin: bottom right;
+      box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s ease;
+      z-index: 1000;
+     visibility: hidden;
+    }
+    body.show-chatbot .chatbot-popup {
+      opacity: 1 !important;
+      pointer-events: auto;
+      transform: scale(1);
+      visibility: visible;
+   
+    }
+
+    .chatbot-popup.no-transition {
+    transition: none !important; /* Prevents animation on page load */
+}
+    .chat-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 22px;
+      background: #dc3545; /* Red */
+      border-bottom: 1px solid #d4d4d4;
+      justify-content: space-between;
+    }
+    .chat-header .header-info {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .header-info .chatbot-logo {
+      width: 35px;
+      height: 35px;
+      padding: 2px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .header-info .logo-text {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.31rem;
+      letter-spacing: 0.02rem;
+      font-family: "Inter", sans-serif;
+    }
+    .chat-header #close-chatbot {
+      border: none;
+      color: #fff;
+      height: 40px;
+      width: 40px;
+      font-size: 1.9rem;
+      margin-right: -10px;
+      padding-top: 2px;
+      cursor: pointer;
+      border-radius: 50%;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-header #close-chatbot:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .chat-body {
+      font-family: "Inter", sans-serif;
+      padding: 25px 22px;
+      gap: 20px;
+      display: flex;
+      height: 400px; 
+      overflow-y: auto;
+      margin-bottom: 75px;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    .chat-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    .chat-body .message {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .chat-body .message .bot-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .chat-body .message .message-text {
+      font-family: "Inter", sans-serif;
+      padding: 12px 16px;
+      max-width: 75%;
+      font-size: 0.95rem;
+      word-wrap: break-word;
+    }
+    .chat-body .bot-message.thinking .message-text {
+      padding: 2px 16px;
+    }
+    .chat-body .bot-message .message-text {
+      background: #f0f0f0; /* Light Gray */
+      color: #000;
+      border-radius: 13px 13px 13px 3px;
+    }
+    .chat-body .user-message {
+      justify-content: flex-end;
+    }
+    .chat-body .user-message .message-text {
+      color: #fff;
+      background: #dc3545; /* Red */
+      border-radius: 13px 13px 3px 13px;
+    }
+    /* Markdown formatting inside bot message */
+     .bot-message .message-text p,
+     .bot-message .message-text h1,
+     .bot-message .message-text h2,
+     .bot-message .message-text h3,
+     .bot-message .message-text ul,
+     .bot-message .message-text ol,
+     .bot-message .message-text li {
+        font-family: "Inter", sans-serif;
+        margin-bottom: 0.5em;
+        font-size: 0.95rem;
+     }
+     .bot-message .message-text p:last-child {
+        margin-bottom: 0;
+     }
+     .bot-message .message-text ul, .bot-message .message-text ol {
+        padding-left: 20px;
+     }
+    .chat-body .bot-message .thinking-indicator {
+      display: flex;
+      gap: 4px;
+      padding-block: 15px;
+    }
+    .chat-body .bot-message .thinking-indicator .dot {
+      height: 7px;
+      width: 7px;
+      opacity: 0.7;
+      border-radius: 50%;
+      background: #dc3545; /* Red */
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(1) { animation-delay: 0.2s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(2) { animation-delay: 0.3s; }
+    .chat-body .bot-message .thinking-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse {
+      0%, 44% { transform: translateY(0); }
+      28% { opacity: 0.4; transform: translateY(-4px); }
+      44% { opacity: 0.2; }
+    }
+    .chat-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      padding: 10px 22px 15px;
+      border-top: 1px solid #d4d4d4;
+    }
+    .chat-footer .chat-form {
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: #fff;
+      border-radius: 32px;
+      outline: 1px solid #ccc;
+      transition: 0s ease;
+    }
+    .chat-form:focus-within {
+      outline: 2px solid #dc3545; /* Red */
+    }
+    .chat-form .message-input {
+      font-family: "Inter", sans-serif;
+      width: 100%;
+      height: 47px;
+      outline: none;
+      resize: none;
+      border: none;
+      max-height: 180px;
+      scrollbar-width: none;
+      border-radius: inherit;
+      font-size: 0.95rem;
+      padding: 14px 0 12px 18px;
+    }
+    .chat-form .message-input::-webkit-scrollbar {
+        display: none;
+    }
+    .chat-form .chat-controls {
+      gap: 3px;
+      height: 47px;
+      display: flex;
+      padding-right: 6px;
+      align-items: center;
+      align-self: flex-end;
+    }
+    .chat-form .chat-controls button {
+      height: 35px;
+      width: 35px;
+      border: none;
+      cursor: pointer;
+      color: #555; /* Dark Gray */
+      border-radius: 50%;
+      font-size: 1.15rem;
+      background: none;
+      transition: 0.2s ease;
+    }
+    .chat-form .chat-controls button:hover,
+    body.show-emoji-picker .chat-controls #emoji-picker {
+      color: #dc3545; /* Red */
+      background: #fdeaea; /* Light Red */
+    }
+    .chat-form .chat-controls #send-message {
+      color: #fff;
+      background: #dc3545; /* Red */
+      /* IPAD FIX: Perfect centering for the icon */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-form .chat-controls #send-message:hover {
+      background: #b02a37; /* Darker Red */
+    }
+    .chat-form .message-input:valid~.chat-controls #send-message {
+      display: flex; /* Changed from block to flex for centering fix */
+    }
+    em-emoji-picker {
+      position: absolute;
+      left: 50%;
+      bottom: 55px; /* Position above the input bar */
+      width: 100%;
+      max-width: 350px;
+      visibility: hidden;
+      max-height: 330px;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    body.show-emoji-picker em-emoji-picker {
+      visibility: visible;
+    }
+
+    /* IPAD/MOBILE FIX: Make chatbot fullscreen on tablets (portrait) and phones */
+    @media (max-width: 768px) {
+      #chatbot-toggler {
+        right: 20px;
+        bottom: 20px;
+      }
+      .chatbot-popup {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+      }
+      .chatbot-popup .chat-header {
+        padding: 12px 15px;
+      }
+      .chat-body {
+        height: calc(100% - 130px); /* Adjusted for full screen */
+        padding: 25px 15px;
+      }
+      .chat-footer {
+        padding: 10px 15px 15px;
+      }
+    }
+  </style>
+  <!-- END: Chatbot Integration Head -->
+
+  <!-- START: Chatbot Integration Head -->
+  <!-- Google Fonts for Chatbot Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 
 </body>
 </html>
