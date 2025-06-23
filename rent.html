@@ -545,15 +545,49 @@
     }
     
 
-    /* --- RENTAL PROCESS SECTION --- */
-    .rental-process { padding: 60px 0; }
-    .rental-process .icon-box { text-align: center; padding: 30px 20px; background: var(--background-color); border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; height: 100%; }
-    .rental-process .icon-box:hover { transform: translateY(-10px); box-shadow: 0 8px 30px rgba(248,34,73,0.1); }
-    .rental-process .icon-box .icon { margin: 0 auto; width: 64px; height: 64px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: all 0.3s; }
-    .rental-process .icon-box .icon i { color: #fff; font-size: 28px; }
-    .rental-process .icon-box h4 { font-weight: 700; margin-bottom: 15px; font-size: 22px; color: var(--heading-color); }
-    .rental-process .icon-box p { line-height: 24px; font-size: 14px; margin-bottom: 0; color: #6c757d; }
-    
+      /* --- RENTAL PROCESS STEPS (INSIDE FORM) --- */
+    .rental-steps .icon-box { 
+      text-align: center; 
+      padding: 30px 20px; 
+      background: var(--surface-color); /* This is now white */
+      border: 1px solid #f0f0f0;      /* A subtle border to define the box */
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: all 0.3s ease-in-out; 
+      height: 100%; 
+    }
+    .rental-steps .icon-box:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 8px 30px rgba(248,34,73,0.1); 
+    }
+    .rental-steps .icon-box .icon { 
+      margin: 0 auto; 
+      width: 64px; 
+      height: 64px; 
+      background: var(--accent-color); 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin-bottom: 20px; 
+      transition: all 0.3s; 
+    }
+    .rental-steps .icon-box .icon i { 
+      color: var(--contrast-color); 
+      font-size: 28px; 
+    }
+    .rental-steps .icon-box h4 { 
+      font-weight: 700; 
+      margin-bottom: 15px; 
+      font-size: 22px; 
+      color: var(--heading-color); 
+    }
+    .rental-steps .icon-box p { 
+      line-height: 24px; 
+      font-size: 14px; 
+      margin-bottom: 0; 
+      color: #6c757d; 
+    }
     /* --- RENTAL FORM (FROM old code) --- */
     .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
     .step.active { display: block; opacity: 1; transform: translateX(0); }
