@@ -24,7 +24,6 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -43,7 +42,7 @@
   <style>
     /*
       ================================================================================
-      --- START: EMBEDDED CSS (NEW TEMPLATE + OLD STYLES) ---
+      --- START: EMBEDDED CSS FROM "COLLEGE" TEMPLATE (main.css) ---
       --- THEME HAS BEEN CHANGED FROM BLUE TO PANTHERVENUE RED ---
       ================================================================================
     */
@@ -55,66 +54,167 @@
 
     /* Red Theme Color Variables */
     :root {
-      --background-color: #ffffff;
-      --default-color: #2f3138;
-      --heading-color: #060c22;
-      --accent-color: #f82249;
+      --background-color: #f1f5f7;
+      --default-color: #2f3138; /* Darker text */
+      --heading-color: #060c22; /* Very dark blue from old nav */
+      --accent-color: #f82249; /* PantherVenue Red */
       --surface-color: #ffffff;
       --contrast-color: #ffffff;
     }
-    
-    :root { scroll-behavior: smooth; }
-    body { color: var(--default-color); background-color: var(--background-color); font-family: var(--default-font); }
-    a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
-    a:hover { color: color-mix(in srgb, var(--accent-color), transparent 25%); text-decoration: none; }
-    h1, h2, h3, h4, h5, h6 { color: var(--heading-color); font-family: var(--heading-font); }
 
-    /* --- OLD NAVBAR STYLES (RESTORED) --- */
-    #header { height: 70px; padding: 15px 0; position: fixed; left: 0; top: 0; right: 0; background: rgba(6, 12, 34, 0.98); transition: all 0.5s; z-index: 997; }
-    #header #logo img { padding: 0; margin: 0; max-height: 40px; }
-    #header.header-scrolled { background: rgba(6, 12, 34, 0.98); height: 70px; }
-    #nav-menu-container { float: right; margin: 0; }
-    .nav-menu, .nav-menu * { margin: 0; padding: 0; list-style: none; }
-    .nav-menu ul { position: absolute; display: none; top: 100%; left: 0; z-index: 99; }
-    .nav-menu li { position: relative; white-space: nowrap; }
-    .nav-menu > li { float: left; }
-    .nav-menu a { padding: 8px; text-decoration: none; display: inline-block; color: rgba(255, 255, 255, 0.8); font-family: "Raleway", sans-serif; font-weight: 600; font-size: 14px; outline: none; }
-    .nav-menu .menu-active > a, .nav-menu a:hover { color: #fff; }
-    .nav-menu > li { margin-left: 8px; }
-    .nav-menu > li > a:before { content: ""; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #f82249; visibility: hidden; transition: all 0.3s ease-in-out 0s; }
-    .nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before { visibility: visible; width: 100%; }
-    .nav-menu li.buy-tickets a { color: #fff; background: #f82249; padding: 7px 22px; border-radius: 50px; border: 2px solid #f82249; transition: all ease-in-out 0.3s; font-weight: 500; margin-left: 8px; margin-top: 2px; line-height: 1; font-size: 13px; }
-    .nav-menu li.buy-tickets a:hover { background: none; }
-    .nav-menu li.buy-tickets.menu-active a:before, .nav-menu li.buy-tickets:hover a:before { visibility: hidden; }
-    #mobile-nav-toggle { position: fixed; right: 0; top: 0; z-index: 999; margin: 20px 20px 0 0; border: 0; background: none; font-size: 24px; display: none; transition: all 0.4s; outline: none; cursor: pointer; color: white; }
-    @media (max-width: 991px) {
-      #nav-menu-container { display: none; }
-      #mobile-nav-toggle { display: inline; }
+    :root {
+      --nav-color: #ffffff;
+      --nav-hover-color: #f82249;
+      --nav-mobile-background-color: #060c22;
+      --nav-dropdown-background-color: #ffffff;
+      --nav-dropdown-color: #060c22;
+      --nav-dropdown-hover-color: #f82249;
     }
-    #mobile-nav { position: fixed; top: 0; padding-top: 18px; bottom: 0; z-index: 998; background: rgba(6, 12, 34, 0.9); left: -260px; width: 260px; overflow-y: auto; transition: 0.4s; }
-    #mobile-nav ul { padding: 0; margin: 0; list-style: none; }
-    #mobile-nav ul li { position: relative; }
-    #mobile-nav ul li a { color: #fff; font-size: 15px; overflow: hidden; padding: 10px 22px 10px 15px; position: relative; text-decoration: none; width: 100%; display: block; outline: none; }
-    #mobile-nav ul li a:hover { color: #f82249; }
-    #mobile-nav ul li li { padding-left: 30px; }
-    #mobile-nav ul .menu-has-children i { position: absolute; right: 0; top: 0; padding: 15px; cursor: pointer; }
-    #mobile-nav ul .menu-active a { color: #f82249; }
-    body.mobile-nav-active { overflow: hidden; }
-    body.mobile-nav-active #mobile-nav { left: 0; }
-    body.mobile-nav-active #mobile-nav-toggle { color: #fff; }
+
+    .light-background {
+      --background-color: #e6edf0;
+      --surface-color: #ffffff;
+    }
+
+    .dark-background {
+      --background-color: #060606;
+      --default-color: #ffffff;
+      --heading-color: #ffffff;
+      --surface-color: #252525;
+      --contrast-color: #ffffff;
+    }
+
+    :root {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--default-color);
+      background-color: var(--background-color);
+      font-family: var(--default-font);
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: color-mix(in srgb, var(--accent-color), transparent 25%);
+      text-decoration: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--heading-color);
+      font-family: var(--heading-font);
+    }
+
+    /* --- GLOBAL HEADER --- */
+    .header {
+      --background-color: rgba(6, 12, 34, 0.98); /* Old nav color */
+      color: var(--default-color);
+      background-color: var(--background-color);
+      padding: 15px 0;
+      transition: all 0.5s;
+      z-index: 997;
+    }
+    .header .header-container {
+      background: transparent;
+      transition: all 0.5s;
+      position: relative;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .header .logo {
+        position: static;
+        padding: 0;
+    }
+    .header .logo img {
+      max-height: 40px;
+      margin-right: 8px;
+    }
+    .header .logo h1 {
+      font-size: 26px;
+      margin: 0;
+      font-weight: 500;
+      color: var(--contrast-color);
+    }
+    @media (max-width: 1200px) {
+      .header .logo { order: 1; }
+      .header .navmenu { order: 3; }
+    }
+    .scrolled .header {
+      box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+      --background-color: rgba(6, 12, 34, 0.98);
+    }
+
+    /* --- NAVIGATION MENU --- */
+    @media (min-width: 1200px) {
+      .navmenu { padding: 0; }
+      .navmenu ul { margin: 0; padding: 0; display: flex; list-style: none; align-items: center; }
+      .navmenu li { position: relative; }
+      .navmenu a, .navmenu a:focus {
+        color: var(--nav-color);
+        padding: 18px 15px;
+        font-size: 14px;
+        font-family: var(--nav-font);
+        font-weight: 600;
+        display: flex; align-items: center; justify-content: space-between;
+        white-space: nowrap; transition: 0.3s;
+      }
+      .navmenu li:hover > a, .navmenu .active > a, .navmenu .active:focus > a { color: var(--nav-hover-color); }
+      .navmenu > li > a:before { content: ""; position: absolute; width: 0; height: 2px; bottom: 10px; left: 15px; background-color: var(--accent-color); visibility: hidden; transition: all 0.3s ease-in-out 0s; }
+      .navmenu a:hover:before, .navmenu li:hover > a:before, .navmenu .active > a:before { visibility: visible; width: calc(100% - 30px); }
+      .navmenu li.buy-tickets a {
+        color: #fff; background: var(--accent-color);
+        padding: 7px 22px; border-radius: 50px;
+        border: 2px solid var(--accent-color); transition: all ease-in-out 0.3s;
+        font-weight: 500; margin-left: 15px;
+      }
+      .navmenu li.buy-tickets a:hover { background: none; color: #fff; }
+      .navmenu li.buy-tickets a:before { content: none !important; }
+    }
+    @media (max-width: 1199px) {
+      .mobile-nav-toggle { color: #fff; font-size: 28px; line-height: 0; margin-right: 10px; cursor: pointer; transition: color 0.3s; }
+      .navmenu { padding: 0; z-index: 9997; }
+      .navmenu ul { display: none; list-style: none; position: absolute; inset: 60px 20px 20px 20px; padding: 10px 0; margin: 0; border-radius: 6px; background-color: var(--nav-mobile-background-color); overflow-y: auto; transition: 0.3s; z-index: 9998; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1); }
+      .navmenu a, .navmenu a:focus { color: var(--nav-color); padding: 10px 20px; font-family: var(--nav-font); font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; white-space: nowrap; transition: 0.3s; }
+      .navmenu a:hover, .navmenu .active > a, .navmenu .active:focus > a { color: var(--nav-dropdown-hover-color); }
+      .mobile-nav-active { overflow: hidden; }
+      .mobile-nav-active .mobile-nav-toggle { color: #fff; position: absolute; font-size: 32px; top: 15px; right: 15px; margin-right: 0; z-index: 9999; }
+      .mobile-nav-active .navmenu { position: fixed; overflow: hidden; inset: 0; background: rgba(6, 12, 34, 0.9); transition: 0.3s; }
+      .mobile-nav-active .navmenu > ul { display: block; }
+    }
 
     /* --- GLOBAL SECTIONS --- */
-    section, .section { padding: 60px 0; scroll-margin-top: 70px; overflow: clip; }
+    section, .section {
+      color: var(--default-color);
+      background-color: var(--background-color);
+      padding: 60px 0;
+      scroll-margin-top: 70px;
+      overflow: clip;
+    }
+    @media (max-width: 1199px) {
+      section, .section { scroll-margin-top: 70px; }
+    }
     .section-header { margin-bottom: 60px; position: relative; padding-bottom: 20px; }
     .section-header::before { content: ''; position: absolute; display: block; width: 60px; height: 5px; background: #f82249; bottom: 0; left: calc(50% - 30px); }
     .section-header h2 { font-size: 32px; text-transform: uppercase; text-align: center; font-weight: 700; margin-bottom: 10px; }
     .section-header p { text-align: center; padding: 0; margin: 0; font-size: 18px; font-weight: 400; color: #444444; }
 
     /* --- HERO SECTION --- */
-    .hero { position: relative; overflow: hidden; padding: 0px; background: url('assets/img/hero-bg.png') no-repeat center bottom; background-size: cover; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 0px;
+      background-color: #f6f7fd;
+    }
     .hero .hero-wrapper { padding: 80px; }
-    @media (max-width: 992px) { .hero .hero-wrapper { padding: 100px 0 60px; text-align: center; } }
-    .hero .hero-wrapper .hero-content h1 { font-family: "Poppins", sans-serif; font-size: 3.2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+    @media (max-width: 992px) {
+      .hero .hero-wrapper { padding: 100px 0 60px; text-align: center; }
+    }
+    .hero .hero-wrapper .hero-content h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
     @media (max-width: 992px) { .hero .hero-wrapper .hero-content h1 { font-size: 2.5rem; } }
     @media (max-width: 576px) { .hero .hero-wrapper .hero-content h1 { font-size: 2rem; } }
     .hero .hero-wrapper .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; }
@@ -155,8 +255,8 @@
     .hero .upcoming-event .event-content>* { position: relative; z-index: 1; }
     .hero .upcoming-event .event-content .event-date { display: flex; flex-direction: column; background: var(--accent-color); color: var(--contrast-color); text-align: center; padding: 15px; border-radius: 8px; margin-right: 30px; min-width: 100px; }
     @media (max-width: 992px) { .hero .upcoming-event .event-content .event-date { margin: 0 auto 20px; } }
-    /* FIX for BOOK NOW font size */
-    .hero .upcoming-event .event-content .event-date span { font-size: 2.2rem; font-weight: 800; line-height: 1; text-transform: uppercase; }
+    .hero .upcoming-event .event-content .event-date .day { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+    .hero .upcoming-event .event-content .event-date .month { font-size: 1rem; font-weight: 600; text-transform: uppercase; }
     .hero .upcoming-event .event-content .event-info { flex: 1; margin-right: 30px; }
     @media (max-width: 992px) { .hero .upcoming-event .event-content .event-info { margin-right: 0; margin-bottom: 20px; } }
     .hero .upcoming-event .event-content .event-info h3 { font-size: 1.6rem; color: var(--contrast-color); margin-bottom: 10px; font-weight: 700; }
@@ -167,6 +267,12 @@
     .hero .upcoming-event .event-content .event-action .btn-event:hover { background: color-mix(in srgb, var(--accent-color), transparent 15%); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
     .hero .upcoming-event .event-content .event-action .countdown { font-size: 0.9rem; opacity: 0.8; }
     
+    /*
+      ================================================================================
+      --- START: EMBEDDED CSS FROM OLD "rent.html" & "event.html" ---
+      ================================================================================
+    */
+
     /* --- "FROM PAPERS TO AUTONOMY" SECTION --- */
     .alt-features .icon-box { display: flex; }
     .alt-features .icon-box h4 { font-family: "Raleway", sans-serif; font-size: 20px; font-weight: 700; margin: 0 0 10px 0; color: var(--heading-color); }
@@ -175,7 +281,7 @@
     #alt-features .icon-box a { color: var(--accent-color); text-decoration: underline !important; }
     #alt-features .icon-box a:hover { color: color-mix(in srgb, var(--accent-color), #000 20%); }
 
-    /* --- PHONE/PAPER ANIMATION (RESTORED) --- */
+    /* --- PHONE/PAPER ANIMATION --- */
     #alt-features *, #alt-features *:before, #alt-features *:after { box-sizing: border-box; position: relative; transform-style: preserve-3d; }
     #alt-features { --duration: 3.2s; --stagger: .8s; --easing: cubic-bezier(.36,.07,.25,1); --offscreen: 40vmax; --color-card: #f82249; --color-border: #000000; --color-shadow: #333333; }
     #app { height: 45vmin; width: 28vmin; max-height: 360px; max-width: 210px; display: flex; justify-content: center; align-items: center; transform: rotateX(-20deg) rotateY(-55deg); background: var(--color-card); border-radius: 2vmin; perspective: 10000px; margin-left: 15rem; }
@@ -203,7 +309,7 @@
     .paper.-rogue .content { font-weight: bold; color: #C8102E; }
     
     /* --- RENTAL PROCESS SECTION --- */
-    .rental-process { padding: 60px 0; }
+    .rental-process { background-color: var(--background-color); padding: 60px 0; }
     .rental-process .icon-box { text-align: center; padding: 30px 20px; background: var(--surface-color); border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; height: 100%; }
     .rental-process .icon-box:hover { transform: translateY(-10px); box-shadow: 0 8px 30px rgba(248,34,73,0.1); }
     .rental-process .icon-box .icon { margin: 0 auto; width: 64px; height: 64px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; transition: all 0.3s; }
@@ -212,7 +318,6 @@
     .rental-process .icon-box p { line-height: 24px; font-size: 14px; margin-bottom: 0; color: #6c757d; }
     
     /* --- RENTAL FORM --- */
-    #rental-form { background-color: #f6f7fd; }
     .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(50px); }
     .step.active { display: block; opacity: 1; transform: translateX(0); }
     .step.exiting { opacity: 0; transform: translateX(-50px); }
@@ -222,7 +327,7 @@
     .custom-file-input:focus ~ .custom-file-label { box-shadow: 0 0 0 2px #f82249; }
     .btn-outline-danger { border-color: #f82249; color: #f82249; }
     .btn-outline-danger:hover { background-color: #f82249; color: #fff; }
-    .btn-group-toggle > .btn-outline-danger.active { background-color: #f82249; color: #fff; }
+    .btn-group-toggle > .btn-outline-danger.active, .btn-group-toggle > .btn-outline-danger.selected { background-color: #f82249; color: #fff; }
     #step-indicators { position: relative; }
     .progress-fill { position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 2px; background: #f82249; transition: width 0.5s ease; z-index: -1; }
     .btn-primary { background-color: #f82249; border-color: #f82249; }
@@ -283,23 +388,24 @@
 
 <body class="index-page">
 
-  <header id="header">
-    <div class="container">
-      <div id="logo" class="pull-left">
-        <a href="/home.html" class="scrollto">
-          <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo" title="">
-        </a>
-      </div>
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li><a href="/home.html">Home</a></li>
-          <li><a href="/home.html#about">About</a></li>
-          <li><a href="/event.html">Events</a></li>
-          <li class="menu-active"><a href="/rent.html">Rent Venue</a></li>
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="home.html" class="logo d-flex align-items-center me-auto">
+        <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="PantherVenue Logo">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="home.html#about">About</a></li>
+          <li><a href="event.html">Events</a></li>
+          <li><a href="rent.html" class="active">Rent Venue</a></li>
           <li class="buy-tickets"><a href="/login.html" id="loginButton">Log In</a></li>
         </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      <div id="mobile-nav-toggle"><i class="fas fa-bars"></i></div>
+
     </div>
   </header>
 
@@ -392,7 +498,7 @@
           <div class="event-content">
             <div class="event-date">
               <span class="day">BOOK</span>
-              <span class="day">NOW</span>
+              <span class="month">NOW</span>
             </div>
             <div class="event-info">
               <h3>Secure Your Date for an Unforgettable Event</h3>
@@ -695,14 +801,15 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  
-  <!-- jQuery for old mobile nav script -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Firebase JS -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -715,33 +822,40 @@
       "use strict";
 
       /**
-       * Old Mobile Nav Logic
+       * Apply .scrolled class to the body as the page is scrolled down
        */
-       if ($('#nav-menu-container').length) {
-        var $mobile_nav = $('#nav-menu-container').clone().prop({
-          id: 'mobile-nav'
-        });
-        $mobile_nav.find('> ul').attr({
-          'class': '',
-          'id': ''
-        });
-        $('body').append($mobile_nav);
-        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fas fa-bars"></i></button>');
-        $('body').append('<div id="mobile-body-overly"></div>');
-        $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
-
-        $(document).on('click', '.menu-has-children i', function(e) {
-          $(this).next().toggleClass('menu-item-active');
-          $(this).nextAll('ul').eq(0).slideToggle();
-          $(this).toggleClass("fa-chevron-up fa-chevron-down");
-        });
-
-        $(document).on('click', '#mobile-nav-toggle', function(e) {
-          $('body').toggleClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').toggle();
-        });
+      function toggleScrolled() {
+        const selectBody = document.querySelector('body');
+        const selectHeader = document.querySelector('#header');
+        if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+        window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
       }
+      document.addEventListener('scroll', toggleScrolled);
+      window.addEventListener('load', toggleScrolled);
+
+      /**
+       * Mobile nav toggle
+       */
+      const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+      function mobileNavToogle() {
+        document.querySelector('body').classList.toggle('mobile-nav-active');
+        mobileNavToggleBtn.classList.toggle('bi-list');
+        mobileNavToggleBtn.classList.toggle('bi-x');
+      }
+      if (mobileNavToggleBtn) {
+        mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+      }
+
+      /**
+       * Hide mobile nav on same-page/hash links
+       */
+      document.querySelectorAll('#navmenu a').forEach(navmenu => {
+        navmenu.addEventListener('click', () => {
+          if (document.querySelector('.mobile-nav-active')) {
+            mobileNavToogle();
+          }
+        });
+      });
 
       /**
        * Animation on scroll function and init
@@ -824,9 +938,11 @@
       document.querySelectorAll('.btn-group-toggle .btn').forEach(label => {
         label.addEventListener('click', function() {
           const input = this.querySelector('input');
+          // Un-select all in the same group
           document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
             radio.parentElement.classList.remove('active');
           });
+          // Select the clicked one
           this.classList.add('active');
           input.checked = true;
         });
