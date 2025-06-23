@@ -621,51 +621,70 @@
                         <button onclick="handleLogout()" class="btn btn-danger">log out</button>
                     </div>
                     <div class="container-fluid p-0">
-                        <div class="row">
-                            <div class="col-xl-4 col-xxl-3 d-flex">
-                                <div class="w-100">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Total Tickets Bought</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
-                                                    </div>
-                                                    <h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col mt-0"><h5 class="card-title">Total Money Spent</h5></div>
-                                                        <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
-                                                    </div>
-                                                    <h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-sm-14s">
-                                            <div class="card rent-venue-box" style="height: 258px;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Rent Venue</h5>
-                                                    <p class="rent-venue-note" >Host your event at PantherVenue. <br>
-                                                        Questions? Visit the 
-                                                        <a href="index.html#faq" class="text-red-500 underline decoration-red-500 decoration-2 hover:text-red-700 hover:decoration-red-700">F.A.Q. page.</a>
-                                                    </p>
-                                                    <div style="text-align: center; margin-top: 1px;">
-                                                        <a href="rent.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 16px; line-height: 1.5; display: inline-block;">Rent Now</a>
-                                                    </div>
-                                                    <p class="rent-venue-note" style=" margin-bottom: 20px;">Event accepted? An admin will reach out to you soon. Check your email!</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                      <!-- START: Add this code to your User Dashboard section -->
+<div class="row">
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mt-0">
+                        <h5 class="card-title">Total Tickets</h5>
+                    </div>
+                    <div class="col-auto"><i class="align-middle fas fa-ticket-alt"></i></div>
+                </div>
+                <h1 id="totalTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mt-0">
+                        <h5 class="card-title">Total Spent</h5>
+                    </div>
+                    <div class="col-auto"><i class="align-middle fas fa-dollar-sign"></i></div>
+                </div>
+                <h1 id="totalSpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 mt-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mt-0">
+                        <h5 class="card-title">Monthly Tickets</h5>
+                    </div>
+                    <div class="col-auto"><i class="align-middle fas fa-calendar-check"></i></div>
+                </div>
+                <h1 id="monthlyTickets" class="mt-1 mb-3 text-[1.6875rem] font-bold">0</h1>
+                <div class="mb-0">
+                    <span class="text-muted" id="monthlyTicketsChange">--%</span>
+                    <span class="text-muted"> vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 mt-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mt-0">
+                        <h5 class="card-title">Monthly Spend</h5>
+                    </div>
+                    <div class="col-auto"><i class="align-middle fas fa-wallet"></i></div>
+                </div>
+                <h1 id="monthlySpent" class="mt-1 mb-3 text-[1.6875rem] font-bold">$0.00</h1>
+                <div class="mb-0">
+                    <span class="text-muted" id="monthlySpentChange">--%</span>
+                    <span class="text-muted"> vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Add this code -->
                             </div>
                             <div class="col-xl-8 col-xxl-9">
                                 <div class="card flex-fill w-100">
