@@ -93,7 +93,10 @@
         .social-icon { height: 46px; width: 46px; display: flex; justify-content: center; align-items: center; margin: 0 0.45rem; color: #2f3138; border-radius: 50%; border: 1px solid #2f3138; text-decoration: none; font-size: 1.1rem; transition: 0.3s; }
         .social-icon:hover { color: #f82249; border-color: #f82249; }
         .btn { width: 150px; background-color: #f82249; border: none; outline: none; height: 49px; border-radius: 49px; color: #fff; text-transform: uppercase; font-weight: 600; margin: 10px 0; cursor: pointer; transition: 0.5s; font-family: 'Raleway', sans-serif; }
-        .btn:hover { background-color: #e61e40; }
+        .btn:hover { 
+    background-color: #ca1231;
+    color: #fff; /* This line keeps the text white on hover */
+}
         .panels-container { position: absolute; height: 100%; width: 100%; top: 0; left: 0; display: grid; grid-template-columns: repeat(2, 1fr); }
         .login-container:before { content: ""; position: absolute; height: 2000px; width: 2000px; top: -10%; right: 48%; transform: translateY(-50%); background-image: linear-gradient(-45deg, #f82249 0%, #f82249 100%); transition: 1.8s ease-in-out; border-radius: 50%; z-index: 6; }
         .image { width: 100%; transition: transform 1.1s ease-in-out; transition-delay: 0.4s; }
@@ -245,7 +248,12 @@
         .login-container .panel .content h3 { font-size: 2.5rem !important; color: #fff !important; margin-bottom: 0rem !important; font-weight: 700 !important; }
         .login-container .panel .content p { font-family: 'Open Sans', sans-serif !important; font-size: 1.1rem !important; color: rgba(255,255,255,0.9) !important; line-height: 1.6 !important; margin-bottom: 1rem !important; }
         .login-container .btn.transparent { background: transparent !important; border: 2px solid #fff !important; color: #fff !important; transition: all 0.3s ease !important; }
-        .login-container .btn.transparent:hover { background: #fff !important; color: #f82249 !important; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+         .panels-container .panel .btn.transparent:hover {
+    background-color: #fff !important;
+    color: #f82249 !important; /* Explicitly set the hover text color to red */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
         .login-container .input-field:focus-within { box-shadow: 0 0 0 2px #f82249 !important; background: #fff !important; }
         .login-container .input-field:focus-within i { color: #f82249 !important; }
         #mobile-nav-toggle { position: fixed; right: 0; top: 0; z-index: 999; margin: 15px 15px 0 0; border: 0; background: none; font-size: 24px; display: none; transition: all 0.4s; outline: none; cursor: pointer; }
@@ -952,7 +960,7 @@
                                     adminDashboard.style.display = 'block';
                                     adminDashboard.classList.add('fade-in');
                                     setTimeout(() => adminDashboard.classList.remove('fade-in'), 500);
-                                    updateAdminDashboard();
+                                    updateAdminDashboad();
                                 } else {
                                     userDashboard.style.display = 'block';
                                     userDashboard.classList.add('fade-in');
@@ -1241,7 +1249,7 @@ updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpen
                                         </div>
                                     </div>
                                     <div class="event-action">
-                                        <a href="#" onclick="event.preventDefault(); generateFlyer('${eventDoc.id}')" class="text-red-600 underline font-semibold mb-2">Download PDF</a>
+                                        <a href="#" onclick="event.preventDefault(); generateFlyer('${eventDoc.id}')" class="text-red-600 underline font-semibold mb-2">Download Ticket</a>
                                         <button onclick="showEventDetails('${reg.id}')">See Details</button>
                                     </div>
                                 </div>`;
@@ -1518,7 +1526,25 @@ updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpen
 
 
 
+<style>        .btn-decline { background-color: #dc3545; color: white; }
+        .btn-pending { background-color: #ffc107; color: white; }
+        .btn-accept { background-color: #28a745; color: white; }
+        .btn-trash { background-color: #6c757d; color: white; }
 
+        /* --- ADD THESE NEW HOVER RULES --- */
+        .btn-decline:hover {
+            background-color: #c82333; /* Darker red */
+        }
+        .btn-pending:hover {
+            background-color: #e0a800; /* Darker yellow */
+        }
+        .btn-accept:hover {
+            background-color: #218838; /* Darker green */
+        }
+        .btn-trash:hover {
+            background-color: #5a6268; /* Darker grey */
+        }
+        /* --- END OF NEW HOVER RULES --- */</style>
 
     
 </body>

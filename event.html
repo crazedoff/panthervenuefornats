@@ -3,14 +3,14 @@
 <head>
     <link rel="prefetch" href="/event.html">
     <!-- Google analytics tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1N2QCDNHH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-G1N2QCDNHH');
-</script>
+      gtag('config', 'G-G1N2QCDNHH');
+    </script>
     <meta charset="utf-8">
     <title>PantherVenue - Events</title>
     <meta name="description" content="PantherVenue is a state-of-the-art gymnasium offering top-tier fitness facilities, personalized training, and a community-focused atmosphere.">
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- poppins font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- jQuery + UI from cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -120,46 +120,10 @@
         .list-view-price { min-width: 80px; text-align: right; }
 
         /* ticket purchase popup */
-        .popup-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.8); 
-            opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s ease; 
-            z-index: 9999; 
-        }
-        .popup-overlay.active { 
-            opacity: 1; 
-            pointer-events: auto; 
-        }
-        .ticket-popup { 
-            display: block; 
-            position: fixed; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%) scale(0.9); 
-            background: white; 
-            width: 90%; 
-            max-width: 800px; 
-            border-radius: 20px; 
-            padding: 2rem; 
-            box-shadow: 0 0 40px rgba(248,34,73,0.2); 
-            z-index: 10000; 
-            opacity: 0; 
-            pointer-events: none; 
-            transition: opacity 0.3s ease, transform 0.3s ease; 
-            max-height: 90vh; 
-            overflow-y: auto; 
-        }
-        .ticket-popup.active { 
-            opacity: 1; 
-            pointer-events: auto; 
-            transform: translate(-50%, -50%) scale(1); 
-        }
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 9999; }
+        .popup-overlay.active { opacity: 1; pointer-events: auto; }
+        .ticket-popup { display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: white; width: 90%; max-width: 800px; border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(248,34,73,0.2); z-index: 10000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
+        .ticket-popup.active { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
         .popup-close { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: #2f3138; transition: all 0.3s; }
         .popup-close:hover { color: #f82249; }
         .popup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -176,8 +140,6 @@
         .cc-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .purchase-button { background: #f82249; color: white; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
         .purchase-button:hover { background: #e61e40; }
-
-        /* popup updates */
         .ticket-popup { max-width: 95%; max-height: 90vh; overflow-y: auto; padding: 1rem; }
         .popup-grid { grid-template-columns: 1fr; gap: 1rem; }
         @media (min-width: 768px) { .popup-grid { grid-template-columns: 1fr 1fr; } }
@@ -187,8 +149,7 @@
         .arena-container, .arena-container2 { transform: scale(0.6); transform-origin: center; width: 166.67%; height: 166.67%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); }
         .arena-container { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
         .arena-container2 { position: relative; border: 4px solid #a00000; background: rgba(224, 7, 47, 0.276); border-radius: 30px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; margin: 2rem auto; max-width: 1200px; }
-        .arena-container::after { content: ''; position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; border: 4px solid #a00000; pointer-events: none; z-index: 1; border-radius: 2px; background: #fff; }
-        .arena-container2::after { content: ''; position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; border: 4px solid #a00000; pointer-events: none; z-index: 1; border-radius: 2px; background: #fff; }
+        .arena-container::after, .arena-container2::after { content: ''; position: absolute; top: 60px; left: 60px; right: 60px; bottom: 60px; border: 4px solid #a00000; pointer-events: none; z-index: 1; border-radius: 2px; background: #fff; }
         .capacity-section { position: absolute; background: transparent !important; color: #490b15; display: flex; align-items: center; justify-content: center; font-weight: 600; z-index: 2; padding: 8px; border: none !important; cursor: pointer; transition: all 0.3s ease; }
         .north { top: 4px; left: 60px; right: 60px; height: 40px; border-top: 2px solid #a00000; border-bottom: 2px solid #a00000; }
         .south { bottom: 4px; left: 60px; right: 60px; height: 40px; border-bottom: 2px solid #a00000; border-top: 2px solid #a00000; }
@@ -227,38 +188,57 @@
         #list-view .event-action button:hover { background: #e61e40; }
 
         /* price slider styles */
-        #price-slider {
-            margin: 1rem 0;
-            height: 8px;
-            background: #dee2e6;
-            border-radius: 4px;
-            overflow: visible;
-            width: 93%;
-            margin: 1rem auto;
-        }
-        #price-slider .ui-slider-range {
-            background: #f82249;
-            height: 100%;
-            border-radius: 4px;
-        }
-        #price-slider .ui-slider-handle {
-            background: #fff;
-            border: 2px solid #f82249;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            top: -4px;
-            cursor: pointer;
-            position: absolute;
-        }
-        #price-slider .ui-slider-handle:focus {
-            outline: none;
-        }
-        .price-values {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #2f3138;
+        #price-slider { margin: 1rem 0; height: 8px; background: #dee2e6; border-radius: 4px; overflow: visible; width: 93%; margin: 1rem auto; }
+        #price-slider .ui-slider-range { background: #f82249; height: 100%; border-radius: 4px; }
+        #price-slider .ui-slider-handle { background: #fff; border: 2px solid #f82249; border-radius: 50%; width: 16px; height: 16px; top: -4px; cursor: pointer; position: absolute; }
+        #price-slider .ui-slider-handle:focus { outline: none; }
+        .price-values { display: flex; justify-content: space-between; font-size: 0.9rem; color: #2f3138; }
+
+        /* DECORATIVE STYLES FOR EVENTS PAGE - From home.html */
+        @media (min-width: 1200px) {
+            #events-section {
+                position: relative;
+                overflow: hidden;
+                z-index: 1; 
+                padding-top: 3rem; /* Add some padding so content doesn't touch the top */
+                padding-bottom: 3rem;
+            }
+
+            #events-section .container {
+                position: relative;
+                z-index: 2;
+            }
+            
+            #events-section::before, #events-section::after {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                background-repeat: no-repeat;
+                background-size: contain;
+                pointer-events: none;
+            }
+
+            /* Red Blob for Top Left */
+            #events-section::before {
+                background-image: url('redblob.svg');
+                width: 550px;
+                height: 550px;
+                top: -180px;
+                left: -200px;
+                opacity: 0.15;
+                transform: rotate(-30deg);
+            }
+            
+            /* Gray Blob for Bottom Right */
+            #events-section::after {
+                background-image: url('grayblob.svg');
+                width: 600px;
+                height: 600px;
+                bottom: -250px;
+                right: -250px;
+                opacity: 0.1;
+                transform: rotate(45deg) scaleX(-1);
+            }
         }
     </style>
 </head>
@@ -318,70 +298,74 @@
             </div>
         </div>
     </div>
-
-    <div class="container mx-auto p-4">
-        <div class="flex flex-col md:flex-row gap-6">
-            <div class="w-full md:w-1/4">
-                <div class="filter-sidebar">
-                    <div class="relative mb-6">
-                        <input type="text" id="searchInput" class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Search events...">
-                        <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
-                    </div>
-                    <div class="filter-section active">
-                        <div class="filter-header" onclick="toggleFilter(this)">
-                            <h3 class="font-semibold">Categories</h3>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+    
+    <!-- WRAPPER SECTION WITH DECORATIVE BLOBS -->
+    <section id="events-section">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="w-full md:w-1/4">
+                    <div class="filter-sidebar">
+                        <div class="relative mb-6">
+                            <input type="text" id="searchInput" class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Search events...">
+                            <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
                         </div>
-                        <div class="filter-options">
-                            <div class="space-y-2" id="categoryFilters"></div>
-                        </div>
-                    </div>
-                    <div class="filter-section active">
-                        <div class="filter-header" onclick="toggleFilter(this)">
-                            <h3 class="font-semibold">Price Range</h3>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
-                        </div>
-                        <div class="filter-options">
-                            <div id="price-slider"></div>
-                            <div class="price-values">
-                                <span id="min-price">$0</span> - <span id="max-price">$100</span>
+                        <div class="filter-section active">
+                            <div class="filter-header" onclick="toggleFilter(this)">
+                                <h3 class="font-semibold">Categories</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                            </div>
+                            <div class="filter-options">
+                                <div class="space-y-2" id="categoryFilters"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="filter-section active">
-                        <div class="filter-header" onclick="toggleFilter(this)">
-                            <h3 class="font-semibold">Date</h3>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
-                        </div>
-                        <div class="filter-options">
-                            <div class="grid grid-cols-2 gap-2">
-                                <input type="date" id="startDate" class="p-2 border rounded-lg text-sm">
-                                <input type="date" id="endDate" class="p-2 border rounded-lg text-sm">
+                        <div class="filter-section active">
+                            <div class="filter-header" onclick="toggleFilter(this)">
+                                <h3 class="font-semibold">Price Range</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                            </div>
+                            <div class="filter-options">
+                                <div id="price-slider"></div>
+                                <div class="price-values">
+                                    <span id="min-price">$0</span> - <span id="max-price">$100</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button class="w-full clear-filters p-2 rounded mb-4 transition mt-4" onclick="clearFilters()">Clear Filters</button>
-                    <div class="email-section p-4 rounded">
-                        <h2 class="font-bold mb-2">Stay in the Loop</h2>
-                        <p class="mb-2 text-gray-600">Get updates about new events and offers</p>
-                        <input type="email" id="subscribeEmail" class="w-full p-2 border border-gray-200 rounded mb-2" placeholder="your@email.com">
-                        <button id="subscribeBtn" class="w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 transition">Subscribe</button>
+                        <div class="filter-section active">
+                            <div class="filter-header" onclick="toggleFilter(this)">
+                                <h3 class="font-semibold">Date</h3>
+                                <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                            </div>
+                            <div class="filter-options">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="date" id="startDate" class="p-2 border rounded-lg text-sm">
+                                    <input type="date" id="endDate" class="p-2 border rounded-lg text-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full clear-filters p-2 rounded mb-4 transition mt-4" onclick="clearFilters()">Clear Filters</button>
+                        <div class="email-section p-4 rounded">
+                            <h2 class="font-bold mb-2">Stay in the Loop</h2>
+                            <p class="mb-2 text-gray-600">Get updates about new events and offers</p>
+                            <input type="email" id="subscribeEmail" class="w-full p-2 border border-gray-200 rounded mb-2" placeholder="your@email.com">
+                            <button id="subscribeBtn" class="w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 transition">Subscribe</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full md:w-3/4">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 id="eventCount" class="text-2xl font-bold text-gray-800">Loading Events...</h2>
-                    <div class="flex gap-2">
-                        <button id="box-btn" class="view-toggle active hover:scale-105 transition-transform"><i class="fas fa-th"></i></button>
-                        <button id="list-btn" class="view-toggle hover:scale-105 transition-transform"><i class="fas fa-bars"></i></button>
+                <div class="w-full md:w-3/4">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 id="eventCount" class="text-2xl font-bold text-gray-800">Loading Events...</h2>
+                        <div class="flex gap-2">
+                            <button id="box-btn" class="view-toggle active hover:scale-105 transition-transform"><i class="fas fa-th"></i></button>
+                            <button id="list-btn" class="view-toggle hover:scale-105 transition-transform"><i class="fas fa-bars"></i></button>
+                        </div>
                     </div>
+                    <div id="box-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                    <div id="list-view" class="space-y-4 hidden"></div>
                 </div>
-                <div id="box-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-                <div id="list-view" class="space-y-4 hidden"></div>
             </div>
         </div>
-    </div>
+    </section>
+
     
     <!-- Firebase stuff -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -1461,5 +1445,23 @@ document.addEventListener('DOMContentLoaded', () => {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Check if the URL has the instruction "?action=play"
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldPlay = urlParams.get('action') === 'play';
+
+    if (shouldPlay) {
+      // 2. Find the play button on the homepage
+      const playButton = document.getElementById('play-button');
+
+      // 3. If the button exists, programmatically "click" it
+      if (playButton) {
+        playButton.click();
+      }
+    }
+  });
+</script>
 </body>
 </html>
