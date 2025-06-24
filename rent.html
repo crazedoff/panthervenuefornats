@@ -965,20 +965,25 @@
     <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
   </div>
 </div>
-
-      <!-- Step 5: Event Image -->
-      <div id="step5" class="step">
-        <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
-        <p class="text-gray-600 mb-4">Upload an image for your event (optional).</p>
-        <div class="custom-file mb-6">
-          <input type="file" class="custom-file-input" id="event-image" accept="image/*">
-          <label class="custom-file-label rounded-full" for="event-image">Choose file</label>
-        </div>
-        <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
-          <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-        </div>
-      </div>
+<!-- Step 5: Event Image (NEW AND IMPROVED) -->
+<div id="step5" class="step">
+  <h2 class="text-2xl font-semibold mb-6">Step 5: Event Image</h2>
+  <p class="text-gray-600 mb-4 text-center">A great image can boost interest in your event! (Optional)</p>
+  
+  <!-- Custom File Upload Area -->
+  <div class="file-upload-wrapper mb-6">
+    <input type="file" id="event-image" class="file-upload-input" accept="image/png, image/jpeg, image/gif">
+    <label for="event-image" class="file-upload-button btn btn-primary rounded-full">
+      <i class="fas fa-upload mr-2"></i> Choose Image
+    </label>
+    <span id="file-upload-name" class="file-upload-name text-gray-500">No file selected</span>
+  </div>
+  
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-secondary rounded-full px-8 py-2" onclick="prevStep()"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+    <button type="button" class="btn btn-primary rounded-full px-8 py-2" onclick="nextStep()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+  </div>
+</div>
 
       <!-- Step 6: Confirmation -->
       <div id="step6" class="step">
@@ -1091,17 +1096,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
   });
 
+  // Listener for the new custom file upload in Step 5
   document.getElementById('event-image').addEventListener('change', function() {
     const file = this.files[0];
-    const fileName = file ? file.name : 'No filae chosen';
-    this.nextElementSibling.textContent = fileName;
+    const fileNameDisplay = document.getElementById('file-upload-name');
+    
     if (file) {
+      // Display the selected file name and change text color
+      fileNameDisplay.textContent = file.name;
+      fileNameDisplay.classList.remove('text-gray-500');
+      fileNameDisplay.classList.add('text-black');
+      
+      // Read the file for the preview and data submission
       const reader = new FileReader();
       reader.onload = function(e) {
         eventImageData = e.target.result;
       };
       reader.readAsDataURL(file);
     } else {
+      // Reset if no file is chosen or the selection is cancelled
+      fileNameDisplay.textContent = 'No file selected';
+      fileNameDisplay.classList.add('text-gray-500');
+      fileNameDisplay.classList.remove('text-black');
       eventImageData = '';
     }
   });
@@ -1897,5 +1913,54 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- END: Chatbot Integration Head -->
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>/*
+  ================================================================================
+  --- START: FIX FOR CUSTOM FILE UPLOAD (STEP 5) ---
+  ================================================================================
+*/
+.file-upload-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the upload button and text */
+  flex-direction: column; /* Stack button and text vertically */
+  padding: 2rem;
+  border: 2px dashed #e5e7eb; /* Gray dashed border */
+  border-radius: 12px; /* Rounded corners */
+  background-color: #f9fafb; /* Light gray background */
+}
+
+/* Visually hide the actual file input but keep it accessible */
+.file-upload-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Style the label as our custom button */
+.file-upload-button {
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Space between button and file name */
+  /* Re-uses existing button styles */
+}
+
+/* Style for the file name display area */
+.file-upload-name {
+  font-style: italic;
+  font-weight: 500;
+  word-break: break-all; /* Prevents long file names from breaking the layout */
+}
+/*
+  ================================================================================
+  --- END: FIX FOR CUSTOM FILE UPLOAD (STEP 5) ---
+  ================================================================================
+*/</style>
 </body>
 </html>
