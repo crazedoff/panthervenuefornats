@@ -905,12 +905,19 @@
                 
                 document.getElementById('flyer-gen-event-image').src = event.image;
 
-                new QRCode(qrContainer, {
-                    text: `https://panther-venue.vercel.app/event.html#event-${eventId}`,
-                    width: 230, height: 230,
-                    colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H
-                });
+                const timestamp = Date.now();
+                const qrData = `PV-TICKET:${currentUser.uid}|${eventId}|${timestamp}`;
+
                 
+                new QRCode(qrContainer, {
+                    text: qrData, 
+                    width: 210,  
+                    height: 210,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+                                
                 showPopup('Generating...', 'Your flyer is being created and will download shortly.', true);
                 
                 setTimeout(() => {
