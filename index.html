@@ -12,6 +12,36 @@
         #page-wrapper { transition: opacity 0.25s ease-in-out; }
         body.loading #page-wrapper { opacity: 0; }
     </style>
+    <script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+  // Block Cmd+Option+I (DevTools)
+  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Shift+C (Element picker)
+  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Shift+J (Console)
+  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Option+U (View source)
+  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+
+  // General: Block F12 (DevTools)
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+};
+</script> 
 </head>
  <script>
   window.location.href = "home.html";

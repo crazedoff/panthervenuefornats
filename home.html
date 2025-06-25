@@ -13,6 +13,37 @@
   gtag('config', 'G-G1N2QCDNHH');
 </script>
 
+<script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+  // Block Cmd+Option+I (DevTools)
+  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'i') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Shift+C (Element picker)
+  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Shift+J (Console)
+  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+    e.preventDefault();
+  }
+
+  // Block Cmd+Option+U (View source)
+  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'u') {
+    e.preventDefault();
+  }
+
+  // General: Block F12 (DevTools)
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+};
+</script>
+
   <meta charset="utf-8">
   <title>PantherVenue</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
