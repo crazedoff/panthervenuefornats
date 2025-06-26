@@ -59,6 +59,19 @@ document.onkeydown = function(e) {
  
 </a>
 
+
+<!-- Preload the 360 Viewer page and its critical assets -->
+<link rel="prefetch" href="viewer.html">
+<link rel="prefetch" href="js/panolens.min.js">
+<link rel="prefetch" href="images/image1.jpeg" as="image"> 
+<!-- Prefetch the most likely next pages the user will visit from Home -->
+<link rel="prefetch" href="/event.html" as="document">
+<link rel="prefetch" href="/rent.html" as="document">
+<link rel="prefetch" href="/login.html" as="document">
+
+
+
+
   <!-- our favicon -->
   <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
 
@@ -417,16 +430,13 @@ document.onkeydown = function(e) {
     }());
   </script>
 
-
 <body>
-
-
 <!-- Header -->
   <header id="header">
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <!-- use a text logo instead of img if you want -->
+        <!-- use a text logo instead of img if I want -->
         <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
         <a href="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" class="scrollto">
           <img src="https://cloud-lrd7zzrnx-hack-club-bot.vercel.app/0untitled__2357_x_778_px___2_.png" alt="" title="">
@@ -445,6 +455,9 @@ document.onkeydown = function(e) {
       </nav>
     </div>
   </header>
+
+
+
 
   <!-- Firebase and Auth Logic -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -598,40 +611,91 @@ document.onkeydown = function(e) {
     <a href="/event.html" class="about-btn scrollto">See Events</a>
   </div>
 </section>
-
 <script>
-const fullText = "Where Community Meets "; // The text to type out first
-const excellenceText = "Excellence"; // The text to type out second
-const typingElement = document.getElementById("typing-effect");
-const excellenceElement = document.getElementById("excellence");
-let index = 0;
+  // --- Elements & State ---
+  const fullText = "Where Community Meets ";
+  const excellenceText = "Excellence";
+  const typingElement = document.getElementById("typing-effect");
+  const excellenceElement = document.getElementById("excellence");
 
-function type() {
-  if (index < fullText.length) {
-    typingElement.innerHTML += fullText.charAt(index);
-    index++;
-    setTimeout(type, 70); // typing speed in ms
-  } else {
-    // after the first part, type 'Excellence'
-    typeExcellence();
-  }
-}
+  let index = 0;
+  let typingTimeout = null; // Used to manage and clear the animation timeouts
 
-function typeExcellence() {
-  let indexExcellence = 0;
-  function typeNext() {
-    if (indexExcellence < excellenceText.length) {
-      excellenceElement.innerHTML += excellenceText.charAt(indexExcellence);
-      indexExcellence++;
-      setTimeout(typeNext, 150); // typing speed in ms
+  // --- Typing Logic ---
+
+  // Types the first part: "Where Community Meets "
+  function type() {
+    if (index < fullText.length) {
+      typingElement.innerHTML += fullText.charAt(index);
+      index++;
+      // Store the timeout so it can be cancelled
+      typingTimeout = setTimeout(type, 70); 
+    } else {
+      // When the first part is done, start typing "Excellence"
+      typeExcellence();
     }
   }
-  typeNext(); // Start typing "Excellence"
-}
 
-// start typing on load
-// this gets called by the main script at the bottom
+  // Types the second part: "Excellence"
+  function typeExcellence() {
+    let indexExcellence = 0;
+
+    function typeNextCharacter() {
+      if (indexExcellence < excellenceText.length) {
+        // For the first letter, REPLACE the placeholder ( ).
+        // For all others, APPEND the character.
+        if (indexExcellence === 0) {
+          excellenceElement.innerHTML = excellenceText.charAt(indexExcellence);
+        } else {
+          excellenceElement.innerHTML += excellenceText.charAt(indexExcellence);
+        }
+        indexExcellence++;
+        // Store the timeout so it can be cancelled
+        typingTimeout = setTimeout(typeNextCharacter, 150);
+      }
+    }
+    typeNextCharacter();
+  }
+
+  // --- Restart Logic ---
+
+  // Resets and restarts the entire animation sequence
+  function restartTyping() {
+    // 1. Stop any currently running animation to prevent glitches.
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
+    }
+
+    // 2. Reset the text and typing index.
+    typingElement.innerHTML = '';
+    index = 0;
+
+    // 3. **THE FIX**: Reset the second line with a non-breaking space.
+    // This is crucial. It holds the line's height and prevents the layout jump.
+    excellenceElement.innerHTML = '&nbsp';
+
+    // 4. Start the typing animation from the beginning.
+    type();
+  }
+
+  // --- Event Listener ---
+  // Listens for the "Cmd + H" shortcut to trigger the restart.
+  document.addEventListener('keydown', function(e) {
+    if (e.metaKey && e.key.toLowerCase() === 'h') {
+      e.preventDefault(); // Prevents the browser's default action (like opening history).
+      restartTyping();
+    }
+  });
+
+  // NOTE: The initial call to `type()` is made by your main script near the bottom
+  // of the page, which is correct. We don't need to call it here on load.
 </script>
+
+
+
+
+
+
 
   <!-- cool wave svg -->
   <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">

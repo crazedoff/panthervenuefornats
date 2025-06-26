@@ -6,46 +6,12 @@
     <title>PantherVenue</title>
     <link href="https://cloud-eliqwphhl-hack-club-bot.vercel.app/0untitled_design__13_.png" rel="icon" type="image/png">
     
-    <!-- This is the ONLY style the main shell should have -->
+    <!-- A simple transition to make the page swap less jarring -->
     <style>
-        /* A simple transition to make the page swap less jarring */
         #page-wrapper { transition: opacity 0.25s ease-in-out; }
         body.loading #page-wrapper { opacity: 0; }
     </style>
-    <script>
-document.addEventListener('contextmenu', event => event.preventDefault());
-
-document.onkeydown = function(e) {
-  // Block Cmd+Option+I (DevTools)
-  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'i') {
-    e.preventDefault();
-  }
-
-  // Block Cmd+Shift+C (Element picker)
-  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'c') {
-    e.preventDefault();
-  }
-
-  // Block Cmd+Shift+J (Console)
-  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'j') {
-    e.preventDefault();
-  }
-
-  // Block Cmd+Option+U (View source)
-  if (e.metaKey && e.altKey && e.key.toLowerCase() === 'u') {
-    e.preventDefault();
-  }
-
-  // General: Block F12 (DevTools)
-  if (e.key === 'F12') {
-    e.preventDefault();
-  }
-};
-</script> 
 </head>
- <script>
-  window.location.href = "home.html";
-</script>
 <body>
 
     <!-- This is the BLANK CANVAS where your pages will be loaded -->
@@ -53,8 +19,6 @@ document.onkeydown = function(e) {
 
     <!-- The one and only script that runs the entire website -->
     <script src="app.js"></script>
-
-   
 
 </body>
 </html>
