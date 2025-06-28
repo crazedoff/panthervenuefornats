@@ -474,7 +474,7 @@
     </nav>
     <div id="mobile-body-overly"></div>
 
-    <!-- ADDED: HIDDEN FLYER GENERATOR -->
+
     <div id="flyer-generator-container" style="position: fixed; left: -9999px; top: -9999px; width: 1080px; height: 1350px; overflow: hidden; background-color: #ccc; font-family: 'Poppins', sans-serif;">
         <style>
                         #flyer-generator-container .overlay { position: absolute; z-index: 1; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -580,7 +580,7 @@
                                 </div>
                             </div>
                         </div>
-                                             <!-- CORRECTED ROW -->
+                                        
                         <div class="row">
 
                               <!-- Calendar -->
@@ -641,7 +641,7 @@
                     </div>
                     <div class="container-fluid p-0">
                         <div class="row">
-                          <!-- START: Add this code -->
+                    
 <div class="col-xl-4 col-xxl-3 d-flex">
     <div class="w-100">
         <div class="row">
@@ -678,8 +678,7 @@
                 </div>
             </div>
         </div>
-        <!-- ... more code ... -->
-<!-- END: Add this code -->
+
                                     <div class="row mt-4">
                                         <div class="col-sm-14s">
                                             <div class="card rent-venue-box" style="height: 258px;">
@@ -855,7 +854,7 @@
     <!-- Firebase Configuration -->
     <script>
       const firebaseConfig = {
-        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA", // Replace with your actual config
+        apiKey: "AIzaSyC0BYFCxwgu3tHp_3oeLsxoMBpyDRnj8IA",
         authDomain: "panthervenue.firebaseapp.com",
         projectId: "panthervenue",
         storageBucket: "panthervenue.appspot.com",
@@ -926,27 +925,27 @@
                         allowTaint: true,
                         scale: 1.5 
                     }).then(canvas => {
-                        // This converts the canvas image into a real file-like object (a "Blob")
+                       
                         canvas.toBlob(function(blob) {
-                            // This creates a temporary, downloadable URL for that file
+                         
                             const url = URL.createObjectURL(blob);
                             
-                            // Create a hidden link to trigger the download
+                  
                             const link = document.createElement('a');
                             link.href = url;
                             link.download = `PantherVenue_${event.title.replace(/\s+/g, '_')}_Flyer.png`;
 
-                            // Add the link to the page, click it, and then remove it
+                            // Add it, click it, remove it!
                             document.body.appendChild(link);
                             link.click();
                             
-                            // Clean up the temporary URL and link
+                     
                             document.body.removeChild(link);
                             URL.revokeObjectURL(url);
                         }, 'image/png');
                     });
                 }, 500);
-            }; // <-- Notice there is no extra bracket here. It's now correct!
+            }; 
 
            auth.onAuthStateChanged(async (user) => {
                 const wasLoggedIn = !!currentUser;
@@ -1175,7 +1174,7 @@
 
 
 
-                // START: Add this code inside the loadUserDashboard function
+   
 
 // --- Weekly Analytics Calculation ---
 const now = new Date();
@@ -1226,9 +1225,7 @@ const updateChangeElement = (elementId, changeValue) => {
 updateChangeElement('weeklyTicketsChange', calculatePercentageChange(thisWeeksTickets, lastWeeksTickets));
 updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpent, lastWeeksSpent));
 
-// --- End of Weekly Analytics Calculation ---
 
-// END: Add this code
 
 
 
@@ -1472,7 +1469,7 @@ updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpen
   top: -300px;
   left: 0;
   width: 100%;
-  height: 250%; /* Oversized for parallax, adjust as needed */
+  height: 250%; 
   object-fit: cover;
 
   z-index: 0;
@@ -1538,7 +1535,7 @@ updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpen
         .btn-accept { background-color: #28a745; color: white; }
         .btn-trash { background-color: #6c757d; color: white; }
 
-        /* --- ADD THESE NEW HOVER RULES --- */
+
         .btn-decline:hover {
             background-color: #c82333; /* Darker red */
         }
@@ -1557,27 +1554,27 @@ updateChangeElement('weeklySpentChange', calculatePercentageChange(thisWeeksSpen
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 document.onkeydown = function(e) {
-  // Block Cmd+Option+I (DevTools)
+
   if (e.metaKey && e.altKey && e.key.toLowerCase() === 'i') {
     e.preventDefault();
   }
 
-  // Block Cmd+Shift+C (Element picker)
+
   if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'c') {
     e.preventDefault();
   }
 
-  // Block Cmd+Shift+J (Console)
+
   if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'j') {
     e.preventDefault();
   }
 
-  // Block Cmd+Option+U (View source)
+
   if (e.metaKey && e.altKey && e.key.toLowerCase() === 'u') {
     e.preventDefault();
   }
 
-  // General: Block F12 (DevTools)
+
   if (e.key === 'F12') {
     e.preventDefault();
   }

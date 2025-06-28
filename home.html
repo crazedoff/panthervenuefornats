@@ -17,27 +17,26 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 document.onkeydown = function(e) {
-  // Block Cmd+Option+I (DevTools)
+
   if (e.metaKey && e.altKey && e.key.toLowerCase() === 'i') {
     e.preventDefault();
   }
 
-  // Block Cmd+Shift+C (Element picker)
   if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'c') {
     e.preventDefault();
   }
 
-  // Block Cmd+Shift+J (Console)
+
   if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'j') {
     e.preventDefault();
   }
 
-  // Block Cmd+Option+U (View source)
+
   if (e.metaKey && e.altKey && e.key.toLowerCase() === 'u') {
     e.preventDefault();
   }
 
-  // General: Block F12 (DevTools)
+
   if (e.key === 'F12') {
     e.preventDefault();
   }
@@ -110,9 +109,6 @@ document.onkeydown = function(e) {
   
 
  
-    <!--
-    DECORATIVE BACKGROUND STYLES & PARALLAX
-    -->
     <style>
       /* makes the FAQ section a container for its decorations */
       #faq {
@@ -657,38 +653,34 @@ document.onkeydown = function(e) {
     typeNextCharacter();
   }
 
-  // --- Restart Logic ---
+ 
 
-  // Resets and restarts the entire animation sequence
+
   function restartTyping() {
-    // 1. Stop any currently running animation to prevent glitches.
+
     if (typingTimeout) {
       clearTimeout(typingTimeout);
     }
 
-    // 2. Reset the text and typing index.
+
     typingElement.innerHTML = '';
     index = 0;
 
-    // 3. **THE FIX**: Reset the second line with a non-breaking space.
-    // This is crucial. It holds the line's height and prevents the layout jump.
     excellenceElement.innerHTML = '&nbsp';
 
-    // 4. Start the typing animation from the beginning.
+    //sart the typing animation from the beginning.
     type();
   }
 
-  // --- Event Listener ---
-  // Listens for the "Cmd + H" shortcut to trigger the restart.
+
   document.addEventListener('keydown', function(e) {
     if (e.metaKey && e.key.toLowerCase() === 'h') {
-      e.preventDefault(); // Prevents the browser's default action (like opening history).
+      e.preventDefault(); 
       restartTyping();
     }
   });
 
-  // NOTE: The initial call to `type()` is made by your main script near the bottom
-  // of the page, which is correct. We don't need to call it here on load.
+
 </script>
 
 
@@ -3393,9 +3385,9 @@ document.onkeydown = function(e) {
           <h4>Useful Links</h4>
           <ul>
             <li><i class="bi bi-chevron-right"></i> <a href="/home.html">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#about">About Us</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="/event.html">Events</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#schedule">Venue Policies</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#schedule">Project Sources</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="https://www.brrsd.org/fs/pages/500" target="_blank">Privacy Policy</a></li>
           </ul>
         </div>
@@ -4747,7 +4739,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .chat-form .chat-controls #send-message {
       color: #fff;
       background: #dc3545; /* Red */
-      /* IPAD FIX: Perfect centering for the icon */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -4799,12 +4790,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   </style>
-  <!-- END: Chatbot Integration Head -->
-  <!-- Marked.js for Markdown parsing -->
+
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- START: Chatbot Integration Head -->
-  <!-- Google Fonts for Chatbot Icons -->
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   <!-- Marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
