@@ -1042,7 +1042,7 @@
                 try {
                     const isAdmin = (email === 'anvay@panthervenue.com' && username === 'anvay_admin');
                     const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                    await db.collection("users").doc(userCredential.user.uid).set({
+                    await db.collection("users").doc(userCredential.user.uid).set({ //debugging checkpoint
                         username: username,
                         email: email,
                         isAdmin: isAdmin,
